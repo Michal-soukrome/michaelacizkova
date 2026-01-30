@@ -55,7 +55,7 @@ export default function Testimonials() {
         stopOnInteraction: false,
         stopOnMouseEnter: true,
       }),
-    ]
+    ],
   );
 
   return (
@@ -70,9 +70,13 @@ export default function Testimonials() {
             viewport={{ once: true }}
             className="md:ml-8"
           >
-            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">Říkají o mně</p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">Reference</h2>
-            
+            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">
+              Říkají o mně
+            </p>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+              Reference
+            </h2>
+
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -81,7 +85,7 @@ export default function Testimonials() {
               className="w-24 h-px bg-white mt-6 origin-left"
             />
           </motion.div>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -115,10 +119,7 @@ export default function Testimonials() {
                   {/* Stars Rating */}
                   <div className="flex mb-4 gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-white text-white"
-                      />
+                      <Star key={i} className="w-4 h-4 fill-white text-white" />
                     ))}
                   </div>
 
@@ -166,24 +167,22 @@ export default function Testimonials() {
             { value: "15+", label: "Let zkušeností" },
             { value: "25+", label: "Získaných ocenění" },
           ].map((stat, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="text-center md:text-left"
-              style={{ transform: `translateY(${index % 2 === 1 ? '1rem' : '0'})` }}
+              style={{
+                transform: `translateY(${index % 2 === 1 ? "1rem" : "0"})`,
+              }}
             >
-              <div className="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
-              <div className="text-gray-500 text-sm uppercase tracking-wider">{stat.label}</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">
+                {stat.value}
+              </div>
+              <div className="text-gray-500 text-sm uppercase tracking-wider">
+                {stat.label}
+              </div>
             </div>
           ))}
         </motion.div>
-      </div>
-    </section>
-  );
-}
-          </div>
-        </div>
-
-        {/* Removed pagination dots for seamless infinite scrolling */}
       </div>
     </section>
   );
