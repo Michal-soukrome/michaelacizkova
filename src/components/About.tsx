@@ -1,87 +1,131 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Camera, Award, BookOpen, Lightbulb } from "lucide-react";
 
 const timelineData = [
   {
-    year: "2015",
-    title: "Started Photography",
+    year: "2010",
+    title: "Začátek cesty",
     description:
-      "Began my journey with a simple camera, capturing everyday moments.",
-    icon: "📷",
+      "První kroky se záklavním fotoaparátem. Objevování krásy v každodenních momentech a zrození vášně pro vizuální vyprávění.",
+    icon: Camera,
+  },
+  {
+    year: "2015",
+    title: "První výstava",
+    description:
+      "Samá výstava černobílých portrétů. Ohlas překonal všechna očekávání a otevřel nové možnosti.",
+    icon: Award,
   },
   {
     year: "2018",
-    title: "First Exhibition",
+    title: "Digitální transformace",
     description:
-      "Held my first solo exhibition showcasing black and white portraits.",
-    icon: "🎨",
-  },
-  {
-    year: "2020",
-    title: "Digital Transition",
-    description: "Embraced digital photography and post-processing techniques.",
-    icon: "💻",
+      "Přechod k digitální fotografii a pokročilé post-produkci. Rozšíření kreativních možností.",
+    icon: Lightbulb,
   },
   {
     year: "2023",
-    title: "Published Work",
+    title: "Publikační úspěch",
     description:
-      "Published my first photography book featuring urban landscapes.",
-    icon: "📖",
+      "Vydání první fotografické knihy s městskými krajinami. Mezinárodní uznání a nové projekty.",
+    icon: BookOpen,
   },
 ];
 
 export default function About() {
   return (
-    <div className="container mx-auto px-4 py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-4xl font-bold mb-8">About</h2>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-          Passionate photographer specializing in black and white imagery. My
-          work explores the beauty in simplicity, capturing emotions and stories
-          through timeless compositions.
-        </p>
-      </motion.div>
-
-      <div className="relative">
-        {/* Timeline Line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-600"></div>
-
-        {timelineData.map((item, index) => (
+    <section className="py-24 md:py-40 bg-linear-to-b from-black via-zinc-950 to-black overflow-hidden">
+      <div className="container mx-auto px-4">
+        {/* Artistic offset header */}
+        <div className="relative mb-24">
           <motion.div
-            key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className={`flex items-center mb-12 ${
-              index % 2 === 0 ? "justify-start" : "justify-end"
-            }`}
+            className="md:ml-auto md:mr-12 md:text-right max-w-2xl"
           >
-            <div
-              className={`w-1/2 ${
-                index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
-              }`}
-            >
-              <div className="bg-black/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700">
-                <div className="text-2xl mb-2">{item.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-gray-300">{item.description}</p>
-                <div className="text-sm text-gray-500 mt-2">{item.year}</div>
-              </div>
-            </div>
-            {/* Timeline Dot */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-4 border-black"></div>
+            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">
+              Moje cesta
+            </p>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+              O mně
+            </h2>
+
+            {/* Decorative line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="w-24 h-px bg-white mb-8 md:ml-auto origin-right"
+            />
+
+            <p className="text-lg text-gray-400 leading-relaxed">
+              Fotografka se vášní pro černobílou estetiku. Má práce zkoumá krásu
+              v jednoduchosti a zachycuje emoce skrze nadčasové kompozice, které
+              přesahují obyčejnost.
+            </p>
           </motion.div>
-        ))}
+
+          {/* Decorative shape */}
+          <motion.div
+            initial={{ opacity: 0, rotate: 45, scale: 0.5 }}
+            whileInView={{ opacity: 0.1, rotate: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="absolute top-0 right-0 w-64 h-64 border border-white/30 -translate-y-1/2 translate-x-1/4"
+          />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* Timeline Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-linear-to-b from-gray-800 via-gray-700 to-gray-800 hidden md:block"></div>
+
+          {timelineData.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+                viewport={{ once: true }}
+                className={`flex items-center mb-16 md:mb-20 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+                <div
+                  className={`w-full md:w-1/2 ${
+                    index % 2 === 0
+                      ? "md:pr-12 md:text-right"
+                      : "md:pl-12 md:text-left"
+                  }`}
+                >
+                  <div className="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
+                    <div className="flex items-center justify-center md:justify-start mb-4">
+                      <div className="bg-white/10 p-4 rounded-full">
+                        <Icon className="w-8 h-8" />
+                      </div>
+                    </div>
+                    <div className="text-sm font-semibold text-gray-500 mb-2">
+                      {item.year}
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white rounded-full border-4 border-black shadow-lg hidden md:block"></div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

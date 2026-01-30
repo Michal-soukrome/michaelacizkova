@@ -1,16 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback, useEffect, useState, useRef } from "react";
+import { ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200",
-  "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200",
-  "https://images.unsplash.com/photo-1554048612-b6a482dbe3c2?w=1200",
+  {
+    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=90",
+    alt: "Captivating portrait photography",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1920&q=90",
+    alt: "Stunning black and white photography",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1554048612-b6a482dbe3c2?w=1920&q=90",
+    alt: "Professional portrait session",
+  },
 ];
 
 export default function Hero() {
@@ -19,24 +28,29 @@ export default function Hero() {
       loop: true,
       align: "center",
     },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+    [Autoplay({ delay: 5000, stopOnInteraction: false })],
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
+    [emblaApi],
   );
 
   const scrollPrev = useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
+    [emblaApi],
   );
 
   const scrollNext = useCallback(
     () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
+    [emblaApi],
   );
 
   const onSelect = useCallback(() => {
@@ -49,35 +63,111 @@ export default function Hero() {
     emblaApi.on("select", onSelect);
     onSelect();
   }, [emblaApi, onSelect]);
+
+  const handleScrollDown = () => {
+    document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden group">
+    <section
+      ref={heroRef}
+      className="relative h-screen flex items-center overflow-hidden"
+    >
+      {/* Hero Content with Parallax - Offset to the left */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-        className="text-center z-10"
+        style={{ opacity, scale }}
+        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-4xl"
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-8">
-          Capturing Moments
-        </h1>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
-          onClick={() =>
-            setTimeout(() => {
-              document
-                .getElementById("gallery")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }, 200)
-          }
+        {/* Decorative Shape */}
+        <motion.div
+          initial={{ scale: 0, rotate: -45 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ duration: 1.2, delay: 0.1 }}
+          className="absolute -top-20 -left-10 w-40 h-40 border border-white/20 rotate-12"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
         >
-          View Portfolio
-        </motion.button>
+          <p className="text-sm md:text-base tracking-[0.3em] text-gray-400 mb-4 uppercase">
+            Fotografka
+          </p>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
+            Michaela
+            <br />
+            <span className="text-stroke text-transparent [-webkit-text-stroke:1px_white] ml-8 md:ml-16">
+              Čížková
+            </span>
+          </h1>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mt-12 ml-4 md:ml-20 max-w-md"
+        >
+          <div className="w-12 h-px bg-white mb-6" />
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            Zachycuji příběhy skrze světlo a stín. Každý snímek je emocí, každý
+            moment je uměním.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="flex gap-6 mt-12 ml-4 md:ml-20"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05, x: 5 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white text-black px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-gray-100 transition-all duration-300"
+            onClick={handleScrollDown}
+          >
+            Prohlédnout portfolio
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05, x: 5 }}
+            whileTap={{ scale: 0.95 }}
+            className="border border-white text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300"
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Kontakt
+          </motion.button>
+        </motion.div>
+
+        {/* Animated Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 cursor-pointer"
+          onClick={handleScrollDown}
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowDown className="w-6 h-6 text-white/60" />
+          </motion.div>
+        </motion.div>
       </motion.div>
 
-      {/* Hero Image Carousel */}
+      {/* Hero Image Carousel with Overlay */}
       <div className="absolute inset-0">
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/60 z-10" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/20 via-transparent to-black/20 z-10" />
+
         <div className="embla h-full" ref={emblaRef}>
           <div className="embla__container h-full">
             {heroImages.map((image, index) => (
@@ -85,12 +175,14 @@ export default function Hero() {
                 key={index}
                 className="embla__slide flex-[0_0_100%] relative"
               >
-                <Image
-                  src={image}
-                  alt={`Hero image ${index + 1}`}
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
                   fill
-                  className="object-cover object-center opacity-25"
+                  className="object-cover object-center"
                   priority={index === 0}
+                  quality={90}
+                  sizes="100vw"
                 />
               </div>
             ))}
@@ -99,29 +191,32 @@ export default function Hero() {
 
         {/* Navigation Arrows */}
         <button
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollPrev}
+          aria-label="Previous slide"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <button
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollNext}
+          aria-label="Next slide"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
         {/* Pagination Dots */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
           {heroImages.map((_, index) => (
             <button
               key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`h-2 rounded-full transition-all duration-300 ${
                 index === selectedIndex
-                  ? "bg-white scale-125"
-                  : "bg-white/50 hover:bg-white/80"
+                  ? "bg-white w-8"
+                  : "bg-white/40 hover:bg-white/70 w-2"
               }`}
               onClick={() => scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>

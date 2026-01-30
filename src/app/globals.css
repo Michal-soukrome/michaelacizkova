@@ -3,6 +3,10 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-900: #171717;
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @theme inline {
@@ -12,10 +16,66 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Smooth scrolling for all anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
 }
 
 /* Embla Carousel Styles */
@@ -25,13 +85,175 @@ body {
 
 .embla__container {
   display: flex;
+  backface-visibility: hidden;
+  touch-action: pan-y;
 }
 
 .embla__slide {
   min-width: 0;
+  flex: 0 0 100%;
+  position: relative;
 }
 
+/* Menu animation */
 #menu-open {
   width: calc(100vw - 4rem);
   margin-left: auto;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s var(--transition-smooth);
+}
+
+/* Image loading state */
+.image-loading {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Performance optimizations */
+img,
+video {
+  content-visibility: auto;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch target improvements for mobile - WCAG 2.5.5 */
+@media (pointer: coarse) {
+  button,
+  a,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+  }
+
+  a {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+
+  .text-gray-400,
+  .text-gray-500,
+  .text-gray-600 {
+    color: #d4d4d4 !important;
+  }
+
+  button,
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus,
+.sr-only:focus-visible,
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Improved mobile typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  header,
+  footer,
+  nav {
+    display: none;
+  }
 }

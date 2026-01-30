@@ -1,113 +1,209 @@
-import { Instagram, Twitter, Mail } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import { Instagram, Twitter, Mail, Facebook, Camera } from "lucide-react";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+    },
+  };
+
   return (
-    <footer className=" py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-4">Michael</h3>
-            <p className="text-gray-400 text-sm">
-              Professional photographer specializing in capturing life&apos;s
-              beautiful moments.
+    <footer className="bg-zinc-950 border-t border-gray-900 py-20 relative overflow-hidden">
+      {/* Decorative shapes */}
+      <motion.div
+        initial={{ opacity: 0, rotate: 0 }}
+        whileInView={{ opacity: 1, rotate: 12 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="absolute top-12 right-12 w-32 h-32 border border-gray-900"
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="absolute bottom-24 left-8 w-16 h-16 bg-gray-900/50"
+      />
+
+      <motion.div
+        className="container mx-auto px-4 relative"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {/* Main footer content with offset design */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+          {/* Brand - Takes more space */}
+          <motion.div className="md:col-span-5" variants={itemVariants}>
+            <div className="flex items-start gap-3 mb-6">
+              <motion.div
+                className="w-12 h-12 border border-white flex items-center justify-center rotate-3"
+                whileHover={{ rotate: -3, scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Camera className="w-5 h-5" />
+              </motion.div>
+              <div>
+                <h3 className="text-2xl font-light tracking-tight">Michaela</h3>
+                <span className="text-gray-500 font-light">Čížková</span>
+              </div>
+            </div>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-sm mb-8">
+              Profesionální fotografka specializující se na nadčasovou
+              černobílou fotografii, která zachycuje emoce a uměleckou krásu.
             </p>
-          </div>
+            <div className="flex gap-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300 -mt-1"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300 mt-1"
+                aria-label="Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:ahoj@michaelacizkova.cz"
+                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300"
+                aria-label="Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
+          <motion.div className="md:col-span-2 md:mt-8" variants={itemVariants}>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-600 mb-6">
+              Navigace
+            </h4>
+            <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="#home"
-                  className="text-gray-400 hover:text-white transition"
+                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
                 >
-                  Home
+                  Domů
                 </a>
               </li>
               <li>
                 <a
                   href="#gallery"
-                  className="text-gray-400 hover:text-white transition"
+                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
                 >
-                  Gallery
+                  Portfolio
                 </a>
               </li>
               <li>
                 <a
                   href="#about"
-                  className="text-gray-400 hover:text-white transition"
+                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
                 >
-                  About
+                  O mně
                 </a>
               </li>
               <li>
                 <a
                   href="#services"
-                  className="text-gray-400 hover:text-white transition"
+                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
                 >
-                  Services
+                  Služby
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
+                >
+                  Kontakt
                 </a>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Services */}
-          <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="text-gray-400">Portrait Photography</li>
-              <li className="text-gray-400">Event Photography</li>
-              <li className="text-gray-400">Commercial Photography</li>
-              <li className="text-gray-400">Fine Art Photography</li>
+          <motion.div className="md:col-span-2 md:mt-4" variants={itemVariants}>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-600 mb-6">
+              Služby
+            </h4>
+            <ul className="space-y-3 text-sm text-gray-500">
+              <li>Portrétní fotografie</li>
+              <li>Eventová fotografie</li>
+              <li>Komerční práce</li>
+              <li>Umělecké tisky</li>
+              <li>Workshopy</li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="font-semibold mb-4">Get In Touch</h4>
-            <div className="space-y-2 text-sm text-gray-400">
-              <p>📧 contact@example.com</p>
-              <p>📱 +1 (555) 123-4567</p>
-              <p>📍 New York, NY</p>
+          <motion.div className="md:col-span-3" variants={itemVariants}>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-600 mb-6">
+              Kontakt
+            </h4>
+            <div className="space-y-3 text-sm text-gray-500">
+              <p>ahoj@michaelacizkova.cz</p>
+              <p>+420 123 456 789</p>
+              <p>Praha, Česká republika</p>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Social Links & Copyright */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex space-x-6 mb-4 md:mb-0">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-6 h-6" />
+        {/* Bottom Bar */}
+        <motion.div
+          className="border-t border-gray-900 pt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 uppercase tracking-wider">
+            <p>{currentYear} © Michaela Čížková. Všechna práva vyhrazena.</p>
+            <div className="flex gap-8">
+              <a href="#" className="hover:text-white transition-colors">
+                Zásady ochrany soukromí
               </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-6 h-6" />
-              </a>
-              <a
-                href="mailto:contact@example.com"
-                className="text-gray-400 hover:text-white transition"
-                aria-label="Email"
-              >
-                <Mail className="w-6 h-6" />
+              <a href="#" className="hover:text-white transition-colors">
+                Obchodní podmínky
               </a>
             </div>
-            <p className="text-gray-400 text-sm">
-              {new Date().getFullYear()} &copy; Michaela Cizkova. All rights
-              reserved.
-            </p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 }

@@ -7,17 +7,84 @@ import Footer from "@/components/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
-  title: "Photographer Portfolio",
+  title: {
+    default: "Michaela Čížková | Profesionální fotografka",
+    template: "%s | Michaela Čížková",
+  },
   description:
-    "Modern, sleek photography portfolio showcasing black and white images",
+    "Oceňovaná fotografka specializující se na černobílou fotografii. Prozkoumejte úchvatné portréty, krajiny a uměleckou fotografii, která zachycuje emoce a nadčasovou krásu.",
+  keywords: [
+    "fotografka",
+    "fotografické portfolio",
+    "černobílá fotografie",
+    "portrétní fotografie",
+    "umělecká fotografie",
+    "profesionální fotografka",
+    "Michaela Čížková",
+    "Praha",
+    "Česká republika",
+  ],
+  authors: [{ name: "Michaela Čížková" }],
+  creator: "Michaela Čížková",
+  openGraph: {
+    type: "website",
+    locale: "cs_CZ",
+    url: "https://michaelacizkova.cz",
+    siteName: "Michaela Čížková Fotografie",
+    title: "Michaela Čížková | Profesionální fotografka",
+    description:
+      "Oceňovaná fotografka specializující se na černobílou fotografii. Prozkoumejte úchvatné portréty, krajiny a uměleckou fotografii.",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200",
+        width: 1200,
+        height: 630,
+        alt: "Michaela Čížková Fotografie",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Michaela Čížková | Profesionální fotografka",
+    description:
+      "Oceňovaná fotografka specializující se na černobílou fotografii.",
+    images: [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  metadataBase: new URL("https://michaelacizkova.cz"),
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({
@@ -26,12 +93,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="cs" className="scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
         <Header />
-        <main className="pl-16">{children}</main>
+        <main id="main-content" className="pl-16" role="main">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

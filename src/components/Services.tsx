@@ -1,99 +1,155 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { User, Camera, Building2, Palette, Check } from "lucide-react";
 
 const services = [
   {
-    title: "Portrait Photography",
+    title: "Portrétní fotografie",
     description:
-      "Professional headshots, family portraits, and personal branding photography.",
-    icon: "👤",
+      "Profesionální portréty, rodinné focení a osobní branding, který zachytí vaši jedinečnou podstatu.",
+    icon: User,
     features: [
-      "Studio Sessions",
-      "Outdoor Shoots",
-      "Post-Production",
-      "High-Resolution Files",
+      "Ateliérové focení",
+      "Exteriérové focení",
+      "Post-produkce",
+      "Vysoké rozlišení",
     ],
   },
   {
-    title: "Event Photography",
+    title: "Eventová fotografie",
     description:
-      "Capture your special moments - weddings, corporate events, and celebrations.",
-    icon: "📸",
+      "Zachycení vašich výjimečných okamžiků – svatby, firemní akce a oslavy s uměleckým nádychem.",
+    icon: Camera,
     features: [
-      "Full Event Coverage",
-      "Same-Day Previews",
-      "Online Gallery",
-      "Print Releases",
+      "Kompletní pokrytí",
+      "Náhledy ve stejný den",
+      "Online galerie",
+      "Tiskové licence",
     ],
   },
   {
-    title: "Commercial Photography",
+    title: "Komerční fotografie",
     description:
-      "Product photography, brand shoots, and commercial content creation.",
-    icon: "🏢",
+      "Produktová fotografie, firemní focení a tvorba komerčního obsahu pro firmy.",
+    icon: Building2,
     features: [
-      "Product Shoots",
-      "Brand Photography",
-      "E-commerce Images",
-      "Marketing Content",
+      "Produktové focení",
+      "Firemní fotografie",
+      "E-shop fotky",
+      "Marketingový obsah",
     ],
   },
   {
-    title: "Fine Art Photography",
+    title: "Umělecká fotografie",
     description:
-      "Creative and artistic photography for exhibitions and personal projects.",
-    icon: "🎨",
+      "Kreativní a umělecká fotografie pro výstavy, galerie a osobní projekty.",
+    icon: Palette,
     features: [
-      "Conceptual Shoots",
-      "Fine Art Prints",
-      "Gallery Exhibitions",
-      "Art Direction",
+      "Koncepční focení",
+      "Umělecké tisky",
+      "Galerní výstavy",
+      "Umělecká režie",
     ],
   },
 ];
 
 export default function Services() {
   return (
-    <section className="py-16 ">
+    <section className="py-24 md:py-40 bg-black overflow-hidden">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-bold mb-4">Services</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Professional photography services tailored to your needs. From
-            intimate portraits to large-scale events.
-          </p>
-        </motion.div>
+        {/* Artistic offset header */}
+        <div className="relative mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="md:ml-8"
+          >
+            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">
+              Co nabízím
+            </p>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+              Služby
+            </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+            {/* Decorative line */}
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              className="bg-black/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-gray-600 transition-all duration-300"
-            >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <p className="text-gray-300 mb-4">{service.description}</p>
-              <ul className="text-sm text-gray-400 space-y-1">
-                {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="w-24 h-px bg-white mt-6 origin-left"
+            />
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-gray-400 mt-8 max-w-lg md:ml-8"
+          >
+            Profesionální fotografické služby na míru vašim potřebám. Od
+            intimních portrétů po velké akce.
+          </motion.p>
+
+          {/* Decorative shape */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 0.05, scale: 1 }}
+            viewport={{ once: true }}
+            className="absolute -top-20 -right-20 w-80 h-80 border border-white rounded-full"
+          />
+        </div>
+
+        {/* Offset grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                style={{ marginTop: index % 2 === 1 ? "3rem" : "0" }}
+                className="group relative"
+              >
+                {/* Card with offset border */}
+                <div className="absolute inset-0 border border-gray-800 translate-x-3 translate-y-3 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300" />
+
+                <div className="relative bg-zinc-950 p-8 md:p-10 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+                  <div className="flex items-start gap-6">
+                    <div className="bg-white/5 w-16 h-16 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                      <Icon className="w-8 h-8" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-400 mb-6 leading-relaxed">
+                        {service.description}
+                      </p>
+                      <ul className="space-y-2">
+                        {service.features.map((feature, featureIndex) => (
+                          <li
+                            key={featureIndex}
+                            className="flex items-center text-sm text-gray-500"
+                          >
+                            <span className="w-1.5 h-1.5 bg-white mr-3" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div
@@ -101,25 +157,28 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-20"
         >
-          <p className="text-gray-300 mb-6">
-            Ready to capture your story? Let&apos;s discuss your project.
+          <p className="text-gray-400 mb-8 text-lg">
+            Připraveni zachytit váš příběh? Pojďme si promluvit o vašem
+            projektu.
           </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
-            onClick={() =>
+          <motion.a
+            href="#contact"
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block bg-white text-black px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
               setTimeout(() => {
                 document
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" });
-              }, 200)
-            }
+              }, 200);
+            }}
           >
-            Get In Touch
-          </motion.button>
+            Kontaktujte mě
+          </motion.a>
         </motion.div>
       </div>
     </section>
