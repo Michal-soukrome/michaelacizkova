@@ -182,12 +182,16 @@ export default function Testimonials() {
               onClick={() => scrollTo(index)}
               aria-label={`Go to testimonial ${index + 1}`}
               className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
-                index === selectedIndex ? "w-8" : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
+                index === selectedIndex
+                  ? "w-8"
+                  : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
               }`}
             >
               {/* Background bar */}
-              <div className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`} />
-              
+              <div
+                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`}
+              />
+
               {/* Progress fill - animates for active dot */}
               {index === selectedIndex && (
                 <motion.div
