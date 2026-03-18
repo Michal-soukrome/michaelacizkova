@@ -165,7 +165,7 @@ export default function Hero() {
       {/* Hero Image Carousel with Overlay */}
       <div className="absolute inset-0">
         {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-black/50 z-[5]" />
+        <div className="absolute inset-0 bg-black/50 z-5" />
 
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-linear-to-b from-mauve-100/40 via-transparent to-mauve-100/40 z-10" />
@@ -208,19 +208,31 @@ export default function Hero() {
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
-        {/* Pagination Dots */}
+        {/* Pagination Dots with Progress Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
           {heroImages.map((_, index) => (
             <button
               key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === selectedIndex
-                  ? "bg-mauve-500 w-8"
-                  : "bg-mauve-500/40 hover:bg-mauve-500/70 w-2"
-              }`}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-            />
+              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
+                index === selectedIndex ? "w-8" : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
+              }`}
+            >
+              {/* Background bar */}
+              <div className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`} />
+              
+              {/* Progress fill - animates for active dot */}
+              {index === selectedIndex && (
+                <motion.div
+                  key={selectedIndex}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 5, ease: "linear" }}
+                  className="absolute inset-y-0 left-0 bg-mauve-500 rounded-full"
+                />
+              )}
+            </button>
           ))}
         </div>
       </div>

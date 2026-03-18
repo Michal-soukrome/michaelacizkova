@@ -174,19 +174,31 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Pagination Dots */}
+        {/* Pagination Dots with Progress Indicator */}
         <div className="flex justify-center gap-3 mt-12">
           {testimonials.map((_, index) => (
             <button
               key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === selectedIndex
-                  ? "bg-mauve-500 w-8"
-                  : "bg-mauve-500/40 hover:bg-mauve-500/70 w-2"
-              }`}
               onClick={() => scrollTo(index)}
               aria-label={`Go to testimonial ${index + 1}`}
-            />
+              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
+                index === selectedIndex ? "w-8" : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
+              }`}
+            >
+              {/* Background bar */}
+              <div className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`} />
+              
+              {/* Progress fill - animates for active dot */}
+              {index === selectedIndex && (
+                <motion.div
+                  key={selectedIndex}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 6, ease: "linear" }}
+                  className="absolute inset-y-0 left-0 bg-mauve-500 rounded-full"
+                />
+              )}
+            </button>
           ))}
         </div>
 

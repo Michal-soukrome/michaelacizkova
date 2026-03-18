@@ -22,7 +22,7 @@ export default function Section({
     default: "",
     dark: "bg-mauve-100/20",
     gradient:
-      "bg-gradient-to-b from-background via-mauve-100/10 to-background",
+      "bg-linear-to-b from-background via-mauve-100/10 to-background",
   };
 
   return (
