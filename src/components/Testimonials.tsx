@@ -12,8 +12,7 @@ const testimonials = [
     role: "Art Director, CreativeCo",
     content:
       "Michaelina černobílá fotografie zachycuje emoce způsobem, který barva nikdy nedokáže. Její práce je skutečně nadčasová a pozvedla vizuální identitu naší značky.",
-    image:
-      "https://cdn.pixabay.com/photo/2023/02/05/17/55/woman-7771713_1280.jpg",
+    image: "/assets/4.jpg",
     rating: 5,
   },
   {
@@ -21,8 +20,7 @@ const testimonials = [
     role: "Kreativní ředitel",
     content:
       "Spolupráce s Michaelou byla čirý požitek. Její smysl pro detail a umělecká vize přinesly našemu projektu život způsobem, který překonává všechna očekávání.",
-    image:
-      "https://cdn.pixabay.com/photo/2016/10/04/14/45/male-1715784_1280.jpg",
+    image: "/assets/5.jpg",
     rating: 5,
   },
   {
@@ -30,8 +28,7 @@ const testimonials = [
     role: "Módní návrhářka",
     content:
       "Portréty, které Michaela vytvořila pro naši kampaně, dokonale zachytily atmosféru, o kterou nám šlo. Její schopnost pracovat s přirozeným světlem je mimořádná.",
-    image:
-      "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
+    image: "/assets/6.jpg",
     rating: 5,
   },
   {
@@ -39,8 +36,7 @@ const testimonials = [
     role: "CEO, Tech Startup",
     content:
       "Profesionální, kreativní a nebyvále talentovaná. Michaela dodala úžasné portréty pro celý náš tým, které skutečně reprezentují naši firemní kulturu.",
-    image:
-      "https://cdn.pixabay.com/photo/2017/04/05/00/14/portrait-2203969_1280.jpg",
+    image: "/assets/7.jpg",
     rating: 5,
   },
 ];
@@ -63,7 +59,7 @@ export default function Testimonials() {
   );
 
   return (
-    <section className="py-24 md:py-40 bg-linear-to-b from-black via-zinc-950 to-black overflow-hidden">
+    <section className="py-24 md:py-40 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Artistic header with offset */}
         <div className="relative mb-20">
@@ -74,10 +70,10 @@ export default function Testimonials() {
             viewport={{ once: true }}
             className="md:ml-8"
           >
-            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
               Říkají o mně
             </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               Reference
             </h2>
 
@@ -86,7 +82,7 @@ export default function Testimonials() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-white mt-6 origin-left"
+              className="w-24 h-px bg-rose-accent mt-6 origin-left"
             />
           </motion.div>
 
@@ -95,7 +91,7 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-gray-400 mt-8 max-w-lg md:ml-8"
+            className="text-text-light mt-8 max-w-lg md:ml-8"
           >
             Slova těch, kteří zažili mou fotografii na vlastní kůži
           </motion.p>
@@ -113,40 +109,43 @@ export default function Testimonials() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-gray-800 hover:border-gray-700 transition-all duration-300 group"
+                  className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-rose-accent/40 hover:border-rose-accent/60 transition-all duration-300 group bg-rose-light/30"
                 >
                   {/* Quote Icon */}
-                  <div className="mb-6 text-gray-600 group-hover:text-gray-500 transition-colors">
+                  <div className="mb-6 text-rose-accent/60 group-hover:text-rose-accent transition-colors">
                     <Quote className="w-10 h-10" />
                   </div>
 
                   {/* Stars Rating */}
                   <div className="flex mb-4 gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-white text-white" />
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-rose-accent text-rose-accent"
+                      />
                     ))}
                   </div>
 
                   {/* Content */}
-                  <p className="text-gray-300 mb-6 grow leading-relaxed">
+                  <p className="text-text-light mb-6 grow leading-relaxed">
                     &ldquo;{testimonial.content}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center pt-4 border-t border-gray-800">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-gray-700 group-hover:ring-gray-600 transition-all">
+                  <div className="flex items-center pt-4 border-t border-rose-accent/20">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-rose-accent/40 group-hover:ring-rose-accent/60 transition-all">
                       <OptimizedImage
                         src={testimonial.image}
                         alt={testimonial.name}
                         fill
-                        className="object-cover grayscale"
+                        className="object-cover"
                       />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white text-lg">
+                      <h3 className="font-semibold text-foreground text-lg">
                         {testimonial.name}
                       </h3>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-text-light">
                         {testimonial.role}
                       </p>
                     </div>
@@ -178,10 +177,10 @@ export default function Testimonials() {
                 transform: `translateY(${index % 2 === 1 ? "1rem" : "0"})`,
               }}
             >
-              <div className="text-4xl md:text-5xl font-bold mb-2">
+              <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
                 {stat.value}
               </div>
-              <div className="text-gray-500 text-sm uppercase tracking-wider">
+              <div className="text-text-light text-sm uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

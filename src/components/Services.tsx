@@ -56,7 +56,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-24 md:py-40 bg-black overflow-hidden">
+    <section className="py-24 md:py-40 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Artistic offset header */}
         <div className="relative mb-20">
@@ -67,10 +67,10 @@ export default function Services() {
             viewport={{ once: true }}
             className="md:ml-8"
           >
-            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
               Co nabízím
             </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               Služby
             </h2>
 
@@ -80,7 +80,7 @@ export default function Services() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-white mt-6 origin-left"
+              className="w-24 h-px bg-rose-accent mt-6 origin-left"
             />
           </motion.div>
 
@@ -89,7 +89,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-gray-400 mt-8 max-w-lg md:ml-8"
+            className="text-text-light mt-8 max-w-lg md:ml-8"
           >
             Profesionální fotografické služby na míru vašim potřebám. Od
             intimních portrétů po velké akce.
@@ -98,9 +98,9 @@ export default function Services() {
           {/* Decorative shape */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 0.05, scale: 1 }}
+            whileInView={{ opacity: 0.1, scale: 1 }}
             viewport={{ once: true }}
-            className="absolute -top-20 -right-20 w-80 h-80 border border-white rounded-full"
+            className="absolute -top-20 -right-20 w-80 h-80 border border-rose-accent/40 rounded-full"
           />
         </div>
 
@@ -119,27 +119,27 @@ export default function Services() {
                 className="group relative"
               >
                 {/* Card with offset border */}
-                <div className="absolute inset-0 border border-gray-800 translate-x-3 translate-y-3 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300" />
+                <div className="absolute inset-0 border-2 border-rose-accent/20 translate-x-3 translate-y-3 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300 rounded-xl" />
 
-                <div className="relative bg-zinc-950 p-8 md:p-10 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+                <div className="relative bg-rose-light/40 p-8 md:p-10 border-2 border-rose-accent/40 hover:border-rose-accent transition-all duration-300 rounded-xl">
                   <div className="flex items-start gap-6">
-                    <div className="bg-white/5 w-16 h-16 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                      <Icon className="w-8 h-8" />
+                    <div className="bg-rose-accent/20 w-16 h-16 flex items-center justify-center group-hover:bg-rose-accent/30 transition-colors rounded-full">
+                      <Icon className="w-8 h-8 text-rose-accent" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-3">
+                      <h3 className="text-2xl font-bold mb-3 text-foreground">
                         {service.title}
                       </h3>
-                      <p className="text-gray-400 mb-6 leading-relaxed">
+                      <p className="text-text-light mb-6 leading-relaxed">
                         {service.description}
                       </p>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (
                           <li
                             key={featureIndex}
-                            className="flex items-center text-sm text-gray-500"
+                            className="flex items-center text-sm text-text-light"
                           >
-                            <span className="w-1.5 h-1.5 bg-white mr-3" />
+                            <span className="w-1.5 h-1.5 bg-rose-accent mr-3 rounded-full" />
                             {feature}
                           </li>
                         ))}

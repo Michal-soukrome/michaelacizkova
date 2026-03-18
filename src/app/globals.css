@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --gray-50: #fafafa;
-  --gray-100: #f5f5f5;
-  --gray-900: #171717;
+  --background: #fdf9f7;
+  --foreground: #5a4a47;
+  --rose-accent: #a68799;
+  --rose-light: #d9cdd4;
+  --rose-medium: #8d7a8a;
+  --blush: #b8a3b0;
+  --cream: #fff9f5;
+  --gray-50: #faf8f6;
+  --gray-100: #f5f2f0;
+  --text-light: #8b7b78;
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -44,16 +49,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #faf8f6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #a68799;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #8d7a8a;
 }
 
 /* Smooth scrolling for all anchor links */
@@ -63,18 +68,18 @@ html {
 
 /* Selection styles */
 ::selection {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #a68799;
   color: #ffffff;
 }
 
 ::-moz-selection {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #a68799;
   color: #ffffff;
 }
 
 /* Focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline: 2px solid #8d7a8a;
   outline-offset: 2px;
 }
 
@@ -103,7 +108,7 @@ html {
 
 /* Gradient text effect */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+  background: linear-gradient(135deg, #a68799 0%, #8d7a8a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -111,10 +116,10 @@ html {
 
 /* Glass morphism utility */
 .glass {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(166, 135, 153, 0.08);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(166, 135, 153, 0.2);
 }
 
 /* Subtle animations */
@@ -135,7 +140,7 @@ html {
 
 /* Image loading state */
 .image-loading {
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, #d9cdd4 25%, #b8a3b0 50%, #d9cdd4 75%);
   background-size: 200% 100%;
   animation: loading 1.5s ease-in-out infinite;
 }
@@ -193,7 +198,7 @@ video {
   .text-gray-400,
   .text-gray-500,
   .text-gray-600 {
-    color: #d4d4d4 !important;
+    color: #8b7b78 !important;
   }
 
   button,

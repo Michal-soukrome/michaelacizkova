@@ -57,7 +57,7 @@ export default function OptimizedImage({
 
   return (
     <div
-      className={`relative ${className}`}
+      className={`relative w-full h-full ${className}`}
       onClick={onClick}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}

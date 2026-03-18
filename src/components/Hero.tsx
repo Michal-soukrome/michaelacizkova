@@ -9,15 +9,15 @@ import OptimizedImage from "./OptimizedImage";
 
 const heroImages = [
   {
-    src: "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
+    src: "/assets/1.jpg",
     alt: "Captivating portrait photography",
   },
   {
-    src: "https://cdn.pixabay.com/photo/2023/02/05/17/55/woman-7771713_1280.jpg",
+    src: "/assets/2.jpg",
     alt: "Stunning black and white photography",
   },
   {
-    src: "https://cdn.pixabay.com/photo/2019/03/12/08/32/people-4051147_1280.jpg",
+    src: "/assets/3.jpg",
     alt: "Professional portrait session",
   },
 ];
@@ -71,19 +71,19 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative h-screen flex items-center overflow-hidden"
+      className="relative h-dvh flex items-center overflow-hidden"
     >
       {/* Hero Content with Parallax - Offset to the left */}
       <motion.div
         style={{ opacity, scale }}
-        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-4xl"
+        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-4xl mix-blend-plus-lighter"
       >
         {/* Decorative Shape */}
         <motion.div
           initial={{ scale: 0, rotate: -45 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, delay: 0.1 }}
-          className="absolute -top-20 -left-10 w-40 h-40 border border-white/20 rotate-12"
+          className="absolute -top-20 -left-10 w-40 h-40 rounded-full border border-rose-accent/30 rotate-12"
         />
 
         <motion.div
@@ -91,13 +91,13 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <p className="text-sm md:text-base tracking-[0.3em] text-gray-400 mb-4 uppercase">
+          <p className="text-sm md:text-base tracking-[0.3em] text-rose-accent mb-4 uppercase">
             Fotografka
           </p>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
             Michaela
             <br />
-            <span className="text-stroke text-transparent [-webkit-text-stroke:1px_white] ml-8 md:ml-16">
+            <span className="text-stroke text-transparent [-webkit-text-stroke:1px_rgb(240,168,205)] ml-8 md:ml-16">
               Čížková
             </span>
           </h1>
@@ -109,8 +109,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-12 ml-4 md:ml-20 max-w-md"
         >
-          <div className="w-12 h-px bg-white mb-6" />
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+          <div className="w-12 h-px bg-rose-accent mb-6" />
+          <p className="text-lg md:text-xl text-rose-medium leading-relaxed">
             Zachycuji příběhy skrze světlo a stín. Každý snímek je emocí, každý
             moment je uměním.
           </p>
@@ -125,7 +125,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-black px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-gray-100 transition-all duration-300"
+            className="bg-rose-accent text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-rose-medium transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
             onClick={handleScrollDown}
           >
             Prohlédnout portfolio
@@ -134,7 +134,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="border border-white text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-white hover:text-black transition-all duration-300"
+            className="border-2 border-rose-accent text-rose-accent px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-rose-accent hover:text-white transition-all duration-300 rounded-full"
             onClick={() =>
               document
                 .getElementById("contact")
@@ -157,16 +157,19 @@ export default function Hero() {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown className="w-6 h-6 text-white/60" />
+            <ArrowDown className="w-6 h-6 text-rose-accent/70" />
           </motion.div>
         </motion.div>
       </motion.div>
 
       {/* Hero Image Carousel with Overlay */}
       <div className="absolute inset-0">
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/50 z-[5]" />
+
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-black/60 z-10" />
-        <div className="absolute inset-0 bg-linear-to-r from-black/20 via-transparent to-black/20 z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-rose-light/40 via-transparent to-rose-light/40 z-10" />
+        <div className="absolute inset-0 bg-linear-to-r from-rose-light/20 via-transparent to-rose-light/20 z-10" />
 
         <div className="embla h-full" ref={emblaRef}>
           <div className="embla__container h-full">
@@ -191,14 +194,14 @@ export default function Hero() {
 
         {/* Navigation Arrows */}
         <button
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-rose-accent/30 hover:bg-rose-accent/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollPrev}
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <button
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-rose-accent/30 hover:bg-rose-accent/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollNext}
           aria-label="Next slide"
         >
@@ -212,8 +215,8 @@ export default function Hero() {
               key={index}
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === selectedIndex
-                  ? "bg-white w-8"
-                  : "bg-white/40 hover:bg-white/70 w-2"
+                  ? "bg-rose-accent w-8"
+                  : "bg-rose-accent/40 hover:bg-rose-accent/70 w-2"
               }`}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}

@@ -19,26 +19,26 @@ export default function Footer() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+      transition: { duration: 0.6 },
     },
   };
 
   return (
-    <footer className="bg-zinc-950 border-t border-gray-900 py-20 relative overflow-hidden">
+    <footer className="bg-rose-light/30 border-t border-rose-accent/30 py-20 relative overflow-hidden">
       {/* Decorative shapes */}
       <motion.div
         initial={{ opacity: 0, rotate: 0 }}
         whileInView={{ opacity: 1, rotate: 12 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="absolute top-12 right-12 w-32 h-32 border border-gray-900"
+        className="absolute top-12 right-12 w-32 h-32 border border-rose-accent/30 rounded-full"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
-        className="absolute bottom-24 left-8 w-16 h-16 bg-gray-900/50"
+        className="absolute bottom-24 left-8 w-16 h-16 bg-rose-accent/20 rounded-full"
       />
 
       <motion.div
@@ -54,18 +54,20 @@ export default function Footer() {
           <motion.div className="md:col-span-5" variants={itemVariants}>
             <div className="flex items-start gap-3 mb-6">
               <motion.div
-                className="w-12 h-12 border border-white flex items-center justify-center rotate-3"
+                className="w-12 h-12 border-2 border-rose-accent flex items-center justify-center rotate-3 rounded-full"
                 whileHover={{ rotate: -3, scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <Camera className="w-5 h-5" />
+                <Camera className="w-5 h-5 text-rose-accent" />
               </motion.div>
               <div>
-                <h3 className="text-2xl font-light tracking-tight">Michaela</h3>
-                <span className="text-gray-500 font-light">Čížková</span>
+                <h3 className="text-2xl font-light tracking-tight text-foreground">
+                  Michaela
+                </h3>
+                <span className="text-rose-medium font-light">Čížková</span>
               </div>
             </div>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-sm mb-8">
+            <p className="text-text-light text-sm leading-relaxed max-w-sm mb-8">
               Profesionální fotografka specializující se na nadčasovou
               černobílou fotografii, která zachycuje emoce a uměleckou krásu.
             </p>
@@ -74,7 +76,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300"
+                className="w-10 h-10 border-2 border-rose-accent flex items-center justify-center hover:border-rose-medium hover:bg-rose-accent hover:text-white transition-all duration-300 rounded-full text-rose-accent"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -83,7 +85,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300 -mt-1"
+                className="w-10 h-10 border-2 border-rose-accent flex items-center justify-center hover:border-rose-medium hover:bg-rose-accent hover:text-white transition-all duration-300 rounded-full text-rose-accent -mt-1"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -92,14 +94,14 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300 mt-1"
+                className="w-10 h-10 border-2 border-rose-accent flex items-center justify-center hover:border-rose-medium hover:bg-rose-accent hover:text-white transition-all duration-300 rounded-full text-rose-accent mt-1"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href="mailto:ahoj@michaelacizkova.cz"
-                className="w-10 h-10 border border-gray-800 flex items-center justify-center hover:border-white hover:bg-white hover:text-black transition-all duration-300"
+                className="w-10 h-10 border-2 border-rose-accent flex items-center justify-center hover:border-rose-medium hover:bg-rose-accent hover:text-white transition-all duration-300 rounded-full text-rose-accent"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -109,14 +111,14 @@ export default function Footer() {
 
           {/* Quick Links */}
           <motion.div className="md:col-span-2 md:mt-8" variants={itemVariants}>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-600 mb-6">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-rose-medium mb-6">
               Navigace
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="#home"
-                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-rose-accent transition-colors hover:translate-x-2 inline-block duration-300"
                 >
                   Domů
                 </a>
@@ -124,7 +126,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#gallery"
-                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-rose-accent transition-colors hover:translate-x-2 inline-block duration-300"
                 >
                   Portfolio
                 </a>
@@ -132,7 +134,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#about"
-                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-rose-accent transition-colors hover:translate-x-2 inline-block duration-300"
                 >
                   O mně
                 </a>
@@ -140,7 +142,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#services"
-                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-rose-accent transition-colors hover:translate-x-2 inline-block duration-300"
                 >
                   Služby
                 </a>
@@ -148,7 +150,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#contact"
-                  className="text-gray-500 hover:text-white transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-rose-accent transition-colors hover:translate-x-2 inline-block duration-300"
                 >
                   Kontakt
                 </a>
@@ -158,10 +160,10 @@ export default function Footer() {
 
           {/* Services */}
           <motion.div className="md:col-span-2 md:mt-4" variants={itemVariants}>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-600 mb-6">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-rose-medium mb-6">
               Služby
             </h4>
-            <ul className="space-y-3 text-sm text-gray-500">
+            <ul className="space-y-3 text-sm text-text-light">
               <li>Portrétní fotografie</li>
               <li>Eventová fotografie</li>
               <li>Komerční práce</li>
@@ -172,10 +174,10 @@ export default function Footer() {
 
           {/* Contact Info */}
           <motion.div className="md:col-span-3" variants={itemVariants}>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-600 mb-6">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-rose-medium mb-6">
               Kontakt
             </h4>
-            <div className="space-y-3 text-sm text-gray-500">
+            <div className="space-y-3 text-sm text-text-light">
               <p>ahoj@michaelacizkova.cz</p>
               <p>+420 123 456 789</p>
               <p>Praha, Česká republika</p>
@@ -185,19 +187,19 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <motion.div
-          className="border-t border-gray-900 pt-8"
+          className="border-t border-rose-accent/30 pt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 uppercase tracking-wider">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
             <p>{currentYear} © Michaela Čížková. Všechna práva vyhrazena.</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#" className="hover:text-rose-accent transition-colors">
                 Zásady ochrany soukromí
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#" className="hover:text-rose-accent transition-colors">
                 Obchodní podmínky
               </a>
             </div>

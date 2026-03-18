@@ -18,14 +18,7 @@ const getSizeClasses = (size: string) => {
   }
 };
 
-const categories = [
-  "Vše",
-  "Portréty",
-  "Krajiny",
-  "Street",
-  "Příroda",
-  "Architektura",
-];
+const categories = ["Vše", "Portréty", "Krajiny", "Street", "Příroda"];
 
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -98,10 +91,10 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="md:ml-12"
           >
-            <p className="text-sm tracking-[0.3em] text-gray-500 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
               Výběr z mé tvorby
             </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               Portfolio
             </h2>
           </motion.div>
@@ -112,7 +105,7 @@ export default function Gallery() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-white origin-left"
+            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-rose-accent origin-left"
           />
 
           <motion.p
@@ -120,7 +113,7 @@ export default function Gallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-gray-400 mt-8 max-w-lg md:ml-12"
+            className="text-rose-medium mt-8 max-w-lg md:ml-12"
           >
             Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
             vypráví svůj vlastní příběh.
@@ -151,14 +144,14 @@ export default function Gallery() {
                           : category,
                 )
               }
-              className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 ${
+              className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
                 (selectedCategory === "All" && category === "Vše") ||
                 (selectedCategory === "Portraits" && category === "Portréty") ||
                 (selectedCategory === "Landscapes" && category === "Krajiny") ||
                 (selectedCategory === "Nature" && category === "Příroda") ||
                 selectedCategory === category
-                  ? "bg-white text-black"
-                  : "bg-transparent text-gray-400 hover:text-white border border-gray-800 hover:border-gray-600"
+                  ? "bg-rose-accent text-white shadow-lg"
+                  : "bg-transparent text-rose-medium hover:text-rose-accent border border-rose-accent/40 hover:border-rose-accent"
               }`}
               style={{
                 transform: `translateY(${index % 2 === 0 ? "0" : "8px"})`,
@@ -178,16 +171,10 @@ export default function Gallery() {
                 layout
                 initial={{ opacity: 0, y: 60 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.05,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
+                exit={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(
                   photo.size,
                 )}`}
@@ -202,12 +189,14 @@ export default function Gallery() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="absolute inset-0 bg-linear-to-t from-rose-accent/80 via-rose-accent/0 to-rose-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <div>
                     <h3 className="text-white font-semibold text-lg mb-1">
                       {photo.title}
                     </h3>
-                    <p className="text-gray-300 text-sm">{photo.category}</p>
+                    <p className="text-white text-sm opacity-85">
+                      {photo.category}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -224,35 +213,33 @@ export default function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black z-50 flex items-center justify-center"
             onClick={closeLightbox}
             role="dialog"
             aria-modal="true"
             aria-label={`Prohlížeč obrázků: ${filteredPhotos[selectedIndex].title}`}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative max-w-7xl max-h-[90vh] w-full mx-4"
+              className="relative w-full h-dvh"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full h-[80vh]">
-                <OptimizedImage
-                  src={filteredPhotos[selectedIndex].src}
-                  alt={filteredPhotos[selectedIndex].alt}
-                  fill
-                  className="object-contain"
-                  priority
-                  quality={95}
-                />
-              </div>
+              <OptimizedImage
+                src={filteredPhotos[selectedIndex].src}
+                alt={filteredPhotos[selectedIndex].alt}
+                fill
+                className="object-contain"
+                priority
+                quality={95}
+              />
 
               {/* Close Button */}
               <button
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-3 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white"
+                className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-3 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
                 aria-label="Zavřít prohlížeč"
               >
                 <X className="w-6 h-6" aria-hidden="true" />
@@ -263,14 +250,14 @@ export default function Gallery() {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
                     aria-label="Předchozí obrázek"
                   >
                     <ChevronLeft className="w-6 h-6" aria-hidden="true" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
                     aria-label="Další obrázek"
                   >
                     <ChevronRight className="w-6 h-6" aria-hidden="true" />
@@ -279,7 +266,7 @@ export default function Gallery() {
               )}
 
               {/* Image Info */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-center bg-black/50 backdrop-blur-sm rounded-full px-6 py-3">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-center bg-black/50 backdrop-blur-sm rounded-full px-6 py-3 z-10">
                 <h3 className="text-lg font-semibold mb-1">
                   {filteredPhotos[selectedIndex].title}
                 </h3>

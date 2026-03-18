@@ -54,7 +54,7 @@ export default function Header() {
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:text-sm"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-rose-accent focus:text-white focus:px-4 focus:py-2 focus:text-sm"
       >
         Přeskočit na hlavní obsah
       </a>
@@ -63,7 +63,7 @@ export default function Header() {
         initial={{ x: -100 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.5 }}
-        className="fixed left-0 top-0 h-full w-16 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-8"
+        className="fixed left-0 top-0 h-full w-16 bg-rose-light/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-8"
         role="banner"
       >
         {/* Social Icons Top */}
@@ -73,7 +73,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            className="hover:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
+            className="hover:text-rose-accent transition-colors focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
           >
             <Facebook strokeWidth={0.5} aria-hidden="true" />
           </a>
@@ -82,14 +82,14 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="hover:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
+            className="hover:text-rose-accent transition-colors focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
           >
             <Instagram strokeWidth={0.5} aria-hidden="true" />
           </a>
           <a
             href="mailto:ahoj@michaelacizkova.cz"
             aria-label="Napsat email"
-            className="hover:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
+            className="hover:text-rose-accent transition-colors focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
           >
             <MailCheck strokeWidth={0.5} aria-hidden="true" />
           </a>
@@ -98,23 +98,23 @@ export default function Header() {
         {/* Burger Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
+          className="flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
           aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
           aria-expanded={isOpen}
           aria-controls="main-navigation"
         >
           <span
-            className={`block w-6 h-0.5 bg-white transition-transform ${
+            className={`block w-6 h-0.5 bg-rose-accent transition-transform ${
               isOpen ? "rotate-45 translate-y-1.5" : ""
             }`}
           ></span>
           <span
-            className={`block w-6 h-0.5 bg-white transition-opacity ${
+            className={`block w-6 h-0.5 bg-rose-accent transition-opacity ${
               isOpen ? "opacity-0" : ""
             }`}
           ></span>
           <span
-            className={`block w-6 h-0.5 bg-white transition-transform ${
+            className={`block w-6 h-0.5 bg-rose-accent transition-transform ${
               isOpen ? "-rotate-45 -translate-y-1.5" : ""
             }`}
           ></span>
@@ -129,7 +129,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="h-full fixed inset-0 bg-black/90 backdrop-blur-sm z-40 flex items-center justify-center"
+            className="h-full fixed inset-0 bg-cream/95 backdrop-blur-sm z-40 flex items-center justify-center"
             id="menu-open"
             role="dialog"
             aria-modal="true"
@@ -140,7 +140,7 @@ export default function Header() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-center"
+              className="w-full text-center"
               id="main-navigation"
               aria-label="Hlavní menu"
             >
@@ -155,9 +155,9 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll("home");
                     }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-gray-400"
+                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
                   >
-                    <span className="text-gray-600 text-sm mr-4">01</span>
+                    <span className="text-rose-medium text-sm mr-4">01</span>
                     Domů
                   </motion.a>
                 </li>
@@ -171,9 +171,9 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll("gallery");
                     }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-gray-400"
+                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
                   >
-                    <span className="text-gray-600 text-sm mr-4">02</span>
+                    <span className="text-rose-medium text-sm mr-4">02</span>
                     Portfolio
                   </motion.a>
                 </li>
@@ -187,9 +187,10 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll("about");
                     }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-gray-400"
+                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
                   >
-                    <span className="text-gray-600 text-sm mr-4">03</span>O mně
+                    <span className="text-rose-medium text-sm mr-4">03</span>O
+                    mně
                   </motion.a>
                 </li>
                 <li className="overflow-hidden">
@@ -202,9 +203,9 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll("services");
                     }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-gray-400"
+                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
                   >
-                    <span className="text-gray-600 text-sm mr-4">04</span>
+                    <span className="text-rose-medium text-sm mr-4">04</span>
                     Služby
                   </motion.a>
                 </li>
@@ -218,9 +219,9 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll("testimonials");
                     }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-gray-400"
+                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
                   >
-                    <span className="text-gray-600 text-sm mr-4">05</span>
+                    <span className="text-rose-medium text-sm mr-4">05</span>
                     Reference
                   </motion.a>
                 </li>
@@ -234,9 +235,9 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll("contact");
                     }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-gray-400"
+                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
                   >
-                    <span className="text-gray-600 text-sm mr-4">06</span>
+                    <span className="text-rose-medium text-sm mr-4">06</span>
                     Kontakt
                   </motion.a>
                 </li>

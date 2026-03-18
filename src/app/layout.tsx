@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       "Oceňovaná fotografka specializující se na černobílou fotografii. Prozkoumejte úchvatné portréty, krajiny a uměleckou fotografii.",
     images: [
       {
-        url: "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
+        url: "https://michaelacizkova.cz/assets/1.jpg",
         width: 1200,
         height: 630,
         alt: "Michaela Čížková Fotografie",
@@ -60,9 +60,7 @@ export const metadata: Metadata = {
     title: "Michaela Čížková | Profesionální fotografka",
     description:
       "Oceňovaná fotografka specializující se na černobílou fotografii.",
-    images: [
-      "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
-    ],
+    images: ["https://michaelacizkova.cz/assets/1.jpg"],
   },
   robots: {
     index: true,
@@ -95,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="cs" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <Header />
         <main id="main-content" className="pl-16" role="main">
