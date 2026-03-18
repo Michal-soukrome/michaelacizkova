@@ -34,12 +34,14 @@ export default function Gallery() {
     setSelectedIndex(index);
     setIsLightboxOpen(true);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   };
 
   const closeLightbox = () => {
     setSelectedIndex(null);
     setIsLightboxOpen(false);
     document.body.style.overflow = "unset";
+    document.documentElement.style.overflow = "unset";
   };
 
   const nextImage = () => {
@@ -231,7 +233,7 @@ export default function Gallery() {
                 src={filteredPhotos[selectedIndex].src}
                 alt={filteredPhotos[selectedIndex].alt}
                 fill
-                className="object-contain"
+                objectFit="contain"
                 priority
                 quality={95}
               />

@@ -182,7 +182,8 @@ export default function Hero() {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover object-center"
+                  className="object-center"
+                  objectFit="cover"
                   priority={index === 0}
                   quality={90}
                   sizes="100vw"
