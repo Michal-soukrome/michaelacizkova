@@ -8,12 +8,34 @@ import {
   Instagram,
   Twitter,
   Mail,
-  MailCheck,
   Facebook,
+  Camera,
 } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Handle scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDifference = currentScrollY - lastScrollY;
+
+      // Only hide if scrolling down more than 25px, but keep visible if menu is open
+      if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
+        setIsVisible(false);
+      } else if (scrollDifference < -25 || isOpen) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY, isOpen]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -49,200 +71,209 @@ export default function Header() {
     setIsOpen(false); // Close menu after navigation
   };
 
+  const navItems = [
+    { label: "Domů", id: "home", number: "01" },
+    { label: "Portfolio", id: "gallery", number: "02" },
+    { label: "O mně", id: "about", number: "03" },
+    { label: "Služby", id: "services", number: "04" },
+    { label: "Reference", id: "testimonials", number: "05" },
+    { label: "Kontakt", id: "contact", number: "06" },
+  ];
+
   return (
     <>
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-rose-accent focus:text-white focus:px-4 focus:py-2 focus:text-sm"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-mauve-500 focus:text-white focus:px-4 focus:py-2 focus:text-sm"
       >
         Přeskočit na hlavní obsah
       </a>
 
       <motion.header
-        initial={{ x: -100 }}
-        animate={{ x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed left-0 top-0 h-full w-16 bg-rose-light/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-8"
+        initial={{ y: 0 }}
+        animate={{ y: isVisible ? 0 : -100 }}
+        transition={{ duration: 0.3 }}
+        className="sticky top-0 w-full bg-white/50 backdrop-blur-md z-40 border-b border-mauve-500/10"
         role="banner"
       >
-        {/* Social Icons Top */}
-        <nav aria-label="Sociální sítě" className="flex flex-col space-y-4">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            className="hover:text-rose-accent transition-colors focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
+        <div className="container mx-auto px-4 flex items-center justify-between h-16">
+          {/* Logo/Brand */}
+          <motion.a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("home");
+            }}
+            className="flex items-center gap-2 font-light text-lg tracking-tight hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+            whileHover={{ scale: 1.05 }}
           >
-            <Facebook strokeWidth={0.5} aria-hidden="true" />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="hover:text-rose-accent transition-colors focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
-          >
-            <Instagram strokeWidth={0.5} aria-hidden="true" />
-          </a>
-          <a
-            href="mailto:ahoj@michaelacizkova.cz"
-            aria-label="Napsat email"
-            className="hover:text-rose-accent transition-colors focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
-          >
-            <MailCheck strokeWidth={0.5} aria-hidden="true" />
-          </a>
-        </nav>
+            <Camera className="w-5 h-5" />
+            <span className="text-foreground">Michaela</span>
+          </motion.a>
 
-        {/* Burger Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-accent focus:ring-offset-2 focus:ring-offset-rose-light rounded"
-          aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
-          aria-expanded={isOpen}
-          aria-controls="main-navigation"
-        >
-          <span
-            className={`block w-6 h-0.5 bg-rose-accent transition-transform ${
-              isOpen ? "rotate-45 translate-y-1.5" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-rose-accent transition-opacity ${
-              isOpen ? "opacity-0" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-rose-accent transition-transform ${
-              isOpen ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
-          ></span>
-        </button>
+          {/* Desktop Navigation */}
+          <nav
+            aria-label="Hlavní navigace"
+            className="hidden md:flex items-center gap-8"
+            id="desktop-navigation"
+          >
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(item.id);
+                }}
+                className="text-sm font-medium text-foreground hover:text-mauve-500 transition-colors relative group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded px-2 py-1"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+              >
+                {item.label}
+                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-mauve-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              </motion.a>
+            ))}
+          </nav>
+
+          {/* Right Section - Social Icons (Desktop) + Hamburger */}
+          <div className="flex items-center gap-4">
+            {/* Social Icons - Desktop */}
+            <nav
+              aria-label="Sociální sítě"
+              className="hidden lg:flex items-center gap-4"
+            >
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:ahoj@michaelacizkova.cz"
+                aria-label="Napsat email"
+                className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </nav>
+
+            {/* Hamburger Menu Button - Mobile */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+              aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+            >
+              <motion.span
+                className="block w-6 h-0.5 bg-foreground"
+                animate={{
+                  rotate: isOpen ? 45 : 0,
+                  y: isOpen ? 8 : 0,
+                }}
+              />
+              <motion.span
+                className="block w-6 h-0.5 bg-foreground"
+                animate={{ opacity: isOpen ? 0 : 1 }}
+              />
+              <motion.span
+                className="block w-6 h-0.5 bg-foreground"
+                animate={{
+                  rotate: isOpen ? -45 : 0,
+                  y: isOpen ? -8 : 0,
+                }}
+              />
+            </button>
+          </div>
+        </div>
       </motion.header>
 
-      {/* Fullpage Menu Overlay */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="h-full fixed inset-0 bg-cream/95 backdrop-blur-sm z-40 flex items-center justify-center"
-            id="menu-open"
+            className="fixed inset-0 top-16 bg-cream/98 backdrop-blur-sm z-30 md:hidden"
+            id="mobile-navigation"
             role="dialog"
             aria-modal="true"
-            aria-label="Hlavní navigace"
+            aria-label="Mobilní navigace"
           >
-            <motion.nav
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              className="w-full text-center"
-              id="main-navigation"
-              aria-label="Hlavní menu"
-            >
-              <ul className="space-y-6 text-5xl font-light tracking-tight">
-                <li className="overflow-hidden">
-                  <motion.a
-                    initial={{ y: 60 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    href="#home"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll("home");
-                    }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
-                  >
-                    <span className="text-rose-medium text-sm mr-4">01</span>
-                    Domů
-                  </motion.a>
-                </li>
-                <li className="overflow-hidden">
-                  <motion.a
-                    initial={{ y: 60 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.15 }}
-                    href="#gallery"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll("gallery");
-                    }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
-                  >
-                    <span className="text-rose-medium text-sm mr-4">02</span>
-                    Portfolio
-                  </motion.a>
-                </li>
-                <li className="overflow-hidden">
-                  <motion.a
-                    initial={{ y: 60 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    href="#about"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll("about");
-                    }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
-                  >
-                    <span className="text-rose-medium text-sm mr-4">03</span>O
-                    mně
-                  </motion.a>
-                </li>
-                <li className="overflow-hidden">
-                  <motion.a
-                    initial={{ y: 60 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.25 }}
-                    href="#services"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll("services");
-                    }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
-                  >
-                    <span className="text-rose-medium text-sm mr-4">04</span>
-                    Služby
-                  </motion.a>
-                </li>
-                <li className="overflow-hidden">
-                  <motion.a
-                    initial={{ y: 60 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    href="#testimonials"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll("testimonials");
-                    }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
-                  >
-                    <span className="text-rose-medium text-sm mr-4">05</span>
-                    Reference
-                  </motion.a>
-                </li>
-                <li className="overflow-hidden">
-                  <motion.a
-                    initial={{ y: 60 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.35 }}
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll("contact");
-                    }}
-                    className="block hover:translate-x-4 transition-transform duration-300 hover:text-rose-accent"
-                  >
-                    <span className="text-rose-medium text-sm mr-4">06</span>
-                    Kontakt
-                  </motion.a>
-                </li>
+            <nav className="container mx-auto px-4 py-8">
+              <ul className="space-y-4">
+                {navItems.map((item, index) => (
+                  <li key={item.id} className="overflow-hidden">
+                    <motion.a
+                      initial={{ x: -50, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.05 }}
+                      href={`#${item.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleScroll(item.id);
+                      }}
+                      className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-mauve-500/10 transition-colors group"
+                    >
+                      <span className="text-mauve-500 font-medium text-sm">
+                        {item.number}
+                      </span>
+                      <span className="text-foreground group-hover:text-mauve-500 transition-colors">
+                        {item.label}
+                      </span>
+                    </motion.a>
+                  </li>
+                ))}
               </ul>
-            </motion.nav>
+
+              {/* Social Icons - Mobile */}
+              <nav
+                aria-label="Sociální sítě"
+                className="flex items-center gap-4 mt-8 pt-8 border-t border-mauve-500/10"
+              >
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:ahoj@michaelacizkova.cz"
+                  aria-label="Napsat email"
+                  className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+              </nav>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

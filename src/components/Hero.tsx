@@ -83,7 +83,7 @@ export default function Hero() {
           initial={{ scale: 0, rotate: -45 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, delay: 0.1 }}
-          className="absolute -top-20 -left-10 w-40 h-40 rounded-full border border-rose-accent/30 rotate-12"
+          className="absolute -top-20 -left-10 w-40 h-40 rounded-full border border-mauve-500/30 rotate-12"
         />
 
         <motion.div
@@ -91,7 +91,7 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <p className="text-sm md:text-base tracking-[0.3em] text-rose-accent mb-4 uppercase">
+          <p className="text-sm md:text-base tracking-[0.3em] text-mauve-500 mb-4 uppercase">
             Fotografka
           </p>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
@@ -109,8 +109,8 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-12 ml-4 md:ml-20 max-w-md"
         >
-          <div className="w-12 h-px bg-rose-accent mb-6" />
-          <p className="text-lg md:text-xl text-rose-medium leading-relaxed">
+          <div className="w-12 h-px bg-mauve-500 mb-6" />
+          <p className="text-lg md:text-xl text-mauve-600 leading-relaxed">
             Zachycuji příběhy skrze světlo a stín. Každý snímek je emocí, každý
             moment je uměním.
           </p>
@@ -125,7 +125,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-rose-accent text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-rose-medium transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
+            className="bg-mauve-500 text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-600 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
             onClick={handleScrollDown}
           >
             Prohlédnout portfolio
@@ -134,7 +134,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="border-2 border-rose-accent text-rose-accent px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-rose-accent hover:text-white transition-all duration-300 rounded-full"
+            className="border-2 border-mauve-500 text-mauve-500 px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full"
             onClick={() =>
               document
                 .getElementById("contact")
@@ -157,7 +157,7 @@ export default function Hero() {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown className="w-6 h-6 text-rose-accent/70" />
+            <ArrowDown className="w-6 h-6 text-mauve-500/70" />
           </motion.div>
         </motion.div>
       </motion.div>
@@ -168,8 +168,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50 z-[5]" />
 
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-linear-to-b from-rose-light/40 via-transparent to-rose-light/40 z-10" />
-        <div className="absolute inset-0 bg-linear-to-r from-rose-light/20 via-transparent to-rose-light/20 z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-mauve-100/40 via-transparent to-mauve-100/40 z-10" />
+        <div className="absolute inset-0 bg-linear-to-r from-mauve-100/20 via-transparent to-mauve-100/20 z-10" />
 
         <div className="embla h-full" ref={emblaRef}>
           <div className="embla__container h-full">
@@ -194,14 +194,14 @@ export default function Hero() {
 
         {/* Navigation Arrows */}
         <button
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-rose-accent/30 hover:bg-rose-accent/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/30 hover:bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollPrev}
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <button
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-rose-accent/30 hover:bg-rose-accent/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/30 hover:bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollNext}
           aria-label="Next slide"
         >
@@ -215,8 +215,8 @@ export default function Hero() {
               key={index}
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === selectedIndex
-                  ? "bg-rose-accent w-8"
-                  : "bg-rose-accent/40 hover:bg-rose-accent/70 w-2"
+                  ? "bg-mauve-500 w-8"
+                  : "bg-mauve-500/40 hover:bg-mauve-500/70 w-2"
               }`}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}

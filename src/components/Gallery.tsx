@@ -91,7 +91,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="md:ml-12"
           >
-            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
               Výběr z mé tvorby
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
@@ -105,7 +105,7 @@ export default function Gallery() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-rose-accent origin-left"
+            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-mauve-500 origin-left"
           />
 
           <motion.p
@@ -113,7 +113,7 @@ export default function Gallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-rose-medium mt-8 max-w-lg md:ml-12"
+            className="text-mauve-600 mt-8 max-w-lg md:ml-12"
           >
             Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
             vypráví svůj vlastní příběh.
@@ -150,8 +150,8 @@ export default function Gallery() {
                 (selectedCategory === "Landscapes" && category === "Krajiny") ||
                 (selectedCategory === "Nature" && category === "Příroda") ||
                 selectedCategory === category
-                  ? "bg-rose-accent text-white shadow-lg"
-                  : "bg-transparent text-rose-medium hover:text-rose-accent border border-rose-accent/40 hover:border-rose-accent"
+                  ? "bg-mauve-500 text-white shadow-lg"
+                  : "bg-transparent text-mauve-600 hover:text-mauve-500 border border-mauve-500/40 hover:border-mauve-500"
               }`}
               style={{
                 transform: `translateY(${index % 2 === 0 ? "0" : "8px"})`,
@@ -189,7 +189,7 @@ export default function Gallery() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-rose-accent/80 via-rose-accent/0 to-rose-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="absolute inset-0 bg-linear-to-t from-mauve-500/80 via-mauve-500/0 to-mauve-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <div>
                     <h3 className="text-white font-semibold text-lg mb-1">
                       {photo.title}

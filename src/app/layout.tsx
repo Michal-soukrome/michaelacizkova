@@ -96,7 +96,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <Header />
-        <main id="main-content" className="pl-16" role="main">
+        <main id="main-content" role="main">
           {children}
         </main>
         <Footer />

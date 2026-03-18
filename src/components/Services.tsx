@@ -67,7 +67,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="md:ml-8"
           >
-            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
               Co nabízím
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
@@ -80,7 +80,7 @@ export default function Services() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-rose-accent mt-6 origin-left"
+              className="w-24 h-px bg-mauve-500 mt-6 origin-left"
             />
           </motion.div>
 
@@ -100,7 +100,7 @@ export default function Services() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 0.1, scale: 1 }}
             viewport={{ once: true }}
-            className="absolute -top-20 -right-20 w-80 h-80 border border-rose-accent/40 rounded-full"
+            className="absolute -top-20 -right-20 w-80 h-80 border border-mauve-500/40 rounded-full"
           />
         </div>
 
@@ -119,12 +119,12 @@ export default function Services() {
                 className="group relative"
               >
                 {/* Card with offset border */}
-                <div className="absolute inset-0 border-2 border-rose-accent/20 translate-x-3 translate-y-3 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300 rounded-xl" />
+                <div className="absolute inset-0 border-2 border-mauve-500/20 translate-x-3 translate-y-3 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300 rounded-xl" />
 
-                <div className="relative bg-rose-light/40 p-8 md:p-10 border-2 border-rose-accent/40 hover:border-rose-accent transition-all duration-300 rounded-xl">
+                <div className="relative bg-mauve-100/40 p-8 md:p-10 border-2 border-mauve-500/40 hover:border-mauve-500 transition-all duration-300 rounded-xl">
                   <div className="flex items-start gap-6">
-                    <div className="bg-rose-accent/20 w-16 h-16 flex items-center justify-center group-hover:bg-rose-accent/30 transition-colors rounded-full">
-                      <Icon className="w-8 h-8 text-rose-accent" />
+                    <div className="bg-mauve-500/20 w-16 h-16 flex items-center justify-center group-hover:bg-mauve-500/30 transition-colors rounded-full">
+                      <Icon className="w-8 h-8 text-mauve-500" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold mb-3 text-foreground">
@@ -139,7 +139,7 @@ export default function Services() {
                             key={featureIndex}
                             className="flex items-center text-sm text-text-light"
                           >
-                            <span className="w-1.5 h-1.5 bg-rose-accent mr-3 rounded-full" />
+                            <span className="w-1.5 h-1.5 bg-mauve-500 mr-3 rounded-full" />
                             {feature}
                           </li>
                         ))}

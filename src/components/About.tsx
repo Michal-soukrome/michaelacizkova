@@ -47,7 +47,7 @@ export default function About() {
             viewport={{ once: true }}
             className="md:ml-auto md:mr-12 md:text-right max-w-2xl"
           >
-            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
               Moje cesta
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-foreground">
@@ -60,7 +60,7 @@ export default function About() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-rose-accent mb-8 md:ml-auto origin-right"
+              className="w-24 h-px bg-mauve-500 mb-8 md:ml-auto origin-right"
             />
 
             <p className="text-lg text-text-light leading-relaxed">
@@ -76,13 +76,13 @@ export default function About() {
             whileInView={{ opacity: 0.1, rotate: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="absolute top-0 right-0 w-64 h-64 border border-rose-accent/30 rounded-full -translate-y-1/2 translate-x-1/4"
+            className="absolute top-0 right-0 w-64 h-64 border border-mauve-500/30 rounded-full -translate-y-1/2 translate-x-1/4"
           />
         </div>
 
         <div className="relative max-w-4xl mx-auto">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-linear-to-b from-rose-accent/40 via-rose-accent/20 to-rose-accent/40 hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-linear-to-b from-mauve-500/40 via-mauve-500/20 to-mauve-500/40 hidden md:block"></div>
 
           {timelineData.map((item, index) => {
             const Icon = item.icon;
@@ -104,13 +104,13 @@ export default function About() {
                       : "md:pl-12 md:text-left"
                   }`}
                 >
-                  <div className="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300 bg-rose-light/30 border border-rose-accent/40">
+                  <div className="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300 bg-mauve-100/30 border border-mauve-500/40">
                     <div className="flex items-center justify-center md:justify-start mb-4">
-                      <div className="bg-rose-accent/20 p-4 rounded-full">
-                        <Icon className="w-8 h-8 text-rose-accent" />
+                      <div className="bg-mauve-500/20 p-4 rounded-full">
+                        <Icon className="w-8 h-8 text-mauve-500" />
                       </div>
                     </div>
-                    <div className="text-sm font-semibold text-rose-medium mb-2">
+                    <div className="text-sm font-semibold text-mauve-600 mb-2">
                       {item.year}
                     </div>
                     <h3 className="text-2xl font-bold mb-3 text-foreground">
@@ -122,7 +122,7 @@ export default function About() {
                   </div>
                 </div>
                 {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-rose-accent rounded-full border-4 border-background shadow-lg hidden md:block"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-mauve-500 rounded-full border-4 border-background shadow-lg hidden md:block"></div>
               </motion.div>
             );
           })}

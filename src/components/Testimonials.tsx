@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 import OptimizedImage from "./OptimizedImage";
 
 const testimonials = [
@@ -42,7 +43,8 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const [emblaRef] = useEmblaCarousel(
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "start",
@@ -58,6 +60,22 @@ export default function Testimonials() {
     ],
   );
 
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi],
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect);
+    onSelect();
+  }, [emblaApi, onSelect]);
+
   return (
     <section className="py-24 md:py-40 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
@@ -70,7 +88,7 @@ export default function Testimonials() {
             viewport={{ once: true }}
             className="md:ml-8"
           >
-            <p className="text-sm tracking-[0.3em] text-rose-medium uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
               Říkají o mně
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
@@ -82,7 +100,7 @@ export default function Testimonials() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-rose-accent mt-6 origin-left"
+              className="w-24 h-px bg-mauve-500 mt-6 origin-left"
             />
           </motion.div>
 
@@ -109,10 +127,10 @@ export default function Testimonials() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-rose-accent/40 hover:border-rose-accent/60 transition-all duration-300 group bg-rose-light/30"
+                  className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-mauve-500/40 hover:border-mauve-500/60 transition-all duration-300 group bg-mauve-100/30"
                 >
                   {/* Quote Icon */}
-                  <div className="mb-6 text-rose-accent/60 group-hover:text-rose-accent transition-colors">
+                  <div className="mb-6 text-mauve-500/60 group-hover:text-mauve-500 transition-colors">
                     <Quote className="w-10 h-10" />
                   </div>
 
@@ -121,7 +139,7 @@ export default function Testimonials() {
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        className="w-4 h-4 fill-rose-accent text-rose-accent"
+                        className="w-4 h-4 fill-mauve-500 text-mauve-500"
                       />
                     ))}
                   </div>
@@ -132,8 +150,8 @@ export default function Testimonials() {
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center pt-4 border-t border-rose-accent/20">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-rose-accent/40 group-hover:ring-rose-accent/60 transition-all">
+                  <div className="flex items-center pt-4 border-t border-mauve-500/20">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-mauve-500/40 group-hover:ring-mauve-500/60 transition-all">
                       <OptimizedImage
                         src={testimonial.image}
                         alt={testimonial.name}
@@ -154,6 +172,22 @@ export default function Testimonials() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-3 mt-12">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === selectedIndex
+                  ? "bg-mauve-500 w-8"
+                  : "bg-mauve-500/40 hover:bg-mauve-500/70 w-2"
+              }`}
+              onClick={() => scrollTo(index)}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
         </div>
 
         {/* Trust Indicators - Artistic offset layout */}
