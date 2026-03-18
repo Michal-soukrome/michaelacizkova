@@ -12,7 +12,7 @@ const testimonials = [
     role: "Art Director, CreativeCo",
     content:
       "Michaelina černobílá fotografie zachycuje emoce způsobem, který barva nikdy nedokáže. Její práce je skutečně nadčasová a pozvedla vizuální identitu naší značky.",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150",
+    image: "https://cdn.pixabay.com/photo/2023/02/05/17/55/woman-7771713_1280.jpg",
     rating: 5,
   },
   {
@@ -20,7 +20,7 @@ const testimonials = [
     role: "Kreativní ředitel",
     content:
       "Spolupráce s Michaelou byla čirý požitek. Její smysl pro detail a umělecká vize přinesly našemu projektu život způsobem, který překonává všechna očekávání.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    image: "https://cdn.pixabay.com/photo/2016/10/04/14/45/male-1715784_1280.jpg",
     rating: 5,
   },
   {
@@ -28,7 +28,7 @@ const testimonials = [
     role: "Módní návrhářka",
     content:
       "Portréty, které Michaela vytvořila pro naši kampaně, dokonale zachytily atmosféru, o kterou nám šlo. Její schopnost pracovat s přirozeným světlem je mimořádná.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
+    image: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
     rating: 5,
   },
   {
@@ -36,7 +36,7 @@ const testimonials = [
     role: "CEO, Tech Startup",
     content:
       "Profesionální, kreativní a nebyvále talentovaná. Michaela dodala úžasné portréty pro celý náš tým, které skutečně reprezentují naši firemní kulturu.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    image: "https://cdn.pixabay.com/photo/2017/04/05/00/14/portrait-2203969_1280.jpg",
     rating: 5,
   },
 ];

@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       "Oceňovaná fotografka specializující se na černobílou fotografii. Prozkoumejte úchvatné portréty, krajiny a uměleckou fotografii.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200",
+        url: "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
         width: 1200,
         height: 630,
         alt: "Michaela Čížková Fotografie",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description:
       "Oceňovaná fotografka specializující se na černobílou fotografii.",
     images: [
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200",
+      "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
     ],
   },
   robots: {

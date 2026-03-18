@@ -11,7 +11,7 @@ export const photos: Photo[] = [
   // Portraits
   {
     id: "1",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
     alt: "Black and white portrait of contemplative person",
     title: "Portrait Study I",
     category: "Portraits",
@@ -19,7 +19,7 @@ export const photos: Photo[] = [
   },
   {
     id: "2",
-    src: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2023/02/05/17/55/woman-7771713_1280.jpg",
     alt: "Dramatic portrait with natural lighting",
     title: "Natural Light",
     category: "Portraits",
@@ -27,7 +27,7 @@ export const photos: Photo[] = [
   },
   {
     id: "3",
-    src: "https://images.unsplash.com/photo-1554048612-b6a482dbe3c2?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2019/03/12/08/32/people-4051147_1280.jpg",
     alt: "Professional portrait photography",
     title: "Studio Session",
     category: "Portraits",
@@ -35,7 +35,7 @@ export const photos: Photo[] = [
   },
   {
     id: "4",
-    src: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/12/09/10/52/girl-1894873_1280.jpg",
     alt: "Elegant portrait with soft focus",
     title: "Ethereal Beauty",
     category: "Portraits",
@@ -45,7 +45,7 @@ export const photos: Photo[] = [
   // Landscapes
   {
     id: "5",
-    src: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg",
     alt: "Urban landscape in monochrome",
     title: "City Lights",
     category: "Landscapes",
@@ -53,7 +53,7 @@ export const photos: Photo[] = [
   },
   {
     id: "6",
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
     alt: "Mountain landscape at dawn",
     title: "Mountain Serenity",
     category: "Landscapes",
@@ -61,7 +61,7 @@ export const photos: Photo[] = [
   },
   {
     id: "7",
-    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2014/12/27/08/57/forest-581229_1280.jpg",
     alt: "Forest path in black and white",
     title: "Forest Path",
     category: "Landscapes",
@@ -69,7 +69,7 @@ export const photos: Photo[] = [
   },
   {
     id: "8",
-    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2014/02/27/16/00/landscape-275541_1280.jpg",
     alt: "Dramatic sky over water",
     title: "Horizon Line",
     category: "Landscapes",
@@ -79,7 +79,7 @@ export const photos: Photo[] = [
   // Architecture
   {
     id: "9",
-    src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2021/02/20/20/57/skyscraper-6035607_1280.jpg",
     alt: "Modern architectural detail",
     title: "Urban Geometry",
     category: "Architecture",
@@ -87,7 +87,7 @@ export const photos: Photo[] = [
   },
   {
     id: "10",
-    src: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2015/04/20/12/40/building-732205_1280.jpg",
     alt: "Minimalist building facade",
     title: "Clean Lines",
     category: "Architecture",
@@ -95,7 +95,7 @@ export const photos: Photo[] = [
   },
   {
     id: "11",
-    src: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/06/24/10/47/building-1477041_1280.jpg",
     alt: "Interior architectural photography",
     title: "Interior Space",
     category: "Architecture",
@@ -103,7 +103,7 @@ export const photos: Photo[] = [
   },
   {
     id: "12",
-    src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/06/13/11/57/architecture-1453895_1280.jpg",
     alt: "Historic building detail",
     title: "Heritage",
     category: "Architecture",
@@ -113,7 +113,7 @@ export const photos: Photo[] = [
   // Street
   {
     id: "13",
-    src: "https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2017/07/18/23/41/urban-2513632_1280.jpg",
     alt: "Street photography moment",
     title: "Street Moment I",
     category: "Street",
@@ -121,7 +121,7 @@ export const photos: Photo[] = [
   },
   {
     id: "14",
-    src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2014/12/30/21/04/street-581199_1280.jpg",
     alt: "Urban life captured candidly",
     title: "City Life",
     category: "Street",
@@ -129,7 +129,7 @@ export const photos: Photo[] = [
   },
   {
     id: "15",
-    src: "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2019/06/14/19/07/alley-4275109_1280.jpg",
     alt: "Nighttime street scene",
     title: "After Dark",
     category: "Street",
@@ -139,7 +139,7 @@ export const photos: Photo[] = [
   // Nature
   {
     id: "16",
-    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2015/12/01/20/28/rain-1072321_1280.jpg",
     alt: "Nature in black and white",
     title: "Natural Beauty",
     category: "Nature",
@@ -147,7 +147,7 @@ export const photos: Photo[] = [
   },
   {
     id: "17",
-    src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227_1280.jpg",
     alt: "Dramatic nature landscape",
     title: "Wild Essence",
     category: "Nature",
@@ -155,7 +155,7 @@ export const photos: Photo[] = [
   },
   {
     id: "18",
-    src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/03/28/12/35/camellias-1285458_1280.jpg",
     alt: "Forest and trees in monochrome",
     title: "Woodland",
     category: "Nature",
@@ -163,7 +163,7 @@ export const photos: Photo[] = [
   },
   {
     id: "19",
-    src: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/02/13/12/28/spring-1197570_1280.jpg",
     alt: "Floral detail in black and white",
     title: "Botanical Study",
     category: "Nature",
@@ -171,7 +171,7 @@ export const photos: Photo[] = [
   },
   {
     id: "20",
-    src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=85",
+    src: "https://cdn.pixabay.com/photo/2016/01/17/22/37/sea-1147155_1280.jpg",
     alt: "Seascape with dramatic waves",
     title: "Coastal",
     category: "Nature",

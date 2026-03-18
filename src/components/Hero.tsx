@@ -9,15 +9,15 @@ import OptimizedImage from "./OptimizedImage";
 
 const heroImages = [
   {
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=90",
+    src: "https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1863882_1280.jpg",
     alt: "Captivating portrait photography",
   },
   {
-    src: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1920&q=90",
+    src: "https://cdn.pixabay.com/photo/2023/02/05/17/55/woman-7771713_1280.jpg",
     alt: "Stunning black and white photography",
   },
   {
-    src: "https://images.unsplash.com/photo-1554048612-b6a482dbe3c2?w=1920&q=90",
+    src: "https://cdn.pixabay.com/photo/2019/03/12/08/32/people-4051147_1280.jpg",
     alt: "Professional portrait session",
   },
 ];
