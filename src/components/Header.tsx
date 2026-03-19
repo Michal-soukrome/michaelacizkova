@@ -118,10 +118,10 @@ export default function Header() {
           <div className="flex" id="desktop-navigation-wrap">
             <nav
               aria-label="Hlavní navigace"
-              className="hidden md:flex items-center gap-4"
+              className="flex items-center gap-4"
               id="desktop-navigation"
             >
-              <div className="flex items-center gap-4">
+              <div className="hidden lg:flex items-center gap-4">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.id}
@@ -136,7 +136,7 @@ export default function Header() {
                     transition={{ delay: index * 0.05 }}
                   >
                     {item.label}
-                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-mauve-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                    <span className="absolute inset-x-0 bottom-0 h-px bg-mauve-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   </motion.a>
                 ))}
               </div>
@@ -144,11 +144,11 @@ export default function Header() {
               <span className="hidden lg:block">|</span>
 
               {/* Right Section - Social Icons (Desktop) + Hamburger */}
-              <div className="hidden lg:flex items-center gap-4">
+              <div className="flex justify-center items-center gap-4">
                 {/* Social Icons - Desktop */}
                 <nav
                   aria-label="Sociální sítě"
-                  className="hidden lg:flex items-center gap-4"
+                  className="hidden lg:flex items-center gap-2"
                 >
                   <a
                     href="https://facebook.com"
@@ -178,11 +178,73 @@ export default function Header() {
                 </nav>
 
                 {/* Hamburger Menu Button - Mobile */}
-                {/* TODO: fix hamburger not displaying on mobile (wrongly wrapped in hidden div) */}
+                {/* TODO: ## Error Type
+Console Error
+
+## Error Message
+A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="cs"
++                         className="scroll-smooth"
+-                         className="scroll-smooth vreakcr idc0_350"
+                        >
+                  ...
+
+
+
+    at createConsoleError (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_f3530cac._.js:2199:71)
+    at handleConsoleError (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_f3530cac._.js:2980:54)
+    at console.error (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_f3530cac._.js:3124:57)
+    at <unknown> (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:3469:25)
+    at runWithFiberInDEV (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:965:74)
+    at emitPendingHydrationWarnings (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:3468:13)
+    at completeWork (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:6897:102)
+    at runWithFiberInDEV (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:965:131)
+    at completeUnitOfWork (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9627:23)
+    at performUnitOfWork (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9564:28)
+    at workLoopConcurrentByScheduler (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9558:58)
+    at renderRootConcurrent (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9541:71)
+    at performWorkOnRoot (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9068:150)
+    at performWorkOnRootViaSchedulerTask (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:10230:9)
+    at MessagePort.performWorkUntilDeadline (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_a0e4c7b4._.js:2647:64)
+    at html (<anonymous>:null:null)
+    at RootLayout (about://React/Server/file:///Users/michaljirak/GitHub%20repos/michaelacizkova/.next/dev/server/chunks/ssr/%5Broot-of-the-server%5D__b3bbe506._.js?4:220:263)
+
+Next.js version: 16.1.0 (Turbopack)
+ */}
 
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="md:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+                  className="lg:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
                   aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
                   aria-expanded={isOpen}
                   aria-controls="mobile-navigation"
@@ -220,69 +282,71 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-16 bg-cream/98 backdrop-blur-sm z-30 md:hidden"
+            className="fixed inset-0 top-0 bg-white/75  backdrop-blur-sm z-30 lg:hidden"
             id="mobile-navigation"
             role="dialog"
             aria-modal="true"
             aria-label="Mobilní navigace"
           >
-            <nav className="container mx-auto px-4 py-8">
-              <ul className="space-y-4">
-                {navItems.map((item, index) => (
-                  <li key={item.id} className="overflow-hidden">
-                    <motion.a
-                      initial={{ x: -50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.05 }}
-                      href={`#${item.id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleScroll(item.id);
-                      }}
-                      className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-mauve-500/10 transition-colors group"
-                    >
-                      <span className="text-mauve-500 font-medium text-sm">
-                        {item.number}
-                      </span>
-                      <span className="text-foreground group-hover:text-mauve-500 transition-colors">
-                        {item.label}
-                      </span>
-                    </motion.a>
-                  </li>
-                ))}
-              </ul>
+            <nav className="h-full pt-16 container mx-auto">
+              <div className="h-full flex flex-col justify-between items-start">
+                <ul className="w-full p-4 space-y-3">
+                  {navItems.map((item, index) => (
+                    <li key={item.id} className="overflow-hidden">
+                      <motion.a
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: index * 0.05 }}
+                        href={`#${item.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleScroll(item.id);
+                        }}
+                        className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-mauve-500/10 transition-colors group"
+                      >
+                        <span className="text-mauve-400 font-medium text-xs">
+                          {item.number}
+                        </span>
+                        <span className="text-foreground group-hover:text-mauve-500 transition-colors">
+                          {item.label}
+                        </span>
+                      </motion.a>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Social Icons - Mobile */}
-              <nav
-                aria-label="Sociální sítě"
-                className="flex items-center gap-4 mt-8 pt-8 border-t border-mauve-500/10"
-              >
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                {/* Social Icons - Mobile */}
+                <nav
+                  aria-label="Sociální sítě"
+                  className="mt-auto flex items-center p-4 gap-4 w-full border-t border-mauve-500/10"
                 >
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="mailto:ahoj@michaelacizkova.cz"
-                  aria-label="Napsat email"
-                  className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
-              </nav>
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                  >
+                    <Facebook className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="mailto:ahoj@michaelacizkova.cz"
+                    aria-label="Napsat email"
+                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </nav>
+              </div>
             </nav>
           </motion.div>
         )}

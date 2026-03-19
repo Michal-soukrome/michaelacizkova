@@ -76,7 +76,7 @@ export default function Hero() {
       {/* Hero Content with Parallax - Offset to the left */}
       <motion.div
         style={{ opacity, scale }}
-        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-4xl mix-blend-plus-lighter"
+        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-7xl mx-auto w-full mix-blend-plus-lighter"
       >
         {/* Decorative Shape */}
         <motion.div
@@ -109,7 +109,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-12 ml-4 md:ml-20 max-w-md"
         >
-          <div className="w-12 h-px bg-mauve-500 mb-6" />
+          <div className="hidden w-12 h-px bg-mauve-500 mb-6" />
           <p className="text-lg md:text-xl text-mauve-600 leading-relaxed">
             Zachycuji příběhy skrze světlo a stín. Každý snímek je emocí, každý
             moment je uměním.
@@ -125,7 +125,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-mauve-500 text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-600 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
+            className="bg-mauve-800 text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-600 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
             onClick={handleScrollDown}
           >
             Prohlédnout portfolio
@@ -144,6 +144,37 @@ export default function Hero() {
             Kontakt
           </motion.button>
         </motion.div>
+        {/* Pagination Dots with Progress Indicator */}
+        <div className="absolute top-8 right-8 z-50 flex space-x-3">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
+                index === selectedIndex
+                  ? "w-8"
+                  : "w-2 bg-mauve-800 hover:bg-mauve-800"
+              }`}
+            >
+              {/* Background bar */}
+              <div
+                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-800" : ""}`}
+              />
+
+              {/* Progress fill - animates for active dot */}
+              {index === selectedIndex && (
+                <motion.div
+                  key={selectedIndex}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 5, ease: "linear" }}
+                  className="absolute inset-y-0 left-0 bg-mauve-200 rounded-full"
+                />
+              )}
+            </button>
+          ))}
+        </div>
       </motion.div>
 
       {/* Hero Image Carousel with Overlay */}
@@ -179,51 +210,19 @@ export default function Hero() {
 
         {/* Navigation Arrows */}
         <button
-          className="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
+          className="hidden absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollPrev}
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <button
-          className="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
+          className="hidden absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollNext}
           aria-label="Next slide"
         >
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
-
-        {/* Pagination Dots with Progress Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollTo(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
-                index === selectedIndex
-                  ? "w-8"
-                  : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
-              }`}
-            >
-              {/* Background bar */}
-              <div
-                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`}
-              />
-
-              {/* Progress fill - animates for active dot */}
-              {index === selectedIndex && (
-                <motion.div
-                  key={selectedIndex}
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 5, ease: "linear" }}
-                  className="absolute inset-y-0 left-0 bg-mauve-500 rounded-full"
-                />
-              )}
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -52,9 +52,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
           {/* Brand - Takes more space */}
           <motion.div className="md:col-span-5" variants={itemVariants}>
-            <h1 className="text-foreground mb-2">
+            <h1 className="font-medium text-foreground mb-2">
               Michaela
-              <span className="font-medium ml-1">Čížková</span>
+              <span className="font-semibold ml-1">Čížková</span>
             </h1>
 
             <p className="text-text-light text-sm leading-relaxed max-w-sm mb-8">
@@ -66,7 +66,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
+                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -75,7 +75,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500 "
+                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500 "
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -84,14 +84,14 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
+                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href="mailto:ahoj@michaelacizkova.cz"
-                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
+                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -166,8 +166,10 @@ export default function Footer() {
               Kontakt
             </h4>
             <div className="space-y-3 text-sm text-text-light">
-              <p>ahoj@michaelacizkova.cz</p>
-              <p>+420 123 456 789</p>
+              <p className="hover:underline cursor-pointer">
+                ahoj@michaelacizkova.cz
+              </p>
+              <p className="hover:underline cursor-pointer">+420 123 456 789</p>
               <p>Praha, Česká republika</p>
             </div>
           </motion.div>

@@ -65,7 +65,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-24 md:py-40 bg-background overflow-hidden">
+    <section className="py-16 md:py-40 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Artistic offset header */}
         <div className="relative mb-20">
