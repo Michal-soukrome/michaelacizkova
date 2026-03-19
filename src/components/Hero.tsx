@@ -20,6 +20,14 @@ const heroImages = [
     src: "/assets/3.jpg",
     alt: "Professional portrait session",
   },
+  {
+    src: "/assets/4.jpg",
+    alt: "Professional portrait session",
+  },
+  {
+    src: "/assets/5.jpg",
+    alt: "Professional portrait session",
+  },
 ];
 
 export default function Hero() {
@@ -28,7 +36,7 @@ export default function Hero() {
       loop: true,
       align: "center",
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: false })],
+    [Autoplay({ delay: 5000, stopOnInteraction: false })], // autoplay timer
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -107,10 +115,10 @@ export default function Hero() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mt-12 ml-4 md:ml-20 max-w-md"
+          className="mt-12 ml-0 md:ml-20 max-w-md"
         >
           <div className="hidden w-12 h-px bg-mauve-500 mb-6" />
-          <p className="text-lg md:text-xl text-mauve-600 leading-relaxed">
+          <p className="text-lg md:text-xl text-mauve-400 leading-relaxed">
             Zachycuji příběhy skrze světlo a stín. Každý snímek je emocí, každý
             moment je uměním.
           </p>
@@ -120,12 +128,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="flex gap-6 mt-12 ml-4 md:ml-20"
+          className="flex gap-6 mt-12 ml-0 md:ml-20"
         >
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-mauve-800 text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-600 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
+            className="w-fit bg-mauve-800 text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-600 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
             onClick={handleScrollDown}
           >
             Prohlédnout portfolio
@@ -134,7 +142,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="border-2 border-mauve-500 text-mauve-500 px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full"
+            className="hidden sm:flex border-2 border-mauve-500 text-mauve-500 px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full"
             onClick={() =>
               document
                 .getElementById("contact")
@@ -145,16 +153,16 @@ export default function Hero() {
           </motion.button>
         </motion.div>
         {/* Pagination Dots with Progress Indicator */}
-        <div className="absolute top-8 right-8 z-50 flex space-x-3">
+        <div className="absolute top-0.5 md:top-8 right-3 md:right-8 z-50 flex space-x-3">
           {heroImages.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
+              className={`relative h-2 md:p-2 cursor-pointer rounded-full transition-all duration-300 overflow-hidden ${
                 index === selectedIndex
                   ? "w-8"
-                  : "w-2 bg-mauve-800 hover:bg-mauve-800"
+                  : "w-2 bg-mauve-800 hover:bg-mauve-500"
               }`}
             >
               {/* Background bar */}
@@ -175,6 +183,8 @@ export default function Hero() {
             </button>
           ))}
         </div>
+
+        {/* TODO: when user changes image via pagination, it should reset the counter and start from the start, not continuining in current timer */}
       </motion.div>
 
       {/* Hero Image Carousel with Overlay */}

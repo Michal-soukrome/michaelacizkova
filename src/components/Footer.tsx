@@ -104,7 +104,7 @@ export default function Footer() {
             <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
               Navigace
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="flex gap-3 items-center flex-wrap text-sm text-text-light">
               <li>
                 <a
                   href="#home"
@@ -165,11 +165,11 @@ export default function Footer() {
             <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
               Kontakt
             </h4>
-            <div className="space-y-3 text-sm text-text-light">
-              <p className="hover:underline cursor-pointer">
+            <div className="flex gap-3 items-center flex-wrap text-sm text-text-light">
+              <p className="underline cursor-pointer">
                 ahoj@michaelacizkova.cz
               </p>
-              <p className="hover:underline cursor-pointer">+420 123 456 789</p>
+              <p className="underline cursor-pointer">+420 123 456 789</p>
               <p>Praha, Česká republika</p>
             </div>
           </motion.div>
@@ -183,9 +183,9 @@ export default function Footer() {
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
+          <div className="flex flex-col flex-wrap  md:flex-row justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
             <p>{currentYear} © Michaela Čížková. Všechna práva vyhrazena.</p>
-            <div className="flex gap-8">
+            <div className="flex gap-4 md:gap-8">
               <a
                 href="#"
                 className="hover:text-mauve-500 transition-colors hover:underline"

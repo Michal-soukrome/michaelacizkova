@@ -110,7 +110,8 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="relative">
+            {/* WORK HOURS SEEMS OBSOLETE UNLESS SAID OTHERWISE - HIDDEN FOR NOW */}
+            <div className="hidden relative">
               <div className="absolute inset-0 border-2 border-mauve-500/20 translate-x-2 translate-y-2 rounded-xl" />
               <div className="relative bg-mauve-100/30 border-2 border-mauve-500/40 p-8 rounded-xl">
                 <h3 className="text-xl font-bold mb-4 text-foreground">

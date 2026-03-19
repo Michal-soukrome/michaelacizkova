@@ -120,7 +120,7 @@ export default function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="embla__slide flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_calc(33.333%-1rem)]"
+                className="embla__slide cursor-grab flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_calc(33.333%-1rem)]"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -223,9 +223,9 @@ export default function Testimonials() {
             <div
               key={index}
               className="text-center md:text-left"
-              style={{
-                transform: `translateY(${index % 2 === 1 ? "1rem" : "0"})`,
-              }}
+              //  style={{
+              //    transform: `translateY(${index % 2 === 1 ? "1rem" : "0"})`,
+              //  }}
             >
               <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
                 {stat.value}

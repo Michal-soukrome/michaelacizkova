@@ -85,7 +85,7 @@ export default function Header() {
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-mauve-500 focus:text-white focus:px-4 focus:py-2 focus:text-sm"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-mauve-500 focus:text-white focus:px-4 focus:py-2 focus:text-xs"
       >
         Přeskočit na hlavní obsah
       </a>
@@ -105,12 +105,12 @@ export default function Header() {
               e.preventDefault();
               handleScroll("home");
             }}
-            className="flex items-center gap-2 font-light text-lg tracking-tight hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+            className="flex items-center gap-2 font-light text-xl tracking-tight hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
             whileHover={{ scale: 1.05 }}
           >
             <h1 className="text-foreground">
               Michaela
-              <span className="font-medium ml-1">Čížková</span>
+              <span className="font-semibold ml-1">Čížková</span>
             </h1>
           </motion.a>
 
@@ -290,7 +290,7 @@ Next.js version: 16.1.0 (Turbopack)
           >
             <nav className="h-full pt-16 container mx-auto">
               <div className="h-full flex flex-col justify-between items-start">
-                <ul className="w-full p-4 space-y-3">
+                <ul className="w-full p-4">
                   {navItems.map((item, index) => (
                     <li key={item.id} className="overflow-hidden">
                       <motion.a
@@ -302,7 +302,7 @@ Next.js version: 16.1.0 (Turbopack)
                           e.preventDefault();
                           handleScroll(item.id);
                         }}
-                        className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-mauve-500/10 transition-colors group"
+                        className="flex items-center gap-4 px-4 py-3 sm:py-6 rounded-lg hover:bg-mauve-500/10 transition-colors group"
                       >
                         <span className="text-mauve-400 font-medium text-xs">
                           {item.number}
@@ -318,14 +318,14 @@ Next.js version: 16.1.0 (Turbopack)
                 {/* Social Icons - Mobile */}
                 <nav
                   aria-label="Sociální sítě"
-                  className="mt-auto flex items-center p-4 gap-4 w-full border-t border-mauve-500/10"
+                  className="mt-auto flex items-center w-full p-4"
                 >
                   <a
                     href="https://facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
-                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                    className="text-foreground  hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
                   >
                     <Facebook className="w-5 h-5" />
                   </a>
@@ -334,14 +334,14 @@ Next.js version: 16.1.0 (Turbopack)
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
-                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                    className="text-foreground  hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
                   >
                     <Instagram className="w-5 h-5" />
                   </a>
                   <a
                     href="mailto:ahoj@michaelacizkova.cz"
                     aria-label="Napsat email"
-                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-2"
+                    className="text-foreground  hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
                   >
                     <Mail className="w-5 h-5" />
                   </a>
