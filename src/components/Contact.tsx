@@ -75,7 +75,9 @@ export default function Contact() {
                       <h4 className="font-medium mb-1 text-foreground">
                         Email
                       </h4>
-                      <p className="text-text-light">ahoj@michaelacizkova.cz</p>
+                      <p className="text-text-light underline">
+                        ahoj@michaelacizkova.cz
+                      </p>
                     </div>
                   </div>
 
@@ -87,7 +89,9 @@ export default function Contact() {
                       <h4 className="font-medium mb-1 text-foreground">
                         Telefon
                       </h4>
-                      <p className="text-text-light">+420 123 456 789</p>
+                      <p className="text-text-light underline">
+                        +420 123 456 789
+                      </p>
                     </div>
                   </div>
 

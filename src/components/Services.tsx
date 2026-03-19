@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Camera, Building2, Palette, Check } from "lucide-react";
+import {
+  User,
+  Camera,
+  Building2,
+  Palette,
+  Check,
+  Send,
+  MessageCircle,
+  MessageCircleMore,
+} from "lucide-react";
 
 const services = [
   {
@@ -163,11 +172,12 @@ export default function Services() {
             Připraveni zachytit váš příběh? Pojďme si promluvit o vašem
             projektu.
           </p>
+
           <motion.a
             href="#contact"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block bg-white text-black px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-gray-100 transition-colors"
+            className="w-fit mx-auto mt-6 bg-mauve-500 text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-mauve-600 transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl"
             onClick={(e) => {
               e.preventDefault();
               setTimeout(() => {
@@ -177,7 +187,11 @@ export default function Services() {
               }, 200);
             }}
           >
-            Kontaktujte mě
+            kontaktujte mně
+            <MessageCircleMore
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              aria-hidden="true"
+            />
           </motion.a>
         </motion.div>
       </div>

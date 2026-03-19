@@ -94,7 +94,7 @@ export default function Header() {
         initial={{ y: 0 }}
         animate={{ y: isVisible ? 0 : -100 }}
         transition={{ duration: 0.3 }}
-        className="sticky top-0 w-full bg-white/50 backdrop-blur-md z-40 border-b border-mauve-500/10"
+        className="sticky top-0 w-full bg-white/50 backdrop-blur-md z-40 border-b border-mauve-500/25"
         role="banner"
       >
         <div className="container mx-auto px-4 flex items-center justify-between h-16">
@@ -108,96 +108,106 @@ export default function Header() {
             className="flex items-center gap-2 font-light text-lg tracking-tight hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
             whileHover={{ scale: 1.05 }}
           >
-            <Camera className="w-5 h-5" />
-            <span className="text-foreground">Michaela</span>
+            <h1 className="text-foreground">
+              Michaela
+              <span className="font-medium ml-1">Čížková</span>
+            </h1>
           </motion.a>
 
           {/* Desktop Navigation */}
-          <nav
-            aria-label="Hlavní navigace"
-            className="hidden md:flex items-center gap-8"
-            id="desktop-navigation"
-          >
-            {navItems.map((item, index) => (
-              <motion.a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleScroll(item.id);
-                }}
-                className="text-sm font-medium text-foreground hover:text-mauve-500 transition-colors relative group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded px-2 py-1"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                {item.label}
-                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-mauve-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              </motion.a>
-            ))}
-          </nav>
-
-          {/* Right Section - Social Icons (Desktop) + Hamburger */}
-          <div className="flex items-center gap-4">
-            {/* Social Icons - Desktop */}
+          <div className="flex" id="desktop-navigation-wrap">
             <nav
-              aria-label="Sociální sítě"
-              className="hidden lg:flex items-center gap-4"
+              aria-label="Hlavní navigace"
+              className="hidden md:flex items-center gap-4"
+              id="desktop-navigation"
             >
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:ahoj@michaelacizkova.cz"
-                aria-label="Napsat email"
-                className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-            </nav>
+              <div className="flex items-center gap-4">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleScroll(item.id);
+                    }}
+                    className="text-sm font-medium text-foreground hover:text-mauve-500 transition-colors relative group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded px-2 py-1"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    {item.label}
+                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-mauve-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                  </motion.a>
+                ))}
+              </div>
 
-            {/* Hamburger Menu Button - Mobile */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
-              aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-navigation"
-            >
-              <motion.span
-                className="block w-6 h-0.5 bg-foreground"
-                animate={{
-                  rotate: isOpen ? 45 : 0,
-                  y: isOpen ? 8 : 0,
-                }}
-              />
-              <motion.span
-                className="block w-6 h-0.5 bg-foreground"
-                animate={{ opacity: isOpen ? 0 : 1 }}
-              />
-              <motion.span
-                className="block w-6 h-0.5 bg-foreground"
-                animate={{
-                  rotate: isOpen ? -45 : 0,
-                  y: isOpen ? -8 : 0,
-                }}
-              />
-            </button>
+              <span className="hidden lg:block">|</span>
+
+              {/* Right Section - Social Icons (Desktop) + Hamburger */}
+              <div className="hidden lg:flex items-center gap-4">
+                {/* Social Icons - Desktop */}
+                <nav
+                  aria-label="Sociální sítě"
+                  className="hidden lg:flex items-center gap-4"
+                >
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+                  >
+                    <Facebook className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+                  >
+                    <Instagram className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="mailto:ahoj@michaelacizkova.cz"
+                    aria-label="Napsat email"
+                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                </nav>
+
+                {/* Hamburger Menu Button - Mobile */}
+                {/* TODO: fix hamburger not displaying on mobile (wrongly wrapped in hidden div) */}
+
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="md:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+                  aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-navigation"
+                >
+                  <motion.span
+                    className="block w-6 h-0.5 bg-foreground"
+                    animate={{
+                      rotate: isOpen ? 45 : 0,
+                      y: isOpen ? 8 : 0,
+                    }}
+                  />
+                  <motion.span
+                    className="block w-6 h-0.5 bg-foreground"
+                    animate={{ opacity: isOpen ? 0 : 1 }}
+                  />
+                  <motion.span
+                    className="block w-6 h-0.5 bg-foreground"
+                    animate={{
+                      rotate: isOpen ? -45 : 0,
+                      y: isOpen ? -8 : 0,
+                    }}
+                  />
+                </button>
+              </div>
+            </nav>
           </div>
         </div>
       </motion.header>

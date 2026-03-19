@@ -52,21 +52,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
           {/* Brand - Takes more space */}
           <motion.div className="md:col-span-5" variants={itemVariants}>
-            <div className="flex items-start gap-3 mb-6">
-              <motion.div
-                className="w-12 h-12 border-2 border-mauve-500 flex items-center justify-center rotate-3 rounded-full"
-                whileHover={{ rotate: -3, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Camera className="w-5 h-5 text-mauve-500" />
-              </motion.div>
-              <div>
-                <h3 className="text-2xl font-light tracking-tight text-foreground">
-                  Michaela
-                </h3>
-                <span className="text-mauve-600 font-light">Čížková</span>
-              </div>
-            </div>
+            <h1 className="text-foreground mb-2">
+              Michaela
+              <span className="font-medium ml-1">Čížková</span>
+            </h1>
+
             <p className="text-text-light text-sm leading-relaxed max-w-sm mb-8">
               Profesionální fotografka specializující se na nadčasovou
               černobílou fotografii, která zachycuje emoce a uměleckou krásu.
@@ -85,7 +75,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500 -mt-1"
+                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500 "
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -94,7 +84,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500 mt-1"
+                className="w-10 h-10 border-2 border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
@@ -110,7 +100,7 @@ export default function Footer() {
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div className="md:col-span-2 md:mt-8" variants={itemVariants}>
+          <motion.div className="md:col-span-2" variants={itemVariants}>
             <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
               Navigace
             </h4>
@@ -118,7 +108,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#home"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
                 >
                   Domů
                 </a>
@@ -126,7 +116,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#gallery"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
                 >
                   Portfolio
                 </a>
@@ -134,7 +124,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#about"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
                 >
                   O mně
                 </a>
@@ -142,7 +132,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#services"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
                 >
                   Služby
                 </a>
@@ -150,7 +140,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#contact"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:translate-x-2 inline-block duration-300"
+                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
                 >
                   Kontakt
                 </a>
@@ -159,16 +149,14 @@ export default function Footer() {
           </motion.div>
 
           {/* Services */}
-          <motion.div className="md:col-span-2 md:mt-4" variants={itemVariants}>
+          <motion.div className="md:col-span-2" variants={itemVariants}>
             <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
               Služby
             </h4>
-            <ul className="space-y-3 text-sm text-text-light">
-              <li>Portrétní fotografie</li>
-              <li>Eventová fotografie</li>
+            <ul className="flex gap-3 items-center flex-wrap text-sm text-text-light">
+              <li>Portréty</li>
+              <li>Eventy</li>
               <li>Komerční práce</li>
-              <li>Umělecké tisky</li>
-              <li>Workshopy</li>
             </ul>
           </motion.div>
 
@@ -196,10 +184,16 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
             <p>{currentYear} © Michaela Čížková. Všechna práva vyhrazena.</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-mauve-500 transition-colors">
+              <a
+                href="#"
+                className="hover:text-mauve-500 transition-colors hover:underline"
+              >
                 Zásady ochrany soukromí
               </a>
-              <a href="#" className="hover:text-mauve-500 transition-colors">
+              <a
+                href="#"
+                className="hover:text-mauve-500 transition-colors hover:underline"
+              >
                 Obchodní podmínky
               </a>
             </div>

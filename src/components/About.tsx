@@ -93,7 +93,7 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className={`flex items-center mb-16 md:mb-20 ${
+                className={`flex items-center mb-8 md:mb-20 ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
@@ -104,8 +104,9 @@ export default function About() {
                       : "md:pl-12 md:text-left"
                   }`}
                 >
-                  <div className="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300 bg-mauve-100/30 border border-mauve-500/40">
-                    <div className="flex items-center justify-center md:justify-start mb-4">
+                  <div className="glass rounded-2xl p-8 hover:scale-[101%] transition-transform duration-300 bg-mauve-100/30 border border-mauve-500/40">
+                    {/* icons hidden for now */}
+                    <div className="hidden items-center justify-center md:justify-start mb-4">
                       <div className="bg-mauve-500/20 p-4 rounded-full">
                         <Icon className="w-8 h-8 text-mauve-500" />
                       </div>
@@ -126,6 +127,7 @@ export default function About() {
               </motion.div>
             );
           })}
+          {/* TODO: on mobile keep timeline block border and keep it on the left side - do not hide it completely as it is now */}
         </div>
       </div>
     </section>

@@ -128,7 +128,7 @@ export default function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap gap-4 mb-16 md:ml-12"
+          className="flex flex-wrap gap-2 md:gap-4 mb-16 md:ml-12"
         >
           {categories.map((category, index) => (
             <button
@@ -155,9 +155,9 @@ export default function Gallery() {
                   ? "bg-mauve-500 text-white shadow-lg"
                   : "bg-transparent text-mauve-600 hover:text-mauve-500 border border-mauve-500/40 hover:border-mauve-500"
               }`}
-              style={{
-                transform: `translateY(${index % 2 === 0 ? "0" : "8px"})`,
-              }}
+              // style={{
+              //  transform: `translateY(${index % 2 === 0 ? "0" : "8px"})`,
+              // }}
             >
               {category}
             </button>
@@ -166,7 +166,7 @@ export default function Gallery() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[400px] md:auto-rows-[300px]">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filteredPhotos.map((photo, index) => (
               <motion.div
                 key={photo.id}
@@ -176,7 +176,7 @@ export default function Gallery() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.2 }}
                 className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(
                   photo.size,
                 )}`}
@@ -204,6 +204,8 @@ export default function Gallery() {
               </motion.div>
             ))}
           </AnimatePresence>
+          {/* TODO: implement load more button and show less images intially */}
+          {/* TODO: also think about how many images we should display on mobile devices (keep load more function but show even less images than on desktop) */}
         </div>
       </div>
 

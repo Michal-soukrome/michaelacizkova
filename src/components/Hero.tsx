@@ -144,22 +144,6 @@ export default function Hero() {
             Kontakt
           </motion.button>
         </motion.div>
-
-        {/* Animated Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 cursor-pointer"
-          onClick={handleScrollDown}
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ArrowDown className="w-6 h-6 text-mauve-500/70" />
-          </motion.div>
-        </motion.div>
       </motion.div>
 
       {/* Hero Image Carousel with Overlay */}
@@ -195,14 +179,14 @@ export default function Hero() {
 
         {/* Navigation Arrows */}
         <button
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/30 hover:bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
+          className="hidden md:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollPrev}
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <button
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/30 hover:bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-0 hover:opacity-100 group-hover:opacity-100"
+          className="hidden md:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollNext}
           aria-label="Next slide"
         >
@@ -217,12 +201,16 @@ export default function Hero() {
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
               className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
-                index === selectedIndex ? "w-8" : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
+                index === selectedIndex
+                  ? "w-8"
+                  : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
               }`}
             >
               {/* Background bar */}
-              <div className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`} />
-              
+              <div
+                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`}
+              />
+
               {/* Progress fill - animates for active dot */}
               {index === selectedIndex && (
                 <motion.div
