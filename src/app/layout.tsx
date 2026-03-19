@@ -104,3 +104,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// TODO: add versions to properly show versioned content
