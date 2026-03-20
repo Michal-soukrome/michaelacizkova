@@ -76,7 +76,7 @@ export default function Contact() {
                         Email
                       </h4>
                       <p className="text-text-light underline">
-                        ahoj@michaelacizkova.cz
+                        foto.michaelacizkova@seznam.cz
                       </p>
                     </div>
                   </div>
@@ -90,7 +90,7 @@ export default function Contact() {
                         Telefon
                       </h4>
                       <p className="text-text-light underline">
-                        +420 123 456 789
+                        +420 604 410 116
                       </p>
                     </div>
                   </div>

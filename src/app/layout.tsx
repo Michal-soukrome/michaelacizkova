@@ -91,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs" className="scroll-smooth">
+    <html lang="cs" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
@@ -104,5 +104,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// TODO: add versions to properly show versioned content

@@ -3,47 +3,40 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, User } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import OptimizedImage from "./OptimizedImage";
 
 const testimonials = [
   {
-    name: "Kateřina Nováková",
-    role: "Art Director, CreativeCo",
+    name: "Zuzana J.",
+    role: "",
     content:
-      "Michaelina černobílá fotografie zachycuje emoce způsobem, který barva nikdy nedokáže. Její práce je skutečně nadčasová a pozvedla vizuální identitu naší značky.",
+      "Michaela je velmi milá a šikovná fotografka. Nafotila nám krásně rodinnou oslavu, díky ní budeme mít navždy krásnou památku na babičku a všechny ostatní přítomné. Doporučuji!",
     image: "/assets/4.jpg",
     rating: 5,
   },
   {
-    name: "David Horák",
-    role: "Kreativní ředitel",
+    name: "Natálie F.",
+    role: "",
     content:
-      "Spolupráce s Michaelou byla čirý požitek. Její smysl pro detail a umělecká vize přinesly našemu projektu život způsobem, který překonává všechna očekávání.",
+      "Děkujem za krásné fotky. Perfektní komunikace, samotné focení moc příjemné, i když člověk nemá moc zkušeností před objektivem tak Míša s klidem a úsměvem pomůže. Profesionální přístup",
     image: "/assets/5.jpg",
     rating: 5,
   },
   {
-    name: "Eva Svobodová",
-    role: "Módní návrhářka",
+    name: "NextTalk",
+    role: "Organizace eventů se speciálními hosty",
     content:
-      "Portréty, které Michaela vytvořila pro naši kampaně, dokonale zachytily atmosféru, o kterou nám šlo. Její schopnost pracovat s přirozeným světlem je mimořádná.",
+      "Na fotkách od paní Čížkové se nám nejvíce líbí emoce, které dokáže zachytit. Je to absolutní přidaná hodnota snímků. Ať už fotky ze zákulisí, či ze samotných akcí. Je vidět, že si s fotkami hodně “hraje” a to je na fotografovi extrémně důležité. Vždy bezproblémová domluva, takže můžeme jen doporučit a zároveň poděkovat za práci, kterou pro Next Talk odvádí!",
     image: "/assets/6.jpg",
-    rating: 5,
-  },
-  {
-    name: "Martin Procházka",
-    role: "CEO, Tech Startup",
-    content:
-      "Profesionální, kreativní a nebyvále talentovaná. Michaela dodala úžasné portréty pro celý náš tým, které skutečně reprezentují naši firemní kulturu.",
-    image: "/assets/7.jpg",
     rating: 5,
   },
 ];
 
 export default function Testimonials() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -75,6 +68,10 @@ export default function Testimonials() {
     emblaApi.on("select", onSelect);
     onSelect();
   }, [emblaApi, onSelect]);
+
+  const handleImageError = (index: number) => {
+    setFailedImages((prev) => new Set(prev).add(index));
+  };
 
   return (
     <section className="py-16 md:py-40 bg-background overflow-hidden">
@@ -151,13 +148,18 @@ export default function Testimonials() {
 
                   {/* Author */}
                   <div className="flex items-center pt-4 border-t border-mauve-500/20">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-mauve-500/40 group-hover:ring-mauve-500/60 transition-all">
-                      <OptimizedImage
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
-                      />
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-mauve-500/40 group-hover:ring-mauve-500/60 transition-all bg-mauve-100 flex items-center justify-center">
+                      {failedImages.has(index) ? (
+                        <User className="w-7 h-7 text-mauve-500" />
+                      ) : (
+                        <OptimizedImage
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          fill
+                          className="object-cover"
+                          onError={() => handleImageError(index)}
+                        />
+                      )}
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground text-lg">

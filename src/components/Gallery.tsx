@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { photos } from "../lib/photos";
+import { photos, getAvailableCategories } from "../lib/photos";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 
@@ -18,17 +18,34 @@ const getSizeClasses = (size: string) => {
   }
 };
 
-const categories = ["Vše", "Portréty", "Krajiny", "Street", "Příroda"];
+const categoryOptions = getAvailableCategories(photos);
 
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [displayedCount, setDisplayedCount] = useState(12);
+
+  useEffect(() => {
+    // Set initial displayed count based on screen size
+    const updateDisplayCount = () => {
+      if (typeof window !== "undefined") {
+        setDisplayedCount(window.innerWidth < 768 ? 6 : 12);
+      }
+    };
+    updateDisplayCount();
+    window.addEventListener("resize", updateDisplayCount);
+    return () => window.removeEventListener("resize", updateDisplayCount);
+  }, []);
 
   const filteredPhotos = useMemo(() => {
-    if (selectedCategory === "All") return photos;
+    if (selectedCategory === "") return photos;
     return photos.filter((photo) => photo.category === selectedCategory);
   }, [selectedCategory]);
+
+  const displayedPhotos = useMemo(() => {
+    return filteredPhotos.slice(0, displayedCount);
+  }, [filteredPhotos, displayedCount]);
 
   const openLightbox = (index: number) => {
     setSelectedIndex(index);
@@ -122,52 +139,38 @@ export default function Gallery() {
           </motion.p>
         </div>
 
-        {/* Category Filter - Artistic offset design */}
+        {/* Category Filter - Inline Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap gap-2 md:gap-4 mb-16 md:ml-12"
+          className="mb-16 md:ml-12"
         >
-          {categories.map((category, index) => (
-            <button
-              key={category}
-              onClick={() =>
-                setSelectedCategory(
-                  category === "Vše"
-                    ? "All"
-                    : category === "Portréty"
-                      ? "Portraits"
-                      : category === "Krajiny"
-                        ? "Landscapes"
-                        : category === "Příroda"
-                          ? "Nature"
-                          : category,
-                )
-              }
-              className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
-                (selectedCategory === "All" && category === "Vše") ||
-                (selectedCategory === "Portraits" && category === "Portréty") ||
-                (selectedCategory === "Landscapes" && category === "Krajiny") ||
-                (selectedCategory === "Nature" && category === "Příroda") ||
-                selectedCategory === category
-                  ? "bg-mauve-500 text-white shadow-lg"
-                  : "bg-transparent text-mauve-600 hover:text-mauve-500 border border-mauve-500/40 hover:border-mauve-500"
-              }`}
-              // style={{
-              //  transform: `translateY(${index % 2 === 0 ? "0" : "8px"})`,
-              // }}
-            >
-              {category}
-            </button>
-          ))}
+          <div className="flex flex-wrap gap-2 md:gap-4">
+            {categoryOptions.map((option, index) => (
+              <motion.button
+                key={option.value}
+                onClick={() => setSelectedCategory(option.value)}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
+                  selectedCategory === option.value
+                    ? "bg-mauve-500 text-white shadow-lg"
+                    : "bg-transparent text-mauve-600 hover:text-mauve-500 border border-mauve-500/40 hover:border-mauve-500"
+                }`}
+              >
+                {option.label}
+              </motion.button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[400px] md:auto-rows-[300px]">
           <AnimatePresence>
-            {filteredPhotos.map((photo, index) => (
+            {displayedPhotos.map((photo, index) => (
               <motion.div
                 key={photo.id}
                 layout
@@ -204,9 +207,34 @@ export default function Gallery() {
               </motion.div>
             ))}
           </AnimatePresence>
-          {/* TODO: implement load more button and show less images intially */}
-          {/* TODO: also think about how many images we should display on mobile devices (keep load more function but show even less images than on desktop) */}
         </div>
+
+        {/* Load More Button */}
+        {displayedCount < filteredPhotos.length && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex justify-center mt-12 md:ml-12"
+          >
+            <button
+              onClick={() =>
+                setDisplayedCount((prev) =>
+                  Math.min(
+                    prev +
+                      (typeof window !== "undefined" && window.innerWidth < 768
+                        ? 6
+                        : 12),
+                    filteredPhotos.length,
+                  ),
+                )
+              }
+              className="px-8 py-4 bg-mauve-500 text-white font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-mauve-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Načíst více
+            </button>
+          </motion.div>
+        )}
       </div>
 
       {/* Enhanced Lightbox */}

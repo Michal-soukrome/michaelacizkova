@@ -15,6 +15,7 @@ interface OptimizedImageProps {
   sizes?: string;
   quality?: number;
   onClick?: () => void;
+  onError?: () => void;
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
@@ -29,6 +30,7 @@ export default function OptimizedImage({
   sizes,
   quality = 85,
   onClick,
+  onError,
   objectFit = "cover",
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +43,7 @@ export default function OptimizedImage({
   const handleError = () => {
     setIsLoading(false);
     setHasError(true);
+    onError?.();
   };
 
   if (hasError) {

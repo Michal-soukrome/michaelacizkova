@@ -47,7 +47,13 @@ export default function Hero() {
   const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
 
   const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => {
+      if (emblaApi) {
+        emblaApi.scrollTo(index);
+        // Reset the autoplay timer when user manually changes slide
+        emblaApi.plugins()?.autoplay?.reset();
+      }
+    },
     [emblaApi],
   );
 
@@ -73,7 +79,11 @@ export default function Hero() {
   }, [emblaApi, onSelect]);
 
   const handleScrollDown = () => {
+    window.dispatchEvent(new Event("navigationStart"));
     document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      window.dispatchEvent(new Event("navigationEnd"));
+    }, 1000);
   };
 
   return (
@@ -119,8 +129,10 @@ export default function Hero() {
         >
           <div className="hidden w-12 h-px bg-mauve-500 mb-6" />
           <p className="text-lg md:text-xl text-mauve-400 leading-relaxed">
-            Zachycuji příběhy skrze světlo a stín. Každý snímek je emocí, každý
-            moment je uměním.
+            Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte
+            rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle
+            a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane
+            navždy.
           </p>
         </motion.div>
 
@@ -143,11 +155,15 @@ export default function Hero() {
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
             className="hidden sm:flex border-2 border-mauve-500 text-mauve-500 px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full"
-            onClick={() =>
+            onClick={() => {
+              window.dispatchEvent(new Event("navigationStart"));
               document
                 .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+                ?.scrollIntoView({ behavior: "smooth" });
+              setTimeout(() => {
+                window.dispatchEvent(new Event("navigationEnd"));
+              }, 1000);
+            }}
           >
             Kontakt
           </motion.button>
@@ -183,8 +199,6 @@ export default function Hero() {
             </button>
           ))}
         </div>
-
-        {/* TODO: when user changes image via pagination, it should reset the counter and start from the start, not continuining in current timer */}
       </motion.div>
 
       {/* Hero Image Carousel with Overlay */}

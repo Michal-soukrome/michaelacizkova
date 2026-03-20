@@ -90,7 +90,7 @@ export default function Footer() {
                 <Twitter className="w-4 h-4" />
               </a>
               <a
-                href="mailto:ahoj@michaelacizkova.cz"
+                href="mailto:foto.michaelacizkova@seznam.cz"
                 className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
                 aria-label="Email"
               >
@@ -167,9 +167,9 @@ export default function Footer() {
             </h4>
             <div className="flex gap-3 items-center flex-wrap text-sm text-text-light">
               <p className="underline cursor-pointer">
-                ahoj@michaelacizkova.cz
+                foto.michaelacizkova@seznam.cz
               </p>
-              <p className="underline cursor-pointer">+420 123 456 789</p>
+              <p className="underline cursor-pointer">+420 604 410 116</p>
               <p>Praha, Česká republika</p>
             </div>
           </motion.div>

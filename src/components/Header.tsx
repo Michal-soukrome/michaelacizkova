@@ -16,6 +16,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isHeaderNavigation, setIsHeaderNavigation] = useState(false);
 
   // Handle scroll direction
   useEffect(() => {
@@ -23,11 +24,16 @@ export default function Header() {
       const currentScrollY = window.scrollY;
       const scrollDifference = currentScrollY - lastScrollY;
 
-      // Only hide if scrolling down more than 25px, but keep visible if menu is open
-      if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
-        setIsVisible(false);
-      } else if (scrollDifference < -25 || isOpen) {
+      // If header navigation is in progress, keep header visible
+      if (isHeaderNavigation) {
         setIsVisible(true);
+      } else {
+        // Only hide if scrolling down more than 25px, but keep visible if menu is open
+        if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
+          setIsVisible(false);
+        } else if (scrollDifference < -25 || isOpen) {
+          setIsVisible(true);
+        }
       }
 
       setLastScrollY(currentScrollY);
@@ -35,7 +41,7 @@ export default function Header() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isOpen]);
+  }, [lastScrollY, isOpen, isHeaderNavigation]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -62,11 +68,35 @@ export default function Header() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen]);
 
+  // Listen for navigation events from other components
+  useEffect(() => {
+    const handleNavigationStart = () => {
+      setIsHeaderNavigation(true);
+    };
+
+    const handleNavigationEnd = () => {
+      setIsHeaderNavigation(false);
+    };
+
+    window.addEventListener("navigationStart", handleNavigationStart);
+    window.addEventListener("navigationEnd", handleNavigationEnd);
+
+    return () => {
+      window.removeEventListener("navigationStart", handleNavigationStart);
+      window.removeEventListener("navigationEnd", handleNavigationEnd);
+    };
+  }, []);
+
   const handleScroll = (sectionId: string) => {
+    setIsHeaderNavigation(true);
     setTimeout(() => {
       document
         .getElementById(sectionId)
         ?.scrollIntoView({ behavior: "smooth" });
+      // Reset the flag after scroll completes
+      setTimeout(() => {
+        setIsHeaderNavigation(false);
+      }, 1000);
     }, 200);
     setIsOpen(false); // Close menu after navigation
   };
@@ -78,6 +108,27 @@ export default function Header() {
     { label: "Služby", id: "services", number: "04" },
     { label: "Reference", id: "testimonials", number: "05" },
     { label: "Kontakt", id: "contact", number: "06" },
+  ];
+
+  const socialLinks = [
+    {
+      icon: Facebook,
+      href: "https://facebook.com",
+      label: "Facebook",
+      ariaLabel: "Facebook",
+    },
+    {
+      icon: Instagram,
+      href: "https://instagram.com",
+      label: "Instagram",
+      ariaLabel: "Instagram",
+    },
+    {
+      icon: Mail,
+      href: "mailto:foto.michaelacizkova@seznam.cz",
+      label: "Email",
+      ariaLabel: "Napsat email",
+    },
   ];
 
   return (
@@ -146,101 +197,32 @@ export default function Header() {
               {/* Right Section - Social Icons (Desktop) + Hamburger */}
               <div className="flex justify-center items-center gap-4">
                 {/* Social Icons - Desktop */}
-                <nav
+                <motion.nav
                   aria-label="Sociální sítě"
                   className="hidden lg:flex items-center gap-2"
+                  id="desktop-social"
                 >
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-                  >
-                    <Facebook className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-                  >
-                    <Instagram className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="mailto:ahoj@michaelacizkova.cz"
-                    aria-label="Napsat email"
-                    className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-                  >
-                    <Mail className="w-4 h-4" />
-                  </a>
-                </nav>
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <motion.a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.ariaLabel}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 + index * 0.05 }}
+                        className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+                      >
+                        <Icon className="w-4 h-4" />
+                      </motion.a>
+                    );
+                  })}
+                </motion.nav>
 
                 {/* Hamburger Menu Button - Mobile */}
-                {/* TODO: ## Error Type
-Console Error
-
-## Error Message
-A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html
-                          lang="cs"
-+                         className="scroll-smooth"
--                         className="scroll-smooth vreakcr idc0_350"
-                        >
-                  ...
-
-
-
-    at createConsoleError (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_f3530cac._.js:2199:71)
-    at handleConsoleError (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_f3530cac._.js:2980:54)
-    at console.error (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_f3530cac._.js:3124:57)
-    at <unknown> (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:3469:25)
-    at runWithFiberInDEV (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:965:74)
-    at emitPendingHydrationWarnings (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:3468:13)
-    at completeWork (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:6897:102)
-    at runWithFiberInDEV (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:965:131)
-    at completeUnitOfWork (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9627:23)
-    at performUnitOfWork (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9564:28)
-    at workLoopConcurrentByScheduler (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9558:58)
-    at renderRootConcurrent (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9541:71)
-    at performWorkOnRoot (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:9068:150)
-    at performWorkOnRootViaSchedulerTask (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:10230:9)
-    at MessagePort.performWorkUntilDeadline (file:///Users/michaljirak/GitHub repos/michaelacizkova/.next/dev/static/chunks/node_modules_next_dist_compiled_a0e4c7b4._.js:2647:64)
-    at html (<anonymous>:null:null)
-    at RootLayout (about://React/Server/file:///Users/michaljirak/GitHub%20repos/michaelacizkova/.next/dev/server/chunks/ssr/%5Broot-of-the-server%5D__b3bbe506._.js?4:220:263)
-
-Next.js version: 16.1.0 (Turbopack)
- */}
 
                 <button
                   onClick={() => setIsOpen(!isOpen)}
@@ -320,31 +302,26 @@ Next.js version: 16.1.0 (Turbopack)
                   aria-label="Sociální sítě"
                   className="mt-auto flex items-center w-full p-4"
                 >
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    className="text-foreground  hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="text-foreground  hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="mailto:ahoj@michaelacizkova.cz"
-                    aria-label="Napsat email"
-                    className="text-foreground  hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
-                  >
-                    <Mail className="w-5 h-5" />
-                  </a>
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <motion.a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.ariaLabel}
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{
+                          delay: navItems.length * 0.05 + index * 0.05,
+                        }}
+                        className="text-foreground hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
+                      >
+                        <Icon className="w-5 h-5" />
+                      </motion.a>
+                    );
+                  })}
                 </nav>
               </div>
             </nav>
