@@ -1,12 +1,66 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 
+/** Tracks the current state of the contact form submission. */
+type FormStatus = "idle" | "loading" | "success" | "error";
+
+/**
+ * Contact section with info cards + working form.
+ *
+ * Submits to `/api/contact` (Next.js API route) which sends an email
+ * via Nodemailer. Displays loading spinner, success, or error feedback
+ * inline beneath the submit button.
+ */
 export default function Contact() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  /** Collect form data and POST to the API route. */
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here
+    setStatus("loading");
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        setStatus("success");
+        setStatusMessage(result.message);
+        formRef.current?.reset();
+      } else {
+        setStatus("error");
+        setStatusMessage(result.error);
+      }
+    } catch {
+      setStatus("error");
+      setStatusMessage("Nepodařilo se odeslat zprávu. Zkuste to prosím znovu.");
+    }
   };
 
   return (
@@ -152,6 +206,7 @@ export default function Contact() {
                 viewport={{ once: true }}
               />
               <form
+                ref={formRef}
                 onSubmit={handleSubmit}
                 className="relative bg-mauve-100/30 border-2 border-mauve-500/40 p-8 md:p-12 rounded-xl"
               >
@@ -268,17 +323,58 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 }}
                     viewport={{ once: true }}
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={status === "loading" ? {} : { x: 5 }}
+                    whileTap={status === "loading" ? {} : { scale: 0.98 }}
                     type="submit"
-                    className="mt-6 bg-mauve-500 text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-mauve-600 transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl"
+                    disabled={status === "loading"}
+                    className="mt-6 bg-mauve-500 text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-mauve-600 transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Odeslat zprávu
-                    <Send
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      aria-hidden="true"
-                    />
+                    {status === "loading" ? (
+                      <>
+                        Odesílám...
+                        <Loader2
+                          className="w-4 h-4 animate-spin"
+                          aria-hidden="true"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        Odeslat zprávu
+                        <Send
+                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          aria-hidden="true"
+                        />
+                      </>
+                    )}
                   </motion.button>
+
+                  {/* Status feedback */}
+                  <AnimatePresence mode="wait">
+                    {status === "success" && (
+                      <motion.div
+                        key="success"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="mt-4 flex items-center gap-2 text-green-600"
+                      >
+                        <CheckCircle className="w-5 h-5" />
+                        <p className="text-sm">{statusMessage}</p>
+                      </motion.div>
+                    )}
+                    {status === "error" && (
+                      <motion.div
+                        key="error"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="mt-4 flex items-center gap-2 text-red-500"
+                      >
+                        <AlertCircle className="w-5 h-5" />
+                        <p className="text-sm">{statusMessage}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </form>
             </div>

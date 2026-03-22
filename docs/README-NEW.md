@@ -54,6 +54,10 @@ A stunning, high-performance Next.js 16 photography portfolio featuring black an
 # Install dependencies
 npm install
 
+# Set up contact form email (see Contact Form section below)
+cp .env.example .env.local
+# → Edit .env.local with your SMTP credentials
+
 # Run development server
 npm run dev
 
@@ -71,13 +75,16 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 ```
 src/
 ├── app/
+│   ├── api/
+│   │   └── contact/
+│   │       └── route.ts     # Contact form API (Nodemailer)
 │   ├── globals.css          # Global styles and custom utilities
 │   ├── layout.tsx           # Root layout with metadata
 │   ├── page.tsx             # Home page
 │   └── loading.tsx          # Loading state component
 ├── components/
 │   ├── About.tsx            # About section with timeline
-│   ├── Contact.tsx          # Contact form
+│   ├── Contact.tsx          # Contact form (submits to /api/contact)
 │   ├── Footer.tsx           # Enhanced footer
 │   ├── Gallery.tsx          # Photo gallery with filters
 │   ├── Header.tsx           # Navigation header
@@ -89,6 +96,7 @@ src/
 └── lib/
     ├── photos.ts            # Photo data and types
     └── performance.ts       # Performance utilities
+.env.example                   # Template for SMTP env vars
 ```
 
 ## 🎨 Customization
@@ -179,6 +187,7 @@ Comprehensive SEO implementation:
 - **Animations:** Framer Motion
 - **Icons:** Lucide React
 - **Carousel:** Embla Carousel
+- **Email:** Nodemailer (contact form)
 - **Language:** TypeScript
 
 ## 📝 License
@@ -189,12 +198,38 @@ This project is open source and available under the MIT License.
 
 Contributions, issues, and feature requests are welcome!
 
-## 📧 Contact
+## 📧 Contact Form
 
 For inquiries about photography services or this portfolio:
 
-- Email: hello@michaelacizkova.com
+- Email: foto.michaelacizkova@seznam.cz
 - Location: Prague, Czech Republic
+
+### How the contact form works
+
+The form on the website submits to a **Next.js API route** (`/api/contact`) which sends emails via **Nodemailer**. No separate backend is required — on Vercel this runs as a serverless function automatically.
+
+**Architecture:**
+
+```
+Browser (form) → POST /api/contact → Nodemailer → SMTP server → your inbox
+```
+
+### Setup
+
+1. Copy `.env.example` to `.env.local`
+2. Fill in SMTP credentials (see table below)
+3. Restart dev server or redeploy
+
+| Variable        | Description                                 | Example                          |
+| --------------- | ------------------------------------------- | -------------------------------- |
+| `SMTP_HOST`     | SMTP server hostname                        | `smtp.seznam.cz`                 |
+| `SMTP_PORT`     | Port (465 for SSL, 587 for STARTTLS)        | `465`                            |
+| `SMTP_USER`     | Login / sender email                        | `foto.michaelacizkova@seznam.cz` |
+| `SMTP_PASS`     | Password or app-specific password           | `••••••••`                       |
+| `CONTACT_EMAIL` | Recipient (optional, defaults to SMTP_USER) | `foto.michaelacizkova@seznam.cz` |
+
+For **Vercel**, add these in Dashboard → Settings → Environment Variables.
 
 ---
 

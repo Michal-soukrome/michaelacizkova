@@ -6,10 +6,15 @@
 # 1. Install dependencies
 npm install
 
-# 2. Run development server
+# 2. Set up contact form email
+cp .env.example .env.local
+# → Open .env.local and fill in your SMTP credentials
+#   (see "Contact Form" section below for details)
+
+# 3. Run development server
 npm run dev
 
-# 3. Open browser
+# 4. Open browser
 # Visit http://localhost:3000
 ```
 
@@ -96,6 +101,7 @@ Edit `src/app/globals.css`:
 ✅ SEO optimized
 ✅ Accessibility ready
 ✅ Performance optimized
+✅ Working contact form (Nodemailer)
 
 ## 🔧 Tech Stack
 
@@ -106,8 +112,47 @@ Edit `src/app/globals.css`:
 - Framer Motion
 - Lucide Icons
 - Embla Carousel
+- Nodemailer (contact form email)
 
-## 📦 Build & Deploy
+## � Contact Form
+
+The contact form sends emails via a **Next.js API route** + **Nodemailer**. No separate backend needed.
+
+### Quick setup
+
+```bash
+cp .env.example .env.local
+```
+
+Then edit `.env.local`:
+
+```dotenv
+SMTP_HOST=smtp.seznam.cz
+SMTP_PORT=465
+SMTP_USER=foto.michaelacizkova@seznam.cz
+SMTP_PASS=your-password
+CONTACT_EMAIL=foto.michaelacizkova@seznam.cz
+```
+
+Restart the dev server after editing.
+
+### Vercel deployment
+
+Add the same env vars in **Vercel Dashboard → Settings → Environment Variables**, then redeploy.
+
+### How it works
+
+```
+User fills form → POST /api/contact → Nodemailer → SMTP → your inbox
+```
+
+Files involved:
+
+- `src/app/api/contact/route.ts` – API handler
+- `src/components/Contact.tsx` – form UI with loading/success/error states
+- `.env.example` – env var template
+
+## �📦 Build & Deploy
 
 ```bash
 # Build for production

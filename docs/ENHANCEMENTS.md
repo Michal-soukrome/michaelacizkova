@@ -112,6 +112,23 @@
 - ✅ Proper form validation attributes
 - ✅ Send button with icon animation
 - ✅ Glass morphism styling
+- ✅ **Working email submission** via Next.js API route + Nodemailer
+- ✅ Loading spinner while sending
+- ✅ Animated success / error feedback (AnimatePresence)
+- ✅ Form resets on successful send
+- ✅ Button disabled during submission
+
+### 10b. Contact Form API Route (`src/app/api/contact/route.ts`)
+
+- ✅ POST endpoint at `/api/contact`
+- ✅ Server-side field validation
+- ✅ Email format validation
+- ✅ Nodemailer SMTP transporter (configurable via env vars)
+- ✅ Sends both plain-text and HTML email
+- ✅ Reply-To set to sender’s email for easy replies
+- ✅ Error handling with user-friendly Czech messages
+- ✅ Works as Vercel serverless function — no separate backend
+- ✅ Environment variable template in `.env.example`
 
 ### 11. Footer Enhancement (`src/components/Footer.tsx`)
 
@@ -258,20 +275,28 @@
    npm install
    ```
 
-2. **Run development server:**
+2. **Set up contact form email:**
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Edit `.env.local` with your SMTP credentials (see `.env.example` for details).
+
+3. **Run development server:**
 
    ```bash
    npm run dev
    ```
 
-3. **Build for production:**
+4. **Build for production:**
 
    ```bash
    npm run build
    npm start
    ```
 
-4. **Customize content:**
+5. **Customize content:**
    - Update images in `src/lib/photos.ts`
    - Modify text in component files
    - Adjust colors in `globals.css`
@@ -286,6 +311,7 @@
 - Framer Motion 12
 - Lucide React
 - Embla Carousel
+- Nodemailer (contact form)
 
 ## 🎯 Key Features
 
@@ -297,7 +323,7 @@
 ✅ Lightbox with navigation
 ✅ Interactive timeline
 ✅ Testimonials carousel
-✅ Contact form ready
+✅ **Working contact form with email delivery**
 ✅ Fully responsive
 ✅ SEO optimized
 ✅ Accessibility compliant
@@ -326,7 +352,7 @@
 2. Update contact information (email, phone, location)
 3. Add actual testimonials
 4. Configure analytics
-5. Set up contact form backend
+5. ~~Set up contact form backend~~ ✅ Done (Next.js API route + Nodemailer)
 6. Add more pages if needed
 7. Deploy to Vercel or similar platform
 8. Set up domain and SSL
