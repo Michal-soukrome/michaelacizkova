@@ -19,7 +19,7 @@ const services = [
     icon: Users,
     price: "2000 Kč",
     duration: "Cca 60 min",
-    photos: "15 výsledných fotografií + černobílá verze podle mého výběru",
+    photos: "15 výsledných fotografií",
     features: [
       "Výběr z náhledové galerie",
       "Výsledné fotografie elektronicky v soukromé galerii",
@@ -34,7 +34,7 @@ const services = [
     icon: Baby,
     price: "2400 Kč",
     duration: "Cca 60 až 90 min",
-    photos: "20 výsledných fotografií + černobílá verze podle mého výběru",
+    photos: "20 výsledných fotografií",
     features: [
       "Výběr z náhledové galerie",
       "Výsledné fotografie elektronicky v soukromé galerii",
@@ -52,7 +52,6 @@ const services = [
     duration: "Délka na domluvě (+700 Kč/h)",
     photos: "100 až 150 výsledných fotografií",
     features: [
-      "Černobílá verze podle mého výběru",
       "Fotografie bez rozsáhlejší retuše",
       "Ideální pro všechny druhy akcí",
     ],
@@ -64,7 +63,7 @@ const services = [
     icon: Briefcase,
     price: "3000 Kč",
     duration: "Na míru",
-    photos: "25 výsledných fotografií + černobílá verze",
+    photos: "25 výsledných fotografií",
     features: [
       "Jedinečný styl podle vaší osobnosti/značky",
       "Výběr z náhledové galerie",

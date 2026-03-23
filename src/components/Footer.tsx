@@ -58,8 +58,10 @@ export default function Footer() {
             </h1>
 
             <p className="text-text-light text-sm leading-relaxed max-w-sm mb-8">
-              Profesionální fotografka specializující se na nadčasovou
-              černobílou fotografii, která zachycuje emoce a uměleckou krásu.
+              Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte
+              rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné
+              chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám
+              zůstane navždy.
             </p>
             <div className="flex gap-3">
               <a

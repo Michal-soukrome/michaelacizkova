@@ -24,11 +24,10 @@ export const metadata: Metadata = {
     template: "%s | Michaela Čížková",
   },
   description:
-    "Oceňovaná fotografka specializující se na černobílou fotografii. Prozkoumejte úchvatné portréty, krajiny a uměleckou fotografii, která zachycuje emoce a nadčasovou krásu.",
+    "Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane navždy.",
   keywords: [
     "fotografka",
     "fotografické portfolio",
-    "černobílá fotografie",
     "portrétní fotografie",
     "umělecká fotografie",
     "profesionální fotografka",
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Michaela Čížková Fotografie",
     title: "Michaela Čížková | Profesionální fotografka",
     description:
-      "Oceňovaná fotografka specializující se na černobílou fotografii. Prozkoumejte úchvatné portréty, krajiny a uměleckou fotografii.",
+      "Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane navždy.",
     images: [
       {
         url: "https://michaelacizkova.cz/assets/1.jpg",
@@ -59,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Michaela Čížková | Profesionální fotografka",
     description:
-      "Oceňovaná fotografka specializující se na černobílou fotografii.",
+      "Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane navždy.",
     images: ["https://michaelacizkova.cz/assets/1.jpg"],
   },
   robots: {
