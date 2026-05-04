@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
@@ -22,10 +22,30 @@ type FormStatus = "idle" | "loading" | "success" | "error";
  * via Resend. Displays loading spinner, success, or error feedback
  * inline beneath the submit button.
  */
+const services = [
+  "Svatební focení",
+  "Rodinné / Párové / Těhotenské focení",
+  "Rodinná reportáž",
+  "Ateliérové focení",
+];
+
 export default function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [selectedService, setSelectedService] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    const handleServiceSelected = (event: Event) => {
+      const customEvent = event as CustomEvent<{ service: string }>;
+      setSelectedService(customEvent.detail.service);
+    };
+
+    window.addEventListener("serviceSelected", handleServiceSelected);
+    return () => {
+      window.removeEventListener("serviceSelected", handleServiceSelected);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +55,7 @@ export default function Contact() {
     const data = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
+      service: selectedService || (formData.get("service") as string),
       subject: formData.get("subject") as string,
       message: formData.get("message") as string,
     };
@@ -254,6 +275,43 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <label
+                      htmlFor="service"
+                      className="block text-sm uppercase tracking-wider mb-3 text-foreground"
+                    >
+                      Služba
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      value={selectedService}
+                      onChange={(e) => setSelectedService(e.target.value)}
+                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all text-foreground"
+                    >
+                      <option
+                        value=""
+                        className="bg-background text-foreground"
+                      >
+                        — Vyberte službu —
+                      </option>
+                      {services.map((service) => (
+                        <option
+                          key={service}
+                          value={service}
+                          className="bg-background text-foreground"
+                        >
+                          {service}
+                        </option>
+                      ))}
+                    </select>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.55 }}
                     viewport={{ once: true }}
                   >
                     <label

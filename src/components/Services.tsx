@@ -482,6 +482,31 @@ export default function Services() {
                       )}
                     </>
                   )}
+
+                  {/* CTA Button */}
+                  <motion.button
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("serviceSelected", {
+                          detail: { service: service.title },
+                        }),
+                      );
+                      setTimeout(() => {
+                        document
+                          .getElementById("contact")
+                          ?.scrollIntoView({ behavior: "smooth" });
+                      }, 300);
+                    }}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="mt-8 bg-brown text-white px-8 py-3 font-medium text-sm uppercase tracking-wider hover:bg-charcoal transition-all flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl !w-fit"
+                  >
+                    objednat focení
+                    <MessageCircleMore
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      aria-hidden="true"
+                    />
+                  </motion.button>
                 </div>
               </motion.div>
             );
