@@ -20,9 +20,8 @@ export default function Section({
 }: SectionProps) {
   const bgClasses = {
     default: "",
-    dark: "bg-mauve-100/20",
-    gradient:
-      "bg-linear-to-b from-background via-mauve-100/10 to-background",
+    dark: "bg-cream/20",
+    gradient: "bg-linear-to-b from-background via-cream/10 to-background",
   };
 
   return (

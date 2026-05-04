@@ -18,8 +18,8 @@ type FormStatus = "idle" | "loading" | "success" | "error";
 /**
  * Contact section with info cards + working form.
  *
- * Submits to `/api/contact` (Next.js API route) which sends an email
- * via Nodemailer. Displays loading spinner, success, or error feedback
+ * Submits to `/api/contact` (Next.js API route) which sends emails
+ * via Resend. Displays loading spinner, success, or error feedback
  * inline beneath the submit button.
  */
 export default function Contact() {
@@ -27,7 +27,6 @@ export default function Contact() {
   const [statusMessage, setStatusMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
-  /** Collect form data and POST to the API route. */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
@@ -66,7 +65,7 @@ export default function Contact() {
   return (
     <section className="py-16 md:py-40 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
-        {/* Artistic offset header */}
+        {/* Header */}
         <div className="relative mb-20">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -74,56 +73,59 @@ export default function Contact() {
             viewport={{ once: true }}
             className="md:ml-auto md:mr-8 md:text-right max-w-xl"
           >
-            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Pojďme spolupracovat
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               Kontakt
             </h2>
-
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-mauve-500 mt-6 md:ml-auto origin-right"
+              className="w-24 h-px bg-brown mt-6 md:ml-auto origin-right"
             />
-
             <p className="text-text-light mt-8">
               Připraveni zachytit váš příběh? Pojďme si promluvit o vašem
               projektu a přivést vaši vizi k životu.
             </p>
           </motion.div>
 
-          {/* Decorative shape */}
           <motion.div
             initial={{ opacity: 0, rotate: -12 }}
             whileInView={{ opacity: 0.1, rotate: 0 }}
             viewport={{ once: true }}
-            className="absolute top-1/2 right-0 w-96 h-96 border border-mauve-500/30 rounded-full -translate-y-1/2 translate-x-1/2"
+            className="absolute top-1/2 right-0 w-96 h-96 border border-brown/30 rounded-full -translate-y-1/2 translate-x-1/2"
           />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
-          {/* Contact Info - Offset design */}
+          {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            animate={{ y: [0, -6, 0] }}
+            transition={{
+              delay: 0.4,
+              duration: 6,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
             className="lg:col-span-5 space-y-8"
           >
             <div className="relative">
-              <div className="absolute inset-0 border-2 border-mauve-500/20 translate-x-2 translate-y-2 rounded-xl" />
-              <div className="relative bg-mauve-100/30 border-2 border-mauve-500/40 p-8 md:p-10 rounded-xl">
+              <div className="absolute inset-0 border-2 border-brown/20 translate-x-2 translate-y-2 rounded-xl" />
+              <div className="relative bg-cream/30 border-2 border-brown/40 p-8 md:p-10 rounded-xl">
                 <h3 className="text-2xl font-bold mb-8 text-foreground">
                   Kontaktní údaje
                 </h3>
-
                 <div className="space-y-8">
                   <div className="flex items-start gap-4">
-                    <div className="bg-mauve-500/20 p-3 rounded-full">
-                      <Mail className="w-5 h-5 text-mauve-500" />
+                    <div className="bg-brown/20 p-3 rounded-full">
+                      <Mail className="w-5 h-5 text-brown" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1 text-foreground">
@@ -134,10 +136,9 @@ export default function Contact() {
                       </p>
                     </div>
                   </div>
-
                   <div className="flex items-start gap-4">
-                    <div className="bg-mauve-500/20 p-3 rounded-full">
-                      <Phone className="w-5 h-5 text-mauve-500" />
+                    <div className="bg-brown/20 p-3 rounded-full">
+                      <Phone className="w-5 h-5 text-brown" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1 text-foreground">
@@ -148,10 +149,9 @@ export default function Contact() {
                       </p>
                     </div>
                   </div>
-
                   <div className="flex items-start gap-4">
-                    <div className="bg-mauve-500/20 p-3 rounded-full">
-                      <MapPin className="w-5 h-5 text-mauve-500" />
+                    <div className="bg-brown/20 p-3 rounded-full">
+                      <MapPin className="w-5 h-5 text-brown" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1 text-foreground">
@@ -163,33 +163,9 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            {/* WORK HOURS SEEMS OBSOLETE UNLESS SAID OTHERWISE - HIDDEN FOR NOW */}
-            <div className="hidden relative">
-              <div className="absolute inset-0 border-2 border-mauve-500/20 translate-x-2 translate-y-2 rounded-xl" />
-              <div className="relative bg-mauve-100/30 border-2 border-mauve-500/40 p-8 rounded-xl">
-                <h3 className="text-xl font-bold mb-4 text-foreground">
-                  Pracovní doba
-                </h3>
-                <div className="space-y-3 text-text-light">
-                  <p className="flex justify-between">
-                    <span>Pondělí – Pátek</span>
-                    <span>9:00 – 18:00</span>
-                  </p>
-                  <p className="flex justify-between">
-                    <span>Sobota</span>
-                    <span>10:00 – 16:00</span>
-                  </p>
-                  <p className="flex justify-between">
-                    <span>Neděle</span>
-                    <span>Po domluvě</span>
-                  </p>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
-          {/* Contact Form - Offset design */}
+          {/* Contact form */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -199,16 +175,24 @@ export default function Contact() {
           >
             <div className="relative">
               <motion.div
-                className="absolute inset-0 border-2 border-mauve-500/20 -translate-x-3 -translate-y-3 rounded-xl"
+                className="absolute inset-0 border-2 border-brown/20 -translate-x-3 -translate-y-3 rounded-xl"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                animate={{ y: [0, -6, 0] }} // gentle up–down float
+                transition={{
+                  delay: 0.4,
+                  duration: 6, // slow cycle
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeInOut",
+                }}
                 viewport={{ once: true }}
               />
+
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="relative bg-mauve-100/30 border-2 border-mauve-500/40 p-8 md:p-12 rounded-xl"
+                className="relative bg-cream/30 border-2 border-brown/40 p-8 md:p-12 rounded-xl"
               >
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -223,7 +207,7 @@ export default function Contact() {
                         className="block text-sm uppercase tracking-wider mb-3 text-foreground"
                       >
                         Jméno{" "}
-                        <span className="text-mauve-500" aria-hidden="true">
+                        <span className="text-brown" aria-hidden="true">
                           *
                         </span>
                       </label>
@@ -234,7 +218,7 @@ export default function Contact() {
                         required
                         aria-required="true"
                         autoComplete="name"
-                        className="w-full px-0 py-3 bg-transparent border-0 border-b border-mauve-500/40 focus:outline-none focus:border-mauve-500 focus:ring-0 transition-all placeholder:text-text-light text-foreground"
+                        className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all placeholder:text-text-light text-foreground"
                         placeholder="Vaše jméno"
                       />
                     </motion.div>
@@ -249,7 +233,7 @@ export default function Contact() {
                         className="block text-sm uppercase tracking-wider mb-3 text-foreground"
                       >
                         Email{" "}
-                        <span className="text-mauve-500" aria-hidden="true">
+                        <span className="text-brown" aria-hidden="true">
                           *
                         </span>
                       </label>
@@ -260,7 +244,7 @@ export default function Contact() {
                         required
                         aria-required="true"
                         autoComplete="email"
-                        className="w-full px-0 py-3 bg-transparent border-0 border-b border-mauve-500/40 focus:outline-none focus:border-mauve-500 focus:ring-0 transition-all placeholder:text-text-light text-foreground"
+                        className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all placeholder:text-text-light text-foreground"
                         placeholder="vas@email.cz"
                       />
                     </motion.div>
@@ -277,7 +261,7 @@ export default function Contact() {
                       className="block text-sm uppercase tracking-wider mb-3 text-foreground"
                     >
                       Předmět{" "}
-                      <span className="text-mauve-500" aria-hidden="true">
+                      <span className="text-brown" aria-hidden="true">
                         *
                       </span>
                     </label>
@@ -287,7 +271,7 @@ export default function Contact() {
                       name="subject"
                       required
                       aria-required="true"
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-mauve-500/40 focus:outline-none focus:border-mauve-500 focus:ring-0 transition-all placeholder:text-text-light text-foreground"
+                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all placeholder:text-text-light text-foreground"
                       placeholder="O co se jedná?"
                     />
                   </motion.div>
@@ -303,7 +287,7 @@ export default function Contact() {
                       className="block text-sm uppercase tracking-wider mb-3 text-foreground"
                     >
                       Zpráva{" "}
-                      <span className="text-mauve-500" aria-hidden="true">
+                      <span className="text-brown" aria-hidden="true">
                         *
                       </span>
                     </label>
@@ -313,9 +297,9 @@ export default function Contact() {
                       required
                       aria-required="true"
                       rows={5}
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-mauve-500/40 focus:outline-none focus:border-mauve-500 focus:ring-0 transition-all resize-none placeholder:text-text-light text-foreground"
+                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all resize-none placeholder:text-text-light text-foreground"
                       placeholder="Řekněte mi o vašem projektu..."
-                    ></textarea>
+                    />
                   </motion.div>
 
                   <motion.button
@@ -327,7 +311,7 @@ export default function Contact() {
                     whileTap={status === "loading" ? {} : { scale: 0.98 }}
                     type="submit"
                     disabled={status === "loading"}
-                    className="mt-6 bg-mauve-500 text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-mauve-600 transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="mt-6 bg-brown text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-charcoal transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "loading" ? (
                       <>
@@ -348,7 +332,6 @@ export default function Contact() {
                     )}
                   </motion.button>
 
-                  {/* Status feedback */}
                   <AnimatePresence mode="wait">
                     {status === "success" && (
                       <motion.div

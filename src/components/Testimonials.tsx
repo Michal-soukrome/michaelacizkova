@@ -85,7 +85,7 @@ export default function Testimonials() {
             viewport={{ once: true }}
             className="md:ml-8"
           >
-            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Říkají o mně
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
@@ -97,7 +97,7 @@ export default function Testimonials() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-mauve-500 mt-6 origin-left"
+              className="w-24 h-px bg-brown mt-6 origin-left"
             />
           </motion.div>
 
@@ -124,20 +124,17 @@ export default function Testimonials() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-mauve-500/40 hover:border-mauve-500/60 transition-all duration-300 group bg-mauve-100/30"
+                  className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-brown/40 hover:border-brown/60 transition-all duration-300 group bg-cream/30"
                 >
                   {/* Quote Icon */}
-                  <div className="mb-6 text-mauve-500/60 group-hover:text-mauve-500 transition-colors">
+                  <div className="mb-6 text-brown/60 group-hover:text-brown transition-colors">
                     <Quote className="w-10 h-10" />
                   </div>
 
                   {/* Stars Rating */}
                   <div className="flex mb-4 gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-mauve-500 text-mauve-500"
-                      />
+                      <Star key={i} className="w-4 h-4 fill-brown text-brown" />
                     ))}
                   </div>
 
@@ -147,10 +144,10 @@ export default function Testimonials() {
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center pt-4 border-t border-mauve-500/20">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-mauve-500/40 group-hover:ring-mauve-500/60 transition-all bg-mauve-100 flex items-center justify-center">
+                  <div className="flex items-center pt-4 border-t border-brown/20">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-brown/40 group-hover:ring-brown/60 transition-all bg-cream flex items-center justify-center">
                       {failedImages.has(index) ? (
-                        <User className="w-7 h-7 text-mauve-500" />
+                        <User className="w-7 h-7 text-brown" />
                       ) : (
                         <OptimizedImage
                           src={testimonial.image}
@@ -186,12 +183,12 @@ export default function Testimonials() {
               className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
                 index === selectedIndex
                   ? "w-8"
-                  : "w-2 bg-mauve-500/40 hover:bg-mauve-500/70"
+                  : "w-2 bg-brown/40 hover:bg-brown/70"
               }`}
             >
               {/* Background bar */}
               <div
-                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-500/20" : ""}`}
+                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-brown/20" : ""}`}
               />
 
               {/* Progress fill - animates for active dot */}
@@ -201,7 +198,7 @@ export default function Testimonials() {
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 6, ease: "linear" }}
-                  className="absolute inset-y-0 left-0 bg-mauve-500 rounded-full"
+                  className="absolute inset-y-0 left-0 bg-brown rounded-full"
                 />
               )}
             </button>

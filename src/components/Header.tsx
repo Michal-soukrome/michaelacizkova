@@ -11,6 +11,7 @@ import {
   Facebook,
   Camera,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,10 +104,10 @@ export default function Header() {
 
   const navItems = [
     { label: "Domů", id: "home", number: "01" },
-    { label: "Portfolio", id: "gallery", number: "02" },
-    { label: "O mně", id: "about", number: "03" },
-    { label: "Služby", id: "services", number: "04" },
-    { label: "Reference", id: "testimonials", number: "05" },
+    { label: "Služby", id: "services", number: "02" },
+    { label: "Reference", id: "testimonials", number: "03" },
+    { label: "Portfolio", id: "gallery", number: "04" },
+    { label: "O mně", id: "about", number: "05" },
     { label: "Kontakt", id: "contact", number: "06" },
   ];
 
@@ -136,7 +137,7 @@ export default function Header() {
       {/* Skip to content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-mauve-500 focus:text-white focus:px-4 focus:py-2 focus:text-xs"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-brown focus:text-white focus:px-4 focus:py-2 focus:text-xs"
       >
         Přeskočit na hlavní obsah
       </a>
@@ -145,7 +146,7 @@ export default function Header() {
         initial={{ y: 0 }}
         animate={{ y: isVisible ? 0 : -100 }}
         transition={{ duration: 0.3 }}
-        className="sticky top-0 w-full bg-white/50 backdrop-blur-md z-40 border-b border-mauve-500/25"
+        className="sticky top-0 w-full bg-white/50 backdrop-blur-md z-40 border-b border-brown/25"
         role="banner"
       >
         <div className="container mx-auto px-4 flex items-center justify-between h-16">
@@ -156,13 +157,21 @@ export default function Header() {
               e.preventDefault();
               handleScroll("home");
             }}
-            className="flex items-center gap-2 font-light text-xl tracking-tight hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+            className="flex items-center gap-2 font-light text-xl tracking-tight hover:text-brown transition-colors focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded"
             whileHover={{ scale: 1.05 }}
           >
+            <Image
+              src="/assets/logo/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+            />
+            {/* 
             <h1 className="text-foreground">
               Michaela
               <span className="font-semibold ml-1">Čížková</span>
             </h1>
+            */}
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -181,13 +190,13 @@ export default function Header() {
                       e.preventDefault();
                       handleScroll(item.id);
                     }}
-                    className="text-sm font-medium text-foreground hover:text-mauve-500 transition-colors relative group focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded px-2 py-1"
+                    className="text-sm font-medium text-foreground hover:text-brown transition-colors relative group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded px-2 py-1"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
                     {item.label}
-                    <span className="absolute inset-x-0 bottom-0 h-px bg-mauve-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                    <span className="absolute inset-x-0 bottom-0 h-px bg-brown scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   </motion.a>
                 ))}
               </div>
@@ -214,7 +223,7 @@ export default function Header() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.05 }}
-                        className="text-foreground hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
+                        className="text-foreground hover:text-brown transition-colors focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
                       >
                         <Icon className="w-4 h-4" />
                       </motion.a>
@@ -226,7 +235,7 @@ export default function Header() {
 
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="lg:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded"
+                  className="lg:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded"
                   aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
                   aria-expanded={isOpen}
                   aria-controls="mobile-navigation"
@@ -284,12 +293,12 @@ export default function Header() {
                           e.preventDefault();
                           handleScroll(item.id);
                         }}
-                        className="flex items-center gap-4 px-4 py-3 sm:py-6 rounded-lg hover:bg-mauve-500/10 transition-colors group"
+                        className="flex items-center gap-4 px-4 py-3 sm:py-6 rounded-lg hover:bg-brown/10 transition-colors group"
                       >
-                        <span className="text-mauve-400 font-medium text-xs">
+                        <span className="text-tan font-medium text-xs">
                           {item.number}
                         </span>
-                        <span className="text-foreground group-hover:text-mauve-500 transition-colors">
+                        <span className="text-foreground group-hover:text-brown transition-colors">
                           {item.label}
                         </span>
                       </motion.a>
@@ -316,7 +325,7 @@ export default function Header() {
                         transition={{
                           delay: navItems.length * 0.05 + index * 0.05,
                         }}
-                        className="text-foreground hover:bg-mauve-500/10 hover:text-mauve-500 transition-colors focus:outline-none focus:ring-2 focus:ring-mauve-500 focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
+                        className="text-foreground hover:bg-brown/10 hover:text-brown transition-colors focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
                       >
                         <Icon className="w-5 h-5" />
                       </motion.a>

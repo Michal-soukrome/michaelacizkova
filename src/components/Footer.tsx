@@ -24,21 +24,21 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-mauve-100/30 border-t border-mauve-500/30 py-20 relative overflow-hidden">
+    <footer className="bg-cream/30 border-t border-brown/30 py-20 relative overflow-hidden">
       {/* Decorative shapes */}
       <motion.div
         initial={{ opacity: 0, rotate: 0 }}
         whileInView={{ opacity: 1, rotate: 12 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="absolute top-12 right-12 w-32 h-32 border border-mauve-500/30 rounded-full"
+        className="absolute top-12 right-12 w-32 h-32 border border-brown/30 rounded-full"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
-        className="absolute bottom-24 left-8 w-16 h-16 bg-mauve-500/20 rounded-full"
+        className="absolute bottom-24 left-8 w-16 h-16 bg-brown/20 rounded-full"
       />
 
       <motion.div
@@ -51,24 +51,21 @@ export default function Footer() {
         {/* Main footer content with offset design */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
           {/* Brand - Takes more space */}
-          <motion.div className="md:col-span-5" variants={itemVariants}>
+          <motion.div className="md:col-span-8" variants={itemVariants}>
             <h1 className="font-medium text-foreground mb-2">
-              Michaela
-              <span className="font-semibold ml-1">Čížková</span>
+              Michaela Čížková
             </h1>
 
-            <p className="text-text-light text-sm leading-relaxed max-w-sm mb-8">
-              Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte
-              rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné
-              chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám
-              zůstane navždy.
+            <p className="text-text-light text-sm leading-relaxed mb-8">
+              Věřím, že ty nejkrásnější fotografie vznikají ve chvílích, kdy
+              jste sami sebou. Jsem tu od toho, abych tyto chvíle zachytila.
             </p>
             <div className="flex gap-3">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
+                className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -77,7 +74,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500 "
+                className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown "
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -86,14 +83,14 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
+                className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href="mailto:foto.michaelacizkova@seznam.cz"
-                className="w-10 h-10 border border-mauve-500 flex items-center justify-center hover:border-mauve-600 hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full text-mauve-500"
+                className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -101,70 +98,9 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
-          <motion.div className="md:col-span-2" variants={itemVariants}>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
-              Navigace
-            </h4>
-            <ul className="flex gap-3 items-center flex-wrap text-sm text-text-light">
-              <li>
-                <a
-                  href="#home"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
-                >
-                  Domů
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#gallery"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
-                >
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
-                >
-                  O mně
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
-                >
-                  Služby
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="text-text-light hover:text-mauve-500 transition-colors hover:underline inline-block duration-300"
-                >
-                  Kontakt
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-
-          {/* Services */}
-          <motion.div className="md:col-span-2" variants={itemVariants}>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
-              Služby
-            </h4>
-            <ul className="flex gap-3 items-center flex-wrap text-sm text-text-light">
-              <li>Portréty</li>
-              <li>Eventy</li>
-              <li>Komerční práce</li>
-            </ul>
-          </motion.div>
-
           {/* Contact Info */}
-          <motion.div className="md:col-span-3" variants={itemVariants}>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-mauve-600 mb-6">
+          <motion.div className="md:col-span-4" variants={itemVariants}>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-brown mb-6">
               Kontakt
             </h4>
             <div className="flex gap-3 items-center flex-wrap text-sm text-text-light">
@@ -179,7 +115,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <motion.div
-          className="border-t border-mauve-500/30 pt-8"
+          className="border-t border-brown/30 pt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -190,13 +126,13 @@ export default function Footer() {
             <div className="flex gap-4 md:gap-8">
               <a
                 href="#"
-                className="hover:text-mauve-500 transition-colors hover:underline"
+                className="hover:text-brown transition-colors hover:underline"
               >
                 Zásady ochrany soukromí
               </a>
               <a
                 href="#"
-                className="hover:text-mauve-500 transition-colors hover:underline"
+                className="hover:text-brown transition-colors hover:underline"
               >
                 Obchodní podmínky
               </a>

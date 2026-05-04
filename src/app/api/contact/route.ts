@@ -1,82 +1,90 @@
-/**
- * Contact Form API Route
- *
- * Handles POST requests from the contact form.
- * Uses Nodemailer to send emails via SMTP.
- *
- * Required environment variables (set in .env.local):
- *   SMTP_HOST     – SMTP server hostname (e.g. smtp.seznam.cz)
- *   SMTP_PORT     – SMTP port (465 for SSL, 587 for TLS)
- *   SMTP_USER     – SMTP login / sender email
- *   SMTP_PASS     – SMTP password or app-specific password
- *   CONTACT_EMAIL – (optional) recipient email, defaults to foto.michaelacizkova@seznam.cz
- *
- * On Vercel, this runs as a serverless function — no separate backend needed.
- *
- * @see https://nodemailer.com/about/ for Nodemailer docs
- * @see .env.example for a template of required variables
- */
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// ─── Config — set all three in .env.local + Vercel project settings ────────
+const PHOTOGRAPHER_EMAIL = process.env.CONTACT_PHOTOGRAPHER_EMAIL!;
+const SENDER_FROM = process.env.CONTACT_SENDER_FROM!;
 
 export async function POST(req: NextRequest) {
   try {
     const { name, email, subject, message } = await req.json();
 
-    // Validate required fields
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
-        { error: "Všechna pole jsou povinná." },
+        { error: "Vyplňte prosím všechna povinná pole." },
         { status: 400 },
       );
     }
 
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Neplatná emailová adresa." },
-        { status: 400 },
-      );
-    }
-
-    // Create SMTP transporter from environment variables.
-    // `secure: true` is used when port is 465 (implicit TLS).
-    // For port 587 the connection upgrades via STARTTLS automatically.
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: Number(process.env.SMTP_PORT) === 465,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    // Send the email.
-    // `from` uses the SMTP account; `replyTo` is set to the visitor's email
-    // so Michaela can reply directly from her mail client.
-    await transporter.sendMail({
-      from: `"Webový formulář" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL || "foto.michaelacizkova@seznam.cz",
+    // 1. Notify photographer about new inquiry
+    await resend.emails.send({
+      from: SENDER_FROM,
+      to: PHOTOGRAPHER_EMAIL,
       replyTo: email,
-      subject: `[Kontaktní formulář] ${subject}`,
-      text: `Jméno: ${name}\nEmail: ${email}\nPředmět: ${subject}\n\nZpráva:\n${message}`,
+      subject: `Nová poptávka: ${subject}`,
       html: `
-        <h2>Nová zpráva z kontaktního formuláře</h2>
-        <p><strong>Jméno:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Předmět:</strong> ${subject}</p>
-        <hr />
-        <p><strong>Zpráva:</strong></p>
-        <p>${message.replace(/\n/g, "<br />")}</p>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <h2 style="color: #7c5c3e; border-bottom: 1px solid #e8ddd4; padding-bottom: 12px;">
+            Nová poptávka přes web
+          </h2>
+          <table style="width: 100%; border-collapse: collapse; margin: 24px 0;">
+            <tr>
+              <td style="padding: 8px 0; color: #888; width: 100px;">Jméno</td>
+              <td style="padding: 8px 0; font-weight: 600;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #888;">Email</td>
+              <td style="padding: 8px 0;">
+                <a href="mailto:${email}" style="color: #7c5c3e;">${email}</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #888;">Předmět</td>
+              <td style="padding: 8px 0;">${subject}</td>
+            </tr>
+          </table>
+          <div style="background: #faf7f4; border-left: 3px solid #7c5c3e; padding: 16px 20px; border-radius: 4px;">
+            <p style="margin: 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Zpráva</p>
+            <p style="margin: 0; line-height: 1.7; white-space: pre-wrap;">${message}</p>
+          </div>
+          <p style="margin-top: 24px; font-size: 12px; color: #aaa;">
+            Odpověz přímo na tento email — reply-to je nastaveno na ${email}
+          </p>
+        </div>
       `,
     });
 
-    return NextResponse.json(
-      { message: "Zpráva byla úspěšně odeslána!" },
-      { status: 200 },
-    );
+    // 2. Send confirmation to the visitor
+    await resend.emails.send({
+      from: SENDER_FROM,
+      to: email,
+      subject: "Děkuji za zprávu 🤍",
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+          <h2 style="color: #7c5c3e;">Ahoj ${name},</h2>
+          <p style="line-height: 1.7;">
+            děkuji za tvoji zprávu! Dostala jsem ji a ozvu se ti co nejdříve,
+            obvykle do 1–2 pracovních dní.
+          </p>
+          <p style="line-height: 1.7;">Těším se na spolupráci 🤍</p>
+          <p style="line-height: 1.7; margin-top: 32px;">
+            Michaela Čížková<br/>
+            <span style="color: #888; font-size: 14px;">Fotografka</span>
+          </p>
+          <hr style="border: none; border-top: 1px solid #e8ddd4; margin: 32px 0;" />
+          <p style="font-size: 12px; color: #aaa; line-height: 1.6;">
+            Tato zpráva byla odeslána z kontaktního formuláře na webu.<br/>
+            Pokud jsi zprávu neodeslal/a, tuto zprávu ignoruj.
+          </p>
+        </div>
+      `,
+    });
+
+    return NextResponse.json({
+      message: "Zpráva byla úspěšně odeslána. Ozvu se ti brzy 🤍",
+    });
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(

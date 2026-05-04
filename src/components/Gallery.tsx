@@ -110,7 +110,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="md:ml-12"
           >
-            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Výběr z mé tvorby
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
@@ -124,7 +124,7 @@ export default function Gallery() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-mauve-500 origin-left"
+            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-brown origin-left"
           />
 
           <motion.p
@@ -132,7 +132,7 @@ export default function Gallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-mauve-600 mt-8 max-w-lg md:ml-12"
+            className="text-brown mt-8 max-w-lg md:ml-12"
           >
             Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
             vypráví svůj vlastní příběh.
@@ -157,8 +157,8 @@ export default function Gallery() {
                 transition={{ delay: index * 0.05 }}
                 className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
                   selectedCategory === option.value
-                    ? "bg-mauve-500 text-white shadow-lg"
-                    : "bg-transparent text-mauve-600 hover:text-mauve-500 border border-mauve-500/40 hover:border-mauve-500"
+                    ? "bg-brown text-white shadow-lg"
+                    : "bg-transparent text-brown hover:text-brown border border-brown/40 hover:border-brown"
                 }`}
               >
                 {option.label}
@@ -194,7 +194,7 @@ export default function Gallery() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-mauve-500/80 via-mauve-500/0 to-mauve-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="absolute inset-0 bg-linear-to-t from-brown/80 via-brown/0 to-brown/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <div>
                     <h3 className="text-white font-semibold text-lg mb-1">
                       {photo.title}
@@ -229,7 +229,7 @@ export default function Gallery() {
                   ),
                 )
               }
-              className="px-8 py-4 bg-mauve-500 text-white font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-mauve-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="px-8 py-4 bg-brown text-white font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-charcoal transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Načíst více
             </button>

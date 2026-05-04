@@ -101,7 +101,7 @@ export default function Hero() {
           initial={{ scale: 0, rotate: -45 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, delay: 0.1 }}
-          className="absolute -top-20 -left-10 w-40 h-40 rounded-full border border-mauve-500/30 rotate-12"
+          className="absolute -top-20 -left-10 w-40 h-40 rounded-full border border-brown/30 rotate-12"
         />
 
         <motion.div
@@ -109,13 +109,13 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <p className="text-sm md:text-base tracking-[0.3em] text-mauve-500 mb-4 uppercase">
+          <p className="text-sm md:text-base tracking-[0.3em] text-brown mb-4 uppercase">
             Fotografka
           </p>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
             Michaela
             <br />
-            <span className="text-stroke text-transparent [-webkit-text-stroke:1px_rgb(240,168,205)] ml-8 md:ml-16">
+            <span className="text-stroke text-transparent [-webkit-text-stroke:1px_var(--charcoal)] ml-8 md:ml-16">
               Čížková
             </span>
           </h1>
@@ -127,12 +127,10 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-12 ml-0 md:ml-20 max-w-md"
         >
-          <div className="hidden w-12 h-px bg-mauve-500 mb-6" />
-          <p className="text-lg md:text-xl text-mauve-400 leading-relaxed">
-            Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte
-            rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle
-            a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane
-            navždy.
+          <div className="hidden w-12 h-px bg-brown mb-6" />
+          <p className="text-lg md:text-xl text-tan leading-relaxed">
+            Věřím, že ty nejkrásnější fotografie vznikají ve chvílích, kdy jste
+            sami sebou. Jsem tu od toho, abych tyto chvíle zachytila.
           </p>
         </motion.div>
 
@@ -145,7 +143,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="w-fit bg-mauve-800 text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-600 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
+            className="w-fit bg-charcoal text-white px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-brown transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
             onClick={handleScrollDown}
           >
             Prohlédnout portfolio
@@ -154,7 +152,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden sm:flex border-2 border-mauve-500 text-mauve-500 px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-mauve-500 hover:text-white transition-all duration-300 rounded-full"
+            className="hidden sm:flex border-2 border-brown text-brown px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-brown hover:text-white transition-all duration-300 rounded-full"
             onClick={() => {
               window.dispatchEvent(new Event("navigationStart"));
               document
@@ -178,12 +176,12 @@ export default function Hero() {
               className={`relative h-2 md:p-2 cursor-pointer rounded-full transition-all duration-300 overflow-hidden ${
                 index === selectedIndex
                   ? "w-8"
-                  : "w-2 bg-mauve-800 hover:bg-mauve-500"
+                  : "w-2 bg-charcoal hover:bg-brown"
               }`}
             >
               {/* Background bar */}
               <div
-                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-mauve-800" : ""}`}
+                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-charcoal" : ""}`}
               />
 
               {/* Progress fill - animates for active dot */}
@@ -193,7 +191,7 @@ export default function Hero() {
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 5, ease: "linear" }}
-                  className="absolute inset-y-0 left-0 bg-mauve-200 rounded-full"
+                  className="absolute inset-y-0 left-0 bg-sage rounded-full"
                 />
               )}
             </button>
@@ -207,8 +205,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50 z-5" />
 
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-linear-to-b from-mauve-100/40 via-transparent to-mauve-100/40 z-10" />
-        <div className="absolute inset-0 bg-linear-to-r from-mauve-100/20 via-transparent to-mauve-100/20 z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-cream/40 via-transparent to-cream/40 z-10" />
+        <div className="absolute inset-0 bg-linear-to-r from-cream/20 via-transparent to-cream/20 z-10" />
 
         <div className="embla h-full" ref={emblaRef}>
           <div className="embla__container h-full">
@@ -234,14 +232,14 @@ export default function Hero() {
 
         {/* Navigation Arrows */}
         <button
-          className="hidden absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
+          className="hidden absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 bg-brown/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollPrev}
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <button
-          className="hidden absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-mauve-500/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
+          className="hidden absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 bg-brown/60 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100"
           onClick={scrollNext}
           aria-label="Next slide"
         >

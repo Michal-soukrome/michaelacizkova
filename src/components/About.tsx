@@ -2,6 +2,20 @@
 
 import { motion } from "framer-motion";
 
+const bioParagraphs = [
+  "Fotografii jsem obdivovala už od dětství. Svou první zrcadlovku jsem dostala před několika lety od rodičů, ale skutečný zlom přišel v roce 2022, kdy se mi narodil syn. Tehdy jsem si řekla, že se focení chci opravdu naučit abych zachytila naše krásné rodinné momenty — a úplně mě to pohltilo.",
+  "Absolvovala jsem několik kurzů a mentoringů a díky neustálému vzdělávání si dnes postupně plním sen a dělám to, co mě opravdu baví.",
+  "Jsem máma na plný úvazek, miluju přírodu, cestování a obyčejné momenty, které mají největší hodnotu. Právě ty se snažím zachytit i ve svých fotografiích — přirozeně, jemně a s důrazem na emoce.",
+  "Chci, abyste se při focení cítili dobře a sami sebou. Pomůžu vám, navedu vás, ale zároveň nechávám prostor pro skutečné chvíle, které dělají fotky opravdovými.",
+  "Fotím převážně venku nebo u vás doma, ale ráda se s vámi potkám i v ateliéru. Nejčastěji působím v oblasti Českého ráje, ale ráda za vámi dorazím i dál.",
+  "Mým cílem není jen hezká fotka, ale vzpomínka, ke které se budete rádi vracet 🤍",
+];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function About() {
   return (
     <section className="py-16 md:py-40 bg-background overflow-hidden">
@@ -14,7 +28,7 @@ export default function About() {
             viewport={{ once: true }}
             className="md:ml-12"
           >
-            <p className="text-sm tracking-[0.3em] text-mauve-600 uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Moje cesta
             </p>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
@@ -26,7 +40,7 @@ export default function About() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-mauve-500 mt-6 origin-left"
+              className="w-24 h-px bg-brown mt-6 origin-left"
             />
           </motion.div>
 
@@ -35,7 +49,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-mauve-600 mt-8 max-w-lg md:ml-12"
+            className="text-brown mt-8 max-w-lg md:ml-12"
           >
             Zjistěte více o mé fotografické cestě a přístupu k focení
           </motion.p>
@@ -66,32 +80,11 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="w-full md:w-8/12 order-1 md:order-2 space-y-6"
           >
-            <p className="text-lg text-text-light leading-relaxed">
-              Jsem máma na plný úvazek, milovnice cestování, přírody a procházek
-              s mým psím parťákem. Fotografie se pro mě stala nejen vášní, ale i
-              splněným snem. Začalo to zachycováním momentů mé rodiny a krás
-              Českého ráje – a postupně se z koníčku stává má vysněná práce.
-              Díky vám, mým klientům, mám možnost se neustále zdokonalovat a
-              dělat to, co mě baví.
-            </p>
-
-            <p className="text-lg text-text-light leading-relaxed">
-              Během prvních dvou let na mateřské dovolené jsem absolvovala
-              několik intenzivních fotografických kurzů, které mi pomohly
-              posunout se a najít svůj osobitý styl. Ráda si hraji s detaily,
-              barvami a světlem. Snažím se, aby mé fotografie byly plné emocí,
-              působily přirozeně a autenticky. Emoce totiž dávají fotkám život a
-              umožňují vám vrátit se zpět k těm jedinečným okamžikům.
-            </p>
-
-            <p className="text-lg text-text-light leading-relaxed">
-              Chci, abyste se při focení cítili uvolněně a přirozeně. Proto
-              volím lokality, které jsou vám blízké a kde se budete cítit dobře.
-              Působím především v oblasti Českého ráje (Sobotka, Jičín, Mladá
-              Boleslav), ale ráda za vámi dorazím i dál. Ať už si vyberete
-              jakýkoliv typ focení, postarám se, abyste si ho užili a odnesli si
-              nejen krásné fotografie, ale i příjemný zážitek.
-            </p>
+            {bioParagraphs.map((text, i) => (
+              <p key={i} className="text-lg text-text-light leading-relaxed">
+                {text}
+              </p>
+            ))}
           </motion.div>
         </div>
 
@@ -101,7 +94,7 @@ export default function About() {
           whileInView={{ opacity: 0.1, rotate: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="absolute top-20 left-0 w-64 h-64 border border-mauve-500/30 rounded-full -translate-x-1/4"
+          className="absolute top-20 left-0 w-64 h-64 border border-brown/30 rounded-full -translate-x-1/4"
         />
       </div>
     </section>
