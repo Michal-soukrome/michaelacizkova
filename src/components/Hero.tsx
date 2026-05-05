@@ -42,6 +42,21 @@ export default function Hero() {
     }
   }, [emblaApi]);
 
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) {
+        emblaApi.scrollTo(index);
+        // Explicitly reset the autoplay timer
+        const autoplay = emblaApi.plugins()?.autoplay;
+        if (autoplay) {
+          autoplay.stop();
+          autoplay.play();
+        }
+      }
+    },
+    [emblaApi],
+  );
+
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
