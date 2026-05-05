@@ -54,7 +54,12 @@ export default function Testimonials() {
   );
 
   const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => {
+      if (emblaApi) {
+        emblaApi.scrollTo(index);
+        emblaApi.plugins()?.autoplay?.reset();
+      }
+    },
     [emblaApi],
   );
 

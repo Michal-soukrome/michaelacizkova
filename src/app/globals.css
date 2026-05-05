@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #fdf9f7;
+  --color-foreground: #261c0e;
+  --color-cream-light: #fff9f5;
+  --color-text-light: #6e473b;
+  --color-charcoal: #261c0e;
+  --color-brown: #6e473b;
+  --color-tan: #a78d78;
+  --color-sage: #beb5a9;
+  --color-cream: #e1d4c2;
+
+  --font-family-sans: var(--font-geist-sans);
+  --font-family-mono: var(--font-geist-mono);
+  --font-family-lora: var(--font-lora);
+}
+
 :root {
   --background: #fdf9f7;
   --foreground: #261c0e;
@@ -14,25 +30,6 @@
   --tan: #a78d78;
   --sage: #beb5a9;
   --cream: #e1d4c2;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-lora);
-  --font-mono: var(--font-geist-mono);
-  --color-charcoal: var(--charcoal);
-  --color-brown: var(--brown);
-  --color-tan: var(--tan);
-  --color-sage: var(--sage);
-  --color-cream: var(--cream);
-  /* Mauve replacements for existing components */
-  --color-mauve-100: #e8dfd9;
-  --color-mauve-200: #d4c4ba;
-  --color-mauve-400: #a78d78;
-  --color-mauve-500: #6e473b;
-  --color-mauve-600: #6e473b;
-  --color-mauve-800: #261c0e;
 }
 
 * {
@@ -53,7 +50,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 /* Custom scrollbar */
@@ -188,18 +184,11 @@ video {
 
 /* Touch target improvements for mobile - WCAG 2.5.5 */
 @media (pointer: coarse) {
-  button,
-  a,
-  [role="button"],
+  button:not([class]),
   input,
   textarea,
   select {
     min-height: 44px;
-  }
-
-  a {
-    padding: 0.5rem;
-    margin: -0.5rem;
   }
 }
 
@@ -247,19 +236,12 @@ video {
   white-space: normal;
 }
 
-/* Improved mobile typography */
-@media (max-width: 640px) {
-  html {
-    font-size: 15px;
-  }
-}
-
 /* Safe area insets for notched devices */
 @supports (padding: max(0px)) {
   body {
-    padding-left: max(0px, env(safe-area-inset-left));
-    padding-right: max(0px, env(safe-area-inset-right));
-    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left, 0px));
+    padding-right: max(0px, env(safe-area-inset-right, 0px));
+    padding-bottom: max(0px, env(safe-area-inset-bottom, 0px));
   }
 }
 
