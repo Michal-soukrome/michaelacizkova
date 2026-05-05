@@ -167,7 +167,7 @@ export default function Hero() {
           </motion.button>
         </motion.div>
         {/* Pagination Dots with Progress Indicator */}
-        <div className="absolute top-0.5 md:top-8 right-3 md:right-8 z-50 flex space-x-3">
+        <div className="hidden md:flex absolute top-0.5 md:top-8 right-3 md:right-8 z-50 flex space-x-3">
           {heroImages.map((_, index) => (
             <button
               key={index}
