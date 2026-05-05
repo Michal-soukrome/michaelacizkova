@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // ─── Config — set all three in .env.local + Vercel project settings ────────
 const PHOTOGRAPHER_EMAIL = process.env.CONTACT_PHOTOGRAPHER_EMAIL!;
 const SENDER_FROM = process.env.CONTACT_SENDER_FROM!;
@@ -18,7 +16,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Notify photographer about new inquiry
+    // ⬇️ Instancujeme až uvnitř handleru
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    // 1) Email fotografce
     await resend.emails.send({
       from: SENDER_FROM,
       to: PHOTOGRAPHER_EMAIL,
@@ -56,7 +57,7 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    // 2. Send confirmation to the visitor
+    // 2) Potvrzení návštěvníkovi
     await resend.emails.send({
       from: SENDER_FROM,
       to: email,
