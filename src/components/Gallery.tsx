@@ -101,140 +101,143 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-24">
-        {/* Offset header design */}
-        <div className="relative mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="md:ml-12"
-          >
-            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
-              Výběr z mé tvorby
-            </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
-              Portfolio
-            </h2>
-          </motion.div>
+      <div className="py-16 md:py-40 bg-background overflow-hidden">
+        <div className="container mx-auto px-4">
+          {/* Offset header design */}
+          <div className="relative mb-20">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="md:ml-12"
+            >
+              <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
+                Výběr z mé tvorby
+              </p>
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+                Portfolio
+              </h2>
+            </motion.div>
 
-          {/* Decorative element */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-brown origin-left"
-          />
+            {/* Decorative element */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-brown origin-left"
+            />
 
-          <motion.p
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-brown mt-8 max-w-lg md:ml-12"
+            >
+              Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
+              vypráví svůj vlastní příběh.
+            </motion.p>
+          </div>
+
+          {/* Category Filter - Inline Buttons */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-brown mt-8 max-w-lg md:ml-12"
+            className="mb-16 md:ml-12"
           >
-            Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
-            vypráví svůj vlastní příběh.
-          </motion.p>
-        </div>
-
-        {/* Category Filter - Inline Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mb-16 md:ml-12"
-        >
-          <div className="flex flex-wrap gap-2 md:gap-4">
-            {categoryOptions.map((option, index) => (
-              <motion.button
-                key={option.value}
-                onClick={() => setSelectedCategory(option.value)}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
-                  selectedCategory === option.value
-                    ? "bg-brown text-white shadow-lg"
-                    : "bg-transparent text-brown hover:text-brown border border-brown/40 hover:border-brown"
-                }`}
-              >
-                {option.label}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[400px] md:auto-rows-[300px]">
-          <AnimatePresence>
-            {displayedPhotos.map((photo, index) => (
-              <motion.div
-                key={photo.id}
-                layout
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: index * 0.2 }}
-                className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(
-                  photo.size,
-                )}`}
-                onClick={() => openLightbox(index)}
-              >
-                <OptimizedImage
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-brown/80 via-brown/0 to-brown/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div>
-                    <h3 className="text-white font-semibold text-lg mb-1">
-                      {photo.title}
-                    </h3>
-                    <p className="text-white text-sm opacity-85">
-                      {photo.category}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Load More Button */}
-        {displayedCount < filteredPhotos.length && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex justify-center mt-12 md:ml-12"
-          >
-            <button
-              onClick={() =>
-                setDisplayedCount((prev) =>
-                  Math.min(
-                    prev +
-                      (typeof window !== "undefined" && window.innerWidth < 768
-                        ? 6
-                        : 12),
-                    filteredPhotos.length,
-                  ),
-                )
-              }
-              className="px-8 py-4 bg-brown text-white font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-charcoal transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Načíst více
-            </button>
+            <div className="flex flex-wrap gap-2 md:gap-4">
+              {categoryOptions.map((option, index) => (
+                <motion.button
+                  key={option.value}
+                  onClick={() => setSelectedCategory(option.value)}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
+                    selectedCategory === option.value
+                      ? "bg-brown text-white shadow-lg"
+                      : "bg-transparent text-brown hover:text-brown border border-brown/40 hover:border-brown"
+                  }`}
+                >
+                  {option.label}
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
-        )}
+
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[400px] md:auto-rows-[300px]">
+            <AnimatePresence>
+              {displayedPhotos.map((photo, index) => (
+                <motion.div
+                  key={photo.id}
+                  layout
+                  initial={{ opacity: 0, y: 60 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.3, delay: index * 0.2 }}
+                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(
+                    photo.size,
+                  )}`}
+                  onClick={() => openLightbox(index)}
+                >
+                  <OptimizedImage
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/80 via-brown/0 to-brown/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                      <h3 className="text-white font-semibold text-lg mb-1">
+                        {photo.title}
+                      </h3>
+                      <p className="text-white text-sm opacity-85">
+                        {photo.category}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Load More Button */}
+          {displayedCount < filteredPhotos.length && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex justify-center mt-12 md:ml-12"
+            >
+              <button
+                onClick={() =>
+                  setDisplayedCount((prev) =>
+                    Math.min(
+                      prev +
+                        (typeof window !== "undefined" &&
+                        window.innerWidth < 768
+                          ? 6
+                          : 12),
+                      filteredPhotos.length,
+                    ),
+                  )
+                }
+                className="px-8 py-4 bg-brown text-white font-semibold text-sm tracking-wider uppercase rounded-full hover:bg-charcoal transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Načíst více
+              </button>
+            </motion.div>
+          )}
+        </div>
       </div>
 
       {/* Enhanced Lightbox */}

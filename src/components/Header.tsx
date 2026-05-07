@@ -1,64 +1,116 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Menu,
-  X,
   Instagram,
-  Twitter,
   Mail,
   Facebook,
-  Camera,
+  House,
+  Sparkles,
+  Images,
+  User,
+  Phone,
+  Star,
 } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
+  const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isHeaderNavigation, setIsHeaderNavigation] = useState(false);
+  const dragStartX = useRef(0);
 
-  // Handle scroll direction
+  const navItems = [
+    {
+      label: "Domů",
+      id: "home",
+      icon: House,
+      number: "01",
+    },
+    {
+      label: "Služby",
+      id: "services",
+      icon: Sparkles,
+      number: "02",
+    },
+    {
+      label: "Reference",
+      id: "testimonials",
+      icon: Star,
+      number: "03",
+    },
+    {
+      label: "Portfolio",
+      id: "gallery",
+      icon: Images,
+      number: "04",
+    },
+    {
+      label: "O mně",
+      id: "about",
+      icon: User,
+      number: "05",
+    },
+    {
+      label: "Kontakt",
+      id: "contact",
+      icon: Phone,
+      number: "06",
+    },
+  ];
+
+  const socialLinks = [
+    {
+      icon: Facebook,
+      href: "https://facebook.com",
+      label: "Facebook",
+    },
+    {
+      icon: Instagram,
+      href: "https://instagram.com",
+      label: "Instagram",
+    },
+    {
+      icon: Mail,
+      href: "mailto:foto.michaelacizkova@seznam.cz",
+      label: "Email",
+    },
+  ];
+
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDifference = currentScrollY - lastScrollY;
+    const sections = navItems.map((item) => document.getElementById(item.id));
 
-      // If header navigation is in progress, keep header visible
-      if (isHeaderNavigation) {
-        setIsVisible(true);
-      } else {
-        // Only hide if scrolling down more than 25px, but keep visible if menu is open
-        if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
-          setIsVisible(false);
-        } else if (scrollDifference < -25 || isOpen) {
-          setIsVisible(true);
-        }
-      }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+      },
+    );
 
-      setLastScrollY(currentScrollY);
-    };
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isOpen, isHeaderNavigation]);
+    return () => observer.disconnect();
+  }, [navItems]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-
-    // Cleanup on unmount
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  // Close menu on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
@@ -69,274 +121,289 @@ export default function Header() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen]);
 
-  // Listen for navigation events from other components
-  useEffect(() => {
-    const handleNavigationStart = () => {
-      setIsHeaderNavigation(true);
-    };
-
-    const handleNavigationEnd = () => {
-      setIsHeaderNavigation(false);
-    };
-
-    window.addEventListener("navigationStart", handleNavigationStart);
-    window.addEventListener("navigationEnd", handleNavigationEnd);
-
-    return () => {
-      window.removeEventListener("navigationStart", handleNavigationStart);
-      window.removeEventListener("navigationEnd", handleNavigationEnd);
-    };
-  }, []);
-
-  const handleScroll = (sectionId: string) => {
-    setIsHeaderNavigation(true);
-    setTimeout(() => {
-      document
-        .getElementById(sectionId)
-        ?.scrollIntoView({ behavior: "smooth" });
-      // Reset the flag after scroll completes
-      setTimeout(() => {
-        setIsHeaderNavigation(false);
-      }, 1000);
-    }, 200);
-    setIsOpen(false); // Close menu after navigation
+  const handleDragStart = (e: React.PointerEvent<HTMLDivElement>) => {
+    dragStartX.current = e.clientX;
   };
 
-  const navItems = [
-    { label: "Domů", id: "home", number: "01" },
-    { label: "Služby", id: "services", number: "02" },
-    { label: "Reference", id: "testimonials", number: "03" },
-    { label: "Portfolio", id: "gallery", number: "04" },
-    { label: "O mně", id: "about", number: "05" },
-    { label: "Kontakt", id: "contact", number: "06" },
-  ];
+  const handleDragEnd = (e: React.PointerEvent<HTMLDivElement>) => {
+    const dragDistance = e.clientX - dragStartX.current;
+    if (dragDistance > 50) setIsOpen(false);
+  };
 
-  const socialLinks = [
-    {
-      icon: Facebook,
-      href: "https://facebook.com",
-      label: "Facebook",
-      ariaLabel: "Facebook",
-    },
-    {
-      icon: Instagram,
-      href: "https://instagram.com",
-      label: "Instagram",
-      ariaLabel: "Instagram",
-    },
-    {
-      icon: Mail,
-      href: "mailto:foto.michaelacizkova@seznam.cz",
-      label: "Email",
-      ariaLabel: "Napsat email",
-    },
-  ];
+  const handleScroll = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
-      {/* Skip to content link for accessibility */}
+      {/* ACCESSIBILITY */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-100 focus:bg-brown focus:text-white focus:px-4 focus:py-2 focus:text-xs"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:text-xs rounded-full"
       >
         Přeskočit na hlavní obsah
       </a>
 
+      {/* DESKTOP HEADER */}
       <motion.header
-        initial={{ y: 0 }}
-        animate={{ y: isVisible ? 0 : -100 }}
-        transition={{ duration: 0.3 }}
-        className="sticky top-0 w-full bg-white/50 backdrop-blur-md z-40 border-b border-brown/25"
-        role="banner"
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="fixed top-0 left-0 w-full z-50 px-4 pt-4 hidden md:block"
       >
-        <div className="container mx-auto px-4 flex items-center justify-between h-16">
-          {/* Logo/Brand */}
-          <motion.a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScroll("home");
-            }}
-            className="flex items-center gap-2 font-light text-xl tracking-tight hover:text-brown transition-colors focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded"
-            whileHover={{ scale: 1.05 }}
-          >
-            <Image
-              src="/assets/logo/logo.png"
-              alt="Logo"
-              width={100}
-              height={100}
-            />
-            {/* 
-            <h1 className="text-foreground">
-              Michaela
-              <span className="font-semibold ml-1">Čížková</span>
-            </h1>
-            */}
-          </motion.a>
+        <div className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/60 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+            {/* gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/10 pointer-events-none" />
 
-          {/* Desktop Navigation */}
-          <div className="flex" id="desktop-navigation-wrap">
-            <nav
-              aria-label="Hlavní navigace"
-              className="flex items-center gap-4"
-              id="desktop-navigation"
-            >
-              <div className="hidden lg:flex items-center gap-4">
-                {navItems.map((item, index) => (
-                  <motion.a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleScroll(item.id);
-                    }}
-                    className="text-sm font-medium text-foreground hover:text-brown transition-colors relative group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded px-2 py-1"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    {item.label}
-                    <span className="absolute inset-x-0 bottom-0 h-px bg-brown scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </motion.a>
-                ))}
-              </div>
+            <div className="relative flex items-center justify-between px-8 py-5">
+              {/* LOGO */}
+              <motion.a
+                href="#home"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll("home");
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-4"
+              >
+                <Image
+                  src="/assets/logo/logo.png"
+                  alt="Logo"
+                  width={52}
+                  height={52}
+                  priority
+                  className="object-contain"
+                />
 
-              <span className="hidden lg:block">|</span>
+                <div className="flex flex-col">
+                  <span className="text-sm tracking-[0.25em] uppercase text-black/30">
+                    Photography
+                  </span>
 
-              {/* Right Section - Social Icons (Desktop) + Hamburger */}
-              <div className="flex justify-center items-center gap-4">
-                {/* Social Icons - Desktop */}
-                <motion.nav
-                  aria-label="Sociální sítě"
-                  className="hidden lg:flex items-center gap-2"
-                  id="desktop-social"
-                >
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
-                    return (
-                      <motion.a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.ariaLabel}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 + index * 0.05 }}
-                        className="text-foreground hover:text-brown transition-colors focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded p-1"
-                      >
-                        <Icon className="w-4 h-4" />
-                      </motion.a>
-                    );
-                  })}
-                </motion.nav>
+                  <span className="text-base text-black/80 font-light tracking-wide">
+                    Michaela Čížková
+                  </span>
+                </div>
+              </motion.a>
 
-                {/* Hamburger Menu Button - Mobile */}
-
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="lg:hidden flex flex-col space-y-1 p-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded"
-                  aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
-                  aria-expanded={isOpen}
-                  aria-controls="mobile-navigation"
-                >
+              {/* HAMBURGER */}
+              <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative w-10 h-10 rounded-full border border-black/8 bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5"
+              >
+                <div className="relative w-5 h-5">
                   <motion.span
-                    className="block w-6 h-0.5 bg-foreground"
+                    className="absolute left-0 top-1.5 h-px w-5 bg-black"
                     animate={{
                       rotate: isOpen ? 45 : 0,
-                      y: isOpen ? 8 : 0,
+                      y: isOpen ? 7 : 0,
                     }}
+                    transition={{ duration: 0.3 }}
                   />
                   <motion.span
-                    className="block w-6 h-0.5 bg-foreground"
+                    className="absolute left-0 top-2.5 h-px w-5 bg-black"
                     animate={{ opacity: isOpen ? 0 : 1 }}
+                    transition={{ duration: 0.2 }}
                   />
                   <motion.span
-                    className="block w-6 h-0.5 bg-foreground"
+                    className="absolute left-0 top-3.5 h-px w-5 bg-black"
                     animate={{
                       rotate: isOpen ? -45 : 0,
-                      y: isOpen ? -8 : 0,
+                      y: isOpen ? -7 : 0,
                     }}
+                    transition={{ duration: 0.3 }}
                   />
-                </button>
-              </div>
-            </nav>
+                </div>
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* SIDEBAR OVERLAY */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-0 bg-white/75  backdrop-blur-sm z-30 lg:hidden"
-            id="mobile-navigation"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobilní navigace"
+            className="fixed inset-0 bg-black/40 z-30 hidden md:block"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* SIDEBAR MENU */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.aside
+            className="fixed inset-y-0 left-0 w-80 bg-[#faf8f6] backdrop-blur-2xl z-40 border-r border-black/4 shadow-2xl hidden md:flex flex-col"
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ type: "spring", stiffness: 280, damping: 32 }}
+            onPointerDown={handleDragStart}
+            onPointerUp={handleDragEnd}
           >
-            <nav className="h-full pt-16 container mx-auto">
-              <div className="h-full flex flex-col justify-between items-start">
-                <ul className="w-full p-4">
-                  {navItems.map((item, index) => (
-                    <li key={item.id} className="overflow-hidden">
-                      <motion.a
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: index * 0.05 }}
-                        href={`#${item.id}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleScroll(item.id);
-                        }}
-                        className="flex items-center gap-4 px-4 py-3 sm:py-6 rounded-lg hover:bg-brown/10 transition-colors group"
-                      >
-                        <span className="text-tan font-medium text-xs">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_60%)] pointer-events-none" />
+
+            <nav className="relative h-full flex flex-col pt-32 pb-12 px-7">
+              <div className="mb-16">
+                <p className="text-[0.6rem] uppercase tracking-[0.4em] text-black/25 font-light">
+                  Menu
+                </p>
+              </div>
+
+              <ul className="flex-1 space-y-1">
+                {navItems.map((item, i) => (
+                  <motion.li
+                    key={item.id}
+                    initial={{ x: -40, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <button
+                      onClick={() => {
+                        handleScroll(item.id);
+                        setIsOpen(false);
+                      }}
+                      className={`w-full group flex items-center justify-between rounded-2xl px-5 py-3.5 transition-all duration-300 ${
+                        activeSection === item.id
+                          ? "bg-black/[0.08]"
+                          : "hover:bg-black/[0.035]"
+                      }`}
+                    >
+                      <div className="flex items-center gap-4">
+                        <span
+                          className={`text-[0.6rem] tracking-[0.3em] font-light ${
+                            activeSection === item.id
+                              ? "text-black/40"
+                              : "text-black/20"
+                          }`}
+                        >
                           {item.number}
                         </span>
-                        <span className="text-foreground group-hover:text-brown transition-colors">
+
+                        <span
+                          className={`text-base font-light tracking-wide transition-colors duration-300 ${
+                            activeSection === item.id
+                              ? "text-black"
+                              : "text-black/75 group-hover:text-black"
+                          }`}
+                        >
                           {item.label}
                         </span>
-                      </motion.a>
-                    </li>
-                  ))}
-                </ul>
+                      </div>
 
-                {/* Social Icons - Mobile */}
-                <nav
-                  aria-label="Sociální sítě"
-                  className="mt-auto flex items-center w-full p-4"
-                >
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
+                      {activeSection === item.id && (
+                        <motion.span className="text-black/40 text-sm">
+                          →
+                        </motion.span>
+                      )}
+                    </button>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <div className="pt-10 border-t border-black/6">
+                <div className="flex items-center gap-2">
+                  {socialLinks.map((s, i) => {
+                    const Icon = s.icon;
+
                     return (
                       <motion.a
-                        key={social.label}
-                        href={social.href}
+                        key={s.label}
+                        href={s.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={social.ariaLabel}
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          delay: navItems.length * 0.05 + index * 0.05,
+                          delay: 0.4 + i * 0.06,
+                          ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="text-foreground hover:bg-brown/10 hover:text-brown transition-colors focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-cream rounded p-4"
+                        className="w-10 h-10 rounded-full border border-black/6 bg-white/40 backdrop-blur-sm flex items-center justify-center hover:bg-white/80 transition-all duration-300"
                       >
-                        <Icon className="w-5 h-5" />
+                        <Icon className="w-4 h-4 text-black/50" />
                       </motion.a>
                     );
                   })}
-                </nav>
+                </div>
               </div>
             </nav>
-          </motion.div>
+          </motion.aside>
         )}
       </AnimatePresence>
+
+      {/* MOBILE BOTTOM DOCK */}
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          delay: 0.2,
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden"
+      >
+        <div className="relative overflow-hidden rounded-full border border-white/20 bg-white/70 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.12)] px-3 py-3">
+          {/* gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-white/40 pointer-events-none" />
+
+          <nav className="relative flex items-center gap-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeSection === item.id;
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleScroll(item.id)}
+                  className="relative"
+                >
+                  <div className="relative flex flex-col items-center justify-center w-14 h-14">
+                    {isActive && (
+                      <motion.div
+                        layoutId="mobileActivePill"
+                        className="absolute inset-0 rounded-2xl bg-black/[0.06]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+
+                    <Icon
+                      className={`relative z-10 w-[18px] h-[18px] transition-all duration-300 ${
+                        isActive ? "text-black" : "text-black/40"
+                      }`}
+                    />
+
+                    <span
+                      className={`relative z-10 mt-1 text-[0.62rem] tracking-wide transition-all duration-300 ${
+                        isActive ? "text-black" : "text-black/40"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+      </motion.div>
     </>
   );
 }
