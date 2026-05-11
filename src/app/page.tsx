@@ -23,7 +23,6 @@ export default function Home() {
       <section id="about">
         <About />
       </section>
-
       <section id="contact">
         <Contact />
       </section>

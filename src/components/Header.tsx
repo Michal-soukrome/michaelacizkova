@@ -15,67 +15,67 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+const navItems = [
+  {
+    label: "Domů",
+    id: "home",
+    icon: House,
+    number: "01",
+  },
+  {
+    label: "Služby",
+    id: "services",
+    icon: Sparkles,
+    number: "02",
+  },
+  {
+    label: "Reference",
+    id: "testimonials",
+    icon: Star,
+    number: "03",
+  },
+  {
+    label: "Portfolio",
+    id: "gallery",
+    icon: Images,
+    number: "04",
+  },
+  {
+    label: "O mně",
+    id: "about",
+    icon: User,
+    number: "05",
+  },
+  {
+    label: "Kontakt",
+    id: "contact",
+    icon: Phone,
+    number: "06",
+  },
+];
+
+const socialLinks = [
+  {
+    icon: Facebook,
+    href: "https://facebook.com",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://instagram.com",
+    label: "Instagram",
+  },
+  {
+    icon: Mail,
+    href: "mailto:foto.michaelacizkova@seznam.cz",
+    label: "Email",
+  },
+];
+
 export default function Header() {
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const dragStartX = useRef(0);
-
-  const navItems = [
-    {
-      label: "Domů",
-      id: "home",
-      icon: House,
-      number: "01",
-    },
-    {
-      label: "Služby",
-      id: "services",
-      icon: Sparkles,
-      number: "02",
-    },
-    {
-      label: "Reference",
-      id: "testimonials",
-      icon: Star,
-      number: "03",
-    },
-    {
-      label: "Portfolio",
-      id: "gallery",
-      icon: Images,
-      number: "04",
-    },
-    {
-      label: "O mně",
-      id: "about",
-      icon: User,
-      number: "05",
-    },
-    {
-      label: "Kontakt",
-      id: "contact",
-      icon: Phone,
-      number: "06",
-    },
-  ];
-
-  const socialLinks = [
-    {
-      icon: Facebook,
-      href: "https://facebook.com",
-      label: "Facebook",
-    },
-    {
-      icon: Instagram,
-      href: "https://instagram.com",
-      label: "Instagram",
-    },
-    {
-      icon: Mail,
-      href: "mailto:foto.michaelacizkova@seznam.cz",
-      label: "Email",
-    },
-  ];
 
   useEffect(() => {
     const sections = navItems.map((item) => document.getElementById(item.id));
@@ -89,7 +89,8 @@ export default function Header() {
         });
       },
       {
-        threshold: 0.35,
+        threshold: 0,
+        rootMargin: "-40% 0px -55% 0px",
       },
     );
 
@@ -98,7 +99,7 @@ export default function Header() {
     });
 
     return () => observer.disconnect();
-  }, [navItems]);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -156,12 +157,12 @@ export default function Header() {
         }}
         className="fixed top-0 left-0 w-full z-50 px-4 pt-4 hidden md:block"
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto">
           <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/60 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
             {/* gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/10 pointer-events-none" />
 
-            <div className="relative flex items-center justify-between px-8 py-5">
+            <div className="relative flex items-center justify-between px-8 ">
               {/* LOGO */}
               <motion.a
                 href="#home"
@@ -176,21 +177,11 @@ export default function Header() {
                 <Image
                   src="/assets/logo/logo.png"
                   alt="Logo"
-                  width={52}
-                  height={52}
+                  width={100}
+                  height={100}
                   priority
                   className="object-contain"
                 />
-
-                <div className="flex flex-col">
-                  <span className="text-sm tracking-[0.25em] uppercase text-black/30">
-                    Photography
-                  </span>
-
-                  <span className="text-base text-black/80 font-light tracking-wide">
-                    Michaela Čížková
-                  </span>
-                </div>
               </motion.a>
 
               {/* HAMBURGER */}
@@ -198,7 +189,7 @@ export default function Header() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative w-10 h-10 rounded-full border border-black/8 bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5"
+                className="relative w-10 h-10 rounded-full border border-black/8 bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5 my-5"
               >
                 <div className="relative w-5 h-5">
                   <motion.span
