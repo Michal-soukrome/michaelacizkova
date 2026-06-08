@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { photos, getAvailableCategories } from "../lib/photos";
+import { photos, getAvailableCategories, categoryLabels } from "../lib/photos";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 
@@ -200,7 +200,7 @@ export default function Gallery() {
                       {photo.title}
                     </h3>
                     <p className="text-white text-sm opacity-85">
-                      {photo.category}
+                      {categoryLabels[photo.category]}
                     </p>
                   </div>
                 </div>
@@ -303,8 +303,8 @@ export default function Gallery() {
                   {filteredPhotos[selectedIndex].title}
                 </h3>
                 <p className="text-sm text-gray-300">
-                  {filteredPhotos[selectedIndex].category} • {selectedIndex + 1}{" "}
-                  / {filteredPhotos.length}
+                  {categoryLabels[filteredPhotos[selectedIndex].category]} •{" "}
+                  {selectedIndex + 1} / {filteredPhotos.length}
                 </p>
               </div>
             </motion.div>

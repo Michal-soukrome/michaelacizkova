@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -17,89 +17,57 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isHeaderNavigation, setIsHeaderNavigation] = useState(false);
+  // const [isHeaderNavigation, setIsHeaderNavigation] = useState(false);
 
   // Handle scroll direction
+  const isHeaderNavigationRef = useRef(false);
+
+  // In your scroll effect — no isHeaderNavigation in deps needed
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDifference = currentScrollY - lastScrollY;
 
-      // If header navigation is in progress, keep header visible
-      if (isHeaderNavigation) {
+      if (isHeaderNavigationRef.current) {
         setIsVisible(true);
-      } else {
-        // Only hide if scrolling down more than 25px, but keep visible if menu is open
-        if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
-          setIsVisible(false);
-        } else if (scrollDifference < -25 || isOpen) {
-          setIsVisible(true);
-        }
+        setLastScrollY(currentScrollY);
+        return; // ← exit early, skip hide logic entirely
       }
 
+      if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
+        setIsVisible(false);
+      } else if (scrollDifference < -25 || isOpen) {
+        setIsVisible(true);
+      }
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isOpen, isHeaderNavigation]);
+  }, [lastScrollY, isOpen]); // ← isHeaderNavigation removed from deps
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
-  // Close menu on Escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen]);
-
-  // Listen for navigation events from other components
-  useEffect(() => {
-    const handleNavigationStart = () => {
-      setIsHeaderNavigation(true);
-    };
-
-    const handleNavigationEnd = () => {
-      setIsHeaderNavigation(false);
-    };
-
-    window.addEventListener("navigationStart", handleNavigationStart);
-    window.addEventListener("navigationEnd", handleNavigationEnd);
-
-    return () => {
-      window.removeEventListener("navigationStart", handleNavigationStart);
-      window.removeEventListener("navigationEnd", handleNavigationEnd);
-    };
-  }, []);
-
+  // Updated handleScroll nav function
   const handleScroll = (sectionId: string) => {
-    setIsHeaderNavigation(true);
-    setTimeout(() => {
-      document
-        .getElementById(sectionId)
-        ?.scrollIntoView({ behavior: "smooth" });
-      // Reset the flag after scroll completes
-      setTimeout(() => {
-        setIsHeaderNavigation(false);
-      }, 1000);
-    }, 200);
-    setIsOpen(false); // Close menu after navigation
+    isHeaderNavigationRef.current = true; // sync, immediate
+    setIsVisible(true); // force visible right away
+    setIsOpen(false);
+
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+
+    el.scrollIntoView({ behavior: "smooth" });
+
+    // Clear flag once scroll settles (scrollend is better than a timeout)
+    const clearFlag = () => {
+      isHeaderNavigationRef.current = false;
+    };
+
+    // Use scrollend if available, fallback to timeout
+    if ("onscrollend" in window) {
+      window.addEventListener("scrollend", clearFlag, { once: true });
+    } else {
+      setTimeout(clearFlag, 1000);
+    }
   };
 
   const navItems = [
@@ -108,7 +76,8 @@ export default function Header() {
     { label: "Reference", id: "testimonials", number: "03" },
     { label: "Portfolio", id: "gallery", number: "04" },
     { label: "O mně", id: "about", number: "05" },
-    { label: "Kontakt", id: "contact", number: "06" },
+    { label: "FAQ", id: "faq", number: "06" },
+    { label: "Kontakt", id: "contact", number: "07" },
   ];
 
   const socialLinks = [

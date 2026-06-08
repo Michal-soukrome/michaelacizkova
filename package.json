@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "tree": "treee --ignore \"node_modules,.git,dist,build,coverage\" -l 6 -o tree.txt"
   },
   "dependencies": {
     "@fontsource/playfair-display": "^5.2.8",
@@ -28,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
     "tailwindcss": "^4.2.2",
+    "tree-cli": "^0.6.7",
     "typescript": "^5"
   }
 }

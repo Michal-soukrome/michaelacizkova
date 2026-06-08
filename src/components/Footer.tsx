@@ -38,9 +38,8 @@ export default function Footer() {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
-        className="absolute bottom-24 left-8 w-16 h-16 bg-brown/20 rounded-full"
+        className="absolute bottom-24 left-8 w-16 h-16 bg-brown/20 rounded-full animate-pulse"
       />
-
       <motion.div
         className="container mx-auto px-4 relative"
         variants={containerVariants}

@@ -1,0 +1,167 @@
+C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
+├── docs
+|  ├── ENHANCEMENTS.md
+|  ├── FEATURE-PROPOSALS.md
+|  ├── QUICK-START.md
+|  ├── README-NEW.md
+|  └── README.md
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+|  ├── assets
+|  |  ├── 1.jpg
+|  |  ├── 2.jpg
+|  |  ├── 3.jpg
+|  |  ├── 4.jpg
+|  |  ├── 5.jpg
+|  |  ├── 6.jpg
+|  |  ├── 7.jpg
+|  |  ├── 8.jpg
+|  |  ├── logo
+|  |  |  ├── Logo.jpg
+|  |  |  └── logo.png
+|  |  └── portret.jpg
+|  └── photos
+|     ├── atelierove
+|     |  ├── Atelierove foceni. Cesky raj.jpg
+|     |  ├── Atelierove foceni.brandove.foceni.1.jpg
+|     |  ├── Atelierove foceni.brandove.foceni.jpg
+|     |  ├── Atelierove foceni.Cesky raj.jpg
+|     |  ├── Atelierove foceni.Narozeninove foceni 2.jpg
+|     |  ├── Atelierove foceni.Narozeninove foceni.jpg
+|     |  ├── Atelierove foceni.portretni.foceni.2.jpg
+|     |  ├── Atelierove foceni.portretni.foceni.3.jpg
+|     |  ├── Atelierove foceni.portretni.foceni.4.jpg
+|     |  ├── Atelierove foceni.portretni.foceni.jpg
+|     |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
+|     |  ├── Atelierove foceni.tehotenske.foceni 1.jpg
+|     |  └── Atelierove foceni.tehotenske.foceni.jpg
+|     ├── boudoir
+|     |  ├── Boudoir foceni.Branzez .1.jpg
+|     |  └── Boudoir foceni.Branzez.jpg
+|     ├── brandove
+|     |  ├── Brandove foceni.2.jpg
+|     |  └── Brandove foceni.Turnov.jpg
+|     ├── deti
+|     |  ├── Foceni deti. Cesky raj. Jicin . Michaela Cizkova.jpg.jpg
+|     |  └── Foceni deti.Sobotka. Cesky raj.jpg
+|     ├── newborn
+|     |  ├── Newborn foceni Cesky raj. 3. Michaela Cizkova.jpg.jpg
+|     |  ├── Newborn foceni Cesky raj. 4. Michaela Cizkova.jpg.jpg
+|     |  ├── Newborn foceni Cesky raj. 5. Michaela Cizkova.jpg
+|     |  ├── Newborn foceni Cesky raj. Michaela Cizkova.2.jpg
+|     |  ├── Newborn foceni. Turnov.jpg
+|     |  └── Newborn foceni.Mlada Boleslav.jpg
+|     ├── parove
+|     |  ├── Parove foceni Cesky raj. Jicin. Michaela Cizkova.jpg.jpg
+|     |  ├── Parove foceni Cesky raj. Lovec. Michaela Cizkova.jpg.jpg
+|     |  ├── Parove foceni Cesky raj. Michaela Cizkova.jpg.jpg
+|     |  ├── Parove foceni Jicin. Michaela Cizkova.1jpg.jpg
+|     |  ├── Parove foceni Jicin. Michaela Cizkova.jpg
+|     |  ├── Parove foceni.Jicin. jpg.jpg
+|     |  ├── Parove foceni.Na Radouci.1.jpg
+|     |  ├── Parove foceni.Na Radouci.jpg
+|     |  ├── Parove foceni.Pod Zebinem.1.jpg
+|     |  ├── Parove foceni.Pod Zebinem.2.jpg
+|     |  ├── Parove foceni.Pod Zebinem.jpg
+|     |  ├── Parove foceni.Trosky.Turnov.1.jpg
+|     |  ├── Parove foceni.Trosky.Turnov.2.jpg
+|     |  ├── Parove foceni.Trosky.Turnov.3.jpg
+|     |  ├── Parove foceni.Trosky.Turnov.4.jpg
+|     |  └── Parove foceni.Trosky.Turnov.jpg
+|     ├── portretni
+|     |  ├── Portretni foceni Cesky raj. 2. Michaela Cizkova.jpg.jpg
+|     |  ├── Portretni foceni Cesky raj. Liberec. Michaela Cizkova.jpg.jpg
+|     |  ├── Portretni foceni v prirode. Cesky raj.2.jpg
+|     |  ├── Portretni foceni v prirode. Cesky raj.3.jpg
+|     |  ├── Portretni foceni v prirode. Cesky raj.4.jpg
+|     |  ├── Portretni foceni v prirode. Cesky raj.jpg
+|     |  ├── Portretni foceni ve meste.Liberec.1.jpg
+|     |  ├── Portretni foceni ve meste.Liberec.2.jpg
+|     |  ├── Portretni foceni ve meste.Liberec.jpg
+|     |  ├── Portretni foceni. Branzez.jpg
+|     |  ├── Portretni foceni.atelier.1.jpg
+|     |  ├── Portretni foceni.Liberec.jpg
+|     |  ├── Portretni foceni.Pod Zebinem.Ceky raj.jpg.jpg
+|     |  └── Portretni foceni.Trosky.Turnov.jpg.jpg
+|     ├── reportazni
+|     |  ├── Reportazni foceni.U vas doma. Mladejov v Cechach.jpg
+|     |  ├── Reportazni fotografie.2.jpg
+|     |  └── Rodinna reportaz. Michaela Cizkova.jpg
+|     ├── rodinne
+|     |  ├── Rodinne foceni Cesky raj. 2. Michaela Cizkova.jpg
+|     |  ├── Rodinne foceni Cesky raj. 3. Michaela Cizkova.jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. 5. Michaela Cizkova.jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. Michaela Cizkova.jpg
+|     |  ├── Rodinne foceni Cesky raj. Mladejov 2. Michaela Cizkova.jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. Mladejov. Michaela Cizkova.jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.1.jpg
+|     |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.2.jpg
+|     |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.jpg
+|     |  ├── Rodinne foceni Cesky raj. Sobotka. 1 .Michaela Cizkova.jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. Sobotka. Michaela Cizkova.jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 1.jpg
+|     |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 2. jpg.jpg
+|     |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 3.jpg
+|     |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova.jpg
+|     |  └── Rodinne foceni.Newborn. Turnov. jpg.jpg
+|     ├── romanticke
+|     |  └── Romanticke foceni Cesky raj. Jicin. Michaela Cizkova.jpg.jpg
+|     ├── svatebni
+|     |  ├── Svatebni foceni.Cesky raj.1.jpg
+|     |  ├── Svatebni foceni.Cesky raj.2.jpg
+|     |  ├── Svatebni foceni.Cesky raj.3.jpg
+|     |  ├── Svatebni foceni.Cesky raj.4.jpg
+|     |  ├── Svatebni foceni.Cesky raj.5.jpg
+|     |  ├── Svatebni foceni.Cesky raj.6.jpg
+|     |  ├── Svatebni foceni.Jicin. Cesky raj.1.jpg
+|     |  └── Svatebni foceni.Jicin. Cesky raj.jpg
+|     └── tehotenske
+|        ├── Tehotenske foceni Cesky raj. Branzez. Michaela Cizkova.jpg.jpg
+|        ├── Tehotenske foceni Cesky raj. Branzez.1. Michaela Cizkova.jpg.jpg
+|        ├── Tehotenske foceni Cesky raj. Branzez.3. Michaela Cizkova.jpg.jpg
+|        ├── Tehotenske foceni.Trosky. Jicin. jpg.jpg
+|        ├── Tehotenske foceni.Trosky.1.jpg
+|        └── Tehotenske foceni.Trosky.jpg
+├── src
+|  ├── app
+|  |  ├── about
+|  |  |  └── page.tsx
+|  |  ├── api
+|  |  |  └── contact
+|  |  |     └── route.ts
+|  |  ├── contact
+|  |  |  └── page.tsx
+|  |  ├── favicon.ico
+|  |  ├── gallery
+|  |  |  └── page.tsx
+|  |  ├── globals.css
+|  |  ├── layout.tsx
+|  |  ├── loading.tsx
+|  |  ├── not-found.tsx
+|  |  └── page.tsx
+|  ├── components
+|  |  ├── About.tsx
+|  |  ├── Contact.tsx
+|  |  ├── FAQ.tsx
+|  |  ├── Footer.tsx
+|  |  ├── Gallery.tsx
+|  |  ├── Header.tsx
+|  |  ├── Hero.tsx
+|  |  ├── OptimizedImage.tsx
+|  |  ├── Section.tsx
+|  |  ├── Services.tsx
+|  |  └── Testimonials.tsx
+|  └── lib
+|     ├── performance.ts
+|     └── photos.ts
+├── tree.txt
+└── tsconfig.json
+
+directory: 1806 file: 20807
+
+ignored: directory (99)

@@ -4,6 +4,7 @@ import About from "../components/About";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -23,7 +24,9 @@ export default function Home() {
       <section id="about">
         <About />
       </section>
-
+      <section id="faq">
+        <FAQ />
+      </section>
       <section id="contact">
         <Contact />
       </section>
