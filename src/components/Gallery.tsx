@@ -101,7 +101,7 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="py-16 md:py-40 bg-background overflow-hidden">
+      <div className="py-16 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Offset header design */}
           <div className="relative mb-20">
@@ -156,10 +156,10 @@ export default function Gallery() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
+                  className={`px-6 py-3 text-sm tracking-wider uppercase border border-brown/40 hover:border-brown transition-all duration-300 rounded-full ${
                     selectedCategory === option.value
                       ? "bg-brown text-white shadow-lg"
-                      : "bg-transparent text-brown hover:text-brown border border-brown/40 hover:border-brown"
+                      : "bg-transparent text-brown hover:text-brown"
                   }`}
                 >
                   {option.label}

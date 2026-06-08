@@ -106,22 +106,19 @@ useEffect(() => {
   };
 
   const handleScrollTo = (sectionId: string) => {
-    isHeaderNavigationRef.current = true;
-    setIsVisible(true);
-    setIsOpen(false);
-
     const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (!el) return;
 
-    const clearFlag = () => {
-      isHeaderNavigationRef.current = false;
-    };
+    const headerOffset = 85; // uprav podle výšky headeru
+    const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerOffset;
 
-    if ("onscrollend" in window) {
-      window.addEventListener("scrollend", clearFlag, { once: true });
-    } else {
-      setTimeout(clearFlag, 800);
-    }
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+
+    setIsOpen(false);
   };
 
   return (
