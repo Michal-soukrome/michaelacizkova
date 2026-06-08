@@ -103,10 +103,15 @@ export default function Footer() {
               Kontakt
             </h4>
             <div className="flex gap-3 items-center flex-wrap text-sm text-text-light">
-              <p className="underline cursor-pointer">
+              <a
+                href="mailto:foto.michaelacizkova@seznam.cz"
+                className="underline cursor-pointer"
+              >
                 foto.michaelacizkova@seznam.cz
-              </p>
-              <p className="underline cursor-pointer">+420 604 410 116</p>
+              </a>
+              <a href="tel:+420604410116" className="underline cursor-pointer">
+                +420 604 410 116
+              </a>
               <p>Praha, Česká republika</p>
             </div>
           </motion.div>

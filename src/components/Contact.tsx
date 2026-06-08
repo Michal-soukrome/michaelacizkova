@@ -129,11 +129,15 @@ export default function Contact() {
             viewport={{ once: true }}
             animate={{ y: [0, -6, 0] }}
             transition={{
-              delay: 0.4,
-              duration: 6,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
+              opacity: { duration: 0.8, ease: "easeOut" },
+              x: { duration: 0.8, ease: "easeOut" },
+              y: {
+                delay: 1.2,
+                duration: 6,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              },
             }}
             className="lg:col-span-5 space-y-8"
           >
@@ -152,9 +156,12 @@ export default function Contact() {
                       <h4 className="font-medium mb-1 text-foreground">
                         Email
                       </h4>
-                      <p className="text-text-light underline">
+                      <a
+                        href="mailto:foto.michaelacizkova@seznam.cz"
+                        className="text-text-light underline cursor-pointer"
+                      >
                         foto.michaelacizkova@seznam.cz
-                      </p>
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -165,9 +172,12 @@ export default function Contact() {
                       <h4 className="font-medium mb-1 text-foreground">
                         Telefon
                       </h4>
-                      <p className="text-text-light underline">
+                      <a
+                        href="tel:+420604410116"
+                        className="text-text-light underline cursor-pointer"
+                      >
                         +420 604 410 116
-                      </p>
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
