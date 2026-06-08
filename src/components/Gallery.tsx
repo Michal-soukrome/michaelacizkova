@@ -194,15 +194,16 @@ export default function Gallery() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-brown/80 via-brown/0 to-brown/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div>
-                    <h3 className="text-white font-semibold text-lg mb-1">
-                      {photo.title}
-                    </h3>
-                    <p className="text-white text-sm opacity-85">
-                      {categoryLabels[photo.category]}
-                    </p>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/80 via-brown/0 to-brown/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div>
+                      <h3 className="text-white font-semibold text-lg mb-1">
+                        {photo.title}
+                      </h3>
+                      <p className="text-white text-sm opacity-85">
+                        {categoryLabels[photo.category]}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
