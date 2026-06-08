@@ -155,8 +155,12 @@ export default function Testimonials() {
                         <User className="w-7 h-7 text-brown" />
                       ) : (
                         <OptimizedImage
-                          src={testimonial.image}
-                          alt={testimonial.name}
+                          photo={{
+                            src: "/assets/1.jpg",
+                            alt: testimonial.name,
+                            width: 2000,
+                            height: 1200,
+                          }}
                           fill
                           className="object-cover"
                           onError={() => handleImageError(index)}

@@ -14,6 +14,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
+import { photos } from "@/lib/photos";
 
 // ─── Content ───────────────────────────────────────────────────────────────
 
@@ -602,10 +604,12 @@ export default function Services() {
               className="relative w-full h-dvh"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={allImages[selectedIndex]}
-                alt="Zvětšená fotografie"
-                className="w-full h-full object-contain"
+              <OptimizedImage
+                photo={photos[selectedIndex]}
+                fill
+                sizes="100vw"
+                quality={100}
+                className="object-contain"
               />
 
               {/* Close Button */}
@@ -617,8 +621,7 @@ export default function Services() {
                 <X className="w-6 h-6" aria-hidden="true" />
               </button>
 
-              {/* Navigation Arrows */}
-              {allImages.length > 1 && (
+              {photos.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
@@ -639,7 +642,7 @@ export default function Services() {
 
               {/* Image Counter */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 rounded-full px-4 py-2 backdrop-blur-sm text-sm">
-                {selectedIndex + 1} / {allImages.length}
+                {selectedIndex + 1} / {photos.length}
               </div>
             </motion.div>
           </motion.div>

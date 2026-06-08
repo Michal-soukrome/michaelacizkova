@@ -223,8 +223,7 @@ export default function Hero() {
                 className="embla__slide flex-[0_0_100%] relative"
               >
                 <OptimizedImage
-                  src={image.src}
-                  alt={image.alt}
+                  photo={{ ...image, width: 2000, height: 1200 }}
                   fill
                   className="object-center"
                   objectFit="cover"

@@ -194,11 +194,9 @@ export default function Gallery() {
                   onClick={() => openLightbox(index)}
                 >
                   <OptimizedImage
-                    src={photo.src}
-                    alt={photo.alt}
+                    photo={photo}
                     fill
                     className="transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
 
                   {/* Overlay */}
@@ -270,8 +268,7 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <OptimizedImage
-                src={filteredPhotos[selectedIndex].src}
-                alt={filteredPhotos[selectedIndex].alt}
+                photo={filteredPhotos[selectedIndex]}
                 fill
                 objectFit="contain"
                 priority

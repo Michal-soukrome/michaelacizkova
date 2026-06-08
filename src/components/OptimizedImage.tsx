@@ -1,14 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function OptimizedImage({
-  src,
-  alt,
-  width,
-  height,
+  photo,
   fill = false,
   className = "",
   priority = false,
@@ -17,17 +14,34 @@ export default function OptimizedImage({
   onClick,
   onError,
   objectFit = "cover",
-  blurDataURL,
-}: any) {
+}: {
+  photo: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    blurDataURL?: string;
+  };
+  fill?: boolean;
+  className?: string;
+  priority?: boolean;
+  sizes?: string;
+  quality?: number;
+  onClick?: () => void;
+  onError?: () => void;
+  objectFit?: "cover" | "contain";
+}) {
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [photo.src]);
 
   return (
     <div
       className={`relative w-full h-full overflow-hidden ${className}`}
       onClick={onClick}
     >
-      {/* Blur overlay */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: isLoading ? 1 : 0 }}
@@ -36,30 +50,20 @@ export default function OptimizedImage({
       />
 
       <Image
-        src={src}
-        alt={alt}
-        width={!fill ? width : undefined}
-        height={!fill ? height : undefined}
+        src={photo.src}
+        alt={photo.alt}
+        width={!fill ? photo.width : undefined}
+        height={!fill ? photo.height : undefined}
         fill={fill}
         className={`transition-all duration-700 ${
-          objectFit === "cover"
-            ? "object-cover"
-            : objectFit === "contain"
-              ? "object-contain"
-              : ""
+          objectFit === "cover" ? "object-cover" : "object-contain"
         } ${isLoading ? "scale-105 blur-xl" : "scale-100 blur-0"}`}
         quality={quality}
         priority={priority}
-        sizes={
-          sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        }
+        sizes={sizes}
         onLoadingComplete={() => setIsLoading(false)}
-        onError={() => {
-          setHasError(true);
-          onError?.();
-        }}
-        placeholder={blurDataURL ? "blur" : "empty"}
-        blurDataURL={blurDataURL}
+        placeholder={photo.blurDataURL ? "blur" : "empty"}
+        blurDataURL={photo.blurDataURL}
       />
     </div>
   );
