@@ -255,7 +255,7 @@ export default function Header() {
                           {item.number}
                         </span>
                         <span
-                          className={`text-base font-light tracking-wide transition-colors duration-300 ${
+                          className={`text-base font-light tracking-wide transition-colors duration-300 group-hover:underline ${
                             activeSection === item.id
                               ? "text-black"
                               : "text-black/75 group-hover:text-black"
@@ -291,7 +291,7 @@ export default function Header() {
                         }}
                         className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
                       >
-                        <Icon className="w-4 h-4 text-black/50" />
+                        <Icon className="w-4 h-4" />
                       </motion.a>
                     );
                   })}
