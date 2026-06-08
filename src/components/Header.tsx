@@ -109,7 +109,7 @@ useEffect(() => {
     const el = document.getElementById(sectionId);
     if (!el) return;
 
-    const headerOffset = 85; // uprav podle výšky headeru
+    const headerOffset = 55; // uprav podle výšky headeru (není úplně přesně kvůli paddingům na sekcích)
     const elementPosition = el.getBoundingClientRect().top + window.scrollY;
     const offsetPosition = elementPosition - headerOffset;
 

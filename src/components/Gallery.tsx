@@ -2,9 +2,12 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { photos, getAvailableCategories, categoryLabels } from "../lib/photos";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
+import { getAvailableCategories } from "@/lib/photoUtils";
+import { photos } from "@/lib/photos";
+import { categoryLabels } from "@/lib/photoUtils";
+import { PhotoCategory } from "@/lib/photoTypes";
 
 const getSizeClasses = (size: string) => {
   switch (size) {
@@ -18,11 +21,14 @@ const getSizeClasses = (size: string) => {
   }
 };
 
-const categoryOptions = getAvailableCategories(photos);
+const categoryOptions = [
+  { value: "" as PhotoCategory, label: "Vše" },
+  ...getAvailableCategories(photos),
+];
 
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<PhotoCategory>("");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(12);
 
@@ -149,22 +155,27 @@ export default function Gallery() {
             className="mb-16 md:ml-12"
           >
             <div className="flex flex-wrap gap-2 md:gap-4">
-              {categoryOptions.map((option, index) => (
-                <motion.button
-                  key={option.value}
-                  onClick={() => setSelectedCategory(option.value)}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`px-6 py-3 text-sm tracking-wider uppercase border border-brown/40 hover:border-brown transition-all duration-300 rounded-full ${
-                    selectedCategory === option.value
-                      ? "bg-brown text-white shadow-lg"
-                      : "bg-transparent text-brown hover:text-brown"
-                  }`}
-                >
-                  {option.label}
-                </motion.button>
-              ))}
+              {categoryOptions.map((option, index) => {
+                const isActive = selectedCategory === option.value;
+
+                return (
+                  <motion.button
+                    key={option.value}
+                    onClick={() => setSelectedCategory(option.value)}
+                    aria-pressed={isActive}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`px-6 py-3 text-sm tracking-wider uppercase border rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "bg-brown text-white border-brown shadow-lg"
+                        : "bg-transparent text-brown border-brown/40 hover:border-brown"
+                    }`}
+                  >
+                    {option.label}
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
 
