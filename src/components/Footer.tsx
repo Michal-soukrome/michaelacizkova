@@ -124,12 +124,6 @@ export default function Footer() {
                 href="#"
                 className="hover:text-brown transition-colors hover:underline"
               >
-                Zásady ochrany soukromí
-              </a>
-              <a
-                href="#"
-                className="hover:text-brown transition-colors hover:underline"
-              >
                 Obchodní podmínky
               </a>
             </div>
