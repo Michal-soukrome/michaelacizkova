@@ -170,7 +170,7 @@ export default function Header() {
                 whileTap={{ scale: 0.95 }}
                 aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
                 aria-expanded={isOpen}
-                className="relative w-10 h-10 rounded-full border border-black/8 bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5 my-5"
+                className="relative w-10 h-10 rounded-full bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5 my-5"
               >
                 <div className="relative w-5 h-5">
                   <motion.span

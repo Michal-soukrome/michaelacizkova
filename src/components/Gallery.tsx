@@ -129,8 +129,8 @@ export default function Gallery() {
             />
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="text-brown mt-8 max-w-lg md:ml-12"
@@ -178,12 +178,8 @@ export default function Gallery() {
                   initial={{ opacity: 0, y: 60 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: index * 0.2 }}
-                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(
-                    photo.size,
-                  )}`}
+                  transition={{ duration: 0.3 }}
+                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(photo.size)}`}
                   onClick={() => openLightbox(index)}
                 >
                   <OptimizedImage
