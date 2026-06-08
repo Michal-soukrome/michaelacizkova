@@ -2,9 +2,12 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { photos, getAvailableCategories, categoryLabels } from "../lib/photos";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
+import { getAvailableCategories } from "@/lib/photoUtils";
+import { photos } from "@/lib/photos";
+import { categoryLabels } from "@/lib/photoUtils";
+import { PhotoCategory } from "@/lib/photoTypes";
 
 const getSizeClasses = (size: string) => {
   switch (size) {
@@ -18,11 +21,14 @@ const getSizeClasses = (size: string) => {
   }
 };
 
-const categoryOptions = getAvailableCategories(photos);
+const categoryOptions = [
+  { value: "" as PhotoCategory, label: "Vše" },
+  ...getAvailableCategories(photos),
+];
 
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<PhotoCategory>("");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(12);
 
@@ -101,7 +107,7 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="py-16 md:py-40 bg-background overflow-hidden">
+      <div className="py-16 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Offset header design */}
           <div className="relative mb-20">
@@ -129,8 +135,8 @@ export default function Gallery() {
             />
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="text-brown mt-8 max-w-lg md:ml-12"
@@ -149,22 +155,27 @@ export default function Gallery() {
             className="mb-16 md:ml-12"
           >
             <div className="flex flex-wrap gap-2 md:gap-4">
-              {categoryOptions.map((option, index) => (
-                <motion.button
-                  key={option.value}
-                  onClick={() => setSelectedCategory(option.value)}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className={`px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 rounded-full ${
-                    selectedCategory === option.value
-                      ? "bg-brown text-white shadow-lg"
-                      : "bg-transparent text-brown hover:text-brown border border-brown/40 hover:border-brown"
-                  }`}
-                >
-                  {option.label}
-                </motion.button>
-              ))}
+              {categoryOptions.map((option, index) => {
+                const isActive = selectedCategory === option.value;
+
+                return (
+                  <motion.button
+                    key={option.value}
+                    onClick={() => setSelectedCategory(option.value)}
+                    aria-pressed={isActive}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className={`px-6 py-3 text-sm tracking-wider uppercase border rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "bg-brown text-white border-brown shadow-lg"
+                        : "bg-transparent text-brown border-brown/40 hover:border-brown"
+                    }`}
+                  >
+                    {option.label}
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -178,20 +189,14 @@ export default function Gallery() {
                   initial={{ opacity: 0, y: 60 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.3, delay: index * 0.2 }}
-                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(
-                    photo.size,
-                  )}`}
+                  transition={{ duration: 0.3 }}
+                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(photo.size)}`}
                   onClick={() => openLightbox(index)}
                 >
                   <OptimizedImage
-                    src={photo.src}
-                    alt={photo.alt}
+                    photo={photo}
                     fill
                     className="transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
 
                   {/* Overlay */}
@@ -263,8 +268,7 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <OptimizedImage
-                src={filteredPhotos[selectedIndex].src}
-                alt={filteredPhotos[selectedIndex].alt}
+                photo={filteredPhotos[selectedIndex]}
                 fill
                 objectFit="contain"
                 priority

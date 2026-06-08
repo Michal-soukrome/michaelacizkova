@@ -79,7 +79,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-16 md:py-40 bg-background overflow-hidden">
+    <section className="py-16 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Artistic header with offset */}
         <div className="relative mb-20">
@@ -155,8 +155,12 @@ export default function Testimonials() {
                         <User className="w-7 h-7 text-brown" />
                       ) : (
                         <OptimizedImage
-                          src={testimonial.image}
-                          alt={testimonial.name}
+                          photo={{
+                            src: "/assets/1.jpg",
+                            alt: testimonial.name,
+                            width: 2000,
+                            height: 1200,
+                          }}
                           fill
                           className="object-cover"
                           onError={() => handleImageError(index)}

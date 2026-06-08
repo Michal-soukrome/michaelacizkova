@@ -62,32 +62,34 @@ export default function Header() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll hide/show
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDifference = currentScrollY - lastScrollY;
+  // Scroll hide/show — DOČASNĚ VYPNUTO
+  /*
+useEffect(() => {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    const scrollDifference = currentScrollY - lastScrollY;
 
-      if (isHeaderNavigationRef.current) {
-        setIsVisible(true);
-        setLastScrollY(currentScrollY);
-        return;
-      }
-
-      if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
-        setIsVisible(false);
-      }
-
-      if (scrollDifference < -25 || isOpen) {
-        setIsVisible(true);
-      }
-
+    if (isHeaderNavigationRef.current) {
+      setIsVisible(true);
       setLastScrollY(currentScrollY);
-    };
+      return;
+    }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isOpen]);
+    if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
+      setIsVisible(false);
+    }
+
+    if (scrollDifference < -25 || isOpen) {
+      setIsVisible(true);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [lastScrollY, isOpen]);
+*/
 
   // Swipe to close sidebar
   const dragStartXRef = useRef<number | null>(null);
@@ -104,22 +106,19 @@ export default function Header() {
   };
 
   const handleScrollTo = (sectionId: string) => {
-    isHeaderNavigationRef.current = true;
-    setIsVisible(true);
-    setIsOpen(false);
-
     const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (!el) return;
 
-    const clearFlag = () => {
-      isHeaderNavigationRef.current = false;
-    };
+    const headerOffset = 55; // uprav podle výšky headeru (není úplně přesně kvůli paddingům na sekcích)
+    const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerOffset;
 
-    if ("onscrollend" in window) {
-      window.addEventListener("scrollend", clearFlag, { once: true });
-    } else {
-      setTimeout(clearFlag, 800);
-    }
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+
+    setIsOpen(false);
   };
 
   return (
@@ -136,14 +135,14 @@ export default function Header() {
       <motion.header
         initial={{ y: -40, opacity: 0 }}
         animate={{
-          y: isVisible ? 0 : -100,
-          opacity: isVisible ? 1 : 0,
+          y: 0,
+          opacity: 1,
         }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 w-full z-50 hidden md:block"
       >
         <div>
-          <div className="relative overflow-hidden border border-white/20 bg-white/60 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+          <div className="relative overflow-hidden border border-white/20 bg-white/60 backdrop-blur-2xl shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/10 pointer-events-none" />
             <div className="relative flex items-center justify-between px-8">
               {/* LOGO */}
@@ -170,7 +169,7 @@ export default function Header() {
                 whileTap={{ scale: 0.95 }}
                 aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
                 aria-expanded={isOpen}
-                className="relative w-10 h-10 rounded-full border border-black/8 bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5 my-5"
+                className="relative w-10 h-10 rounded-full bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5 my-5"
               >
                 <div className="relative w-5 h-5">
                   <motion.span
@@ -255,7 +254,7 @@ export default function Header() {
                           {item.number}
                         </span>
                         <span
-                          className={`text-base font-light tracking-wide transition-colors duration-300 ${
+                          className={`text-base font-light tracking-wide transition-colors duration-300 group-hover:underline ${
                             activeSection === item.id
                               ? "text-black"
                               : "text-black/75 group-hover:text-black"
@@ -291,7 +290,7 @@ export default function Header() {
                         }}
                         className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
                       >
-                        <Icon className="w-4 h-4 text-black/50" />
+                        <Icon className="w-4 h-4" />
                       </motion.a>
                     );
                   })}

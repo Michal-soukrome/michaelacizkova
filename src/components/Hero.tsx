@@ -143,9 +143,18 @@ export default function Hero() {
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
             className="w-fit bg-white text-charcoal px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-cream transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
-            onClick={handleScrollDown}
+            onClick={() => {
+              window.dispatchEvent(new Event("navigationStart"));
+              document
+                .getElementById("services")
+                ?.scrollIntoView({ behavior: "smooth" });
+              setTimeout(
+                () => window.dispatchEvent(new Event("navigationEnd")),
+                1000,
+              );
+            }}
           >
-            Prohlédnout portfolio
+            Moje služby
           </motion.button>
 
           {/* Secondary CTA — white border/text instead of brown (brown was invisible) */}
@@ -214,8 +223,7 @@ export default function Hero() {
                 className="embla__slide flex-[0_0_100%] relative"
               >
                 <OptimizedImage
-                  src={image.src}
-                  alt={image.alt}
+                  photo={{ ...image, width: 2000, height: 1200 }}
                   fill
                   className="object-center"
                   objectFit="cover"

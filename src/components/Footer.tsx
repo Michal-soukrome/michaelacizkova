@@ -61,15 +61,6 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -79,14 +70,15 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
-                aria-label="Twitter"
+                aria-label="Instagram"
               >
-                <Twitter className="w-4 h-4" />
+                <Instagram className="w-4 h-4" />
               </a>
+
               <a
                 href="mailto:foto.michaelacizkova@seznam.cz"
                 className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
@@ -128,12 +120,6 @@ export default function Footer() {
           <div className="flex flex-col flex-wrap  md:flex-row justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
             <p>{currentYear} © Michaela Čížková. Všechna práva vyhrazena.</p>
             <div className="flex gap-4 md:gap-8">
-              <a
-                href="#"
-                className="hover:text-brown transition-colors hover:underline"
-              >
-                Zásady ochrany soukromí
-              </a>
               <a
                 href="#"
                 className="hover:text-brown transition-colors hover:underline"

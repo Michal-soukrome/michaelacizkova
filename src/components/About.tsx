@@ -18,7 +18,7 @@ const itemVariants = {
 
 export default function About() {
   return (
-    <section className="py-16 md:py-40 bg-background overflow-hidden">
+    <section className="py-16 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Offset header design */}
         <div className="relative mb-20">
