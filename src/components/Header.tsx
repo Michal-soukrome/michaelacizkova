@@ -1,6 +1,6 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Instagram,
@@ -13,58 +13,19 @@ import {
   Phone,
   Star,
 } from "lucide-react";
-import Image from "next/image";
 
 const navItems = [
-  {
-    label: "Domů",
-    id: "home",
-    icon: House,
-    number: "01",
-  },
-  {
-    label: "Služby",
-    id: "services",
-    icon: Sparkles,
-    number: "02",
-  },
-  {
-    label: "Reference",
-    id: "testimonials",
-    icon: Star,
-    number: "03",
-  },
-  {
-    label: "Portfolio",
-    id: "gallery",
-    icon: Images,
-    number: "04",
-  },
-  {
-    label: "O mně",
-    id: "about",
-    icon: User,
-    number: "05",
-  },
-  {
-    label: "Kontakt",
-    id: "contact",
-    icon: Phone,
-    number: "06",
-  },
+  { label: "Domů", id: "home", icon: House, number: "01" },
+  { label: "Služby", id: "services", icon: Sparkles, number: "02" },
+  { label: "Reference", id: "testimonials", icon: Star, number: "03" },
+  { label: "Portfolio", id: "gallery", icon: Images, number: "04" },
+  { label: "O mně", id: "about", icon: User, number: "05" },
+  { label: "Kontakt", id: "contact", icon: Phone, number: "06" },
 ];
 
 const socialLinks = [
-  {
-    icon: Facebook,
-    href: "https://facebook.com",
-    label: "Facebook",
-  },
-  {
-    icon: Instagram,
-    href: "https://instagram.com",
-    label: "Instagram",
-  },
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
   {
     icon: Mail,
     href: "mailto:foto.michaelacizkova@seznam.cz",
@@ -77,71 +38,87 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  // const [isHeaderNavigation, setIsHeaderNavigation] = useState(false);
-
-  // Handle scroll direction
   const isHeaderNavigationRef = useRef(false);
 
-  // In your scroll effect — no isHeaderNavigation in deps needed
+  // Intersection Observer pro activeSection
   useEffect(() => {
-    const sections = navItems.map((item) => document.getElementById(item.id));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    navItems.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Scroll hide/show
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDifference = currentScrollY - lastScrollY;
 
       if (isHeaderNavigationRef.current) {
         setIsVisible(true);
         setLastScrollY(currentScrollY);
-        return; // ← exit early, skip hide logic entirely
+        return;
       }
 
       if (scrollDifference > 25 && currentScrollY > 100 && !isOpen) {
         setIsVisible(false);
-      } else if (scrollDifference < -25 || isOpen) {
+      }
+
+      if (scrollDifference < -25 || isOpen) {
         setIsVisible(true);
       }
+
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isOpen]); // ← isHeaderNavigation removed from deps
+  }, [lastScrollY, isOpen]);
 
-  // Updated handleScroll nav function
-  const handleScroll = (sectionId: string) => {
-    isHeaderNavigationRef.current = true; // sync, immediate
-    setIsVisible(true); // force visible right away
+  // Swipe to close sidebar
+  const dragStartXRef = useRef<number | null>(null);
+
+  const handleDragStart = (e: React.PointerEvent) => {
+    dragStartXRef.current = e.clientX;
+  };
+
+  const handleDragEnd = (e: React.PointerEvent) => {
+    if (dragStartXRef.current === null) return;
+    const diff = dragStartXRef.current - e.clientX;
+    if (diff > 60) setIsOpen(false);
+    dragStartXRef.current = null;
+  };
+
+  const handleScrollTo = (sectionId: string) => {
+    isHeaderNavigationRef.current = true;
+    setIsVisible(true);
     setIsOpen(false);
 
     const el = document.getElementById(sectionId);
-    if (!el) return;
+    if (el) el.scrollIntoView({ behavior: "smooth" });
 
-    el.scrollIntoView({ behavior: "smooth" });
-
-    // Clear flag once scroll settles (scrollend is better than a timeout)
     const clearFlag = () => {
       isHeaderNavigationRef.current = false;
     };
 
-    // Use scrollend if available, fallback to timeout
     if ("onscrollend" in window) {
       window.addEventListener("scrollend", clearFlag, { once: true });
     } else {
-      setTimeout(clearFlag, 1000);
+      setTimeout(clearFlag, 800);
     }
-  };
-
-  const navItems = [
-    { label: "Domů", id: "home", number: "01" },
-    { label: "Služby", id: "services", number: "02" },
-    { label: "Reference", id: "testimonials", number: "03" },
-    { label: "Portfolio", id: "gallery", number: "04" },
-    { label: "O mně", id: "about", number: "05" },
-    { label: "FAQ", id: "faq", number: "06" },
-    { label: "Kontakt", id: "contact", number: "07" },
-  ];
-
-  const handleScroll = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
   };
 
   return (
@@ -157,54 +134,47 @@ export default function Header() {
       {/* DESKTOP HEADER */}
       <motion.header
         initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
+        animate={{
+          y: isVisible ? 0 : -100,
+          opacity: isVisible ? 1 : 0,
         }}
-        className="fixed top-0 left-0 w-full z-50 px-4 pt-4 hidden md:block"
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-0 left-0 w-full z-50 hidden md:block"
       >
-        <div className="container mx-auto">
-          <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/60 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
-            {/* gradient */}
+        <div>
+          <div className="relative overflow-hidden border border-white/20 bg-white/60 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
             <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-white/10 pointer-events-none" />
-
-            <div className="relative flex items-center justify-between px-8 ">
+            <div className="relative flex items-center justify-between px-8">
               {/* LOGO */}
-              <motion.a
-                href="#home"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleScroll("home");
-                }}
+              <motion.button
+                onClick={() => handleScrollTo("home")}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-4"
               >
                 <Image
                   src="/assets/logo/logo.png"
-                  alt="Logo"
+                  alt="Michaela Čížková — fotografka"
                   width={100}
                   height={100}
                   priority
                   className="object-contain"
                 />
-              </motion.a>
+              </motion.button>
 
               {/* HAMBURGER */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
+                aria-expanded={isOpen}
                 className="relative w-10 h-10 rounded-full border border-black/8 bg-black/[0.02] backdrop-blur-md flex items-center justify-center transition-all hover:bg-black/5 my-5"
               >
                 <div className="relative w-5 h-5">
                   <motion.span
                     className="absolute left-0 top-1.5 h-px w-5 bg-black"
-                    animate={{
-                      rotate: isOpen ? 45 : 0,
-                      y: isOpen ? 7 : 0,
-                    }}
+                    animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 7 : 0 }}
                     transition={{ duration: 0.3 }}
                   />
                   <motion.span
@@ -214,10 +184,7 @@ export default function Header() {
                   />
                   <motion.span
                     className="absolute left-0 top-3.5 h-px w-5 bg-black"
-                    animate={{
-                      rotate: isOpen ? -45 : 0,
-                      y: isOpen ? -7 : 0,
-                    }}
+                    animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -7 : 0 }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
@@ -254,14 +221,12 @@ export default function Header() {
             onPointerUp={handleDragEnd}
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_60%)] pointer-events-none" />
-
             <nav className="relative h-full flex flex-col pt-32 pb-12 px-7">
               <div className="mb-16">
                 <p className="text-[0.6rem] uppercase tracking-[0.4em] text-black/25 font-light">
                   Menu
                 </p>
               </div>
-
               <ul className="flex-1 space-y-1">
                 {navItems.map((item, i) => (
                   <motion.li
@@ -271,10 +236,7 @@ export default function Header() {
                     transition={{ delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <button
-                      onClick={() => {
-                        handleScroll(item.id);
-                        setIsOpen(false);
-                      }}
+                      onClick={() => handleScrollTo(item.id)}
                       className={`w-full group flex items-center justify-between rounded-2xl px-5 py-3.5 transition-all duration-300 ${
                         activeSection === item.id
                           ? "bg-black/[0.08]"
@@ -291,7 +253,6 @@ export default function Header() {
                         >
                           {item.number}
                         </span>
-
                         <span
                           className={`text-base font-light tracking-wide transition-colors duration-300 ${
                             activeSection === item.id
@@ -302,7 +263,6 @@ export default function Header() {
                           {item.label}
                         </span>
                       </div>
-
                       {activeSection === item.id && (
                         <motion.span className="text-black/40 text-sm">
                           →
@@ -312,12 +272,10 @@ export default function Header() {
                   </motion.li>
                 ))}
               </ul>
-
               <div className="pt-10 border-t border-black/6">
                 <div className="flex items-center gap-2">
                   {socialLinks.map((s, i) => {
                     const Icon = s.icon;
-
                     return (
                       <motion.a
                         key={s.label}
@@ -330,7 +288,7 @@ export default function Header() {
                           delay: 0.4 + i * 0.06,
                           ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="w-10 h-10 rounded-full border border-black/6 bg-white/40 backdrop-blur-sm flex items-center justify-center hover:bg-white/80 transition-all duration-300"
+                        className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
                       >
                         <Icon className="w-4 h-4 text-black/50" />
                       </motion.a>
@@ -347,26 +305,20 @@ export default function Header() {
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{
-          delay: 0.2,
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+        transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden"
       >
         <div className="relative overflow-hidden rounded-full border border-white/20 bg-white/70 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.12)] px-3 py-3">
-          {/* gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-white/40 pointer-events-none" />
-
           <nav className="relative flex items-center gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeSection === item.id;
-
               return (
                 <button
                   key={item.id}
-                  onClick={() => handleScroll(item.id)}
+                  onClick={() => handleScrollTo(item.id)}
+                  aria-label={item.label}
                   className="relative"
                 >
                   <div className="relative flex flex-col items-center justify-center w-14 h-14">
@@ -381,13 +333,11 @@ export default function Header() {
                         }}
                       />
                     )}
-
                     <Icon
                       className={`relative z-10 w-[18px] h-[18px] transition-all duration-300 ${
                         isActive ? "text-black" : "text-black/40"
                       }`}
                     />
-
                     <span
                       className={`relative z-10 mt-1 text-[0.62rem] tracking-wide transition-all duration-300 ${
                         isActive ? "text-black" : "text-black/40"
