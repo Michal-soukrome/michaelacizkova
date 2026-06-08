@@ -20,7 +20,8 @@ const navItems = [
   { label: "Reference", id: "testimonials", icon: Star, number: "03" },
   { label: "Portfolio", id: "gallery", icon: Images, number: "04" },
   { label: "O mně", id: "about", icon: User, number: "05" },
-  { label: "Kontakt", id: "contact", icon: Phone, number: "06" },
+  { label: "Časté dotazy", id: "faq", icon: Star, number: "06" },
+  { label: "Kontakt", id: "contact", icon: Phone, number: "07" },
 ];
 
 const socialLinks = [
