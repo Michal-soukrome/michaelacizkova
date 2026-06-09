@@ -176,13 +176,13 @@ function ImagePanel({
 }) {
   return (
     <div
-      className="w-full md:w-5/12 min-h-[360px] bg-cream/60 overflow-hidden flex-shrink-0 group cursor-pointer"
+      className="w-full md:w-5/12 min-h-[360px] bg-cream/60 overflow-hidden flex-shrink-0 group "
       onClick={onClick}
     >
       <img
         src={src}
         alt={alt}
-        className="w-full h-full object-cover grayscale hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+        className="w-full h-full object-cover transition-all duration-700"
       />
     </div>
   );
@@ -213,13 +213,13 @@ function ImageStrip({
       {images.map((src, i) => (
         <div
           key={i}
-          className="flex-1 overflow-hidden bg-cream/60 group cursor-pointer"
+          className="flex-1 overflow-hidden bg-cream/60 group "
           onClick={() => onImageClick?.(i)}
         >
           <img
             src={src}
             alt={`${alt} - ${i + 1}`}
-            className="w-full h-full object-cover grayscale hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+            className="w-full h-full object-cover"
           />
         </div>
       ))}
@@ -315,22 +315,7 @@ function PackageCard({
 
 export default function Services() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const allImages = getAllServiceImages();
-
-  const openLightbox = (index: number) => {
-    setSelectedIndex(index);
-    setIsLightboxOpen(true);
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-  };
-
-  const closeLightbox = () => {
-    setSelectedIndex(null);
-    setIsLightboxOpen(false);
-    document.body.style.overflow = "unset";
-    document.documentElement.style.overflow = "unset";
-  };
 
   const nextImage = () => {
     if (selectedIndex !== null) {
@@ -352,7 +337,7 @@ export default function Services() {
 
       switch (e.key) {
         case "Escape":
-          closeLightbox();
+          setSelectedIndex(null);
           break;
         case "ArrowRight":
           nextImage();
@@ -436,11 +421,7 @@ export default function Services() {
                 className={`flex flex-col ${imageLeft ? "md:flex-row" : "md:flex-row-reverse"} gap-0 items-stretch`}
               >
                 {/* Main side image */}
-                <ImagePanel
-                  src={service.image}
-                  alt={service.title}
-                  onClick={() => openLightbox(mainImageIndex)}
-                />
+                <ImagePanel src={service.image} alt={service.title} />
 
                 {/* Content panel */}
                 <div className="flex-1 py-10 md:py-14 px-6 md:px-12 flex flex-col justify-center">
@@ -453,14 +434,7 @@ export default function Services() {
                   </p>
 
                   {/* Extra photo strip — sits between description and pricing/packages */}
-                  <ImageStrip
-                    images={extraImages}
-                    alt={service.title}
-                    onImageClick={(stripIndex) => {
-                      // mainImageIndex + 1 because the first image in the strip starts after the main image
-                      openLightbox(mainImageIndex + 1 + stripIndex);
-                    }}
-                  />
+                  <ImageStrip images={extraImages} alt={service.title} />
 
                   {/* Packages variant */}
                   {"packages" in service && service.packages ? (
@@ -581,73 +555,6 @@ export default function Services() {
           </div>
         </motion.div>
       </div>
-
-      {/* Enhanced Lightbox */}
-      <AnimatePresence>
-        {isLightboxOpen && selectedIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black z-50 flex items-center justify-center"
-            onClick={closeLightbox}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Prohlížeč obrázků"
-          >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full h-dvh"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <OptimizedImage
-                photo={photos[selectedIndex]}
-                fill
-                sizes="100vw"
-                quality={100}
-                className="object-contain"
-              />
-
-              {/* Close Button */}
-              <button
-                onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-3 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
-                aria-label="Zavřít prohlížeč"
-              >
-                <X className="w-6 h-6" aria-hidden="true" />
-              </button>
-
-              {photos.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
-                    aria-label="Předchozí obrázek"
-                  >
-                    <ChevronLeft className="w-6 h-6" aria-hidden="true" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
-                    aria-label="Další obrázek"
-                  >
-                    <ChevronRight className="w-6 h-6" aria-hidden="true" />
-                  </button>
-                </>
-              )}
-
-              {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 rounded-full px-4 py-2 backdrop-blur-sm text-sm">
-                {selectedIndex + 1} / {photos.length}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
