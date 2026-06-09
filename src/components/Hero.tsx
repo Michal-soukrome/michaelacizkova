@@ -98,23 +98,16 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          {/* Label: white/50 instead of text-brown (was invisible on photo) */}
-          <p className="text-sm md:text-base tracking-[0.3em] text-white/50 mb-4 uppercase">
-            Fotografka
-          </p>
-
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
-            {/* "Michaela" — solid white, crisp and readable */}
-            <span className="text-white drop-shadow-lg">Michaela</span>
+          <h3 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
+            <span className="text-white drop-shadow-lg">Zachycuji</span>
             <br />
-            {/* "Čížková" — white outline stroke, visible on any photo */}
             <span
               className="text-transparent ml-8 md:ml-16"
               style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.75)" }}
             >
-              Čížková
+              vzpomínky
             </span>
-          </h1>
+          </h3>
         </motion.div>
 
         <motion.div
