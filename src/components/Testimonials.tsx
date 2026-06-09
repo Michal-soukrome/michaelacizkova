@@ -220,13 +220,12 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4"
+          className="mt-24 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4"
         >
           {[
-            { value: "500+", label: "Spokojených klientů" },
-            { value: "1000+", label: "Dokončených projektů" },
-            { value: "15+", label: "Let zkušeností" },
-            { value: "25+", label: "Získaných ocenění" },
+            { value: "50+", label: "Spokojených klientů" },
+            { value: "100+", label: "Dokončených projektů" },
+            { value: "5+", label: "Let zkušeností" },
           ].map((stat, index) => (
             <div
               key={index}
