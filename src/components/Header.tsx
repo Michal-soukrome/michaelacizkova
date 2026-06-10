@@ -35,6 +35,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const suppressScrollHide = useRef(false);
 
   // Active section tracker
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function Header() {
   // Scroll hide/show — skips hide when menu is open
   useEffect(() => {
     const handleScroll = () => {
-      if (isOpen) return;
+      if (isOpen || suppressScrollHide.current) return;
       const currentY = window.scrollY;
       const diff = currentY - lastScrollY.current;
 
@@ -90,7 +91,16 @@ export default function Header() {
     if (!el) return;
     const offsetPosition = el.getBoundingClientRect().top + window.scrollY - 55;
     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
     setIsOpen(false);
+    setIsVisible(true);
+
+    // Suppress scroll-hide for the duration of the smooth scroll (~800ms)
+    suppressScrollHide.current = true;
+    setTimeout(() => {
+      suppressScrollHide.current = false;
+      lastScrollY.current = window.scrollY; // re-baseline after scroll settles
+    }, 900);
   };
 
   return (
@@ -110,7 +120,7 @@ export default function Header() {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 w-full z-50"
       >
-        <div className="relative overflow-hidden border-b border-white/20 bg-white/60 transition-colors duration-300 ease-in-out  backdrop-blur-2xl shadow-sm">
+        <div className="relative overflow-hidden border-b border-white/20 bg-white transition-colors duration-300 ease-in-out  backdrop-blur-2xl shadow-sm">
           <div className="relative flex items-center justify-between px-5 md:px-8">
             {/* LOGO */}
             <motion.button
@@ -186,8 +196,8 @@ export default function Header() {
             onPointerUp={handleDragEnd}
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_60%)] pointer-events-none" />
-            <nav className="relative h-full flex flex-col pt-32 pb-12 px-7">
-              <div className="mb-16">
+            <nav className="relative h-full flex flex-col pt-32 max-h-dvh pb-12 px-7">
+              <div className="hidden md:block mb-16">
                 <p className="text-[0.6rem] uppercase tracking-[0.4em] text-black/25 font-light">
                   Menu
                 </p>
