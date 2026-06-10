@@ -83,7 +83,7 @@ export default function Hero() {
       <motion.div
         style={{ opacity, scale }}
         // removed mix-blend-plus-lighter — was washing out text
-        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-7xl mx-auto w-full"
+        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-7xl py-16 mx-auto w-full"
       >
         {/* Decorative circle — softened opacity so it doesn't compete */}
         <motion.div

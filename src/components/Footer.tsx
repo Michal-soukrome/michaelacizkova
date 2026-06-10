@@ -117,8 +117,10 @@ export default function Footer() {
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col flex-wrap  md:flex-row justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
-            <p>{currentYear} © Michaela Čížková. Všechna práva vyhrazena.</p>
+          <div className="flex flex-col flex-wrap md:flex-row justify-center md:justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
+            <p className="text-center md:text-start">
+              {currentYear} © Michaela Čížková. Všechna práva vyhrazena.
+            </p>
             <div className="flex gap-4 md:gap-8">
               <a
                 href="#"
