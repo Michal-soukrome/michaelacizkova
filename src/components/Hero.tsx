@@ -83,7 +83,7 @@ export default function Hero() {
       <motion.div
         style={{ opacity, scale }}
         // removed mix-blend-plus-lighter — was washing out text
-        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-7xl py-16 mx-auto w-full"
+        className="relative z-20 px-8 md:px-16 lg:px-24 max-w-7xl py-16 mx-auto w-full flex flex-col items-start justify-end sm:justify-center h-full"
       >
         {/* Decorative circle — softened opacity so it doesn't compete */}
         <motion.div
@@ -98,7 +98,7 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <h3 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
+          <h3 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
             <span className="text-white drop-shadow-lg">Zachycuji</span>
             <br />
             <span
@@ -133,9 +133,8 @@ export default function Hero() {
         >
           {/* Primary CTA — white fill, dark text for max contrast */}
           <motion.button
-            whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="w-fit bg-white text-charcoal px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-cream transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
+            className="w-fit btn-base btn-primary"
             onClick={() => {
               window.dispatchEvent(new Event("navigationStart"));
               document
@@ -152,9 +151,8 @@ export default function Hero() {
 
           {/* Secondary CTA — white border/text instead of brown (brown was invisible) */}
           <motion.button
-            whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden sm:flex border border-white/60 text-white/90 px-8 py-4 font-medium text-sm tracking-wider uppercase hover:bg-white/10 transition-all duration-300 rounded-full backdrop-blur-sm"
+            className="hidden sm:flex btn-base btn-secondary"
             onClick={() => {
               window.dispatchEvent(new Event("navigationStart"));
               document
@@ -177,7 +175,7 @@ export default function Hero() {
               key={index}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`relative h-2 cursor-pointer rounded-full transition-all duration-300 overflow-hidden ${
+              className={`relative h-2  rounded-full transition-all duration-300 overflow-hidden ${
                 index === selectedIndex
                   ? "w-8"
                   : "w-2 bg-white/30 hover:bg-white/60"

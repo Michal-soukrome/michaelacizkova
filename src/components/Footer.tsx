@@ -97,11 +97,11 @@ export default function Footer() {
             <div className="flex gap-3 items-center flex-wrap text-sm text-text-light">
               <a
                 href="mailto:foto.michaelacizkova@seznam.cz"
-                className="underline cursor-pointer"
+                className="underline "
               >
                 foto.michaelacizkova@seznam.cz
               </a>
-              <a href="tel:+420604410116" className="underline cursor-pointer">
+              <a href="tel:+420604410116" className="underline ">
                 +420 604 410 116
               </a>
               <p>Praha, Česká republika</p>

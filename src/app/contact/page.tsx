@@ -1,4 +1,4 @@
-        "use client";
+"use client";
 
 import { motion } from "framer-motion";
 
@@ -32,7 +32,6 @@ export default function Contact() {
           <textarea className="w-full p-2 bg-gray-800 border border-gray-600 rounded h-32"></textarea>
         </div>
         <motion.button
-          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           type="submit"
           className="w-full bg-white text-black py-2 rounded font-semibold hover:bg-gray-200 transition"

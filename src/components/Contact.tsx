@@ -115,9 +115,10 @@ export default function Contact() {
 
           <motion.div
             initial={{ opacity: 0, rotate: -12 }}
-            whileInView={{ opacity: 0.1, rotate: 0 }}
+            whileInView={{ opacity: 1, rotate: 0 }}
+            animate={{ y: [0, -10, 0], opacity: 1 }}
             viewport={{ once: true }}
-            className="absolute top-1/2 right-0 w-96 h-96 border border-brown/30 rounded-full -translate-y-1/2 translate-x-1/2"
+            className="absolute top-1/2 right-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 translate-x-1/2"
           />
         </div>
 
@@ -127,7 +128,6 @@ export default function Contact() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            animate={{ y: [0, -6, 0] }}
             transition={{
               opacity: { duration: 0.8, ease: "easeOut" },
               x: { duration: 0.8, ease: "easeOut" },
@@ -158,7 +158,7 @@ export default function Contact() {
                       </h4>
                       <a
                         href="mailto:foto.michaelacizkova@seznam.cz"
-                        className="text-text-light underline cursor-pointer"
+                        className="text-text-light underline break-all"
                       >
                         foto.michaelacizkova@seznam.cz
                       </a>
@@ -174,7 +174,7 @@ export default function Contact() {
                       </h4>
                       <a
                         href="tel:+420604410116"
-                        className="text-text-light underline cursor-pointer"
+                        className="text-text-light underline "
                       >
                         +420 604 410 116
                       </a>
@@ -206,18 +206,14 @@ export default function Contact() {
           >
             <div className="relative">
               <motion.div
-                className="absolute inset-0 border-2 border-brown/20 -translate-x-3 -translate-y-3 rounded-xl"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                animate={{ y: [0, -6, 0] }} // gentle up–down float
+                animate={{ y: [0, -6, 0] }}
                 transition={{
-                  delay: 0.4,
-                  duration: 6, // slow cycle
+                  duration: 6,
                   repeat: Infinity,
                   repeatType: "loop",
                   ease: "easeInOut",
                 }}
-                viewport={{ once: true }}
+                className="absolute inset-0 border-2 border-brown/20 -translate-x-3 -translate-y-3 rounded-xl"
               />
 
               <form
@@ -376,11 +372,10 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 }}
                     viewport={{ once: true }}
-                    whileHover={status === "loading" ? {} : { x: 5 }}
                     whileTap={status === "loading" ? {} : { scale: 0.98 }}
                     type="submit"
                     disabled={status === "loading"}
-                    className="mt-6 bg-brown text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-charcoal transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="mt-6 btn-base btn-primary disabled:animate-none animate-bounce"
                   >
                     {status === "loading" ? (
                       <>

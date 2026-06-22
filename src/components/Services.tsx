@@ -115,7 +115,7 @@ const services = [
       "Skutečné chvíle tak, jak se odehrávají. Ideální pro narozeninové oslavy, křtiny, společná setkání, výlety i obyčejné momenty doma, které tvoří váš každodenní život. Focení probíhá přirozenou reportážní formou — zachycuji dění nenápadně a bez výrazného zasahování. Součástí focení je krátká konzultace předem, kde probereme místo, čas, průběh i vše, co vám pomůže cítit se při focení přirozeně.",
     icon: Clapperboard,
     image: "/assets/3.jpg",
-    images: ["/assets/1.jpg", "/assets/2.jpg", "/assets/3.jpg"],
+    images: ["/assets/1.jpg", "/assets/3.jpg"],
     price: "8 000 Kč",
     duration: "2–3 hodiny dle potřeby",
     photos: "přibližně 50–70 pečlivě upravených fotografií",
@@ -176,7 +176,7 @@ function ImagePanel({
 }) {
   return (
     <div
-      className="w-full md:w-5/12 min-h-[360px] bg-cream/60 overflow-hidden flex-shrink-0 group "
+      className="w-full md:w-5/12 sm:min-h-[360px] bg-cream/60 overflow-hidden flex-shrink-0 group "
       onClick={onClick}
     >
       <img
@@ -473,9 +473,8 @@ export default function Services() {
                           ?.scrollIntoView({ behavior: "smooth" });
                       }, 300);
                     }}
-                    whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.98 }}
-                    className="mt-8 bg-brown text-white px-8 py-3 font-medium text-sm uppercase tracking-wider hover:bg-charcoal transition-all flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl !w-fit"
+                    className="mt-8 btn-base btn-primary w-fit"
                   >
                     objednat focení
                     <MessageCircleMore
@@ -529,9 +528,8 @@ export default function Services() {
             <p className="text-text-light mb-6">{booking.cta.text}</p>
             <motion.a
               href="#contact"
-              whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98 }}
-              className="w-fit mx-auto bg-brown text-white px-10 py-4 font-medium text-sm uppercase tracking-wider hover:bg-charcoal transition-all flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2 focus:ring-offset-background rounded-full shadow-lg hover:shadow-xl"
+              className="btn-base btn-primary w-fit mx-auto animate-bounce"
               onClick={(e) => {
                 e.preventDefault();
                 window.dispatchEvent(new Event("navigationStart"));
@@ -547,10 +545,7 @@ export default function Services() {
               }}
             >
               {booking.cta.label}
-              <MessageCircleMore
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                aria-hidden="true"
-              />
+              <MessageCircleMore className="w-4 h-4" aria-hidden="true" />
             </motion.a>
           </div>
         </motion.div>

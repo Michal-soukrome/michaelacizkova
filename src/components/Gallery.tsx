@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 import { getAvailableCategories } from "@/lib/photoUtils";
-import { photos } from "@/lib/photos";
+import { getPhotos } from "@/lib/sanity/photos";
 import { categoryLabels } from "@/lib/photoUtils";
-import { PhotoCategory } from "@/lib/photoTypes";
+import { Photo, PhotoCategory } from "@/lib/photoTypes";
 
 const getSizeClasses = (size: string) => {
   switch (size) {
@@ -21,16 +21,40 @@ const getSizeClasses = (size: string) => {
   }
 };
 
-const categoryOptions = [
-  { value: "" as PhotoCategory, label: "Vše" },
-  ...getAvailableCategories(photos),
-];
-
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<PhotoCategory>("");
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(12);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [categoryOptions, setCategoryOptions] = useState<
+    { value: PhotoCategory; label: string }[]
+  >([]);
+
+  useEffect(() => {
+    getPhotos().then(setPhotos);
+  }, []);
+
+  useEffect(() => {
+    getPhotos().then((data) => {
+      setPhotos(data);
+
+      const categories = [
+        { value: "" as PhotoCategory, label: "Vše" },
+        ...getAvailableCategories(data).filter((c) => c.value !== ""),
+      ];
+
+      setCategoryOptions(categories);
+      console.log("CATEGORY OPTIONS:", categories);
+    });
+  }, []);
+
+  useEffect(() => {
+    getPhotos().then((data) => {
+      console.log("SANITY DATA:", data);
+      setPhotos(data);
+    });
+  }, []);
 
   useEffect(() => {
     // Set initial displayed count based on screen size
@@ -47,7 +71,7 @@ export default function Gallery() {
   const filteredPhotos = useMemo(() => {
     if (selectedCategory === "") return photos;
     return photos.filter((photo) => photo.category === selectedCategory);
-  }, [selectedCategory]);
+  }, [selectedCategory, photos]);
 
   const displayedPhotos = useMemo(() => {
     return filteredPhotos.slice(0, displayedCount);
@@ -160,16 +184,14 @@ export default function Gallery() {
 
                 return (
                   <motion.button
-                    key={option.value}
+                    key={`${option.value}-${index}`}
                     onClick={() => setSelectedCategory(option.value)}
                     aria-pressed={isActive}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className={`px-6 py-3 text-sm tracking-wider uppercase border rounded-full transition-all duration-300 ${
-                      isActive
-                        ? "bg-brown text-white border-brown shadow-lg"
-                        : "bg-transparent text-brown border-brown/40 hover:border-brown"
+                    className={`btn-base ${
+                      isActive ? "btn-primary" : "btn-outline"
                     }`}
                   >
                     {option.label}
@@ -184,13 +206,13 @@ export default function Gallery() {
             <AnimatePresence>
               {displayedPhotos.map((photo, index) => (
                 <motion.div
-                  key={photo.id}
+                  key={photo._id}
                   layout
                   initial={{ opacity: 0, y: 60 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.3 }}
-                  className={`relative group cursor-pointer overflow-hidden rounded-lg ${getSizeClasses(photo.size)}`}
+                  className={`relative group overflow-hidden rounded-lg ${getSizeClasses(photo.size)}`}
                   onClick={() => openLightbox(index)}
                 >
                   <OptimizedImage

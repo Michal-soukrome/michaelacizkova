@@ -89,18 +89,18 @@ export default function Header() {
   const handleScrollTo = (sectionId: string) => {
     const el = document.getElementById(sectionId);
     if (!el) return;
+
     const offsetPosition = el.getBoundingClientRect().top + window.scrollY - 55;
     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 
     setIsOpen(false);
     setIsVisible(true);
-
-    // Suppress scroll-hide for the duration of the smooth scroll (~800ms)
     suppressScrollHide.current = true;
+
     setTimeout(() => {
       suppressScrollHide.current = false;
-      lastScrollY.current = window.scrollY; // re-baseline after scroll settles
-    }, 900);
+      lastScrollY.current = window.scrollY;
+    }, 1200);
   };
 
   return (
@@ -125,7 +125,6 @@ export default function Header() {
             {/* LOGO */}
             <motion.button
               onClick={() => handleScrollTo("home")}
-              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <Image
@@ -134,14 +133,13 @@ export default function Header() {
                 width={100}
                 height={100}
                 priority
-                className="object-contain"
+                className="h-10 w-auto object-contain"
               />
             </motion.button>
 
             {/* HAMBURGER */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
               aria-expanded={isOpen}

@@ -37,6 +37,10 @@ export default function OptimizedImage({
     setIsLoading(true);
   }, [photo.src]);
 
+  // Default sizes for fill images (fixes Next.js warning)
+  const resolvedSizes =
+    sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
+
   return (
     <div
       className={`relative w-full h-full overflow-hidden ${className}`}
@@ -51,19 +55,20 @@ export default function OptimizedImage({
 
       <Image
         src={photo.src}
-        alt={photo.alt}
+        alt={photo.alt || "Fotografie"}
         width={!fill ? photo.width : undefined}
         height={!fill ? photo.height : undefined}
         fill={fill}
+        sizes={resolvedSizes}
         className={`transition-all duration-700 ${
           objectFit === "cover" ? "object-cover" : "object-contain"
         } ${isLoading ? "scale-105 blur-xl" : "scale-100 blur-0"}`}
-        quality={quality}
+        quality={quality > 90 ? 90 : quality}
         priority={priority}
-        sizes={sizes}
-        onLoadingComplete={() => setIsLoading(false)}
+        onLoad={() => setIsLoading(false)}
         placeholder={photo.blurDataURL ? "blur" : "empty"}
         blurDataURL={photo.blurDataURL}
+        onError={onError}
       />
     </div>
   );

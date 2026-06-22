@@ -16,15 +16,13 @@ export const categoryLabels: Record<PhotoCategory, string> = {
   wedding: "Svatby",
 };
 
-export const getAvailableCategories = (photoList: Photo[]) => {
-  const unique = new Set<PhotoCategory>();
+export function getAvailableCategories(photos: Photo[]) {
+  const unique = Array.from(
+    new Set(photos.map((p) => p.category).filter((c) => c && c.trim() !== "")),
+  );
 
-  photoList.forEach((photo) => {
-    if (photo.category) unique.add(photo.category);
-  });
-
-  return Array.from(unique).map((cat) => ({
-    value: cat,
-    label: categoryLabels[cat],
-  })) as { value: PhotoCategory; label: string }[];
-};
+  return unique.map((c) => ({
+    value: c,
+    label: categoryLabels[c],
+  }));
+}
