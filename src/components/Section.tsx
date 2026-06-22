@@ -27,9 +27,8 @@ export default function Section({
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: 20 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay }}
       className={`relative py-20 md:py-32 ${bgClasses[background]} ${className}`}
     >

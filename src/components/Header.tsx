@@ -90,7 +90,7 @@ export default function Header() {
     const el = document.getElementById(sectionId);
     if (!el) return;
 
-    const offsetPosition = el.getBoundingClientRect().top + window.scrollY - 55;
+    const offsetPosition = el.getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 
     setIsOpen(false);
@@ -120,8 +120,8 @@ export default function Header() {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 w-full z-50"
       >
-        <div className="relative overflow-hidden border-b border-white/20 bg-white transition-colors duration-300 ease-in-out  backdrop-blur-2xl shadow-sm">
-          <div className="relative flex items-center justify-between px-5 md:px-8">
+        <div className="h-20 relative overflow-hidden border-b border-white/20 bg-white/50 transition-colors duration-300 ease-in-out  backdrop-blur-2xl shadow-sm">
+          <div className="h-full relative flex items-center justify-between px-5 md:px-8">
             {/* LOGO */}
             <motion.button
               onClick={() => handleScrollTo("home")}
@@ -171,7 +171,6 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -194,12 +193,7 @@ export default function Header() {
             onPointerUp={handleDragEnd}
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_60%)] pointer-events-none" />
-            <nav className="relative h-full flex flex-col pt-32 max-h-dvh pb-12 px-7">
-              <div className="hidden md:block mb-16">
-                <p className="text-[0.6rem] uppercase tracking-[0.4em] text-black/25 font-light">
-                  Menu
-                </p>
-              </div>
+            <nav className="relative h-full flex flex-col pt-30 max-h-dvh pb-10 px-7">
               <ul className="flex-1 space-y-1">
                 {navItems.map((item, i) => (
                   <motion.li

@@ -30,14 +30,12 @@ export default function Footer() {
         initial={{ opacity: 0, rotate: 0 }}
         whileInView={{ opacity: 1, rotate: 12 }}
         transition={{ duration: 1 }}
-        viewport={{ once: true }}
         className="absolute top-12 right-12 w-32 h-32 border border-brown/30 rounded-full"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
         className="absolute bottom-24 left-8 w-16 h-16 bg-brown/20 rounded-full animate-pulse"
       />
       <motion.div
@@ -112,10 +110,8 @@ export default function Footer() {
         {/* Bottom Bar */}
         <motion.div
           className="border-t border-brown/30 pt-8"
-          initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
         >
           <div className="flex flex-col flex-wrap md:flex-row justify-center md:justify-between items-center gap-4 text-xs text-text-light uppercase tracking-wider">
             <p className="text-center md:text-start">

@@ -27,9 +27,9 @@ export async function POST(req: NextRequest) {
       subject: `Nová poptávka: ${subject}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-          <h2 style="color: #7c5c3e; border-bottom: 1px solid #e8ddd4; padding-bottom: 12px;">
+          <h3 style="color: #7c5c3e; border-bottom: 1px solid #e8ddd4; padding-bottom: 12px;">
             Nová poptávka přes web
-          </h2>
+          </h3>
           <table style="width: 100%; border-collapse: collapse; margin: 24px 0;">
             <tr>
               <td style="padding: 8px 0; color: #888; width: 100px;">Jméno</td>
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       subject: "Děkuji za zprávu 🤍",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-          <h2 style="color: #7c5c3e;">Ahoj ${name},</h2>
+          <h3 style="color: #7c5c3e;">Ahoj ${name},</h3>
           <p style="line-height: 1.7;">
             děkuji za tvoji zprávu! Dostala jsem ji a ozvu se ti co nejdříve,
             obvykle do 1–2 pracovních dní.

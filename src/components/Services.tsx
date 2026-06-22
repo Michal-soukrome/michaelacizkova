@@ -360,22 +360,20 @@ export default function Services() {
         {/* Header */}
         <div className="relative mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={false}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
             className="md:ml-8"
           >
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               {header.eyebrow}
             </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               {header.heading}
-            </h2>
+            </h3>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="w-24 h-px bg-brown mt-6 origin-left"
             />
@@ -384,7 +382,6 @@ export default function Services() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="text-text-light mt-8 max-w-lg md:ml-8"
           >
@@ -394,7 +391,6 @@ export default function Services() {
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 0.1, scale: 1 }}
-            viewport={{ once: true }}
             className="absolute -top-20 -right-20 w-80 h-80 border border-brown/40 rounded-full"
           />
         </div>
@@ -417,7 +413,6 @@ export default function Services() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
                 className={`flex flex-col ${imageLeft ? "md:flex-row" : "md:flex-row-reverse"} gap-0 items-stretch`}
               >
                 {/* Main side image */}
@@ -493,7 +488,6 @@ export default function Services() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
           className="mt-20 bg-cream/30 border-2 border-brown/40 rounded-xl p-8 md:p-12"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">

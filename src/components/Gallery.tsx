@@ -32,10 +32,6 @@ export default function Gallery() {
   >([]);
 
   useEffect(() => {
-    getPhotos().then(setPhotos);
-  }, []);
-
-  useEffect(() => {
     getPhotos().then((data) => {
       setPhotos(data);
 
@@ -45,14 +41,6 @@ export default function Gallery() {
       ];
 
       setCategoryOptions(categories);
-      console.log("CATEGORY OPTIONS:", categories);
-    });
-  }, []);
-
-  useEffect(() => {
-    getPhotos().then((data) => {
-      console.log("SANITY DATA:", data);
-      setPhotos(data);
     });
   }, []);
 
@@ -136,24 +124,22 @@ export default function Gallery() {
           {/* Offset header design */}
           <div className="relative mb-20">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={false}
+              animate={{ opacity: 1, x: 0 }}
               className="md:ml-12"
             >
               <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
                 Výběr z mé tvorby
               </p>
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+              <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
                 Portfolio
-              </h2>
+              </h3>
             </motion.div>
 
             {/* Decorative element */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-brown origin-left"
             />
@@ -161,7 +147,6 @@ export default function Gallery() {
             <motion.p
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 60 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="text-brown mt-8 max-w-lg md:ml-12"
             >
@@ -174,7 +159,6 @@ export default function Gallery() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="mb-16 md:ml-12"
           >
@@ -271,7 +255,6 @@ export default function Gallery() {
       <AnimatePresence>
         {isLightboxOpen && selectedIndex !== null && (
           <motion.div
-            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
@@ -282,7 +265,6 @@ export default function Gallery() {
             aria-label={`Prohlížeč obrázků: ${filteredPhotos[selectedIndex].title}`}
           >
             <motion.div
-              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}

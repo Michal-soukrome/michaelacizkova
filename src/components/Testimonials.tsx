@@ -84,23 +84,21 @@ export default function Testimonials() {
         {/* Artistic header with offset */}
         <div className="relative mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={false}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
             className="md:ml-8"
           >
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Říkají o mně
             </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               Reference
-            </h2>
+            </h3>
 
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="w-24 h-px bg-brown mt-6 origin-left"
             />
@@ -109,7 +107,6 @@ export default function Testimonials() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="text-text-light mt-8 max-w-lg md:ml-8"
           >
@@ -128,7 +125,6 @@ export default function Testimonials() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
                   className="glass rounded-2xl p-8 h-full flex flex-col backdrop-blur-md border border-brown/40 hover:border-brown/60 transition-all duration-300 group bg-cream/30"
                 >
                   {/* Quote Icon */}
@@ -219,7 +215,6 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
           className="mt-24 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4"
         >
           {[
@@ -229,7 +224,7 @@ export default function Testimonials() {
           ].map((stat, index) => (
             <div
               key={index}
-              className="text-center md:text-left"
+              className="text-center "
               //  style={{
               //    transform: `translateY(${index % 2 === 1 ? "1rem" : "0"})`,
               //  }}

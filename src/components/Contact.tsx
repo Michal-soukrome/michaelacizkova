@@ -33,7 +33,19 @@ export default function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
   const [selectedService, setSelectedService] = useState("");
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const formRef = useRef<HTMLFormElement>(null);
+
+  const isFormValid =
+    formValues.name.trim() !== "" &&
+    formValues.email.trim() !== "" &&
+    formValues.subject.trim() !== "" &&
+    formValues.message.trim() !== "";
 
   useEffect(() => {
     const handleServiceSelected = (event: Event) => {
@@ -73,6 +85,7 @@ export default function Contact() {
         setStatus("success");
         setStatusMessage(result.message);
         formRef.current?.reset();
+        setFormValues({ name: "", email: "", subject: "", message: "" });
       } else {
         setStatus("error");
         setStatusMessage(result.error);
@@ -90,20 +103,18 @@ export default function Contact() {
         <div className="relative mb-20">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             className="md:ml-auto md:mr-8 md:text-right max-w-xl"
           >
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Pojďme spolupracovat
             </p>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
               Kontakt
-            </h2>
+            </h3>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="w-24 h-px bg-brown mt-6 md:ml-auto origin-right"
             />
@@ -117,7 +128,6 @@ export default function Contact() {
             initial={{ opacity: 0, rotate: -12 }}
             whileInView={{ opacity: 1, rotate: 0 }}
             animate={{ y: [0, -10, 0], opacity: 1 }}
-            viewport={{ once: true }}
             className="absolute top-1/2 right-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 translate-x-1/2"
           />
         </div>
@@ -126,8 +136,7 @@ export default function Contact() {
           {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{
               opacity: { duration: 0.8, ease: "easeOut" },
               x: { duration: 0.8, ease: "easeOut" },
@@ -200,7 +209,6 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-7 lg:mt-12"
           >
@@ -228,7 +236,6 @@ export default function Contact() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
-                      viewport={{ once: true }}
                     >
                       <label
                         htmlFor="name"
@@ -246,6 +253,10 @@ export default function Contact() {
                         required
                         aria-required="true"
                         autoComplete="name"
+                        value={formValues.name}
+                        onChange={(e) =>
+                          setFormValues((v) => ({ ...v, name: e.target.value }))
+                        }
                         className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all placeholder:text-text-light text-foreground"
                         placeholder="Vaše jméno"
                       />
@@ -254,7 +265,6 @@ export default function Contact() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
-                      viewport={{ once: true }}
                     >
                       <label
                         htmlFor="email"
@@ -272,6 +282,13 @@ export default function Contact() {
                         required
                         aria-required="true"
                         autoComplete="email"
+                        value={formValues.email}
+                        onChange={(e) =>
+                          setFormValues((v) => ({
+                            ...v,
+                            email: e.target.value,
+                          }))
+                        }
                         className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all placeholder:text-text-light text-foreground"
                         placeholder="vas@email.cz"
                       />
@@ -282,7 +299,6 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    viewport={{ once: true }}
                   >
                     <label
                       htmlFor="service"
@@ -319,7 +335,6 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.55 }}
-                    viewport={{ once: true }}
                   >
                     <label
                       htmlFor="subject"
@@ -336,6 +351,13 @@ export default function Contact() {
                       name="subject"
                       required
                       aria-required="true"
+                      value={formValues.subject}
+                      onChange={(e) =>
+                        setFormValues((v) => ({
+                          ...v,
+                          subject: e.target.value,
+                        }))
+                      }
                       className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all placeholder:text-text-light text-foreground"
                       placeholder="O co se jedná?"
                     />
@@ -345,7 +367,6 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    viewport={{ once: true }}
                   >
                     <label
                       htmlFor="message"
@@ -362,6 +383,13 @@ export default function Contact() {
                       required
                       aria-required="true"
                       rows={5}
+                      value={formValues.message}
+                      onChange={(e) =>
+                        setFormValues((v) => ({
+                          ...v,
+                          message: e.target.value,
+                        }))
+                      }
                       className="w-full px-0 py-3 bg-transparent border-0 border-b border-brown/40 focus:outline-none focus:border-brown focus:ring-0 transition-all resize-none placeholder:text-text-light text-foreground"
                       placeholder="Řekněte mi o vašem projektu..."
                     />
@@ -371,11 +399,14 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 }}
-                    viewport={{ once: true }}
-                    whileTap={status === "loading" ? {} : { scale: 0.98 }}
+                    whileTap={
+                      status === "loading" || !isFormValid
+                        ? {}
+                        : { scale: 0.98 }
+                    }
                     type="submit"
-                    disabled={status === "loading"}
-                    className="mt-6 btn-base btn-primary disabled:animate-none animate-bounce"
+                    disabled={status === "loading" || !isFormValid}
+                    className="mt-6 btn-base btn-primary disabled:animate-none disabled:opacity-50 disabled:cursor-not-allowed animate-bounce"
                   >
                     {status === "loading" ? (
                       <>

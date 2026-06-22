@@ -87,11 +87,7 @@ export default function FAQ() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="relative mb-20 md:ml-12">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+          <motion.div initial={false} animate={{ opacity: 1, x: 0 }}>
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Moje cesta
             </p>
@@ -102,7 +98,6 @@ export default function FAQ() {
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="w-24 h-px bg-brown mt-6 origin-left"
             />
@@ -111,7 +106,6 @@ export default function FAQ() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="text-brown mt-8 max-w-lg"
           >

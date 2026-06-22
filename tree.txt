@@ -186,9 +186,8 @@
 |     └── tsconfig.json
 ├── tailwind.config.ts
 ├── tree.txt
-├── tsconfig.json
-└── vercel.json
+└── tsconfig.json
 
-directory: 4461 file: 38503
+directory: 4461 file: 38502
 
 ignored: directory (470)

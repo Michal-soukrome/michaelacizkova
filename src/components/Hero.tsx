@@ -77,7 +77,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative h-dvh flex items-center overflow-hidden"
+      className="relative min-h-dvh flex items-center overflow-hidden pt-40"
     >
       {/* Hero Content */}
       <motion.div
@@ -94,7 +94,7 @@ export default function Hero() {
         />
 
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={false}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
@@ -152,7 +152,7 @@ export default function Hero() {
           {/* Secondary CTA — white border/text instead of brown (brown was invisible) */}
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className="hidden sm:flex btn-base btn-secondary"
+            className="btn-base btn-secondary"
             onClick={() => {
               window.dispatchEvent(new Event("navigationStart"));
               document
@@ -175,7 +175,7 @@ export default function Hero() {
               key={index}
               onClick={() => scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`relative h-2  rounded-full transition-all duration-300 overflow-hidden ${
+              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
                 index === selectedIndex
                   ? "w-8"
                   : "w-2 bg-white/30 hover:bg-white/60"

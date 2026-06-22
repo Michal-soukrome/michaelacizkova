@@ -20,7 +20,6 @@ export default function Loading() {
           <Camera className="w-16 h-16 text-white" />
         </motion.div>
         <motion.p
-          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="mt-4 text-gray-400"
