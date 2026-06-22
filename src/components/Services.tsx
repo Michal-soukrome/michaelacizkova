@@ -469,7 +469,7 @@ export default function Services() {
                       );
                       setTimeout(() => {
                         document
-                          .getElementById("contact")
+                          .getElementById("contact-form")
                           ?.scrollIntoView({ behavior: "smooth" });
                       }, 300);
                     }}

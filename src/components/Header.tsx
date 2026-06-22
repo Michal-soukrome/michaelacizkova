@@ -187,10 +187,10 @@ export default function Header() {
       <AnimatePresence>
         {isOpen && (
           <motion.aside
-            className="fixed inset-y-0 left-0 w-full md:w-80 bg-[#faf8f6] z-40 border-r border-black/4 shadow-2xl flex flex-col"
-            initial={{ x: "-100%" }}
+            className="fixed inset-y-0 right-0 w-full md:w-2/6 bg-[#faf8f6] z-40 border-l border-black/4 shadow-2xl flex flex-col"
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
+            exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 280, damping: 32 }}
             onPointerDown={handleDragStart}
             onPointerUp={handleDragEnd}

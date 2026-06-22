@@ -222,8 +222,9 @@ export default function Contact() {
 
               <form
                 ref={formRef}
+                id="contact-form"
                 onSubmit={handleSubmit}
-                className="relative bg-cream/30 border-2 border-brown/40 p-8 md:p-12 rounded-xl"
+                className="relative bg-cream/30 border-2 border-brown/40 p-8 md:p-12 rounded-xl scroll-mt-20"
               >
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
