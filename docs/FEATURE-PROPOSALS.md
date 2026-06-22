@@ -2,7 +2,7 @@
 
 ## 1. Gallery: Load More Button & Lazy Image Loading
 
-**Location:** [src/components/Gallery.tsx](../src/components/Gallery.tsx#L207)
+**Location:** [src/components/portfolio.tsx](../src/components/portfolio.tsx#L207)
 
 **Current State:** All gallery images load at once
 

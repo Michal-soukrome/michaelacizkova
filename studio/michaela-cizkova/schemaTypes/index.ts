@@ -1,3 +1,4 @@
-import {photo} from './photo'
+import { photo } from './photo'
+import post from './post'
 
-export const schemaTypes = [photo]
+export const schemaTypes = [photo, post]

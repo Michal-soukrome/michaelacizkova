@@ -136,6 +136,10 @@
 |  |  ├── api
 |  |  |  └── contact
 |  |  |     └── route.ts
+|  |  ├── blog
+|  |  |  ├── [slug]
+|  |  |  |  └── page.tsx
+|  |  |  └── page.tsx
 |  |  ├── contact
 |  |  |  └── page.tsx
 |  |  ├── favicon.ico
@@ -147,9 +151,12 @@
 |  |  ├── not-found.tsx
 |  |  ├── page.tsx
 |  |  ├── robots.ts
-|  |  └── sitemap.ts
+|  |  ├── sitemap.ts
+|  |  └── sluzby
+|  |     └── page.tsx
 |  ├── components
 |  |  ├── About.tsx
+|  |  ├── Blog.tsx
 |  |  ├── Contact.tsx
 |  |  ├── FAQ.tsx
 |  |  ├── Footer.tsx
@@ -168,7 +175,9 @@
 |  |  ├── photos.ts
 |  |  └── sanity
 |  |     ├── client.ts
-|  |     └── photos.ts
+|  |     ├── photos.ts
+|  |     ├── postTypes.ts
+|  |     └── posts.ts
 |  └── scripts
 |     └── generatePhotos.ts
 ├── studio
@@ -181,13 +190,14 @@
 |     ├── sanity.config.ts
 |     ├── schemaTypes
 |     |  ├── index.ts
-|     |  └── photo.ts
+|     |  ├── photo.ts
+|     |  └── post.ts
 |     ├── static
 |     └── tsconfig.json
 ├── tailwind.config.ts
 ├── tree.txt
 └── tsconfig.json
 
-directory: 4461 file: 38502
+directory: 4473 file: 38556
 
-ignored: directory (470)
+ignored: directory (474)

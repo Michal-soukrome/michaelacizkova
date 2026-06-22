@@ -39,7 +39,7 @@
 - ✅ Robot meta tags
 - ✅ Structured metadata with template support
 
-### 4. Gallery Component Enhancements (`src/components/Gallery.tsx`)
+### 4. Gallery Component Enhancements (`src/components/portfolio.tsx`)
 
 - ✅ Category filtering system (All, Portraits, Landscapes, etc.)
 - ✅ Smooth filter animations with AnimatePresence
