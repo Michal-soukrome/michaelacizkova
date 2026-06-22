@@ -18,11 +18,17 @@ import {
 const navItems = [
   { label: "Domů", href: "/", icon: House, number: "01" },
   { label: "Služby", href: "/sluzby", icon: Sparkles, number: "02" },
+  { label: "Blog", href: "/blog", icon: Star, number: "03" },
   { label: "Portfolio", href: "/portfolio", icon: Images, number: "04" },
-  { label: "O mně", href: "/about", icon: User, number: "05" },
+  { label: "O mně", href: "/o-mne", icon: User, number: "05" },
   { label: "Časté dotazy", href: "/faq", icon: Star, number: "06" },
-  { label: "Kontakt", href: "/contact", icon: Phone, number: "07" },
-  { label: "Blog", href: "/blog", icon: Star, number: "08" },
+  { label: "Kontakt", href: "/kontakt", icon: Phone, number: "07" },
+];
+
+const socialLinks = [
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Mail, href: "mailto:foto.michaelacizkova@seznam.cz", label: "Email" },
 ];
 
 export default function Header() {
@@ -46,6 +52,22 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Disable background scroll when sidebar is open
+  useEffect(() => {
+    const body = document.body;
+    const originalOverflow = body.style.overflow;
+
+    if (isOpen) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = originalOverflow;
+    }
+
+    return () => {
+      body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
 
   // Swipe to close sidebar
   const dragStartXRef = useRef<number | null>(null);
@@ -183,6 +205,30 @@ export default function Header() {
                 })}
               </ul>
             </nav>
+            <div className="pt-10 p-7 border-t border-black/6">
+              <div className="flex items-center gap-2">
+                {socialLinks.map((s, i) => {
+                  const Icon = s.icon;
+                  return (
+                    <motion.a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 0.4 + i * 0.06,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
           </motion.aside>
         )}
       </AnimatePresence>

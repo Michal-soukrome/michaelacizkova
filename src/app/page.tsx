@@ -1,10 +1,11 @@
 import Hero from "../components/Hero";
 import Gallery from "../components/Gallery";
 import About from "../components/About";
-import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
 import FAQ from "@/components/FAQ";
+import HomeServices from "@/components/HomeServices";
+import HomeAbout from "@/components/HomeAbout";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <Hero />
       </section>
       <section id="services">
-        <Services />
+        <HomeServices />
       </section>
       <section id="testimonials">
         <Testimonials />
@@ -22,7 +23,7 @@ export default function Home() {
         <Gallery />
       </section>
       <section id="about">
-        <About />
+        <HomeAbout />
       </section>
       <section id="faq">
         <FAQ />
