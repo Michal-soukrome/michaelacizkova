@@ -16,6 +16,7 @@ export type PhotoCategory =
 export type PhotoCategoryString = `${PhotoCategory}`;
 
 export interface Photo {
+  id: string;
   _id: string;
   src: string;
   alt: string;
