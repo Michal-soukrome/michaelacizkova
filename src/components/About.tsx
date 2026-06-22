@@ -51,7 +51,7 @@ export default function About() {
             transition={{ delay: 0.2 }}
             className="text-brown mt-8 max-w-lg md:ml-12"
           >
-            Zjistěte více o mé fotografické cestě a přístupu k focení
+            Zjistěte více o mé fotografické cestě a přístupu k focení.
           </motion.p>
         </div>
 
