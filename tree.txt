@@ -1,4 +1,4 @@
-C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
+/Users/michaljirak/GitHub repos/michaelacizkova
 ├── docs
 |  ├── ENHANCEMENTS.md
 |  ├── FEATURE-PROPOSALS.md
@@ -29,16 +29,16 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  ├── photos
 |  |  ├── atelierove
 |  |  |  ├── Atelierove foceni. Cesky raj.jpg
-|  |  |  ├── Atelierove foceni.brandove.foceni.1.jpg
-|  |  |  ├── Atelierove foceni.brandove.foceni.jpg
 |  |  |  ├── Atelierove foceni.Cesky raj.jpg
 |  |  |  ├── Atelierove foceni.Narozeninove foceni 2.jpg
 |  |  |  ├── Atelierove foceni.Narozeninove foceni.jpg
+|  |  |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
+|  |  |  ├── Atelierove foceni.brandove.foceni.1.jpg
+|  |  |  ├── Atelierove foceni.brandove.foceni.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.2.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.3.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.4.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.jpg
-|  |  |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
 |  |  |  ├── Atelierove foceni.tehotenske.foceni 1.jpg
 |  |  |  └── Atelierove foceni.tehotenske.foceni.jpg
 |  |  ├── boudoir
@@ -85,10 +85,10 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  |  ├── Portretni foceni ve meste.Liberec.2.jpg
 |  |  |  ├── Portretni foceni ve meste.Liberec.jpg
 |  |  |  ├── Portretni foceni. Branzez.jpg
-|  |  |  ├── Portretni foceni.atelier.1.jpg
 |  |  |  ├── Portretni foceni.Liberec.jpg
 |  |  |  ├── Portretni foceni.Pod Zebinem.Ceky raj.jpg.jpg
-|  |  |  └── Portretni foceni.Trosky.Turnov.jpg.jpg
+|  |  |  ├── Portretni foceni.Trosky.Turnov.jpg.jpg
+|  |  |  └── Portretni foceni.atelier.1.jpg
 |  |  ├── reportazni
 |  |  |  ├── Reportazni foceni.U vas doma. Mladejov v Cechach.jpg
 |  |  |  ├── Reportazni fotografie.2.jpg
@@ -162,28 +162,33 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  └── Testimonials.tsx
 |  ├── lib
 |  |  ├── performance.ts
+|  |  ├── photoTypes.ts
+|  |  ├── photoUtils.ts
 |  |  ├── photos.generated.json
 |  |  ├── photos.ts
-|  |  ├── photoTypes.ts
-|  |  └── photoUtils.ts
+|  |  └── sanity
+|  |     ├── client.ts
+|  |     └── photos.ts
 |  └── scripts
 |     └── generatePhotos.ts
 ├── studio
 |  └── michaela-cizkova
+|     ├── README.md
 |     ├── eslint.config.mjs
 |     ├── package-lock.json
 |     ├── package.json
-|     ├── README.md
 |     ├── sanity.cli.ts
 |     ├── sanity.config.ts
 |     ├── schemaTypes
-|     |  └── index.ts
+|     |  ├── index.ts
+|     |  └── photo.ts
 |     ├── static
 |     └── tsconfig.json
 ├── tailwind.config.ts
 ├── tree.txt
-└── tsconfig.json
+├── tsconfig.json
+└── vercel.json
 
-directory: 4304 file: 37705
+directory: 4461 file: 38503
 
-ignored: directory (462)
+ignored: directory (470)
