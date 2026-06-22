@@ -56,7 +56,7 @@ async function generate() {
       const alt = `${title} – ${toTitle(category)}`;
 
       output.push({
-        id,
+        _id: id,
         src: `/photos/${category}/${file}`,
         alt,
         title,
