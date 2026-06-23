@@ -7,7 +7,11 @@ import {
   PortableTextTypeComponentProps,
 } from "@portabletext/react";
 import { urlFor } from "@/lib/sanity/image";
-import { Post } from "@/lib/sanity/postTypes";
+import {
+  MiniGalleryBlock,
+  Post,
+  SanityImageBlock,
+} from "@/lib/sanity/postTypes";
 import Link from "next/link";
 import Lightbox from "@/components/Lightbox";
 
