@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star, User } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import OptimizedImage from "./OptimizedImage";
+import { AnimatedCounter } from "./AnimatedCounter";
 
 const testimonials = [
   {
@@ -255,19 +256,13 @@ export default function Testimonials() {
           className="mt-24 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4"
         >
           {[
-            { value: "50+", label: "Spokojených klientů" },
-            { value: "100+", label: "Dokončených projektů" },
-            { value: "5+", label: "Let zkušeností" },
+            { value: 50, label: "Spokojených klientů" },
+            { value: 100, label: "Dokončených projektů" },
+            { value: 5, label: "Let zkušeností" },
           ].map((stat, index) => (
-            <div
-              key={index}
-              className="text-center "
-              //  style={{
-              //    transform: `translateY(${index % 2 === 1 ? "1rem" : "0"})`,
-              //  }}
-            >
+            <div key={index} className="text-center">
               <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
-                {stat.value}
+                <AnimatedCounter from={10} to={stat.value} duration={5} />+
               </div>
               <div className="text-text-light text-sm uppercase tracking-wider">
                 {stat.label}
