@@ -280,3 +280,9 @@ video {
     @apply bg-white/10 backdrop-blur-sm  hover:bg-white/20;
   }
 }
+
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+}

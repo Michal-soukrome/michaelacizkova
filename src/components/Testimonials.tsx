@@ -253,7 +253,7 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-24 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-4"
+          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4"
         >
           {[
             { value: 50, label: "Spokojených klientů" },

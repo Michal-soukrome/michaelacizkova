@@ -43,7 +43,7 @@ const services = [
     description:
       "Zachycuji váš den přirozeně, s důrazem na emoce, detaily a autentické momenty, ke kterým se budete rádi vracet. Jsem tichý pozorovatel, který nenápadně zachytí skutečné chvíle. Nevěstě jsem po celý den k dispozici — pomůžu, poradím, podržím, když je potřeba. Chci, abyste si svůj den užili v klidu a bez stresu.",
     icon: Heart,
-    image: "/assets/1.jpg",
+    image: "/assets/7.jpg",
     // Optional: 1–3 extra photos shown as a strip between description and pricing.
     // Remove or leave as [] to show nothing.
     images: ["/assets/2.jpg", "/assets/3.jpg"],
@@ -61,7 +61,7 @@ const services = [
     ],
   },
   {
-    title: "Rodinné / Párové / Těhotenské focení",
+    title: "Rodinné / párové focení",
     description:
       "Láska, harmonie, radost a vzájemné pouto. Ať už na focení přijdete s partnerem nebo rovnou s celou rodinkou, tyto krásné emoce budou zářit na každém snímku.",
     icon: Users,
@@ -110,11 +110,11 @@ const services = [
     ],
   },
   {
-    title: "Rodinná reportáž",
+    title: "Těhotenské focení",
     description:
       "Skutečné chvíle tak, jak se odehrávají. Ideální pro narozeninové oslavy, křtiny, společná setkání, výlety i obyčejné momenty doma, které tvoří váš každodenní život. Focení probíhá přirozenou reportážní formou — zachycuji dění nenápadně a bez výrazného zasahování. Součástí focení je krátká konzultace předem, kde probereme místo, čas, průběh i vše, co vám pomůže cítit se při focení přirozeně.",
     icon: Clapperboard,
-    image: "/assets/3.jpg",
+    image: "/assets/5.jpg",
     images: ["/assets/1.jpg", "/assets/3.jpg"],
     price: "8 000 Kč",
     duration: "2–3 hodiny dle potřeby",
@@ -131,7 +131,7 @@ const services = [
     description:
       "Komorní a útulný ateliér se nachází u nás v Mladějově v Čechách a je ideální pro portrétní, těhotenské i tematické focení. Využít můžeme přirozené světlo, ateliérové doplňky nebo stylové křeslo pro jemnou a autentickou atmosféru. Focení probíhá jemně vedenou formou, aby výsledné fotografie působily přirozeně a nadčasově.",
     icon: Home,
-    image: "/assets/4.jpg",
+    image: "/photos/atelierove/Atelierove-foceni-Cesky-raj.jpg",
     // No extra images — omit the field or leave as [] to show nothing
     images: [],
     price: "3 200 Kč",
@@ -519,7 +519,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="text-center pt-8 border-t border-brown/20">
+          <div className="hidden text-center pt-8 border-t border-brown/20">
             <p className="text-text-light mb-6">{booking.cta.text}</p>
             <motion.a
               href="#contact"

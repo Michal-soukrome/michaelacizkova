@@ -22,7 +22,7 @@ const services = [
     description:
       "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
     image: {
-      src: "/assets/1.jpg",
+      src: "/assets/2.jpg",
       alt: "Rodinné focení",
       width: 1200,
       height: 1600,
@@ -55,7 +55,7 @@ const services = [
     description:
       "Komorní prostředí, nadčasové portréty a prostor pro fotografie s jedinečnou atmosférou.",
     image: {
-      src: "/assets/photos/atelierove/Atelierove-foceni-Cesky-raj.jpg",
+      src: "/photos/atelierove/Atelierove-foceni-Cesky-raj.jpg",
       alt: "Ateliérové focení",
       width: 1200,
       height: 1600,
