@@ -2,7 +2,7 @@ import {defineType, defineField} from 'sanity'
 
 export const photo = defineType({
   name: 'photo',
-  title: 'Fotka',
+  title: 'Fotografie',
   type: 'document',
   fields: [
     defineField({
@@ -46,6 +46,7 @@ export const photo = defineType({
           {title: 'Reportážní', value: 'reportage'},
           {title: 'Romantické', value: 'romantic'},
           {title: 'Svatební', value: 'wedding'},
+          {title: 'Homepage', value: 'homepage'},
         ],
       },
       validation: (rule) => rule.required(),

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "umělecká fotografie",
     "profesionální fotografka",
     "Michaela Čížková",
-    "Praha",
+    "Sobotka",
     "Česká republika",
   ],
   authors: [{ name: "Michaela Čížková" }],
@@ -100,7 +100,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="cs" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         {/* Google Tag Manager */}
         <script

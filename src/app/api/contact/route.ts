@@ -7,9 +7,8 @@ const SENDER_FROM = process.env.CONTACT_SENDER_FROM!;
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, subject, message } = await req.json();
-
-    if (!name || !email || !subject || !message) {
+    const { name, email, subject, message, service } = await req.json();
+    if (!name || !email || !subject || !message || !service) {
       return NextResponse.json(
         { error: "Vyplňte prosím všechna povinná pole." },
         { status: 400 },
@@ -34,6 +33,10 @@ export async function POST(req: NextRequest) {
             <tr>
               <td style="padding: 8px 0; color: #888; width: 100px;">Jméno</td>
               <td style="padding: 8px 0; font-weight: 600;">${name}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #888; width: 100px;">Služba</td>
+              <td style="padding: 8px 0; font-weight: 600;">${service || "—"}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #888;">Email</td>
@@ -67,7 +70,7 @@ export async function POST(req: NextRequest) {
           <h3 style="color: #7c5c3e;">Ahoj ${name},</h3>
           <p style="line-height: 1.7;">
             děkuji za tvoji zprávu! Dostala jsem ji a ozvu se ti co nejdříve,
-            obvykle do 1–2 pracovních dní.
+            obvykle do 1-2 pracovních dní.
           </p>
           <p style="line-height: 1.7;">Těším se na spolupráci 🤍</p>
           <p style="line-height: 1.7; margin-top: 32px;">

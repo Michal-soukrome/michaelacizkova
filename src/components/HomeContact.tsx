@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
-export default function Contact() {
+export default function HomeContact() {
   return (
     <section className="py-16 bg-background overflow-hidden" id="contact">
       <div className="container mx-auto px-4">
@@ -12,19 +12,19 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            className="md:mr-auto md:ml-8 md:text-left max-w-xl"
+            className="md:ml-auto md:mr-8 md:text-right max-w-xl"
           >
-            <p className="text-start text-sm tracking-[0.3em] text-brown uppercase mb-4">
+            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Pojďme spolupracovat
             </p>
-            <h3 className="text-start text-5xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl font-bold tracking-tight text-foreground">
               Kontakt
             </h3>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-brown mt-6 md:mr-auto origin-left"
+              className="w-24 h-px bg-brown mt-6 md:ml-auto origin-right"
             />
             <p className="text-text-light mt-8">
               Připraveni zachytit váš příběh? Pojďme si promluvit o vašem
@@ -35,7 +35,7 @@ export default function Contact() {
             initial={{ opacity: 0, rotate: -12 }}
             whileInView={{ opacity: 1, rotate: 0 }}
             animate={{ y: [0, -10, 0], opacity: 1 }}
-            className="absolute top-1/2 left-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 -translate-x-1/2"
+            className="absolute top-1/2 right-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 translate-x-1/2"
           />
         </div>
 
@@ -74,7 +74,7 @@ export default function Contact() {
                       </h4>
                       <a
                         href="mailto:foto.michaelacizkova@seznam.cz"
-                        className="text-text-light hover:text-text-dark underline break-all"
+                        className="text-text-light underline break-all"
                       >
                         foto.michaelacizkova@seznam.cz
                       </a>
@@ -90,7 +90,7 @@ export default function Contact() {
                       </h4>
                       <a
                         href="tel:+420604410116"
-                        className="text-text-light hover:text-text-dark underline"
+                        className="text-text-light underline"
                       >
                         +420 604 410 116
                       </a>

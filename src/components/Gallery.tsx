@@ -8,6 +8,7 @@ import { getAvailableCategories } from "@/lib/photoUtils";
 import { getPhotos } from "@/lib/sanity/photos";
 import { categoryLabels } from "@/lib/photoUtils";
 import { Photo, PhotoCategory } from "@/lib/photoTypes";
+import Lightbox from "./Lightbox";
 
 const getSizeClasses = (size: string) => {
   switch (size) {
@@ -131,7 +132,7 @@ export default function Gallery() {
               <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
                 Výběr z mé tvorby
               </p>
-              <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+              <h3 className="text-5xl font-bold tracking-tight text-foreground">
                 Portfolio
               </h3>
             </motion.div>
@@ -175,7 +176,7 @@ export default function Gallery() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                     className={`btn-base ${
-                      isActive ? "btn-primary" : "btn-outline"
+                      isActive ? "btn-primary" : "btn-secondary"
                     }`}
                   >
                     {option.label}
@@ -202,9 +203,9 @@ export default function Gallery() {
                   <OptimizedImage
                     photo={photo}
                     fill
+                    priority={index < 3}
                     className="transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
                   />
-
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-linear-to-t from-brown/80 via-brown/0 to-brown/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <div>
@@ -252,76 +253,13 @@ export default function Gallery() {
       </div>
 
       {/* Enhanced Lightbox */}
-      <AnimatePresence>
-        {isLightboxOpen && selectedIndex !== null && (
-          <motion.div
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black z-50 flex items-center justify-center"
-            onClick={closeLightbox}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Prohlížeč obrázků: ${filteredPhotos[selectedIndex].title}`}
-          >
-            <motion.div
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full h-dvh"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <OptimizedImage
-                photo={filteredPhotos[selectedIndex]}
-                fill
-                objectFit="contain"
-                priority
-                quality={95}
-              />
-
-              {/* Close Button */}
-              <button
-                onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-3 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
-                aria-label="Zavřít prohlížeč"
-              >
-                <X className="w-6 h-6" aria-hidden="true" />
-              </button>
-
-              {/* Navigation Arrows */}
-              {filteredPhotos.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
-                    aria-label="Předchozí obrázek"
-                  >
-                    <ChevronLeft className="w-6 h-6" aria-hidden="true" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/50 rounded-full p-4 hover:bg-black/75 transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white z-10"
-                    aria-label="Další obrázek"
-                  >
-                    <ChevronRight className="w-6 h-6" aria-hidden="true" />
-                  </button>
-                </>
-              )}
-
-              {/* Image Info */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-center bg-black/50 backdrop-blur-sm rounded-full px-6 py-3 z-10">
-                <h3 className="text-lg font-semibold mb-1">
-                  {filteredPhotos[selectedIndex].title}
-                </h3>
-                <p className="text-sm text-gray-300">
-                  {categoryLabels[filteredPhotos[selectedIndex].category]} •{" "}
-                  {selectedIndex + 1} / {filteredPhotos.length}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Lightbox
+        photos={filteredPhotos}
+        selectedIndex={selectedIndex}
+        onClose={closeLightbox}
+        onNext={nextImage}
+        onPrev={prevImage}
+      />
     </>
   );
 }

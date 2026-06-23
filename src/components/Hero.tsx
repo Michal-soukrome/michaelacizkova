@@ -201,10 +201,10 @@ export default function Hero() {
       {/* Hero Image Carousel with Overlay */}
       <div className="absolute inset-0">
         {/* Stronger dark overlay for readability — was 50%, now 55% */}
-        <div className="absolute inset-0 bg-black/40 z-[5]" />
+        <div className="absolute inset-0 bg-black/40 z-5" />
 
         {/* Gradient: left-side darkening so text on left always has contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/15 to-transparent z-[6]" />
+        <div className="absolute inset-0 bg-linear-to-r from-black via-black/15 to-transparent z-6" />
 
         <div className="embla h-full" ref={emblaRef}>
           <div className="embla__container h-full">
@@ -218,7 +218,7 @@ export default function Hero() {
                   fill
                   className="object-center"
                   objectFit="cover"
-                  priority={index === 0}
+                  priority={true}
                   quality={90}
                   sizes="100vw"
                 />

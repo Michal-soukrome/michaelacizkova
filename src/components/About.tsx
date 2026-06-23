@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ContactForm from "./ContactForm";
+import Contact from "./Contact";
 
 const bioParagraphs = [
   "Fotografii jsem obdivovala už od dětství. Svou první zrcadlovku jsem dostala před několika lety od rodičů, ale skutečný zlom přišel v roce 2022, kdy se mi narodil syn. Tehdy jsem si řekla, že se focení chci opravdu naučit abych zachytila naše krásné rodinné momenty — a úplně mě to pohltilo.",
@@ -30,7 +32,7 @@ export default function About() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Moje cesta
             </p>
-            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl font-bold tracking-tight text-foreground">
               O mně
             </h3>
             {/* Decorative line */}
@@ -90,6 +92,10 @@ export default function About() {
           transition={{ duration: 1 }}
           className="absolute top-20 left-0 w-64 h-64 border border-brown/30 rounded-full -translate-x-1/4"
         />
+
+        <div className="mt-20">
+          <Contact />
+        </div>
       </div>
     </section>
   );

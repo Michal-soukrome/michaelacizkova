@@ -2,57 +2,61 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import Section from "./Section";
 
 export default function AboutHomepage() {
   return (
-    <section className="py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-16">
-        {/* FOTO */}
+    <Section id="about">
+      <hr className="border-brown/30" />
+      <div className="container mx-auto px-4 -mt-3 flex flex-col items-center justify-center  gap-10 md:gap-16">
+        {/* TEXT – kompaktní */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full md:w-5/12 rounded-xl overflow-hidden shadow-xl"
-        >
-          <img
-            src="/assets/portret.jpg"
-            alt="Michaela Čížková — portrét"
-            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
-          />
-        </motion.div>
-
-        {/* TEXT */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full md:w-7/12 space-y-6"
+          transition={{ duration: 0.6 }}
+          className="flex-1 space-y-4 text-center"
         >
-          <p className="text-sm tracking-[0.3em] text-brown uppercase">
+          <p className="text-sm tracking-[0.3em] text-brown uppercase bg-background w-fit mx-auto px-4">
             Moje cesta
           </p>
 
-          <h3 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+          <h3 className="text-5xl font-bold tracking-tight text-foreground">
             O mně
           </h3>
 
-          <p className="text-lg text-text-light leading-relaxed max-w-xl">
-            Jsem fotografka z Českého ráje, máma a milovnice přirozených
-            momentů. Fotím jemně, autenticky a s důrazem na emoce — tak, aby
-            vaše vzpomínky zůstaly živé i po letech.
+          {/* FOTO – malé kolečko */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="shrink-0 my-10"
+          >
+            <div className="w-40 h-40 rounded-full overflow-hidden shadow-lg mx-auto ">
+              <Image
+                src="/assets/portret.jpg"
+                alt="Michaela Čížková — portrét"
+                width={400}
+                height={400}
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+          </motion.div>
+
+          <p className="text-base text-text-light leading-relaxed max-w-lg">
+            Jsem fotografka, máma a milovnice přirozených momentů. Fotím jemně,
+            autenticky a s důrazem na emoce — tak, aby vaše vzpomínky zůstaly
+            živé i po letech.
           </p>
 
-          <p className="text-lg text-text-light leading-relaxed max-w-xl">
-            Miluju přírodu, světlo a obyčejné chvíle, které mají největší
-            hodnotu. Při focení vás povedu, ale nechám prostor pro přirozenost a
-            skutečné emoce.
-          </p>
-
-          <Link href="/o-mne" className="btn-base btn-primary w-fit">
+          <Link
+            href="/o-mne"
+            className="mt-8 btn-base btn-primary mx-auto w-fit"
+          >
             Více o mně
           </Link>
         </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }

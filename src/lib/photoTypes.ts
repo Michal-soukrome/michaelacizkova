@@ -11,7 +11,8 @@ export type PhotoCategory =
   | "boudoir"
   | "reportage"
   | "romantic"
-  | "wedding";
+  | "wedding"
+  | "homepage";
 
 export type PhotoCategoryString = `${PhotoCategory}`;
 

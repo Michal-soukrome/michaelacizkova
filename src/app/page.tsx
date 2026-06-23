@@ -1,13 +1,24 @@
-import Hero from "../components/Hero";
 import Gallery from "../components/Gallery";
 import About from "../components/About";
+import FAQ from "@/components/FAQ";
+import HomeBlog from "@/components/HomeBlog";
+
+import Hero from "../components/Hero";
 import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
-import FAQ from "@/components/FAQ";
+
 import HomeServices from "@/components/HomeServices";
 import HomeAbout from "@/components/HomeAbout";
+import HomeGallery from "@/components/HomeGallery";
 
-export default function Home() {
+import { getPosts } from "@/lib/sanity/posts";
+import { getHomepagePhotos } from "@/lib/sanity/photos";
+import HomeContact from "@/components/HomeContact";
+
+export default async function Home() {
+  const posts = await getPosts();
+  const photos = await getHomepagePhotos();
+
   return (
     <div>
       <section id="home">
@@ -16,20 +27,22 @@ export default function Home() {
       <section id="services">
         <HomeServices />
       </section>
-      <section id="testimonials">
-        <Testimonials />
-      </section>
       <section id="gallery">
-        <Gallery />
+        <HomeGallery photos={photos} />
       </section>
       <section id="about">
         <HomeAbout />
       </section>
-      <section id="faq">
-        <FAQ />
+      {/* 
+      <section id="blog">
+        <HomeBlog posts={posts} />
+      </section>
+      */}
+      <section id="testimonials">
+        <Testimonials />
       </section>
       <section id="contact">
-        <Contact />
+        <HomeContact />
       </section>
     </div>
   );

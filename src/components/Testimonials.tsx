@@ -3,7 +3,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
-import { Quote, Star, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star, User } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import OptimizedImage from "./OptimizedImage";
 
@@ -63,6 +63,20 @@ export default function Testimonials() {
     [emblaApi],
   );
 
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollPrev();
+      emblaApi.plugins()?.autoplay?.reset();
+    }
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollNext();
+      emblaApi.plugins()?.autoplay?.reset();
+    }
+  }, [emblaApi]);
+
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -92,7 +106,7 @@ export default function Testimonials() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Říkají o mně
             </p>
-            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl font-bold tracking-tight text-foreground">
               Reference
             </h3>
 
@@ -179,35 +193,58 @@ export default function Testimonials() {
         </div>
 
         {/* Pagination Dots with Progress Indicator */}
-        <div className="flex justify-center gap-3 mt-12">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollTo(index)}
-              aria-label={`Go to testimonial ${index + 1}`}
-              className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
-                index === selectedIndex
-                  ? "w-8"
-                  : "w-2 bg-brown/40 hover:bg-brown/70"
-              }`}
-            >
-              {/* Background bar */}
-              <div
-                className={`absolute inset-0 rounded-full ${index === selectedIndex ? "bg-brown/20" : ""}`}
-              />
-
-              {/* Progress fill - animates for active dot */}
-              {index === selectedIndex && (
-                <motion.div
-                  key={selectedIndex}
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 6, ease: "linear" }}
-                  className="absolute inset-y-0 left-0 bg-brown rounded-full"
+        <div className="mt-12 flex items-center justify-between w-full">
+          <div className="relative flex justify-center gap-3">
+            {/* Dots */}
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+                className={`relative h-2 rounded-full transition-all duration-300 overflow-hidden ${
+                  index === selectedIndex
+                    ? "w-8"
+                    : "w-2 bg-brown/40 hover:bg-brown/70"
+                }`}
+              >
+                {/* Background bar */}
+                <div
+                  className={`absolute inset-0 rounded-full ${
+                    index === selectedIndex ? "bg-brown/20" : ""
+                  }`}
                 />
-              )}
+
+                {/* Progress fill */}
+                {index === selectedIndex && (
+                  <motion.div
+                    key={selectedIndex}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 6, ease: "linear" }}
+                    className="absolute inset-y-0 left-0 bg-brown rounded-full"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+          <div className="relative flex gap-5">
+            {/* Navigation Arrows */}
+            <button
+              className="flex bg-foreground text-white p-2 rounded-full transition-all duration-300 hover:opacity-75 cursor-pointer"
+              onClick={scrollPrev}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
             </button>
-          ))}
+
+            <button
+              className="flex z-20 bg-foreground text-white p-2 rounded-full transition-all duration-300 hover:opacity-75 cursor-pointer"
+              onClick={scrollNext}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Trust Indicators - Artistic offset layout */}

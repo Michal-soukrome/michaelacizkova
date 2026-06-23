@@ -176,7 +176,7 @@ function ImagePanel({
 }) {
   return (
     <div
-      className="w-full md:w-5/12 sm:min-h-[360px] bg-cream/60 overflow-hidden flex-shrink-0 group "
+      className="w-full md:w-5/12 sm:min-h-90 bg-cream/60 overflow-hidden shrink-0 group "
       onClick={onClick}
     >
       <img
@@ -232,7 +232,7 @@ function FeatureList({ features }: { features: string[] }) {
     <ul className="space-y-2 mt-4">
       {features.map((feature, i) => (
         <li key={i} className="flex items-start text-sm text-text-light">
-          <span className="w-1.5 h-1.5 bg-brown rounded-full flex-shrink-0 mt-1.5 mr-3" />
+          <span className="w-1.5 h-1.5 bg-brown rounded-full shrink-0 mt-1.5 mr-3" />
           {feature}
         </li>
       ))}
@@ -297,7 +297,7 @@ function PackageCard({
       <ul className="space-y-1">
         {pkg.features.map((feature, i) => (
           <li key={i} className="flex items-start text-xs text-text-light">
-            <span className="w-1 h-1 bg-brown rounded-full flex-shrink-0 mt-1.5 mr-2" />
+            <span className="w-1 h-1 bg-brown rounded-full shrink-0 mt-1.5 mr-2" />
             {feature}
           </li>
         ))}
@@ -368,7 +368,7 @@ export default function Services() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               {header.eyebrow}
             </p>
-            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl font-bold tracking-tight text-foreground">
               {header.heading}
             </h3>
             <motion.div
@@ -428,8 +428,9 @@ export default function Services() {
                     {service.description}
                   </p>
 
-                  {/* Extra photo strip — sits between description and pricing/packages */}
+                  {/* Extra photo strip — sits between description and pricing/packages 
                   <ImageStrip images={extraImages} alt={service.title} />
+                  */}
 
                   {/* Packages variant */}
                   {"packages" in service && service.packages ? (

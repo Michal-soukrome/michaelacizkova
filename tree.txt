@@ -1,4 +1,4 @@
-/Users/michaljirak/GitHub repos/michaelacizkova
+C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 ├── docs
 |  ├── ENHANCEMENTS.md
 |  ├── FEATURE-PROPOSALS.md
@@ -29,16 +29,16 @@
 |  ├── photos
 |  |  ├── atelierove
 |  |  |  ├── Atelierove foceni. Cesky raj.jpg
+|  |  |  ├── Atelierove foceni.brandove.foceni.1.jpg
+|  |  |  ├── Atelierove foceni.brandove.foceni.jpg
 |  |  |  ├── Atelierove foceni.Cesky raj.jpg
 |  |  |  ├── Atelierove foceni.Narozeninove foceni 2.jpg
 |  |  |  ├── Atelierove foceni.Narozeninove foceni.jpg
-|  |  |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
-|  |  |  ├── Atelierove foceni.brandove.foceni.1.jpg
-|  |  |  ├── Atelierove foceni.brandove.foceni.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.2.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.3.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.4.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.jpg
+|  |  |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
 |  |  |  ├── Atelierove foceni.tehotenske.foceni 1.jpg
 |  |  |  └── Atelierove foceni.tehotenske.foceni.jpg
 |  |  ├── boudoir
@@ -85,10 +85,10 @@
 |  |  |  ├── Portretni foceni ve meste.Liberec.2.jpg
 |  |  |  ├── Portretni foceni ve meste.Liberec.jpg
 |  |  |  ├── Portretni foceni. Branzez.jpg
+|  |  |  ├── Portretni foceni.atelier.1.jpg
 |  |  |  ├── Portretni foceni.Liberec.jpg
 |  |  |  ├── Portretni foceni.Pod Zebinem.Ceky raj.jpg.jpg
-|  |  |  ├── Portretni foceni.Trosky.Turnov.jpg.jpg
-|  |  |  └── Portretni foceni.atelier.1.jpg
+|  |  |  └── Portretni foceni.Trosky.Turnov.jpg.jpg
 |  |  ├── reportazni
 |  |  |  ├── Reportazni foceni.U vas doma. Mladejov v Cechach.jpg
 |  |  |  ├── Reportazni fotografie.2.jpg
@@ -131,65 +131,79 @@
 |  └── sw.js
 ├── src
 |  ├── app
-|  |  ├── about
-|  |  |  └── page.tsx
 |  |  ├── api
 |  |  |  └── contact
 |  |  |     └── route.ts
 |  |  ├── blog
-|  |  |  ├── [slug]
-|  |  |  |  └── page.tsx
-|  |  |  └── page.tsx
-|  |  ├── contact
+|  |  |  ├── page.tsx
+|  |  |  └── [slug]
+|  |  |     └── page.tsx
+|  |  ├── faq
 |  |  |  └── page.tsx
 |  |  ├── favicon.ico
-|  |  ├── gallery
-|  |  |  └── page.tsx
 |  |  ├── globals.css
+|  |  ├── kontakt
+|  |  |  └── page.tsx
 |  |  ├── layout.tsx
 |  |  ├── loading.tsx
 |  |  ├── not-found.tsx
+|  |  ├── o-mne
+|  |  |  └── page.tsx
 |  |  ├── page.tsx
+|  |  ├── portfolio
+|  |  |  └── page.tsx
 |  |  ├── robots.ts
 |  |  ├── sitemap.ts
 |  |  └── sluzby
 |  |     └── page.tsx
 |  ├── components
 |  |  ├── About.tsx
-|  |  ├── Blog.tsx
+|  |  ├── BlogCard.tsx
+|  |  ├── BlogDetail.tsx
+|  |  ├── BlogList.tsx
 |  |  ├── Contact.tsx
+|  |  ├── ContactForm.tsx
 |  |  ├── FAQ.tsx
 |  |  ├── Footer.tsx
 |  |  ├── Gallery.tsx
 |  |  ├── Header.tsx
 |  |  ├── Hero.tsx
+|  |  ├── HomeAbout.tsx
+|  |  ├── HomeBlog.tsx
+|  |  ├── HomeContact.tsx
+|  |  ├── HomeGallery.tsx
+|  |  ├── HomeServices.tsx
+|  |  ├── Lightbox.tsx
 |  |  ├── OptimizedImage.tsx
+|  |  ├── ScrollToTop.tsx
 |  |  ├── Section.tsx
 |  |  ├── Services.tsx
 |  |  └── Testimonials.tsx
 |  ├── lib
 |  |  ├── performance.ts
-|  |  ├── photoTypes.ts
-|  |  ├── photoUtils.ts
 |  |  ├── photos.generated.json
 |  |  ├── photos.ts
+|  |  ├── photoTypes.ts
+|  |  ├── photoUtils.ts
 |  |  └── sanity
 |  |     ├── client.ts
+|  |     ├── image.ts
 |  |     ├── photos.ts
-|  |     ├── postTypes.ts
-|  |     └── posts.ts
+|  |     ├── posts.ts
+|  |     └── postTypes.ts
 |  └── scripts
 |     └── generatePhotos.ts
 ├── studio
 |  └── michaela-cizkova
-|     ├── README.md
 |     ├── eslint.config.mjs
 |     ├── package-lock.json
 |     ├── package.json
+|     ├── README.md
 |     ├── sanity.cli.ts
 |     ├── sanity.config.ts
 |     ├── schemaTypes
 |     |  ├── index.ts
+|     |  ├── miniGallery.ts
 |     |  ├── photo.ts
 |     |  └── post.ts
 |     ├── static
@@ -198,6 +212,6 @@
 ├── tree.txt
 └── tsconfig.json
 
-directory: 4473 file: 38556
+directory: 8307 file: 66152
 
-ignored: directory (474)
+ignored: directory (885)

@@ -102,7 +102,7 @@ export default function Footer() {
               <a href="tel:+420604410116" className="underline ">
                 +420 604 410 116
               </a>
-              <p>Praha, Česká republika</p>
+              <p>Sobotka, Česká republika</p>
             </div>
           </motion.div>
         </div>

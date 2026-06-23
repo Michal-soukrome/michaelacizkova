@@ -1,52 +1,52 @@
-import { defineField, defineType } from "sanity";
+import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: "post",
-  title: "Blogový článek",
-  type: "document",
+  name: 'post',
+  title: 'Blog články',
+  type: 'document',
   fields: [
     defineField({
-      name: "title",
-      title: "Nadpis",
-      type: "string",
+      name: 'title',
+      title: 'Nadpis',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
-      name: "slug",
-      title: "URL slug",
-      type: "slug",
+      name: 'slug',
+      title: 'URL slug',
+      type: 'slug',
       options: {
-        source: "title",
+        source: 'title',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
-      name: "coverImage",
-      title: "Titulní obrázek",
-      type: "image",
-      options: { hotspot: true },
+      name: 'coverImage',
+      title: 'Titulní obrázek',
+      type: 'image',
+      options: {hotspot: true},
     }),
 
     defineField({
-      name: "excerpt",
-      title: "Krátký popis",
-      type: "text",
+      name: 'excerpt',
+      title: 'Krátký popis',
+      type: 'text',
     }),
 
     defineField({
-      name: "content",
-      title: "Obsah",
-      type: "array",
-      of: [{ type: "block" }, { type: "image" }],
+      name: 'content',
+      title: 'Obsah',
+      type: 'array',
+      of: [{type: 'block'}, {type: 'image'}, {type: 'miniGallery'}],
     }),
 
     defineField({
-      name: "publishedAt",
-      title: "Datum publikace",
-      type: "datetime",
+      name: 'publishedAt',
+      title: 'Datum publikace',
+      type: 'datetime',
     }),
   ],
-});
+})

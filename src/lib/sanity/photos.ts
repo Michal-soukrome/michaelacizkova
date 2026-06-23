@@ -17,3 +17,20 @@ export async function getPhotos(): Promise<Photo[]> {
 
   return data;
 }
+
+export async function getHomepagePhotos(): Promise<Photo[]> {
+  const data = await sanity.fetch(`
+    *[_type == "photo" && category == "homepage"] | order(_createdAt desc)[0...6] {
+      _id,
+      title,
+      alt,
+      "src": image.asset->url,
+      "width": image.asset->metadata.dimensions.width,
+      "height": image.asset->metadata.dimensions.height,
+      category,
+      size
+    }
+  `);
+
+  return data;
+}

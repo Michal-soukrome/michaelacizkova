@@ -1,9 +1,7 @@
-import Blog from "@/components/Blog";
+import { getPosts } from "@/lib/sanity/posts";
+import BlogList from "@/components/BlogList";
 
-export default function BlogPage() {
-  return (
-    <div>
-      <Blog />
-    </div>
-  );
+export default async function BlogPage() {
+  const posts = await getPosts();
+  return <BlogList posts={posts} />;
 }

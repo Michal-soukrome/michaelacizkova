@@ -11,19 +11,30 @@ const services = [
     description:
       "Autentické zachycení vašeho dne plného emocí, detailů a neopakovatelných okamžiků.",
     image: {
-      src: "/assets/1.jpg",
+      src: "/assets/7.jpg",
       alt: "Svatební focení",
       width: 1200,
       height: 1600,
     },
   },
   {
-    title: "Rodinné, párové a těhotenské focení",
+    title: "Rodinné a párové focení",
     description:
       "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
     image: {
-      src: "/assets/2.jpg",
+      src: "/assets/1.jpg",
       alt: "Rodinné focení",
+      width: 1200,
+      height: 1600,
+    },
+  },
+  {
+    title: "Těhotenské focení",
+    description:
+      "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
+    image: {
+      src: "/assets/5.jpg",
+      alt: "Těhotenské focení",
       width: 1200,
       height: 1600,
     },
@@ -44,7 +55,7 @@ const services = [
     description:
       "Komorní prostředí, nadčasové portréty a prostor pro fotografie s jedinečnou atmosférou.",
     image: {
-      src: "/assets/4.jpg",
+      src: "/assets/photos/atelierove/Atelierove-foceni-Cesky-raj.jpg",
       alt: "Ateliérové focení",
       width: 1200,
       height: 1600,
@@ -59,15 +70,14 @@ export default function HomeServices() {
 
   return (
     <Section id="services">
-      <div className="container mx-auto px-4">
+      <hr className="border-brown/30" />
+      <div className="container mx-auto px-4 -mt-3">
         <div className="mb-16 text-center">
-          <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
+          <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4 bg-background w-fit mx-auto px-4">
             Co nabízím
           </p>
 
-          <h3 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            Služby
-          </h3>
+          <h3 className="text-5xl font-bold tracking-tight mb-6">Služby</h3>
 
           <p className="max-w-2xl mx-auto text-text-light">
             Každé focení je jiné. Ať už plánujete svatbu, rodinné focení nebo
@@ -76,7 +86,7 @@ export default function HomeServices() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-5">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -84,20 +94,20 @@ export default function HomeServices() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -6 }}
+              // whileHover={{ y: -6 }}
               className="group"
             >
               <div className="overflow-hidden rounded-xl bg-cream/20 border border-brown/10">
-                <div className="aspect-[4/5] relative">
+                <div className="aspect-4/5 relative">
                   <OptimizedImage
                     photo={service.image}
                     fill
-                    className="group-hover:scale-105 transition-transform duration-700"
+                    className="group-hover:grayscale transition-all duration-300 object-cover"
                   />
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3">
+                  <h3 className="text-lg font-semibold mb-3">
                     {service.title}
                   </h3>
 

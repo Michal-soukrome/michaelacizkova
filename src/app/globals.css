@@ -5,6 +5,7 @@
   --color-foreground: #261c0e;
   --color-cream-light: #fff9f5;
   --color-text-light: #6e473b;
+  --color-text-dark: #261c0e;
   --color-charcoal: #261c0e;
   --color-brown: #6e473b;
   --color-tan: #a78d78;
@@ -23,6 +24,7 @@
   --gray-50: #faf8f6;
   --gray-100: #f5f2f0;
   --text-light: #6e473b;
+  --text-dark: #261c0e;
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   /* Color palette */
   --charcoal: #261c0e;
@@ -263,7 +265,7 @@ video {
 
 @layer components {
   .btn-base {
-    @apply px-8 py-3 font-medium text-sm uppercase tracking-wider transition-all flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full shadow-lg disabled:opacity-60 disabled:cursor-not-allowed;
+    @apply px-8 py-3 font-medium text-sm uppercase tracking-wider transition-all flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full shadow-lg disabled:opacity-60 cursor-pointer disabled:bg-gray-500 disabled:cursor-not-allowed;
   }
 
   .btn-primary {

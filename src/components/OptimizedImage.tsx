@@ -65,6 +65,7 @@ export default function OptimizedImage({
         } ${isLoading ? "scale-105 blur-xl" : "scale-100 blur-0"}`}
         quality={quality > 90 ? 90 : quality}
         priority={priority}
+        loading={priority ? "eager" : "lazy"}
         onLoad={() => setIsLoading(false)}
         placeholder={photo.blurDataURL ? "blur" : "empty"}
         blurDataURL={photo.blurDataURL}

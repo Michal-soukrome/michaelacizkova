@@ -91,7 +91,7 @@ export default function FAQ() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Moje cesta
             </p>
-            <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+            <h3 className="text-5xl font-bold tracking-tight text-foreground">
               Časté dotazy
             </h3>
 
@@ -118,10 +118,10 @@ export default function FAQ() {
           {faqItems.map((item, i) => (
             <div
               key={i}
-              className="border-b border-brown/20 pb-4 group"
+              className="border-b border-brown/20 pb-4 group cursor-pointer"
               onClick={() => toggle(i)}
             >
-              <button className="w-full flex justify-between items-center text-left">
+              <button className="w-full flex justify-between items-center text-left cursor-pointer">
                 <span className="text-xl font-medium text-foreground group-hover:underline">
                   {item.question}
                 </span>

@@ -108,7 +108,7 @@ export default function Header() {
               whileTap={{ scale: 0.95 }}
               aria-label={isOpen ? "Zavřít menu" : "Otevřít menu"}
               aria-expanded={isOpen}
-              className="relative w-10 h-10 rounded-full bg-black/[0.02] flex items-center justify-center hover:bg-black/5 transition-colors"
+              className="relative w-10 h-10 rounded-full bg-black/[0.02] flex items-center justify-center hover:bg-black/5 transition-colors cursor-pointer"
             >
               <div className="relative w-5 h-5">
                 <motion.span
@@ -183,6 +183,7 @@ export default function Header() {
                           >
                             {item.number}
                           </span>
+
                           <span
                             className={`text-base font-light tracking-wide group-hover:underline ${
                               isActive
@@ -194,11 +195,15 @@ export default function Header() {
                           </span>
                         </div>
 
-                        {isActive && (
-                          <motion.span className="text-black/40 text-sm">
-                            →
-                          </motion.span>
-                        )}
+                        {/* ŠIPKA – vždy renderovaná */}
+                        <motion.span
+                          className={`
+              text-sm transition-all duration-300
+              ${isActive ? "text-black/40 opacity-100" : "text-black/20 opacity-0 group-hover:opacity-100 group-hover:text-black/30"}
+            `}
+                        >
+                          →
+                        </motion.span>
                       </a>
                     </motion.li>
                   );

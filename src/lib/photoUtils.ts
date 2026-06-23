@@ -14,6 +14,7 @@ export const categoryLabels: Record<PhotoCategory, string> = {
   reportage: "Reportáž",
   romantic: "Romantické",
   wedding: "Svatby",
+  homepage: "Homepage",
 };
 
 export function getAvailableCategories(photos: Photo[]) {
