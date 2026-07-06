@@ -177,7 +177,7 @@ export default function Header() {
                       >
                         <div className="flex items-center gap-4">
                           <span
-                            className={`text-[0.6rem] tracking-[0.3em] font-light ${
+                            className={`!hidden text-[0.6rem] tracking-[0.3em] font-light ${
                               isActive ? "text-black/40" : "text-black/20"
                             }`}
                           >
