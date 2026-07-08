@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       "Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane navždy.",
     images: [
       {
-        url: "https://michaelacizkova.cz/assets/1.jpg",
+        url: "https://michaelacizkova.cz/assets/portret.jpg",
         width: 1200,
         height: 630,
         alt: "Michaela Čížková Fotografie",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Michaela Čížková | Profesionální fotografka",
     description:
       "Ve fotografii miluji emoce, přirozenost a jednoduchost. Pokud máte rádi to samé, tak jste tu správně. Zachytím pro vás obyčejné chvíle a proměním je v neobyčejný zážitek a vzpomínku, která vám zůstane navždy.",
-    images: ["https://michaelacizkova.cz/assets/1.jpg"],
+    images: ["https://michaelacizkova.cz/assets/portret.jpg"],
   },
   robots: {
     index: true,
