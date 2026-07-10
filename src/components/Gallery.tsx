@@ -132,9 +132,12 @@ export default function Gallery() {
               <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
                 Výběr z mé tvorby
               </p>
-              <h3 className="text-5xl font-bold tracking-tight text-foreground">
-                Portfolio
-              </h3>
+              <h1 className="text-5xl font-bold tracking-tight text-foreground">
+                Portfolio – ukázky focení v Českém ráji
+              </h1>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-6">
+                Ukázky jednotlivých typů focení
+              </h2>
             </motion.div>
 
             {/* Decorative element */}

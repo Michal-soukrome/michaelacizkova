@@ -368,25 +368,21 @@ export default function Services() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               {header.eyebrow}
             </p>
-            <h3 className="text-5xl font-bold tracking-tight text-foreground">
-              {header.heading}
-            </h3>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-brown mt-6 origin-left"
-            />
+            <h1 className="text-5xl font-bold tracking-tight text-foreground">
+              Fotografické služby v Českém ráji – Michaela Čížková
+            </h1>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-6">
+              Vyberte si focení, které vám sedí
+            </h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-text-light mt-8 max-w-lg md:ml-8"
+            >
+              {header.subtitle}
+            </motion.p>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-text-light mt-8 max-w-lg md:ml-8"
-          >
-            {header.subtitle}
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, scale: 0 }}

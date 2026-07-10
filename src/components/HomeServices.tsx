@@ -77,7 +77,9 @@ export default function HomeServices() {
             Co nabízím
           </p>
 
-          <h3 className="text-5xl font-bold tracking-tight mb-6">Služby</h3>
+          <h2 className="text-5xl font-bold tracking-tight mb-6">
+            Jaké fotografické služby nabízím?
+          </h2>
 
           <p className="max-w-2xl mx-auto text-text-light">
             Každé focení je jiné. Ať už plánujete svatbu, rodinné focení nebo

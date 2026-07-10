@@ -14,9 +14,12 @@ export default function BlogList({ posts }: { posts: Post[] }) {
         <p className="text-sm tracking-[0.3em] text-brown uppercase mb-3">
           Novinky & příběhy
         </p>
-        <h3 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground">
-          Blog
-        </h3>
+        <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground">
+          Blog fotografky z Českého ráje
+        </h1>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground mt-6">
+          Nejnovější články
+        </h2>
         <div className="w-20 h-px bg-brown mx-auto mt-6" />
       </div>
 

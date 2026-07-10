@@ -33,9 +33,9 @@ export default function About() {
               <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
                 Moje cesta
               </p>
-              <h3 className="text-5xl font-bold tracking-tight text-foreground">
-                O mně
-              </h3>
+              <h1 className="text-5xl font-bold tracking-tight text-foreground">
+                Michaela Čížková – fotografka z Mladějova v Českém ráji
+              </h1>
               {/* Decorative line */}
               <motion.div
                 initial={{ scaleX: 0 }}

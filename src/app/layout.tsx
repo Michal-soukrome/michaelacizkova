@@ -81,6 +81,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  other: {
+    "geo.placename": "Mladějov v Čechách",
+    "geo.region": "CZ-52",
+    "geo.position": "50.4821;15.2326",
+    ICBM: "50.4821, 15.2326",
+  },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",

@@ -98,30 +98,36 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <h3 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
-            <span className="text-white drop-shadow-lg">Zachycuji</span>
+          <p className="text-sm md:text-base tracking-[0.3em] text-white/50 mb-4 uppercase">
+            FOTOGRAFKA Z ČESKÉHO RÁJE
+          </p>
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
+            <span className="text-white drop-shadow-lg">Michaela</span>
             <br />
             <span
               className="text-transparent ml-8 md:ml-16"
               style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.75)" }}
             >
-              vzpomínky
+              Čížková
             </span>
-          </h3>
+          </h1>
+          <h2 className="mt-8 text-xl md:text-2xl font-semibold text-white/85 max-w-3xl leading-snug">
+            Věřím, že ty nejkrásnější fotografie vznikají ve chvílích, kdy jste
+            sami sebou. Jsem tu od toho, abych tyto chvíle zachytila.
+          </h2>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mt-12 ml-0 md:ml-20 max-w-md"
+          className="mt-12 ml-0 md:ml-20 "
         >
           {/* Thin decorative line above paragraph */}
           <div className="w-10 h-px bg-white/30 mb-5" />
           {/* text-white/80 instead of text-tan — tan blended into warm photo tones */}
           <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-            Věřím, že ty nejkrásnější fotografie vznikají ve chvílích, kdy jste
-            sami sebou. Jsem tu od toho, abych tyto chvíle zachytila.
+            Český ráj – Jičín · Sobotka · Turnov · Mladá Boleslav{" "}
           </p>
         </motion.div>
 

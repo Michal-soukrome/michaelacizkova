@@ -17,9 +17,9 @@ export default function Contact() {
             <p className="text-start text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Pojďme spolupracovat
             </p>
-            <h3 className="text-start text-5xl font-bold tracking-tight text-foreground">
-              Kontakt
-            </h3>
+            <h1 className="text-start text-5xl font-bold tracking-tight text-foreground">
+              Rezervujte si termín focení v Českém ráji
+            </h1>
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -60,9 +60,9 @@ export default function Contact() {
             <div className="relative">
               <div className="absolute inset-0 border-2 border-brown/20 translate-x-2 translate-y-2 rounded-xl" />
               <div className="relative bg-cream/30 border-2 border-brown/40 p-8 md:p-10 rounded-xl">
-                <h3 className="text-2xl font-bold mb-8 text-foreground">
+                <h2 className="text-2xl font-bold mb-8 text-foreground">
                   Kontaktní údaje
-                </h3>
+                </h2>
                 <div className="space-y-8">
                   <div className="flex items-start gap-4">
                     <div className="bg-brown/20 p-3 rounded-full">
@@ -101,11 +101,13 @@ export default function Contact() {
                       <MapPin className="w-5 h-5 text-brown" />
                     </div>
                     <div>
-                      <h4 className="font-medium mb-1 text-foreground">
-                        Lokalita
-                      </h4>
+                      <h2 className="font-semibold mb-1 text-foreground text-xl">
+                        Kde fotím a jak je to s dopravou?
+                      </h2>
                       <p className="text-text-light">
-                        Sobotka, Česká republika
+                        Nejčastěji fotím v Českém ráji, v okolí Jičína, Turnova,
+                        Sobotky a Mladé Boleslavi. Doprava zdarma do 10 km od
+                        Mladějova.
                       </p>
                     </div>
                   </div>

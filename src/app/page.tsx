@@ -7,6 +7,12 @@ import Hero from "../components/Hero";
 import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
 
+export const metadata = {
+  title: "Rodinná a svatební fotografka Český ráj",
+  description:
+    "Michaela Čížková | Rodinná a svatební fotografka z Českého ráje. Fotím rodiny, svatby, novorozence a těhotné v okolí Jičína, Turnova a Mladé Boleslavi.",
+};
+
 import HomeServices from "@/components/HomeServices";
 import HomeAbout from "@/components/HomeAbout";
 import HomeGallery from "@/components/HomeGallery";

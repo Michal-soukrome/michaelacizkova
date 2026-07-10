@@ -18,44 +18,33 @@ export default function AboutHomepage() {
           className="flex-1 space-y-4 text-center"
         >
           <p className="text-sm tracking-[0.3em] text-brown uppercase bg-background w-fit mx-auto px-4">
-            Moje cesta
+            Kde fotím
           </p>
 
-          <h3 className="text-5xl font-bold tracking-tight text-foreground">
-            O mně
-          </h3>
+          <h2 className="text-5xl font-bold tracking-tight text-foreground">
+            Kde fotím?
+          </h2>
 
-          {/* FOTO – malé kolečko */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="shrink-0 my-10"
-          >
-            <div className="w-40 h-40 rounded-full overflow-hidden shadow-lg mx-auto ">
-              <Image
-                src="/assets/portret.jpg"
-                alt="Michaela Čížková — portrét"
-                width={400}
-                height={400}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          </motion.div>
-
-          <p className="text-base text-text-light leading-relaxed max-w-lg">
-            Jsem fotografka, máma a milovnice přirozených momentů. Fotím jemně,
-            autenticky a s důrazem na emoce — tak, aby vaše vzpomínky zůstaly
-            živé i po letech.
-          </p>
-
-          <Link
-            href="/o-mne"
-            className="mt-8 btn-base btn-primary mx-auto w-fit"
-          >
-            Více o mně
-          </Link>
+          <div className="w-40 h-40 rounded-full overflow-hidden shadow-lg mx-auto ">
+            <Image
+              src="/assets/portret.jpg"
+              alt="Michaela Čížková — portrét"
+              width={400}
+              height={400}
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
         </motion.div>
+
+        <p className="text-base text-text-light leading-relaxed max-w-lg">
+          Nejčastěji fotím venku v Českém ráji, v okolí Jičína, Turnova, Sobotky
+          a Mladé Boleslavi. Světlo, místo a přirozený pohyb jsou pro mě
+          důležité, aby výsledné snímky působily autenticky a nadčasově.
+        </p>
+
+        <Link href="/o-mne" className="mt-8 btn-base btn-primary mx-auto w-fit">
+          Více o mně
+        </Link>
       </div>
     </Section>
   );

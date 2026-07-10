@@ -5,73 +5,74 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const faqItems = [
   {
-    question: "Jak probíhá rezervace focení?",
+    question: "Jak probíhá rezervace?",
     answer:
-      "Stačí mi napsat přes kontaktní formulář, e-mail nebo sociální sítě. Domluvíme termín, místo focení a představu o výsledných fotografiích.",
+      "Stačí mi napsat na e-mail foto.michaelacizkova@seznam.cz nebo zavolat na telefonní číslo +420 604 410 116. Společně domluvíme termín, ujasníme si detaily a pak už se budeme jen těšit na samotné focení.",
   },
   {
-    question: "Fotíte pouze rodiny?",
+    question: "Co si vzít na focení?",
     answer:
-      "Ne. Fotím rodiny, portréty, párové focení, těhotenské focení, svatby, reportáže i brandové a produktové fotografie.",
+      "Vše spolu předem domluvíme během krátké konzultace – probereme outfit, barvy i lokaci. Obecně platí: zvolte oblečení, ve kterém se cítíte příjemně, které k sobě vzájemně ladí a barevně nesoupeří s přírodou.",
   },
   {
-    question: "Kde focení probíhá?",
+    question: "Co když dítě nespolupracuje?",
     answer:
-      "Nejraději fotím venku v přirozeném světle, ale možné je i focení u vás doma nebo na domluveném místě. Nejčastěji fotím v Českém ráji, v okolí Jičína (Pod Zebínem, u Valdštejnské lodžie a podobně). Také často fotím v Turnově, v Mladé Boleslavi a v Sobotce a okolí. Pokud bydlíte dál nebo plánujete svatbu v jiných koutech republiky, velmi ráda přijedu kamkoliv :)",
-  },
-  {
-    question: "Co si máme vzít na sebe?",
-    answer:
-      "Po rezervaci vám ráda poradím s výběrem oblečení tak, aby fotografie působily přirozeně, nadčasově a barevně ladily. Zasílám brožurku s tipy na outfity a veškeré dotazy se mnou můžete konzultovat :)",
+      "To je úplně normální a jsem na to zvyklá. Na focení nespěcháme. Dávám velký prostor na pauzy, hru i spontánní chvíle – ty nejkrásnější snímky často vzniknou přesně tehdy, když se nikdo nedívá.",
   },
   {
     question: "Jak dlouho focení trvá?",
     answer:
-      "Záleží na typu focení. Rodinné a portrétní focení většinou trvá 45–90 minut. U svateb a reportáží je délka individuální.",
+      "Délka se odvíjí od konkrétního typu a vybraného balíčku:\n\n- Rodinné, párové a těhotenské focení: minimálně 60 minut (dle zvoleného balíčku)\n- Newborn focení: 60–90 minut\n- Ateliérové focení: 60–90 minut\n- Svatební focení: od 2–3 hodin (Mini balíček) až po celodenní focení\n- Rodinná reportáž: 2–3 hodiny\n- Reportážní focení akcí: individuálně podle charakteru a délky události",
   },
   {
-    question: "Co když nejsme zvyklí stát před foťákem?",
+    question: "Jak rychle dostanu hotové fotografie?",
     answer:
-      "To vůbec nevadí. Většina lidí se před objektivem necítí jistě. Během focení vás přirozeně povedu tak, aby výsledné fotografie působily autenticky a uvolněně.",
+      "Hotové fotografie obdržíte elektronicky v soukromé online galerii. Přesný termín dodání závisí na sezóně a typu focení (rodinné focení standardně do 2–3 týdnů, svatební balíčky do 2 až 4 týdnů).",
   },
   {
-    question: "Kdy dostaneme hotové fotografie?",
+    question: "Kde probíhá focení?",
     answer:
-      "Hotové fotografie odevzdávám obvykle do 2–3 týdnů podle typu focení a sezóny.",
+      "Fotím především v oblasti Českého ráje – Jičín, Turnov, Sobotka, Mladá Boleslav a okolí. Doprava je zdarma do 10 km od Mladějova, poté účtuji 8 Kč/km. Na vyžádání dorazím i dál.",
   },
   {
-    question: "Dostaneme upravené fotografie?",
+    question: "Fotíte i v Jičíně nebo Turnově?",
     answer:
-      "Ano. Každá odevzdaná fotografie prochází pečlivou úpravou v mém stylu – jemně, přirozeně a nadčasově.",
+      "Ano, Jičín a Turnov jsou místa, kde fotím pravidelně. Mám tam oblíbená místa pro různé typy focení – od historického centra Jičína po nádhernou přírodu v okolí Turnova.",
   },
   {
-    question: "Posíláte i neupravené fotografie?",
+    question: "Jaká místa v Českém ráji doporučujete?",
     answer:
-      "Neupravené fotografie neposkytuji. Výsledná úprava je součástí mé práce a celkového stylu.",
+      "Nejraději fotím v Jičíně u Zebína, ve Valdštejnově aleji nebo u Valdštejnské lodžie. Dále v okolí hradu Trosky, na Branžeži u Komárovského rybníka a na dalších malebných místech v Českém ráji. Každé místo má jiné světlo a atmosféru – ráda vám poradím, co se nejlépe hodí pro váš typ focení.",
   },
   {
-    question: "Jak fotografie předáváte?",
+    question: "Kdy rezervovat newborn focení?",
     answer:
-      "Fotografie odevzdávám v online galerii ve vysokém rozlišení, připravené ke stažení i tisku.",
+      "Ideálně ještě v těhotenství. Samotné focení pak probíhá nejpozději do 14 dnů od narození miminka. V této době jsou novorozenci nejspokojenější, hodně spí a můžeme tak v klidu zachytit ty nejjemnější detaily tohoto neopakovatelného období.",
   },
   {
-    question: "Fotíte svatby?",
+    question: "Jaký je rozdíl mezi rodinným focením a rodinnou reportáží?",
     answer:
-      "Ano, moc ráda. Zachycuji především emoce, atmosféru a přirozené momenty vašeho dne.",
+      "- Rodinné focení je kombinací přirozených momentů a jemného vedení. Pomohu vám s pózami, poradím, kam a jak se postavit. Cílem jsou autentické portréty a společné rodinné fotografie.\n- Rodinná reportáž zachycuje váš skutečný život takový, jaký je – zcela bez mého zásahu a stylizace. Jde o zachycení každodenních chvil u vás doma, jako je společné hraní, vaření nebo odpočinek.",
   },
   {
-    question: "Je možné zakoupit dárkový poukaz?",
-    answer: "Ano, dárkové poukazy jsou k dispozici na všechny typy focení.",
+    question: "Jaký styl focení preferujete?",
+    answer:
+      "Přirozený, autentický a reportážní. Nejraději nechávám situace volně plynout a zachycuji skutečné emoce a okamžiky. Pokud si nejste před objektivem jistí, ráda vás celým procesem jemně provedu, abyste se cítili uvolněně.",
+  },
+  {
+    question: "Dostaneme pomoc s výběrem místa?",
+    answer:
+      "Samozřejmě. Po rezervaci termínu si promluvíme o vašich přáních a stylu. Doporučím vám konkrétní lokality v Českém ráji, které budou nejlépe odpovídat vybranému ročnímu období a typu focení.",
   },
   {
     question: "Co když bude špatné počasí?",
     answer:
-      "Pokud počasí nebude vhodné pro venkovní focení, společně najdeme náhradní termín. Případně můžeme domluvit ateliérové focení.",
+      "Počasí řešíme společně. Pokud hrozí déšť, nabídnu náhradní termín nebo alternativní lokaci. V některých případech mlha nebo oblačnost vytvoří úžasnou náladu na fotkách – záleží na vašich preferencích.",
   },
   {
-    question: "Jaká je cena focení?",
+    question: "Fotíte i pro podnikatele nebo firmy?",
     answer:
-      "Ceník najdete na webu nebo vám ráda připravím individuální nabídku podle vašich představ a rozsahu focení.",
+      "Ano, focení pro podnikatele a živnostníky dělám velmi ráda. Připravím pro vás fotografie na web, sociální sítě nebo pro další marketingové účely. Focení může probíhat přímo u vás ve firmě, v mém ateliéru nebo na vybrané lokaci. Stačí mi napsat a domluvíme podrobnosti na míru.",
   },
 ];
 
@@ -91,9 +92,12 @@ export default function FAQ() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Moje cesta
             </p>
-            <h3 className="text-5xl font-bold tracking-tight text-foreground">
-              Časté dotazy
-            </h3>
+            <h1 className="text-5xl font-bold tracking-tight text-foreground">
+              Časté dotazy ohledně focení v Českém ráji
+            </h1>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground mt-6">
+              Nejčastější otázky před focením
+            </h2>
 
             <motion.div
               initial={{ scaleX: 0 }}
@@ -122,9 +126,9 @@ export default function FAQ() {
               onClick={() => toggle(i)}
             >
               <button className="w-full flex justify-between items-center text-left cursor-pointer">
-                <span className="text-xl font-medium text-foreground group-hover:underline">
+                <h3 className="text-xl font-medium text-foreground group-hover:underline">
                   {item.question}
-                </span>
+                </h3>
                 <motion.span
                   animate={{ rotate: openIndex === i ? 45 : 0 }}
                   transition={{ duration: 0.2 }}
