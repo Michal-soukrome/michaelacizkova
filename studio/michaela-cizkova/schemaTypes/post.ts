@@ -33,6 +33,7 @@ export default defineType({
     defineField({
       name: 'excerpt',
       title: 'Krátký popis',
+      description: 'Použije se jako meta description pro článek',
       type: 'text',
     }),
 
@@ -40,7 +41,41 @@ export default defineType({
       name: 'content',
       title: 'Obsah',
       type: 'array',
-      of: [{type: 'block'}, {type: 'image'}, {type: 'miniGallery'}],
+      of: [
+        {
+          type: 'block',
+          styles: [
+            {title: 'Normální', value: 'normal'},
+            {title: 'Nadpis H2', value: 'h2'},
+            {title: 'Nadpis H3', value: 'h3'},
+            {title: 'Citace', value: 'blockquote'},
+          ],
+          marks: {
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Odkaz',
+                fields: [
+                  {
+                    name: 'href',
+                    title: 'URL odkazu',
+                    type: 'url',
+                  },
+                  {
+                    name: 'blank',
+                    title: 'Otevřít v nové kartě',
+                    type: 'boolean',
+                    initialValue: false,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {type: 'image'},
+        {type: 'miniGallery'},
+      ],
     }),
 
     defineField({

@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   PortableText,
   PortableTextTypeComponentProps,
+  PortableTextMarkComponentProps,
 } from "@portabletext/react";
 import { urlFor } from "@/lib/sanity/image";
 import {
@@ -14,6 +15,12 @@ import {
 } from "@/lib/sanity/postTypes";
 import Link from "next/link";
 import Lightbox from "@/components/Lightbox";
+
+type LinkMark = {
+  _type: "link";
+  href?: string;
+  blank?: boolean;
+};
 
 export default function BlogDetail({ post }: { post: Post | null }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -117,6 +124,22 @@ export default function BlogDetail({ post }: { post: Post | null }) {
         );
       },
     },
+    marks: {
+      link: ({ children, value }: PortableTextMarkComponentProps<LinkMark>) => {
+        if (!value?.href) return <>{children}</>;
+
+        return (
+          <a
+            href={value.href}
+            target={value.blank ? "_blank" : undefined}
+            rel={value.blank ? "noreferrer" : undefined}
+            className="underline decoration-brown/60 hover:text-brown transition-colors"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
   };
 
   if (!post) {
@@ -171,11 +194,18 @@ export default function BlogDetail({ post }: { post: Post | null }) {
         }
       />
 
-      {/* Back button */}
-      <div className="mt-16 text-center">
-        <Link href="/blog" className="btn-base btn-primary mx-auto w-fit">
-          ← Zpět na blog
+      <div className="mt-16 space-y-6 text-center">
+        <div className="max-w-2xl mx-auto text-lg leading-relaxed text-text-light">
+          Líbí se vám focení v Českém ráji? Napište mi a domluvme termín.
+        </div>
+        <Link href="/kontakt" className="btn-base btn-primary mx-auto w-fit">
+          Kontaktovat mě
         </Link>
+        <div>
+          <Link href="/blog" className="btn-base btn-secondary mx-auto w-fit">
+            ← Zpět na blog
+          </Link>
+        </div>
       </div>
     </section>
   );
