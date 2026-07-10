@@ -5,25 +5,28 @@ import BlogDetail from "@/components/BlogDetail";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   return {
     title: post?.title
-      ? `${post.title} | Blog � tipy na focen� v �esk�m r�ji`
-      : "Blog � tipy na focen� v �esk�m r�ji",
+      ? `${post.title} | Blog - tipy na focení v Českém ráji`
+      : "Blog - tipy na focení v Českém ráji",
     description:
       post?.excerpt ??
-      "Blog o focen� a focen� v �esk�m r�ji od Michaely ��kov�.",
+      "Blog o focení a focení v Českém ráji od Michaely Čížkové.",
   };
 }
 
 export default async function BlogPost({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
+
   return <BlogDetail post={post} />;
 }

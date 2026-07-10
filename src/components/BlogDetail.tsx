@@ -199,7 +199,7 @@ export default function BlogDetail({ post }: { post: Post | null }) {
           Líbí se vám focení v Českém ráji? Napište mi a domluvme termín.
         </div>
         <Link href="/kontakt" className="btn-base btn-primary mx-auto w-fit">
-          Kontaktovat mě
+          Napište mi
         </Link>
         <div>
           <Link href="/blog" className="btn-base btn-secondary mx-auto w-fit">
