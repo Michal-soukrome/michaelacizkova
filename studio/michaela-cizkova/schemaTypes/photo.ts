@@ -40,6 +40,7 @@ export const photo = defineType({
           {title: 'Newborn', value: 'newborn'},
           {title: 'Děti', value: 'children'},
           {title: 'Portrétní', value: 'portrait'},
+          {title: 'Rodinné, párové a těhotenské focení', value: 'mix'},
           {title: 'Brandové', value: 'brand'},
           {title: 'Ateliérové', value: 'atelier'},
           {title: 'Boudoir', value: 'boudoir'},

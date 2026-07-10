@@ -18,34 +18,34 @@ const services = [
     },
   },
   {
-    title: "Rodinné a párové focení",
+    title: "Rodinné, párové a těhotenské focení",
     description:
       "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
     image: {
       src: "/assets/2.jpg",
-      alt: "Rodinné focení",
+      alt: "Rodinné, párové a těhotenské focení",
       width: 1200,
       height: 1600,
     },
   },
   {
-    title: "Těhotenské focení",
+    title: "Newborn focení",
     description:
-      "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
+      "Newborn focení je něžnou vzpomínkou na první dny života vašeho miminka – plné lásky, blízkosti a těch nejmenších detailů",
     image: {
       src: "/assets/5.jpg",
-      alt: "Těhotenské focení",
+      alt: "Newborn focení",
       width: 1200,
       height: 1600,
     },
   },
   {
-    title: "Rodinná reportáž",
+    title: "Reportážní focení",
     description:
       "Skutečné momenty bez aranžování. Příběhy zachycené přesně tak, jak se odehrály.",
     image: {
       src: "/assets/3.jpg",
-      alt: "Rodinná reportáž",
+      alt: "Reportážní focení",
       width: 1200,
       height: 1600,
     },

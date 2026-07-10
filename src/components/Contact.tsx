@@ -15,7 +15,7 @@ export default function Contact() {
             className="md:mr-auto md:ml-8 md:text-left max-w-xl"
           >
             <p className="text-start text-sm tracking-[0.3em] text-brown uppercase mb-4">
-              Pojďme spolupracovat
+              Napište mi{" "}
             </p>
             <h1 className="text-start text-5xl font-bold tracking-tight text-foreground">
               Rezervujte si termín focení v Českém ráji
@@ -27,8 +27,8 @@ export default function Contact() {
               className="w-24 h-px bg-brown mt-6 md:mr-auto origin-left"
             />
             <p className="text-text-light mt-8">
-              Připraveni zachytit váš příběh? Pojďme si promluvit o vašem
-              projektu a přivést vaši vizi k životu.
+              Chcete nafotit chvíle, na které nezapomenete? Ozvěte se – ráda se
+              s vámi potkám.
             </p>
           </motion.div>
           <motion.div
@@ -105,9 +105,11 @@ export default function Contact() {
                         Kde fotím a jak je to s dopravou?
                       </h2>
                       <p className="text-text-light">
-                        Nejčastěji fotím v Českém ráji, v okolí Jičína, Turnova,
-                        Sobotky a Mladé Boleslavi. Doprava zdarma do 10 km od
-                        Mladějova.
+                        Nejčastěji fotím v Českém ráji, v okolí Sobotky, Jičína,
+                        Turnova a Mladé Boleslavi. Ráda za vámi přijedu i do
+                        dalších oblastí.
+                        <br />
+                        Doprava: Zdarma do 10 km od Mladějova, poté 8,- Kč/km
                       </p>
                     </div>
                   </div>

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "umělecká fotografie",
     "profesionální fotografka",
     "Michaela Čížková",
-    "Sobotka",
+    "Mladějov",
     "Česká republika",
   ],
   authors: [{ name: "Michaela Čížková" }],

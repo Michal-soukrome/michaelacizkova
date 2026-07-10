@@ -7,9 +7,9 @@ type FormStatus = "idle" | "loading" | "success" | "error";
 
 const services = [
   "Svatební focení",
-  "Rodinné / párové focení",
-  "Těhotenské focení",
-  "Rodinná reportáž",
+  "Rodinné, párové, těhotenské focení",
+  "Newborn focení",
+  "Reportážní focení",
   "Ateliérové focení",
 ];
 

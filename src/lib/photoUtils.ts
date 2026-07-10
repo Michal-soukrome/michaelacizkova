@@ -8,12 +8,13 @@ export const categoryLabels: Record<PhotoCategory, string> = {
   newborn: "Novorozenci",
   children: "Děti",
   portrait: "Portréty",
+  mix: "Rodinné, párové a těhotenské focení",
   brand: "Brand",
   atelier: "Ateliér",
   boudoir: "Boudoir",
   reportage: "Reportáž",
   romantic: "Romantické",
-  wedding: "Svatby",
+  wedding: "Svatební focení",
   homepage: "Homepage",
 };
 

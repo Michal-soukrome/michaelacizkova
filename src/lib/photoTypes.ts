@@ -6,6 +6,7 @@ export type PhotoCategory =
   | "newborn"
   | "children"
   | "portrait"
+  | "mix"
   | "brand"
   | "atelier"
   | "boudoir"

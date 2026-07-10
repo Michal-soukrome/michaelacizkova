@@ -61,7 +61,7 @@ const services = [
     ],
   },
   {
-    title: "Rodinné / párové focení",
+    title: "Rodinné/párové/těhotenské",
     description:
       "Láska, harmonie, radost a vzájemné pouto. Ať už na focení přijdete s partnerem nebo rovnou s celou rodinkou, tyto krásné emoce budou zářit na každém snímku.",
     icon: Users,
@@ -110,7 +110,25 @@ const services = [
     ],
   },
   {
-    title: "Těhotenské focení",
+    title: "Newborn focení",
+    description:
+      "Není nic krásnějšího než první dny života vašeho miminka. Zachyťte toto jedinečné období plné něhy, drobných detailů a prvních společných okamžiků, ke kterým se budete rádi vracet. Newborn focení doporučuji realizovat ideálně během prvních 14 dnů po narození. V tomto období miminka většinou více spinkají, jsou klidnější a snadněji se jemně napolohují.",
+    icon: Clapperboard,
+    image: "/assets/5.jpg",
+    images: ["/assets/1.jpg", "/assets/3.jpg"],
+    price: "3 200 Kč",
+    duration: "60-90 minut",
+    photos:
+      "20 pečlivě upravených fotografií + černobílé verze podle mého výběru",
+    features: [
+      "výběr fotografií z náhledové galerie",
+      "fotografie obdržíte v soukromé online galerii",
+      "focení probíhá v pohodlí vašeho domova",
+    ],
+    extraPrice: "Další upravená fotografie nad rámec balíčku: 140 Kč",
+  },
+  {
+    title: "Reportážní focení",
     description:
       "Skutečné chvíle tak, jak se odehrávají. Ideální pro narozeninové oslavy, křtiny, společná setkání, výlety i obyčejné momenty doma, které tvoří váš každodenní život. Focení probíhá přirozenou reportážní formou — zachycuji dění nenápadně a bez výrazného zasahování. Součástí focení je krátká konzultace předem, kde probereme místo, čas, průběh i vše, co vám pomůže cítit se při focení přirozeně.",
     icon: Clapperboard,
@@ -150,8 +168,8 @@ const services = [
 const booking = {
   location: {
     title: "Lokalita focení",
-    text: "Nejčastěji fotím v Českém ráji, v okolí Sobotky a Jičína. Ráda za vámi přijedu i do dalších oblastí.",
-    transport: "Doprava: Zdarma do 20 km od Sobotky, poté 8,- Kč/km",
+    text: "Nejčastěji fotím v Českém ráji, v okolí Sobotky, Jičína, Turnova a Mladé Boleslavi. Ráda za vámi přijedu i do dalších oblastí.",
+    transport: "Doprava: Zdarma do 10 km od Mladějova, poté 8,- Kč/km",
   },
   preparation: {
     title: "Před focením",

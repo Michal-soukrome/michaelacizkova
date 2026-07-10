@@ -32,7 +32,7 @@ const faqItems = [
   {
     question: "Kde probíhá focení?",
     answer:
-      "Fotím především v oblasti Českého ráje – Jičín, Turnov, Sobotka, Mladá Boleslav a okolí. Doprava je zdarma do 10 km od Mladějova, poté účtuji 8 Kč/km. Na vyžádání dorazím i dál.",
+      "Fotím především v oblasti Českého ráje – Jičín, Turnov, Mladějov, Mladá Boleslav a okolí. Doprava je zdarma do 10 km od Mladějova, poté účtuji 8 Kč/km. Na vyžádání dorazím i dál.",
   },
   {
     question: "Fotíte i v Jičíně nebo Turnově?",

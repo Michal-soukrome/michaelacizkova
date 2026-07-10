@@ -256,9 +256,9 @@ export default function Testimonials() {
           className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4"
         >
           {[
-            { value: 50, label: "Spokojených klientů" },
-            { value: 100, label: "Dokončených projektů" },
-            { value: 5, label: "Let zkušeností" },
+            { value: 70, label: "nafocených rodin" },
+            { value: 150, label: "uskutečněných focení" },
+            { value: 3000, label: "odevzdaných fotografií" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">

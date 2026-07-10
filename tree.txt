@@ -49,7 +49,7 @@
 |  |  |  └── Brandove foceni.Turnov.jpg
 |  |  ├── deti
 |  |  |  ├── Foceni deti. Cesky raj. Jicin . Michaela Cizkova.jpg.jpg
-|  |  |  └── Foceni deti.Sobotka. Cesky raj.jpg
+|  |  |  └── Foceni deti.Mladějov. Cesky raj.jpg
 |  |  ├── newborn
 |  |  |  ├── Newborn foceni Cesky raj. 3. Michaela Cizkova.jpg.jpg
 |  |  |  ├── Newborn foceni Cesky raj. 4. Michaela Cizkova.jpg.jpg
@@ -103,8 +103,8 @@
 |  |  |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.1.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.2.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.jpg
-|  |  |  ├── Rodinne foceni Cesky raj. Sobotka. 1 .Michaela Cizkova.jpg.jpg
-|  |  |  ├── Rodinne foceni Cesky raj. Sobotka. Michaela Cizkova.jpg.jpg
+|  |  |  ├── Rodinne foceni Cesky raj. Mladějov. 1 .Michaela Cizkova.jpg.jpg
+|  |  |  ├── Rodinne foceni Cesky raj. Mladějov. Michaela Cizkova.jpg.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 1.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 2. jpg.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 3.jpg

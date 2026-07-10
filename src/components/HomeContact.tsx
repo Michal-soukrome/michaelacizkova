@@ -27,8 +27,8 @@ export default function HomeContact() {
               className="w-24 h-px bg-brown mt-6 md:ml-auto origin-right"
             />
             <p className="text-text-light mt-8">
-              Připraveni zachytit váš příběh? Pojďme si promluvit o vašem
-              projektu a přivést vaši vizi k životu.
+              Chcete nafotit chvíle, na které nezapomenete? Ozvěte se – ráda se
+              s vámi potkám.
             </p>
           </motion.div>
           <motion.div
@@ -104,9 +104,7 @@ export default function HomeContact() {
                       <h4 className="font-medium mb-1 text-foreground">
                         Lokalita
                       </h4>
-                      <p className="text-text-light">
-                        Sobotka, Česká republika
-                      </p>
+                      <p className="text-text-light">Mladějov, Český ráj</p>
                     </div>
                   </div>
                 </div>

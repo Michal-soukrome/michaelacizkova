@@ -127,7 +127,7 @@ export default function Hero() {
           <div className="w-10 h-px bg-white/30 mb-5" />
           {/* text-white/80 instead of text-tan — tan blended into warm photo tones */}
           <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-            Český ráj – Jičín · Sobotka · Turnov · Mladá Boleslav{" "}
+            Český ráj – Jičín · Mladějov · Turnov · Mladá Boleslav{" "}
           </p>
         </motion.div>
 

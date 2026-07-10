@@ -9,7 +9,7 @@ const bioParagraphs = [
   "Absolvovala jsem několik kurzů a mentoringů a díky neustálému vzdělávání si dnes postupně plním sen a dělám to, co mě opravdu baví.",
   "Jsem máma na plný úvazek, miluju přírodu, cestování a obyčejné momenty, které mají největší hodnotu. Právě ty se snažím zachytit i ve svých fotografiích — přirozeně, jemně a s důrazem na emoce.",
   "Chci, abyste se při focení cítili dobře a sami sebou. Pomůžu vám, navedu vás, ale zároveň nechávám prostor pro skutečné chvíle, které dělají fotky opravdovými.",
-  "Fotím převážně venku nebo u vás doma, ale ráda se s vámi potkám i v ateliéru. Nejčastěji působím v oblasti Českého ráje, ale ráda za vámi dorazím i dál.",
+  "Fotím převážně venku nebo u vás doma, ale ráda se s vámi potkám i v ateliéru. Nejčastěji působím v oblasti Českého ráje, ale ráda za vámi dorazím i dál. Fotím na Canon EOS R6 Mark II, který mi umožňuje zachytit přirozené emoce i ve složitějším světle",
   "Mým cílem není jen hezká fotka, ale vzpomínka, ke které se budete rádi vracet 🤍",
 ];
 

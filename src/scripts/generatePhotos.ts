@@ -25,6 +25,7 @@ async function generate() {
     deti: "children",
     newborn: "newborn",
     parove: "couples",
+    mix: "mix",
     portretni: "portrait",
     reportazni: "reportage",
     rodinne: "family",
