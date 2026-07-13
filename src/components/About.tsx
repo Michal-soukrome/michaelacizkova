@@ -20,7 +20,7 @@ const itemVariants = {
 
 export default function About() {
   return (
-    <section className="py-16 bg-background overflow-hidden">
+    <section className="py-12 bg-background overflow-hidden">
       <div>
         <div className="container mx-auto px-4">
           {/* Offset header design */}
@@ -33,7 +33,7 @@ export default function About() {
               <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
                 Moje cesta
               </p>
-              <h1 className="text-5xl font-bold tracking-tight text-foreground">
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
                 Michaela Čížková – fotografka z Mladějova v Českém ráji
               </h1>
               {/* Decorative line */}

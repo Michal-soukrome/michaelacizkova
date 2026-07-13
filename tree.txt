@@ -1,4 +1,4 @@
-/Users/michaljirak/GitHub repos/michaelacizkova
+C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 ├── docs
 |  ├── ENHANCEMENTS.md
 |  ├── FEATURE-PROPOSALS.md
@@ -26,18 +26,19 @@
 |  |  |  ├── Logo.jpg
 |  |  |  └── logo.png
 |  |  └── portret.jpg
+|  ├── llms.txt
 |  ├── photos
 |  |  ├── atelierove
+|  |  |  ├── Atelierove foceni.brandove.foceni.1.jpg
+|  |  |  ├── Atelierove foceni.brandove.foceni.jpg
 |  |  |  ├── Atelierove foceni.Cesky raj.jpg
 |  |  |  ├── Atelierove foceni.Narozeninove foceni 2.jpg
 |  |  |  ├── Atelierove foceni.Narozeninove foceni.jpg
-|  |  |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
-|  |  |  ├── Atelierove foceni.brandove.foceni.1.jpg
-|  |  |  ├── Atelierove foceni.brandove.foceni.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.2.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.3.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.4.jpg
 |  |  |  ├── Atelierove foceni.portretni.foceni.jpg
+|  |  |  ├── Atelierove foceni.Tehotenske. Cesky raj.jpg
 |  |  |  ├── Atelierove foceni.tehotenske.foceni 1.jpg
 |  |  |  ├── Atelierove foceni.tehotenske.foceni.jpg
 |  |  |  └── Atelierove-foceni-Cesky-raj.jpg
@@ -49,7 +50,7 @@
 |  |  |  └── Brandove foceni.Turnov.jpg
 |  |  ├── deti
 |  |  |  ├── Foceni deti. Cesky raj. Jicin . Michaela Cizkova.jpg.jpg
-|  |  |  └── Foceni deti.Mladějov. Cesky raj.jpg
+|  |  |  └── Foceni deti.Sobotka. Cesky raj.jpg
 |  |  ├── newborn
 |  |  |  ├── Newborn foceni Cesky raj. 3. Michaela Cizkova.jpg.jpg
 |  |  |  ├── Newborn foceni Cesky raj. 4. Michaela Cizkova.jpg.jpg
@@ -85,10 +86,10 @@
 |  |  |  ├── Portretni foceni ve meste.Liberec.2.jpg
 |  |  |  ├── Portretni foceni ve meste.Liberec.jpg
 |  |  |  ├── Portretni foceni. Branzez.jpg
+|  |  |  ├── Portretni foceni.atelier.1.jpg
 |  |  |  ├── Portretni foceni.Liberec.jpg
 |  |  |  ├── Portretni foceni.Pod Zebinem.Ceky raj.jpg.jpg
-|  |  |  ├── Portretni foceni.Trosky.Turnov.jpg.jpg
-|  |  |  └── Portretni foceni.atelier.1.jpg
+|  |  |  └── Portretni foceni.Trosky.Turnov.jpg.jpg
 |  |  ├── reportazni
 |  |  |  ├── Reportazni foceni.U vas doma. Mladejov v Cechach.jpg
 |  |  |  ├── Reportazni fotografie.2.jpg
@@ -103,8 +104,8 @@
 |  |  |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.1.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.2.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Rybnik Vezak. Michaela Cizkova.jpg
-|  |  |  ├── Rodinne foceni Cesky raj. Mladějov. 1 .Michaela Cizkova.jpg.jpg
-|  |  |  ├── Rodinne foceni Cesky raj. Mladějov. Michaela Cizkova.jpg.jpg
+|  |  |  ├── Rodinne foceni Cesky raj. Sobotka. 1 .Michaela Cizkova.jpg.jpg
+|  |  |  ├── Rodinne foceni Cesky raj. Sobotka. Michaela Cizkova.jpg.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 1.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 2. jpg.jpg
 |  |  |  ├── Rodinne foceni Cesky raj. Zebin. Michaela Cizkova 3.jpg
@@ -135,9 +136,9 @@
 |  |  |  └── contact
 |  |  |     └── route.ts
 |  |  ├── blog
-|  |  |  ├── [slug]
-|  |  |  |  └── page.tsx
-|  |  |  └── page.tsx
+|  |  |  ├── page.tsx
+|  |  |  └── [slug]
+|  |  |     └── page.tsx
 |  |  ├── faq
 |  |  |  └── page.tsx
 |  |  ├── favicon.ico
@@ -182,24 +183,29 @@
 |  |  └── Testimonials.tsx
 |  ├── lib
 |  |  ├── performance.ts
-|  |  ├── photoTypes.ts
-|  |  ├── photoUtils.ts
 |  |  ├── photos.generated.json
 |  |  ├── photos.ts
+|  |  ├── photoTypes.ts
+|  |  ├── photoUtils.ts
 |  |  └── sanity
 |  |     ├── client.ts
 |  |     ├── image.ts
 |  |     ├── photos.ts
-|  |     ├── postTypes.ts
-|  |     └── posts.ts
-|  └── scripts
-|     └── generatePhotos.ts
+|  |     ├── posts.ts
+|  |     └── postTypes.ts
+|  ├── scripts
+|  |  └── generatePhotos.ts
+|  └── seo
+|     ├── index.ts
+|     └── schemas
+|        ├── faq.ts
+|        └── homepage.ts
 ├── studio
 |  └── michaela-cizkova
-|     ├── README.md
 |     ├── eslint.config.mjs
 |     ├── package-lock.json
 |     ├── package.json
+|     ├── README.md
 |     ├── sanity.cli.ts
 |     ├── sanity.config.ts
 |     ├── schemaTypes
@@ -213,6 +219,6 @@
 ├── tree.txt
 └── tsconfig.json
 
-directory: 4487 file: 38627
+directory: 8314 file: 66184
 
-ignored: directory (475)
+ignored: directory (886)

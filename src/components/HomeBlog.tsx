@@ -18,7 +18,7 @@ export default function HomeBlog({ posts }: { posts: Post[] }) {
           <p className="text-sm tracking-[0.3em] text-brown uppercase mb-3 bg-background w-fit mx-auto px-4">
             Novinky & příběhy
           </p>
-          <h3 className="text-5xl font-bold tracking-tight text-foreground">
+          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             Blog
           </h3>
         </div>

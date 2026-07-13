@@ -21,7 +21,7 @@ export default function AboutHomepage() {
             Kde fotím
           </p>
 
-          <h2 className="text-5xl font-bold tracking-tight text-foreground">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             Kde fotím?
           </h2>
 

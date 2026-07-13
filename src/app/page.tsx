@@ -1,25 +1,19 @@
-import Gallery from "../components/Gallery";
-import About from "../components/About";
-import FAQ from "@/components/FAQ";
-import HomeBlog from "@/components/HomeBlog";
-
 import Hero from "../components/Hero";
 import Testimonials from "../components/Testimonials";
-import Contact from "../components/Contact";
+import HomeServices from "@/components/HomeServices";
+import HomeAbout from "@/components/HomeAbout";
+import HomeGallery from "@/components/HomeGallery";
+import { getPosts } from "@/lib/sanity/posts";
+import { getHomepagePhotos } from "@/lib/sanity/photos";
+import HomeContact from "@/components/HomeContact";
+import { homepageSchema } from "@/seo";
+import Script from "next/script";
 
 export const metadata = {
   title: "Rodinná a svatební fotografka Český ráj",
   description:
     "Michaela Čížková | Rodinná a svatební fotografka z Českého ráje. Fotím rodiny, svatby, novorozence a těhotné v okolí Jičína, Turnova a Mladé Boleslavi.",
 };
-
-import HomeServices from "@/components/HomeServices";
-import HomeAbout from "@/components/HomeAbout";
-import HomeGallery from "@/components/HomeGallery";
-
-import { getPosts } from "@/lib/sanity/posts";
-import { getHomepagePhotos } from "@/lib/sanity/photos";
-import HomeContact from "@/components/HomeContact";
 
 export default async function Home() {
   const posts = await getPosts();
@@ -50,6 +44,13 @@ export default async function Home() {
       <section id="contact">
         <HomeContact />
       </section>
+      <Script
+        id="homepage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homepageSchema),
+        }}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const faqItems = [
@@ -22,12 +22,12 @@ const faqItems = [
   {
     question: "Jak dlouho focení trvá?",
     answer:
-      "Délka se odvíjí od konkrétního typu a vybraného balíčku:\n\n- Rodinné, párové a těhotenské focení: minimálně 60 minut (dle zvoleného balíčku)\n- Newborn focení: 60–90 minut\n- Ateliérové focení: 60–90 minut\n- Svatební focení: od 2–3 hodin (Mini balíček) až po celodenní focení\n- Rodinná reportáž: 2–3 hodiny\n- Reportážní focení akcí: individuálně podle charakteru a délky události",
+      "Délka se odvíjí od konkrétního typu a vybraného balíčku:\n\n- Rodinné, párové a těhotenské focení: minimálně 60 minut dle zvoleného balíčku\n- Newborn focení: 60–90 minut \n- Ateliérové focení: 60–90 minut \n- Svatební focení: individuálně\n- Rodinná reportáž: 2–3 hodiny",
   },
   {
     question: "Jak rychle dostanu hotové fotografie?",
     answer:
-      "Hotové fotografie obdržíte elektronicky v soukromé online galerii. Přesný termín dodání závisí na sezóně a typu focení (rodinné focení standardně do 2–3 týdnů, svatební balíčky do 2 až 4 týdnů).",
+      "Hotové fotografie obdržíte elektronicky v soukromé online galerii. Přesný termín dodání závisí na sezóně a typu focení - standardně do 2–3 týdnů, u svatebního focení se termín domlouvá individuálně.",
   },
   {
     question: "Kde probíhá focení?",
@@ -52,7 +52,7 @@ const faqItems = [
   {
     question: "Jaký je rozdíl mezi rodinným focením a rodinnou reportáží?",
     answer:
-      "- Rodinné focení je kombinací přirozených momentů a jemného vedení. Pomohu vám s pózami, poradím, kam a jak se postavit. Cílem jsou autentické portréty a společné rodinné fotografie.\n- Rodinná reportáž zachycuje váš skutečný život takový, jaký je – zcela bez mého zásahu a stylizace. Jde o zachycení každodenních chvil u vás doma, jako je společné hraní, vaření nebo odpočinek.",
+      "\n\n- Rodinné focení je kombinací přirozených momentů a jemného vedení. Pomohu vám s pózami, poradím, kam a jak se postavit. Cílem jsou autentické portréty a společné rodinné fotografie.\n- Rodinná reportáž zachycuje váš skutečný život takový, jaký je – zcela bez mého zásahu a stylizace. Jde o zachycení každodenních chvil u vás doma, jako je společné hraní, vaření nebo odpočinek.",
   },
   {
     question: "Jaký styl focení preferujete?",
@@ -84,15 +84,15 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 bg-background overflow-hidden">
+    <section className="py-12 bg-background overflow-hidden" id="page-wrap-faq">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="relative mb-20 md:ml-12">
           <motion.div initial={false} animate={{ opacity: 1, x: 0 }}>
-            <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
+            <p className="!hidden text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Moje cesta
             </p>
-            <h1 className="text-5xl font-bold tracking-tight text-foreground">
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
               Časté dotazy ohledně focení v Českém ráji
             </h1>
             <h2 className="text-2xl font-semibold tracking-tight text-foreground mt-6">
@@ -111,7 +111,7 @@ export default function FAQ() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-brown mt-8 max-w-lg"
+            className="!hidden text-brown mt-8 max-w-lg"
           >
             Zjistěte více o mém přístupu a fotografické cestě
           </motion.p>
@@ -147,9 +147,46 @@ export default function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-text-light mt-4 leading-relaxed">
-                      {item.answer}
-                    </p>
+                    <div className="text-text-light mt-4 leading-relaxed">
+                      {(() => {
+                        const lines = item.answer.split("\n").filter(Boolean);
+                        const elements: ReactNode[] = [];
+                        let listItems: string[] = [];
+
+                        const flushList = () => {
+                          if (listItems.length) {
+                            elements.push(
+                              <ul
+                                key={`list-${elements.length}`}
+                                className="list-disc pl-6 space-y-1"
+                              >
+                                {listItems.map((li, idx) => (
+                                  <li key={idx}>{li}</li>
+                                ))}
+                              </ul>,
+                            );
+                            listItems = [];
+                          }
+                        };
+
+                        lines.forEach((line, idx) => {
+                          if (line.trim().startsWith("- ")) {
+                            listItems.push(line.replace(/^- /, "").trim());
+                          } else {
+                            flushList();
+                            elements.push(
+                              <p key={idx} className="mb-4 last:mb-0">
+                                {line}
+                              </p>,
+                            );
+                          }
+                        });
+
+                        flushList();
+
+                        return elements;
+                      })()}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

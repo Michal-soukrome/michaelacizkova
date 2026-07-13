@@ -373,7 +373,10 @@ export default function Services() {
     };
   }, [selectedIndex, allImages]);
   return (
-    <section className="py-16 bg-background overflow-hidden">
+    <section
+      className="py-12 bg-background overflow-hidden"
+      id="page-wrap-sluzby"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="relative mb-20">
@@ -386,9 +389,9 @@ export default function Services() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               {header.eyebrow}
             </p>
-            <h1 className="text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
               Fotografické služby v Českém ráji – Michaela Čížková
-            </h1>
+            </h2>
             <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-6">
               Vyberte si focení, které vám sedí
             </h2>

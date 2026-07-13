@@ -94,7 +94,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-16 bg-background overflow-hidden">
+    <section className="py-12 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Artistic header with offset */}
         <div className="relative mb-20">
@@ -107,7 +107,7 @@ export default function Testimonials() {
             <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Říkají o mně
             </p>
-            <h2 className="text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
               Co říkají klienti?
             </h2>
 

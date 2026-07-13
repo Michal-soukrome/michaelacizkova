@@ -120,7 +120,7 @@ export default function Gallery() {
 
   return (
     <>
-      <div className="py-16 bg-background overflow-hidden">
+      <div className="py-12 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Offset header design */}
           <div className="relative mb-20">
@@ -132,7 +132,7 @@ export default function Gallery() {
               <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
                 Výběr z mé tvorby
               </p>
-              <h1 className="text-5xl font-bold tracking-tight text-foreground">
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
                 Portfolio – ukázky focení v Českém ráji
               </h1>
               <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-6">
@@ -152,7 +152,7 @@ export default function Gallery() {
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 60 }}
               transition={{ delay: 0.2 }}
-              className="text-brown mt-8 max-w-lg md:ml-12"
+              className="!hidden text-brown mt-8 max-w-lg md:ml-12"
             >
               Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
               vypráví svůj vlastní příběh.

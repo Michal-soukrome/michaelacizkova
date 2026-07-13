@@ -101,7 +101,7 @@ export default function Hero() {
           <p className="text-sm md:text-base tracking-[0.3em] text-white/50 mb-4 uppercase">
             FOTOGRAFKA Z ČESKÉHO RÁJE
           </p>
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter ">
             <span className="text-white drop-shadow-lg">Michaela</span>
             <br />
             <span
@@ -111,7 +111,7 @@ export default function Hero() {
               Čížková
             </span>
           </h1>
-          <h2 className="mt-8 text-xl md:text-2xl font-semibold text-white/85 max-w-3xl leading-snug">
+          <h2 className="!hidden mt-8 text-xl md:text-2xl font-semibold text-white/85 max-w-3xl leading-snug">
             Věřím, že ty nejkrásnější fotografie vznikají ve chvílích, kdy jste
             sami sebou. Jsem tu od toho, abych tyto chvíle zachytila.
           </h2>
@@ -126,8 +126,8 @@ export default function Hero() {
           {/* Thin decorative line above paragraph */}
           <div className="w-10 h-px bg-white/30 mb-5" />
           {/* text-white/80 instead of text-tan — tan blended into warm photo tones */}
-          <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-            Český ráj – Jičín · Mladějov · Turnov · Mladá Boleslav{" "}
+          <p className="text-lg md:text-xl text-white/50 leading-relaxed">
+            Český ráj - Jičín · Mladějov · Turnov · Mladá Boleslav{" "}
           </p>
         </motion.div>
 
@@ -135,12 +135,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="flex gap-4 mt-12 ml-0 md:ml-20"
+          className="flex gap-4 mt-12 flex-wrap ml-0 md:ml-20"
         >
           {/* Primary CTA — white fill, dark text for max contrast */}
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className="w-fit btn-base btn-primary"
+            className="w-full md:w-fit justify-center btn-base btn-primary"
             onClick={() => {
               window.dispatchEvent(new Event("navigationStart"));
               document
@@ -158,7 +158,7 @@ export default function Hero() {
           {/* Secondary CTA — white border/text instead of brown (brown was invisible) */}
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className="btn-base btn-secondary"
+            className="w-full md:w-fit justify-center btn-base btn-secondary"
             onClick={() => {
               window.dispatchEvent(new Event("navigationStart"));
               document

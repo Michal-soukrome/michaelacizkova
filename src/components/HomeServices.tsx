@@ -77,7 +77,7 @@ export default function HomeServices() {
             Co nabízím
           </p>
 
-          <h2 className="text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
             Jaké fotografické služby nabízím?
           </h2>
 

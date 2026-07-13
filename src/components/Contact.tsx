@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
   return (
-    <section className="py-16 bg-background overflow-hidden" id="contact">
+    <section className="py-12 bg-background overflow-hidden" id="contact">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="relative mb-20">
@@ -17,7 +17,7 @@ export default function Contact() {
             <p className="text-start text-sm tracking-[0.3em] text-brown uppercase mb-4">
               Napište mi{" "}
             </p>
-            <h1 className="text-start text-5xl font-bold tracking-tight text-foreground">
+            <h1 className="text-start text-3xl md:text-5xl font-bold tracking-tight text-foreground">
               Rezervujte si termín focení v Českém ráji
             </h1>
             <motion.div
