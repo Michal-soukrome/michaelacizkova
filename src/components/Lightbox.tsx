@@ -126,8 +126,9 @@ export default function Lightbox({
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-center bg-black/50 backdrop-blur-sm rounded-full px-6 py-3 z-10">
               <h3 className="text-lg font-semibold mb-1">{photo.title}</h3>
               <p className="text-sm text-gray-300">
-                {categoryLabels[photo.category]} • {selectedIndex + 1} /{" "}
-                {photos.length}
+                {categoryLabels[photo.category]
+                  ? `${categoryLabels[photo.category]} • ${selectedIndex + 1} / ${photos.length}`
+                  : `${selectedIndex + 1} / ${photos.length}`}
               </p>
             </div>
           )}

@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Quote, Star, User } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import OptimizedImage from "./OptimizedImage";
 import { AnimatedCounter } from "./AnimatedCounter";
+import Container from "./Container";
 
 const testimonials = [
   {
@@ -95,7 +96,7 @@ export default function Testimonials() {
 
   return (
     <section className="py-12 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
+      <Container>
         {/* Artistic header with offset */}
         <div className="relative mb-20">
           <motion.div
@@ -270,7 +271,7 @@ export default function Testimonials() {
             </div>
           ))}
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

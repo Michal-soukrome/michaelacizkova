@@ -2,12 +2,13 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import Container from "./Container";
 import SectionHero from "./SectionHero";
 
 export default function Contact() {
   return (
     <section className="py-12 bg-background overflow-hidden" id="contact">
-      <div className="container mx-auto px-4">
+      <Container>
         <SectionHero
           eyebrow="Napište mi"
           title="Rezervujte si termín focení v Českém ráji"
@@ -19,8 +20,8 @@ export default function Contact() {
           animate={{ y: [0, -10, 0], opacity: 1 }}
           className="absolute top-1/2 left-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 -translate-x-1/2"
         />
-      </div>
-      <div className="container mx-auto px-4">
+      </Container>
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
           {/* Contact info */}
           <motion.div
@@ -110,7 +111,7 @@ export default function Contact() {
             <ContactForm />
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

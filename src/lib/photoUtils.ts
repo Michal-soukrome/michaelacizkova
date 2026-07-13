@@ -15,7 +15,7 @@ export const categoryLabels: Record<PhotoCategory, string> = {
   reportage: "Reportáž",
   romantic: "Romantické",
   wedding: "Svatební focení",
-  homepage: "Homepage",
+  homepage: "",
 };
 
 export function getAvailableCategories(photos: Photo[]) {
@@ -23,8 +23,10 @@ export function getAvailableCategories(photos: Photo[]) {
     new Set(photos.map((p) => p.category).filter((c) => c && c.trim() !== "")),
   );
 
-  return unique.map((c) => ({
-    value: c,
-    label: categoryLabels[c],
-  }));
+  return unique
+    .filter((c) => c !== "homepage")
+    .map((c) => ({
+      value: c,
+      label: categoryLabels[c],
+    }));
 }

@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Section from "./Section";
+import Container from "./Container";
 
 export default function AboutHomepage() {
   return (
     <Section id="about">
       <hr className="border-brown/30" />
-      <div className="container mx-auto px-4 -mt-3 flex flex-col items-center justify-center  gap-10 md:gap-16">
+      <Container className="-mt-3 flex flex-col items-center justify-center gap-10 md:gap-16">
         {/* TEXT – kompaktní */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
@@ -45,7 +46,7 @@ export default function AboutHomepage() {
         <Link href="/o-mne" className="mt-8 btn-base btn-primary mx-auto w-fit">
           Více o mně
         </Link>
-      </div>
+      </Container>
     </Section>
   );
 }

@@ -10,6 +10,7 @@ import { categoryLabels } from "@/lib/photoUtils";
 import { Photo, PhotoCategory } from "@/lib/photoTypes";
 import Lightbox from "./Lightbox";
 import SectionHero from "./SectionHero";
+import Container from "./Container";
 
 const getSizeClasses = (size: string) => {
   switch (size) {
@@ -122,7 +123,7 @@ export default function Gallery() {
   return (
     <>
       <div className="py-12 bg-background overflow-hidden">
-        <div className="container mx-auto px-4">
+        <Container>
           <SectionHero
             eyebrow="Výběr z mé tvorby"
             title="Portfolio – ukázky focení v Českém ráji"
@@ -184,9 +185,11 @@ export default function Gallery() {
                       <h3 className="text-white font-semibold text-lg mb-1">
                         {photo.title}
                       </h3>
-                      <p className="text-white text-sm opacity-85">
-                        {categoryLabels[photo.category]}
-                      </p>
+                      {categoryLabels[photo.category] ? (
+                        <p className="text-white text-sm opacity-85">
+                          {categoryLabels[photo.category]}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </motion.div>
@@ -221,7 +224,7 @@ export default function Gallery() {
               </button>
             </motion.div>
           )}
-        </div>
+        </Container>
       </div>
 
       {/* Enhanced Lightbox */}

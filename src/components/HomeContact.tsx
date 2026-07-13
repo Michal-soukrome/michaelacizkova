@@ -2,11 +2,12 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import Container from "./Container";
 
 export default function HomeContact() {
   return (
     <section className="py-12 bg-background overflow-hidden" id="contact">
-      <div className="container mx-auto px-4">
+      <Container>
         {/* Header */}
         <div className="relative mb-20">
           <motion.div
@@ -122,7 +123,7 @@ export default function HomeContact() {
             <ContactForm />
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

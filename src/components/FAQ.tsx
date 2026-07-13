@@ -3,6 +3,7 @@
 import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHero from "./SectionHero";
+import Container from "./Container";
 
 const faqItems = [
   {
@@ -86,7 +87,7 @@ export default function FAQ() {
 
   return (
     <section className="py-12 bg-background overflow-hidden" id="page-wrap-faq">
-      <div className="container mx-auto px-4">
+      <Container>
         <SectionHero
           title="Časté dotazy ohledně focení v Českém ráji"
           subtitle="Nejčastější otázky před focením"
@@ -168,7 +169,7 @@ export default function FAQ() {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

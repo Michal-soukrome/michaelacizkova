@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
+import Container from "./Container";
 import {
   PortableText,
   PortableTextTypeComponentProps,
@@ -145,64 +146,67 @@ export default function BlogDetail({ post }: { post: Post | null }) {
 
   if (!post) {
     return (
-      <div className="container mx-auto py-32 text-center text-gray-500">
-        Článek nenalezen.
-      </div>
+      <div className="py-32 text-center text-gray-500">Článek nenalezen.</div>
     );
   }
 
   return (
-    <section className="container mx-auto px-4 py-16 md:py-24">
-      <SectionHero title={post.title} description={post.excerpt ?? undefined} />
+    <section className="py-16 md:py-24">
+      <Container>
+        <SectionHero
+          title={post.title}
+          description={post.excerpt ?? undefined}
+        />
 
-      {/* Cover image */}
-      {post.coverImage && (
-        <div className="rounded-xl overflow-hidden shadow-lg mb-12">
-          <Image
-            src={urlFor(post.coverImage).width(1600).height(900).url()}
-            alt={post.title}
-            width={1600}
-            height={900}
-            className="w-full h-auto object-cover transition-all duration-700 hover:scale-[1.02]"
-          />
-        </div>
-      )}
+        {/* Cover image */}
+        {post.coverImage && (
+          <div className="rounded-xl overflow-hidden shadow-lg mb-12">
+            <Image
+              src={urlFor(post.coverImage).width(1600).height(900).url()}
+              alt={post.title}
+              width={1600}
+              height={900}
+              className="w-full h-auto object-cover transition-all duration-700 hover:scale-[1.02]"
+            />
+          </div>
+        )}
 
-      {/* Content */}
-      <article className="prose prose-lg prose-invert max-w-none text-text-light leading-relaxed">
-        <PortableText value={post.content} components={components} />
-      </article>
+        {/* Content */}
+        <article className="prose prose-lg prose-invert max-w-none text-text-light leading-relaxed">
+          <PortableText value={post.content} components={components} />
+        </article>
 
-      {/* Lightbox */}
-      <Lightbox
-        photos={images}
-        selectedIndex={selectedIndex}
-        onClose={() => setSelectedIndex(null)}
-        onNext={() =>
-          setSelectedIndex((prev) =>
-            prev === null ? null : (prev + 1) % images.length,
-          )
-        }
-        onPrev={() =>
-          setSelectedIndex((prev) =>
-            prev === null ? null : prev === 0 ? images.length - 1 : prev - 1,
-          )
-        }
-      />
+        {/* Lightbox */}
+        <Lightbox
+          photos={images}
+          selectedIndex={selectedIndex}
+          onClose={() => setSelectedIndex(null)}
+          onNext={() =>
+            setSelectedIndex((prev) =>
+              prev === null ? null : (prev + 1) % images.length,
+            )
+          }
+          onPrev={() =>
+            setSelectedIndex((prev) =>
+              prev === null ? null : prev === 0 ? images.length - 1 : prev - 1,
+            )
+          }
+        />
 
-      <div className="mt-16 space-y-6 text-center">
-        <div className="max-w-2xl mx-auto text-lg leading-relaxed text-text-light">
-          Líbí se vám focení v Českém ráji? Napište mi a domluvme termín.
-        </div>
-        <Link href="/kontakt" className="btn-base btn-primary mx-auto w-fit">
-          Napište mi
-        </Link>
-        <div>
-          <Link href="/blog" className="btn-base btn-secondary mx-auto w-fit">
-            ← Zpět na blog
+        <div className="mt-16 space-y-6 text-center">
+          <div className="max-w-2xl mx-auto text-lg leading-relaxed text-text-light">
+            Líbí se vám focení v Českém ráji? Napište mi a domluvme termín.
+          </div>
+          <Link href="/kontakt" className="btn-base btn-primary mx-auto w-fit">
+            Napište mi
           </Link>
+          <div>
+            <Link href="/blog" className="btn-base btn-secondary mx-auto w-fit">
+              ← Zpět na blog
+            </Link>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

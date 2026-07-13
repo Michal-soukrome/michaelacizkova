@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import OptimizedImage from "./OptimizedImage";
 import Section from "./Section";
 import Link from "next/link";
+import Container from "./Container";
 
 const services = [
   {
@@ -67,7 +68,7 @@ export default function HomeServices() {
   return (
     <Section id="services">
       <hr className="border-brown/30" />
-      <div className="container mx-auto px-4 -mt-3">
+      <Container className="-mt-3">
         <div className="mb-16 text-center">
           <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4 bg-background w-fit mx-auto px-4">
             Co nabízím
@@ -127,7 +128,7 @@ export default function HomeServices() {
             Více o službách
           </Link>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

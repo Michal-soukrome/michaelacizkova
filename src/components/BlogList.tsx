@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Post } from "@/lib/sanity/postTypes";
 import BlogCard from "./BlogCard";
+import Container from "./Container";
 import SectionHero from "./SectionHero";
 
 export default function BlogList({ posts }: { posts: Post[] }) {
@@ -13,7 +14,7 @@ export default function BlogList({ posts }: { posts: Post[] }) {
       className="py-12 bg-background overflow-hidden"
       id="page-wrap-blog"
     >
-      <div className="container mx-auto px-4">
+      <Container>
         <SectionHero
           eyebrow="Novinky & příběhy"
           title="Fotoblog z Ráje"
@@ -36,7 +37,7 @@ export default function BlogList({ posts }: { posts: Post[] }) {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

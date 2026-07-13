@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHero from "./SectionHero";
+import Container from "./Container";
 import ContactForm from "./ContactForm";
 import Contact from "./Contact";
 
@@ -23,7 +24,7 @@ export default function About() {
   return (
     <section className="py-12 bg-background overflow-hidden">
       <div>
-        <div className="container mx-auto px-4">
+        <Container>
           <SectionHero
             eyebrow="Moje cesta"
             title="Michaela Čížková – fotografka z Mladějova v Českém ráji"
@@ -68,7 +69,7 @@ export default function About() {
             transition={{ duration: 1 }}
             className="absolute top-20 left-0 w-64 h-64 border border-brown/30 rounded-full -translate-x-1/4"
           />
-        </div>
+        </Container>
 
         <div className="mt-20">
           <Contact />

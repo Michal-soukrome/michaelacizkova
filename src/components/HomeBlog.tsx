@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Post } from "@/lib/sanity/postTypes";
 import BlogCard from "./BlogCard";
 import Section from "./Section";
+import Container from "./Container";
 
 export default function HomeBlog({ posts }: { posts: Post[] }) {
   const latest = posts.slice(0, 3); // ← zobrazí jen 3 články
@@ -13,7 +14,7 @@ export default function HomeBlog({ posts }: { posts: Post[] }) {
   return (
     <Section id="blog">
       <hr className="border-brown/30" />
-      <div className="container mx-auto px-4 -mt-3">
+      <Container className="-mt-3">
         <div className="mb-16 text-center">
           <p className="text-sm tracking-[0.3em] text-brown uppercase mb-3 bg-background w-fit mx-auto px-4">
             Novinky & příběhy
@@ -44,7 +45,7 @@ export default function HomeBlog({ posts }: { posts: Post[] }) {
             Všechny články
           </Link>
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

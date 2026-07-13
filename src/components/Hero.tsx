@@ -77,6 +77,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
+      id="hero-section"
       className="relative min-h-dvh flex items-center overflow-hidden -mt-20 pt-20 md:pt-40"
     >
       {/* Hero Content */}

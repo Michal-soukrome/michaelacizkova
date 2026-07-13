@@ -14,6 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import Container from "./Container";
 import SectionHero from "./SectionHero";
 import OptimizedImage from "./OptimizedImage";
 import { photos } from "@/lib/photos";
@@ -378,7 +379,7 @@ export default function Services() {
       className="py-12 bg-background overflow-hidden"
       id="page-wrap-sluzby"
     >
-      <div className="container mx-auto px-4">
+      <Container>
         <SectionHero
           eyebrow={header.eyebrow}
           title={header.heading}
@@ -390,157 +391,157 @@ export default function Services() {
           whileInView={{ opacity: 0.1, scale: 1 }}
           className="absolute -top-20 -right-20 w-80 h-80 border border-brown/40 rounded-full"
         />
-      </div>
 
-      {/* Service rows */}
-      <div className="divide-y divide-brown/10 md:space-y-20">
-        {services.map((service, index) => {
-          const imageLeft = index % 2 === 0;
-          const extraImages = service.images ?? [];
+        {/* Service rows */}
+        <div className="divide-y divide-brown/10 md:space-y-20">
+          {services.map((service, index) => {
+            const imageLeft = index % 2 === 0;
+            const extraImages = service.images ?? [];
 
-          // Calculate the index of the main image in the allImages array
-          let mainImageIndex = 0;
-          for (let i = 0; i < index; i++) {
-            mainImageIndex += 1 + (services[i].images?.length ?? 0);
-          }
+            // Calculate the index of the main image in the allImages array
+            let mainImageIndex = 0;
+            for (let i = 0; i < index; i++) {
+              mainImageIndex += 1 + (services[i].images?.length ?? 0);
+            }
 
-          return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className={`flex flex-col ${imageLeft ? "md:flex-row" : "md:flex-row-reverse"} gap-0 items-stretch`}
-            >
-              {/* Main side image */}
-              <ImagePanel src={service.image} alt={service.title} />
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className={`flex flex-col ${imageLeft ? "md:flex-row" : "md:flex-row-reverse"} gap-0 items-stretch`}
+              >
+                {/* Main side image */}
+                <ImagePanel src={service.image} alt={service.title} />
 
-              {/* Content panel */}
-              <div className="flex-1 py-10 md:py-14 px-6 md:px-12 flex flex-col justify-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                  {service.title}
-                </h3>
+                {/* Content panel */}
+                <div className="flex-1 py-10 md:py-14 px-6 md:px-12 flex flex-col justify-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
+                    {service.title}
+                  </h3>
 
-                <p className="text-text-light leading-relaxed mb-6 max-w-xl">
-                  {service.description}
-                </p>
+                  <p className="text-text-light leading-relaxed mb-6 max-w-xl">
+                    {service.description}
+                  </p>
 
-                {/* Extra photo strip — sits between description and pricing/packages 
+                  {/* Extra photo strip — sits between description and pricing/packages 
                   <ImageStrip images={extraImages} alt={service.title} />
                   */}
 
-                {/* Packages variant */}
-                {"packages" in service && service.packages ? (
-                  <div className="space-y-3">
-                    {service.packages.map((pkg, pkgIndex) => (
-                      <PackageCard key={pkgIndex} pkg={pkg} />
-                    ))}
-                  </div>
-                ) : (
-                  <>
-                    <PriceBox
-                      price={service.price!}
-                      duration={service.duration!}
-                      photos={service.photos!}
+                  {/* Packages variant */}
+                  {"packages" in service && service.packages ? (
+                    <div className="space-y-3">
+                      {service.packages.map((pkg, pkgIndex) => (
+                        <PackageCard key={pkgIndex} pkg={pkg} />
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <PriceBox
+                        price={service.price!}
+                        duration={service.duration!}
+                        photos={service.photos!}
+                      />
+                      <FeatureList features={service.features} />
+                      {service.extraPrice && (
+                        <p className="text-xs text-brown font-semibold mt-4 pt-4 border-t border-brown/20">
+                          {service.extraPrice}
+                        </p>
+                      )}
+                    </>
+                  )}
+
+                  {/* CTA Button */}
+                  <motion.button
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("serviceSelected", {
+                          detail: { service: service.title },
+                        }),
+                      );
+                      setTimeout(() => {
+                        document
+                          .getElementById("contact-form")
+                          ?.scrollIntoView({ behavior: "smooth" });
+                      }, 300);
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className="mt-8 btn-base btn-primary w-fit"
+                  >
+                    objednat focení
+                    <MessageCircleMore
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      aria-hidden="true"
                     />
-                    <FeatureList features={service.features} />
-                    {service.extraPrice && (
-                      <p className="text-xs text-brown font-semibold mt-4 pt-4 border-t border-brown/20">
-                        {service.extraPrice}
-                      </p>
-                    )}
-                  </>
-                )}
+                  </motion.button>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
-                {/* CTA Button */}
-                <motion.button
-                  onClick={() => {
-                    window.dispatchEvent(
-                      new CustomEvent("serviceSelected", {
-                        detail: { service: service.title },
-                      }),
-                    );
-                    setTimeout(() => {
-                      document
-                        .getElementById("contact-form")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }, 300);
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                  className="mt-8 btn-base btn-primary w-fit"
-                >
-                  objednat focení
-                  <MessageCircleMore
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                    aria-hidden="true"
-                  />
-                </motion.button>
+        {/* Booking block */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-20 bg-cream/30 border-2 border-brown/40 rounded-xl p-8 md:p-12"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <MapPin className="w-5 h-5 text-brown" />
+                <h4 className="font-semibold text-foreground">
+                  {booking.location.title}
+                </h4>
               </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Booking block */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="mt-20 bg-cream/30 border-2 border-brown/40 rounded-xl p-8 md:p-12"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <MapPin className="w-5 h-5 text-brown" />
-              <h4 className="font-semibold text-foreground">
-                {booking.location.title}
-              </h4>
+              <p className="text-sm text-text-light leading-relaxed">
+                {booking.location.text}
+              </p>
+              <p className="text-sm text-brown font-semibold mt-3">
+                {booking.location.transport}
+              </p>
             </div>
-            <p className="text-sm text-text-light leading-relaxed">
-              {booking.location.text}
-            </p>
-            <p className="text-sm text-brown font-semibold mt-3">
-              {booking.location.transport}
-            </p>
-          </div>
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <Phone className="w-5 h-5 text-brown" />
-              <h4 className="font-semibold text-foreground">
-                {booking.preparation.title}
-              </h4>
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Phone className="w-5 h-5 text-brown" />
+                <h4 className="font-semibold text-foreground">
+                  {booking.preparation.title}
+                </h4>
+              </div>
+              <p className="text-sm text-text-light leading-relaxed">
+                {booking.preparation.text}
+              </p>
             </div>
-            <p className="text-sm text-text-light leading-relaxed">
-              {booking.preparation.text}
-            </p>
           </div>
-        </div>
 
-        <div className="hidden text-center pt-8 border-t border-brown/20">
-          <p className="text-text-light mb-6">{booking.cta.text}</p>
-          <motion.a
-            href="#contact"
-            whileTap={{ scale: 0.98 }}
-            className="btn-base btn-primary w-fit mx-auto animate-bounce"
-            onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new Event("navigationStart"));
-              setTimeout(() => {
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" });
-                setTimeout(
-                  () => window.dispatchEvent(new Event("navigationEnd")),
-                  1000,
-                );
-              }, 200);
-            }}
-          >
-            {booking.cta.label}
-            <MessageCircleMore className="w-4 h-4" aria-hidden="true" />
-          </motion.a>
-        </div>
-      </motion.div>
+          <div className="hidden text-center pt-8 border-t border-brown/20">
+            <p className="text-text-light mb-6">{booking.cta.text}</p>
+            <motion.a
+              href="#contact"
+              whileTap={{ scale: 0.98 }}
+              className="btn-base btn-primary w-fit mx-auto animate-bounce"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new Event("navigationStart"));
+                setTimeout(() => {
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setTimeout(
+                    () => window.dispatchEvent(new Event("navigationEnd")),
+                    1000,
+                  );
+                }, 200);
+              }}
+            >
+              {booking.cta.label}
+              <MessageCircleMore className="w-4 h-4" aria-hidden="true" />
+            </motion.a>
+          </div>
+        </motion.div>
+      </Container>
     </section>
   );
 }

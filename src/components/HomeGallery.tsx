@@ -8,6 +8,7 @@ import { Photo } from "@/lib/photoTypes";
 import Section from "./Section";
 import OptimizedImage from "./OptimizedImage";
 import Lightbox from "./Lightbox";
+import Container from "./Container";
 
 export default function HomeGallery({ photos }: { photos: Photo[] }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -67,7 +68,7 @@ export default function HomeGallery({ photos }: { photos: Photo[] }) {
 
   return (
     <Section id="gallery">
-      <div className="container mx-auto px-4">
+      <Container>
         {/* GRID */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {photos.map((photo: Photo, i: number) => (
@@ -89,7 +90,7 @@ export default function HomeGallery({ photos }: { photos: Photo[] }) {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
 
       <Lightbox
         photos={photos}
