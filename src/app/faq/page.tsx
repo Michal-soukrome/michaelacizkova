@@ -11,6 +11,7 @@ export const metadata = {
 export default function FaqPage() {
   return (
     <div>
+      <FAQ />
       <Script
         id="faq-schema"
         type="application/ld+json"
@@ -18,8 +19,6 @@ export default function FaqPage() {
           __html: JSON.stringify(faqSchema),
         }}
       />
-
-      <FAQ />
     </div>
   );
 }
