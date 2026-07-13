@@ -179,6 +179,7 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  ├── OptimizedImage.tsx
 |  |  ├── ScrollToTop.tsx
 |  |  ├── Section.tsx
+|  |  ├── SectionHero.tsx
 |  |  ├── Services.tsx
 |  |  └── Testimonials.tsx
 |  ├── lib
@@ -198,6 +199,7 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  └── seo
 |     ├── index.ts
 |     └── schemas
+|        ├── blogPost.ts
 |        ├── faq.ts
 |        └── homepage.ts
 ├── studio
@@ -219,6 +221,6 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 ├── tree.txt
 └── tsconfig.json
 
-directory: 8314 file: 66184
+directory: 8314 file: 66186
 
 ignored: directory (886)

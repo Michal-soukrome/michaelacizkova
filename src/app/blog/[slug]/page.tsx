@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getPost } from "@/lib/sanity/posts";
 import BlogDetail from "@/components/BlogDetail";
+import { generateBlogPostSchema } from "@/seo/schemas/blogPost";
+import Script from "next/script";
 
 export async function generateMetadata({
   params,
@@ -28,5 +30,19 @@ export default async function BlogPost({
   const { slug } = await params;
   const post = await getPost(slug);
 
-  return <BlogDetail post={post} />;
+  const schema = generateBlogPostSchema(post, slug);
+
+  return (
+    <>
+      <Script
+        id="blog-post-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+      />
+
+      <BlogDetail post={post} />
+    </>
+  );
 }

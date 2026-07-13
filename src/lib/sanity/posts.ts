@@ -24,7 +24,8 @@ export async function getPost(slug: string): Promise<Post> {
       coverImage,
       excerpt,
       content,
-      publishedAt
+      publishedAt,
+      _updatedAt
     }
   `,
     { slug },

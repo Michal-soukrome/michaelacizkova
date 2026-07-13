@@ -2,6 +2,7 @@
 
 import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SectionHero from "./SectionHero";
 
 const faqItems = [
   {
@@ -86,36 +87,10 @@ export default function FAQ() {
   return (
     <section className="py-12 bg-background overflow-hidden" id="page-wrap-faq">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="relative mb-20 md:ml-12">
-          <motion.div initial={false} animate={{ opacity: 1, x: 0 }}>
-            <p className="!hidden text-sm tracking-[0.3em] text-brown uppercase mb-4">
-              Moje cesta
-            </p>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-              Časté dotazy ohledně focení v Českém ráji
-            </h1>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground mt-6">
-              Nejčastější otázky před focením
-            </h2>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-brown mt-6 origin-left"
-            />
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="!hidden text-brown mt-8 max-w-lg"
-          >
-            Zjistěte více o mém přístupu a fotografické cestě
-          </motion.p>
-        </div>
+        <SectionHero
+          title="Časté dotazy ohledně focení v Českém ráji"
+          subtitle="Nejčastější otázky před focením"
+        />
 
         {/* FAQ List */}
         <div className="max-w-3xl md:ml-12 space-y-6">

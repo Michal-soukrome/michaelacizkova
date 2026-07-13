@@ -15,6 +15,7 @@ import {
 } from "@/lib/sanity/postTypes";
 import Link from "next/link";
 import Lightbox from "@/components/Lightbox";
+import SectionHero from "./SectionHero";
 
 type LinkMark = {
   _type: "link";
@@ -152,12 +153,7 @@ export default function BlogDetail({ post }: { post: Post | null }) {
 
   return (
     <section className="container mx-auto px-4 py-16 md:py-24">
-      {/* Header */}
-      <div className="mb-12 text-center">
-        <h3 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-          {post.title}
-        </h3>
-      </div>
+      <SectionHero title={post.title} description={post.excerpt ?? undefined} />
 
       {/* Cover image */}
       {post.coverImage && (

@@ -2,43 +2,25 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import SectionHero from "./SectionHero";
 
 export default function Contact() {
   return (
     <section className="py-12 bg-background overflow-hidden" id="contact">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="relative mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="md:mr-auto md:ml-8 md:text-left max-w-xl"
-          >
-            <p className="text-start text-sm tracking-[0.3em] text-brown uppercase mb-4">
-              Napište mi{" "}
-            </p>
-            <h1 className="text-start text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-              Rezervujte si termín focení v Českém ráji
-            </h1>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="w-24 h-px bg-brown mt-6 md:mr-auto origin-left"
-            />
-            <p className="text-text-light mt-8">
-              Chcete nafotit chvíle, na které nezapomenete? Ozvěte se – ráda se
-              s vámi potkám.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, rotate: -12 }}
-            whileInView={{ opacity: 1, rotate: 0 }}
-            animate={{ y: [0, -10, 0], opacity: 1 }}
-            className="absolute top-1/2 left-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 -translate-x-1/2"
-          />
-        </div>
-
+        <SectionHero
+          eyebrow="Napište mi"
+          title="Rezervujte si termín focení v Českém ráji"
+          description="Chcete nafotit chvíle, na které nezapomenete? Ozvěte se – ráda se s vámi potkám."
+        />
+        <motion.div
+          initial={{ opacity: 0, rotate: -12 }}
+          whileInView={{ opacity: 1, rotate: 0 }}
+          animate={{ y: [0, -10, 0], opacity: 1 }}
+          className="absolute top-1/2 left-0 w-52 h-52 border border-brown/30 rounded-full -translate-y-1/2 -translate-x-1/2"
+        />
+      </div>
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
           {/* Contact info */}
           <motion.div

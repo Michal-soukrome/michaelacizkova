@@ -64,10 +64,6 @@ const services = [
 ];
 
 export default function HomeServices() {
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <Section id="services">
       <hr className="border-brown/30" />

@@ -9,6 +9,7 @@ import { getPhotos } from "@/lib/sanity/photos";
 import { categoryLabels } from "@/lib/photoUtils";
 import { Photo, PhotoCategory } from "@/lib/photoTypes";
 import Lightbox from "./Lightbox";
+import SectionHero from "./SectionHero";
 
 const getSizeClasses = (size: string) => {
   switch (size) {
@@ -122,44 +123,12 @@ export default function Gallery() {
     <>
       <div className="py-12 bg-background overflow-hidden">
         <div className="container mx-auto px-4">
-          {/* Offset header design */}
-          <div className="relative mb-20">
-            <motion.div
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              className="md:ml-12"
-            >
-              <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
-                Výběr z mé tvorby
-              </p>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-                Portfolio – ukázky focení v Českém ráji
-              </h1>
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground mt-6">
-                Ukázky jednotlivých typů focení
-              </h2>
-            </motion.div>
+          <SectionHero
+            eyebrow="Výběr z mé tvorby"
+            title="Portfolio – ukázky focení v Českém ráji"
+            subtitle="Ukázky jednotlivých typů focení"
+          />
 
-            {/* Decorative element */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="absolute -bottom-4 left-0 md:left-12 w-24 h-px bg-brown origin-left"
-            />
-
-            <motion.p
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 60 }}
-              transition={{ delay: 0.2 }}
-              className="!hidden text-brown mt-8 max-w-lg md:ml-12"
-            >
-              Pečlivě vybraná kolekce mých nejlepších snímků. Každá fotografie
-              vypráví svůj vlastní příběh.
-            </motion.p>
-          </div>
-
-          {/* Category Filter - Inline Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

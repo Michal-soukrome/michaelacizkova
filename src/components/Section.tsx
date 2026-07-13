@@ -30,7 +30,7 @@ export default function Section({
       initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
-      className={`relative py-20 md:py-32 ${bgClasses[background]} ${className}`}
+      className={`relative py-20 ${bgClasses[background]} ${className}`}
     >
       {children}
     </motion.section>

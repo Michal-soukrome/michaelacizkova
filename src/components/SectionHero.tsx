@@ -23,12 +23,8 @@ export default function SectionHero({
   children,
 }: SectionHeroProps) {
   return (
-    <Section
-      id={id}
-      className={`bg-background overflow-hidden ${className}`}
-      background="default"
-    >
-      <div className="container mx-auto px-4 text-center">
+    <Section id="section-component" className={className} background="default">
+      <div className="container mx-auto px-4 text-center" id={id}>
         {eyebrow ? (
           <p className="text-sm tracking-[0.3em] text-brown uppercase mb-3">
             {eyebrow}
@@ -44,7 +40,7 @@ export default function SectionHero({
         ) : null}
         <div className="w-20 h-px bg-brown mx-auto mt-6" />
         {description ? (
-          <p className="text-brown mt-8 max-w-lg mx-auto">{description}</p>
+          <p className="text-brown mt-8 max-w-2xl mx-auto">{description}</p>
         ) : null}
         {children}
       </div>

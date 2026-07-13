@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionHero from "./SectionHero";
 import ContactForm from "./ContactForm";
 import Contact from "./Contact";
 
@@ -23,37 +24,11 @@ export default function About() {
     <section className="py-12 bg-background overflow-hidden">
       <div>
         <div className="container mx-auto px-4">
-          {/* Offset header design */}
-          <div className=" relative mb-20">
-            <motion.div
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              className="md:ml-12"
-            >
-              <p className="text-sm tracking-[0.3em] text-brown uppercase mb-4">
-                Moje cesta
-              </p>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-                Michaela Čížková – fotografka z Mladějova v Českém ráji
-              </h1>
-              {/* Decorative line */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="w-24 h-px bg-brown mt-6 origin-left"
-              />
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-brown mt-8 max-w-lg md:ml-12"
-            >
-              Zjistěte více o mé fotografické cestě a přístupu k focení.
-            </motion.p>
-          </div>
+          <SectionHero
+            eyebrow="Moje cesta"
+            title="Michaela Čížková – fotografka z Mladějova v Českém ráji"
+            description="Zjistěte více o mé fotografické cestě a přístupu k focení."
+          />
 
           {/* Content Grid */}
           <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start md:ml-12">
