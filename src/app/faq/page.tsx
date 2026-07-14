@@ -1,12 +1,9 @@
 import Script from "next/script";
 import FAQ from "@/components/FAQ";
 import { faqSchema } from "@/seo";
+import { faqPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata = {
-  title: "Časté dotazy – focení v Českém ráji",
-  description:
-    "Odpovědi na dotazy o focení v Českém ráji. Zjistěte, jak se připravit, kdy rezervovat termín newborn a jak dlouho trvá dodání fotografií.",
-};
+export const metadata = faqPageMetadata;
 
 export default function FaqPage() {
   return (

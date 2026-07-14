@@ -1,8 +1,7 @@
 import Link from "next/link";
+import { notFoundPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata = {
-  title: "Stránka nenalezena",
-};
+export const metadata = notFoundPageMetadata;
 
 export const viewport = {
   width: "device-width",

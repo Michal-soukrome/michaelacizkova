@@ -1,10 +1,7 @@
 import Gallery from "@/components/Gallery";
+import { portfolioPageMetadata } from "@/lib/pageMetadata";
 
-export const metadata = {
-  title: "Portfolio – rodinné, svatební a newborn focení",
-  description:
-    "Ukázky rodinného, těhotenského, newborn i svatebního focení z Českého ráje, Jičína, Turnova a okolí.",
-};
+export const metadata = portfolioPageMetadata;
 
 export default function GalleryPage() {
   return (

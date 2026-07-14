@@ -94,7 +94,7 @@ export default function Footer() {
               <h4 className="text-xs uppercase tracking-[0.2em] text-brown mb-6">
                 Kontakt
               </h4>
-              <div className="flex gap-3 items-center flex-wrap text-sm text-text-light">
+              <div className="flex gap-3 flex-col text-sm text-text-light">
                 <a
                   href="mailto:foto.michaelacizkova@seznam.cz"
                   className="underline "

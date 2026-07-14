@@ -8,12 +8,9 @@ import { getHomepagePhotos } from "@/lib/sanity/photos";
 import HomeContact from "@/components/HomeContact";
 import { homepageSchema } from "@/seo";
 import Script from "next/script";
+import { homePageMetadata } from "@/lib/pageMetadata";
 
-export const metadata = {
-  title: "Rodinná a svatební fotografka Český ráj",
-  description:
-    "Michaela Čížková | Rodinná a svatební fotografka z Českého ráje. Fotím rodiny, svatby, novorozence a těhotné v okolí Jičína, Turnova a Mladé Boleslavi.",
-};
+export const metadata = homePageMetadata;
 
 export default async function Home() {
   const posts = await getPosts();

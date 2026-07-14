@@ -94,7 +94,7 @@ export default function FAQ() {
         />
 
         {/* FAQ List */}
-        <div className="max-w-3xl md:ml-12 space-y-6">
+        <div className="max-w-3xl mx-auto space-y-6">
           {faqItems.map((item, i) => (
             <div
               key={i}

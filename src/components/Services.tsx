@@ -23,7 +23,7 @@ import { photos } from "@/lib/photos";
 
 const header = {
   eyebrow: "Co nabízím",
-  heading: "Služby",
+  heading: "Fotografické služby v Českém ráji",
   subtitle:
     "Procházejte si moji nabídku fotografických služeb. Každá sesión je přizpůsobena vašim specifickým potřebám a představám.",
 };
