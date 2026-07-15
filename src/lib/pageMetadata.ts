@@ -4,9 +4,9 @@ export type AppPageMetadata = {
 };
 
 export const homePageMetadata: AppPageMetadata = {
-  title: "Rodinná a svatební fotografka Český ráj",
+  title: "Rodinná a svatební fotografka Český ráj | Michaela Čížková",
   description:
-    "Michaela Čížková | Rodinná a svatební fotografka z Českého ráje. Fotím rodiny, svatby, novorozence a těhotné v okolí Jičína, Turnova a Mladé Boleslavi.",
+    "Rodinná a svatební fotografka z Českého ráje. Fotím rodiny, svatby, novorozence a těhotné v okolí Jičína, Turnova a Mladé Boleslavi.",
 };
 
 export const faqPageMetadata: AppPageMetadata = {
@@ -16,25 +16,26 @@ export const faqPageMetadata: AppPageMetadata = {
 };
 
 export const contactPageMetadata: AppPageMetadata = {
-  title: "Kontakt – rezervace focení",
+  title: "Kontakt – rezervace focení | Michaela Čížková fotografka",
   description:
-    "Michaela Čížková | Rezervujte si termín focení. Fotím v Jičíně, Turnově, Sobotce a Mladé Boleslavi. Doprava zdarma do 10 km od Mladějova. Napište mi.",
+    "Rezervujte si termín focení. Fotím v Jičíně, Turnově, Sobotce a Mladé Boleslavi. Doprava zdarma do 10 km od Mladějova. Napište mi.",
 };
 
 export const aboutPageMetadata: AppPageMetadata = {
-  title: "O mně – fotografka z Českého ráje",
+  title: "O mně – fotografka z Českého ráje | Michaela Čížková",
   description:
-    "Michaela Čížková | Jsem Michaela Čížková, fotografka z Mladějova v Českém ráji. Poznejte můj přístup k fotografii a práci s rodinami.",
+    "Jsem Michaela Čížková, fotografka z Mladějova v Českém ráji. Poznejte můj přístup k fotografii a práci s rodinami.",
 };
 
 export const portfolioPageMetadata: AppPageMetadata = {
-  title: "Portfolio – rodinné, svatební a newborn focení",
+  title:
+    "Portfolio – rodinné, svatební a newborn focení | Michaela Čížková fotografka",
   description:
     "Ukázky rodinného, těhotenského, newborn i svatebního focení z Českého ráje, Jičína, Turnova a okolí.",
 };
 
 export const servicesPageMetadata: AppPageMetadata = {
-  title: "Fotografické služby v Českém ráji",
+  title: "Fotografické služby – rodinné, svatební a newborn focení",
   description:
     "Profesionální rodinné focení, newborn, těhotenské, reportážní a svatební fotografie. Podívejte se na nabídku balíčků a ceník služeb.",
 };
