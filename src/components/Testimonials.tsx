@@ -162,6 +162,7 @@ export default function Testimonials() {
 
                   {/* Author */}
                   <div className="flex items-center pt-4 border-t border-brown/20">
+                    {/*
                     <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-brown/40 group-hover:ring-brown/60 transition-all bg-cream flex items-center justify-center">
                       {failedImages.has(index) ? (
                         <User className="w-7 h-7 text-brown" />
@@ -179,6 +180,7 @@ export default function Testimonials() {
                         />
                       )}
                     </div>
+                    */}
                     <div>
                       <h3 className="font-semibold text-foreground text-lg">
                         {testimonial.name}
