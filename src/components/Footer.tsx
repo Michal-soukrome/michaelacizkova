@@ -61,7 +61,7 @@ export default function Footer() {
               </p>
               <div className="flex gap-3">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/p/Michaela-%C4%8C%C3%AD%C5%BEkov%C3%A1-Foto-61553976984513/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown "
@@ -70,7 +70,7 @@ export default function Footer() {
                   <Facebook className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/michaelacizkova_foto/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 border border-brown flex items-center justify-center hover:border-charcoal hover:bg-brown hover:text-white transition-all duration-300 rounded-full text-brown"
@@ -105,6 +105,7 @@ export default function Footer() {
                   +420 604 410 116
                 </a>
                 <p>Mladějov, Český ráj</p>
+                <p>IČ: 23019468</p>
               </div>
             </motion.div>
           </div>

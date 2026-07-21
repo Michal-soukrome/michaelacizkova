@@ -85,14 +85,12 @@ export default function Contact() {
                     </div>
                     <div>
                       <h2 className="font-semibold mb-1 text-foreground text-xl">
-                        Kde fotím a jak je to s dopravou?
+                        Kde fotím?
                       </h2>
                       <p className="text-text-light">
                         Nejčastěji fotím v Českém ráji, v okolí Sobotky, Jičína,
                         Turnova a Mladé Boleslavi. Ráda za vámi přijedu i do
                         dalších oblastí.
-                        <br />
-                        Doprava: Zdarma do 10 km od Mladějova, poté 8,- Kč/km
                       </p>
                     </div>
                   </div>

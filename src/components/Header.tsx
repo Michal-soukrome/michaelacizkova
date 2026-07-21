@@ -26,8 +26,16 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/p/Michaela-%C4%8C%C3%AD%C5%BEkov%C3%A1-Foto-61553976984513/",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/michaelacizkova_foto/",
+    label: "Instagram",
+  },
   { icon: Mail, href: "mailto:foto.michaelacizkova@seznam.cz", label: "Email" },
 ];
 

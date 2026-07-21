@@ -27,7 +27,7 @@ const homepageSchema = {
         "Práce s dětmi při rodinném focení",
       ],
       sameAs: [
-        "https://www.facebook.com/profile.php?id=61553976984513",
+        "https://www.facebook.com/p/Michaela-%C4%8C%C3%AD%C5%BEkov%C3%A1-Foto-61553976984513/",
         "https://www.instagram.com/michaelacizkova_foto/",
         "https://www.firmy.cz/detail/13796702-fotografka-michaela-cizkova-mladejov.html",
       ],
@@ -125,7 +125,7 @@ const homepageSchema = {
         longitude: "15.2326",
       },
       sameAs: [
-        "https://www.facebook.com/profile.php?id=61553976984513",
+        "https://www.facebook.com/p/Michaela-%C4%8C%C3%AD%C5%BEkov%C3%A1-Foto-61553976984513/",
         "https://www.instagram.com/michaelacizkova_foto/",
         "https://www.firmy.cz/detail/13796702-fotografka-michaela-cizkova-mladejov.html",
       ],
