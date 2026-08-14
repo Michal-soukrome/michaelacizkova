@@ -1,93 +1,200 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// ─── Config — set all three in .env.local + Vercel project settings ────────
-const PHOTOGRAPHER_EMAIL = process.env.CONTACT_PHOTOGRAPHER_EMAIL!;
-const SENDER_FROM = process.env.CONTACT_SENDER_FROM!;
+const PHOTOGRAPHER_EMAIL = process.env.CONTACT_PHOTOGRAPHER_EMAIL;
+const SENDER_FROM = process.env.CONTACT_SENDER_FROM;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
+
+const ALLOWED_SERVICES = new Set([
+  "Svatební focení",
+  "Rodinné, párové, těhotenské focení",
+  "Newborn focení",
+  "Reportážní focení",
+  "Ateliérové focení",
+]);
+
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const REQUEST_LOG = new Map<string, number[]>();
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function sanitizeText(value: unknown, maxLength: number) {
+  if (typeof value !== "string") return "";
+
+  return escapeHtml(value.trim().replace(/\s+/g, " ").slice(0, maxLength));
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function getClientIp(req: NextRequest) {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+
+  return req.headers.get("x-real-ip") ?? "unknown";
+}
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const timestamps = REQUEST_LOG.get(ip) ?? [];
+  const validTimestamps = timestamps.filter(
+    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS,
+  );
+
+  validTimestamps.push(now);
+  REQUEST_LOG.set(ip, validTimestamps);
+
+  return validTimestamps.length > RATE_LIMIT_MAX_REQUESTS;
+}
+
+function isLocalhostRequest(req: NextRequest) {
+  const host = req.headers.get("host") ?? "";
+  return host.includes("localhost") || host.includes("127.0.0.1");
+}
+
+async function verifyRecaptcha(token: string, ip: string) {
+  if (!RECAPTCHA_SECRET_KEY) {
+    return false;
+  }
+
+  const response = await fetch(
+    "https://www.google.com/recaptcha/api/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: RECAPTCHA_SECRET_KEY,
+        response: token,
+        remoteip: ip,
+      }),
+    },
+  );
+
+  const data = (await response.json()) as {
+    success?: boolean;
+    score?: number;
+    action?: string;
+  };
+
+  return Boolean(
+    data.success &&
+    data.action === "contact_form" &&
+    (data.score === undefined || data.score >= 0.5),
+  );
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, subject, message, service } = await req.json();
-    if (!name || !email || !subject || !message || !service) {
+    if (!PHOTOGRAPHER_EMAIL || !SENDER_FROM || !RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: "Nastavení emailu chybí v produkční konfiguraci." },
+        { status: 500 },
+      );
+    }
+
+    const clientIp = getClientIp(req);
+    if (isRateLimited(clientIp)) {
+      return NextResponse.json(
+        { error: "Příliš mnoho pokusů. Zkuste to prosím za chvíli znovu." },
+        { status: 429 },
+      );
+    }
+
+    const body = await req.json();
+    const name = sanitizeText(body.name, 100);
+    const email = sanitizeText(body.email, 200).toLowerCase();
+    const subject = sanitizeText(body.subject, 200);
+    const message = sanitizeText(body.message, 5000);
+    const service = sanitizeText(body.service, 200);
+    const captchaToken = sanitizeText(body.captchaToken, 2048);
+
+    if (!name || !email || !subject || !message || !service || !captchaToken) {
       return NextResponse.json(
         { error: "Vyplňte prosím všechna povinná pole." },
         { status: 400 },
       );
     }
 
-    // ⬇️ Instancujeme až uvnitř handleru
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: "Zadejte prosím platný email." },
+        { status: 400 },
+      );
+    }
 
-    // 1) Email fotografce
+    if (!ALLOWED_SERVICES.has(service)) {
+      return NextResponse.json({ error: "Neplatná služba." }, { status: 400 });
+    }
+
+    if (message.length < 10) {
+      return NextResponse.json(
+        { error: "Zpráva musí mít alespoň 10 znaků." },
+        { status: 400 },
+      );
+    }
+
+    const isLocalhost = isLocalhostRequest(req);
+    if (!isLocalhost && !(await verifyRecaptcha(captchaToken, clientIp))) {
+      return NextResponse.json(
+        { error: "Ověření bezpečnosti selhalo. Zkuste to prosím znovu." },
+        { status: 400 },
+      );
+    }
+
+    const resend = new Resend(RESEND_API_KEY);
+
     await resend.emails.send({
       from: SENDER_FROM,
       to: PHOTOGRAPHER_EMAIL,
       replyTo: email,
-      subject: `Nová poptávka: ${subject}`,
+      subject: `Nová poptávka na "${service}" - ${name}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-          <h3 style="color: #7c5c3e; border-bottom: 1px solid #e8ddd4; padding-bottom: 12px;">
-            Nová poptávka přes web
-          </h3>
-          <table style="width: 100%; border-collapse: collapse; margin: 24px 0;">
-            <tr>
-              <td style="padding: 8px 0; color: #888; width: 100px;">Jméno</td>
-              <td style="padding: 8px 0; font-weight: 600;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #888; width: 100px;">Služba</td>
-              <td style="padding: 8px 0; font-weight: 600;">${service || "—"}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #888;">Email</td>
-              <td style="padding: 8px 0;">
-                <a href="mailto:${email}" style="color: #7c5c3e;">${email}</a>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; color: #888;">Předmět</td>
-              <td style="padding: 8px 0;">${subject}</td>
-            </tr>
-          </table>
-          <div style="background: #faf7f4; border-left: 3px solid #7c5c3e; padding: 16px 20px; border-radius: 4px;">
-            <p style="margin: 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Zpráva</p>
-            <p style="margin: 0; line-height: 1.7; white-space: pre-wrap;">${message}</p>
-          </div>
-          <p style="margin-top: 24px; font-size: 12px; color: #aaa;">
-            Odpověz přímo na tento email — reply-to je nastaveno na ${email}
-          </p>
-        </div>
-      `,
-    });
+     <div>
+  <h3>Nová poptávka z webu michaelacizkova.cz</h3>
 
-    // 2) Potvrzení návštěvníkovi
-    await resend.emails.send({
-      from: SENDER_FROM,
-      to: email,
-      subject: "Děkuji za zprávu 🤍",
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-          <h3 style="color: #7c5c3e;">Ahoj ${name},</h3>
-          <p style="line-height: 1.7;">
-            děkuji za tvoji zprávu! Dostala jsem ji a ozvu se ti co nejdříve,
-            obvykle do 1-2 pracovních dní.
-          </p>
-          <p style="line-height: 1.7;">Těším se na spolupráci 🤍</p>
-          <p style="line-height: 1.7; margin-top: 32px;">
-            Michaela Čížková<br/>
-            <span style="color: #888; font-size: 14px;">Fotografka</span>
-          </p>
-          <hr style="border: none; border-top: 1px solid #e8ddd4; margin: 32px 0;" />
-          <p style="font-size: 12px; color: #aaa; line-height: 1.6;">
-            Tato zpráva byla odeslána z kontaktního formuláře na webu.<br/>
-            Pokud jsi zprávu neodeslal/a, tuto zprávu ignoruj.
-          </p>
-        </div>
+  <table>
+  <tr>
+    <td>Datum odeslání</td>
+    <td>${new Date().toLocaleString()}</td>
+  </tr>
+    <tr>
+      <td>Jméno</td>
+      <td>${name}</td>
+    </tr>
+    <tr>
+      <td>Služba</td>
+      <td>${service}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><a href="mailto:${email}">${email}</a></td>
+    </tr>
+    <tr>
+      <td>Předmět</td>
+      <td>${subject}</td>
+    </tr>
+    <tr>
+      <td>Zpráva</td>
+      <td>${message}</td>
+    </tr>
+  </table>
+</div>
+
       `,
     });
 
     return NextResponse.json({
-      message: "Zpráva byla úspěšně odeslána. Ozvu se ti brzy 🤍",
+      message: "Zpráva byla úspěšně odeslána.",
     });
   } catch (error) {
     console.error("Contact form error:", error);
