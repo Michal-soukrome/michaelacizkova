@@ -34,6 +34,10 @@ function sanitizeText(value: unknown, maxLength: number) {
   return escapeHtml(value.trim().replace(/\s+/g, " ").slice(0, maxLength));
 }
 
+function readCaptchaToken(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -60,7 +64,7 @@ function isRateLimited(ip: string) {
 
 async function verifyRecaptcha(token: string, ip: string) {
   if (!RECAPTCHA_SECRET_KEY) {
-    return false;
+    return { valid: false, reason: "missing-secret" };
   }
 
   const response = await fetch(
@@ -81,20 +85,35 @@ async function verifyRecaptcha(token: string, ip: string) {
     success?: boolean;
     score?: number;
     action?: string;
+    hostname?: string;
+    "error-codes"?: string[];
   };
 
-  return Boolean(
+  const valid = Boolean(
     data.success &&
     data.action === "contact_form" &&
     (data.score === undefined || data.score >= 0.5),
   );
+
+  return {
+    valid,
+    reason: valid
+      ? "accepted"
+      : data["error-codes"]?.join(",") ||
+        `success=${data.success ?? false};action=${data.action ?? "missing"};score=${data.score ?? "missing"};hostname=${data.hostname ?? "missing"}`,
+  };
 }
 
 export async function POST(req: NextRequest) {
   try {
-    if (!PHOTOGRAPHER_EMAIL || !SENDER_FROM || !RESEND_API_KEY) {
+    if (
+      !PHOTOGRAPHER_EMAIL ||
+      !SENDER_FROM ||
+      !RESEND_API_KEY ||
+      !RECAPTCHA_SECRET_KEY
+    ) {
       return NextResponse.json(
-        { error: "Nastavení emailu chybí v produkční konfiguraci." },
+        { error: "Bezpečnostní konfigurace chybí v produkční konfiguraci." },
         { status: 500 },
       );
     }
@@ -129,7 +148,7 @@ export async function POST(req: NextRequest) {
     const subject = sanitizeText(body.subject, 200);
     const message = sanitizeText(body.message, 5000);
     const service = sanitizeText(body.service, 200);
-    const captchaToken = sanitizeText(body.captchaToken, 2048);
+    const captchaToken = readCaptchaToken(body.captchaToken);
 
     if (!name || !email || !subject || !message || !service || !captchaToken) {
       return NextResponse.json(
@@ -149,7 +168,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Neplatná služba." }, { status: 400 });
     }
 
-    if (!(await verifyRecaptcha(captchaToken, clientIp))) {
+    const recaptcha = await verifyRecaptcha(captchaToken, clientIp);
+    if (!recaptcha.valid) {
+      console.warn("reCAPTCHA verification rejected:", recaptcha.reason);
       return NextResponse.json(
         { error: "Ověření bezpečnosti selhalo. Zkuste to prosím znovu." },
         { status: 400 },
