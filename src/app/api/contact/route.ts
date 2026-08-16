@@ -136,13 +136,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Neplatná služba." }, { status: 400 });
     }
 
-    if (message.length < 10) {
-      return NextResponse.json(
-        { error: "Zpráva musí mít alespoň 10 znaků." },
-        { status: 400 },
-      );
-    }
-
     const isLocalhost = isLocalhostRequest(req);
     if (!isLocalhost && !(await verifyRecaptcha(captchaToken, clientIp))) {
       return NextResponse.json(
