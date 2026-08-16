@@ -5,64 +5,7 @@ import OptimizedImage from "./OptimizedImage";
 import Section from "./Section";
 import Link from "next/link";
 import Container from "./Container";
-
-const services = [
-  {
-    title: "Svatební focení",
-    description:
-      "Autentické zachycení vašeho dne plného emocí, detailů a neopakovatelných okamžiků.",
-    image: {
-      src: "/assets/7.jpg",
-      alt: "Svatební focení",
-      width: 1200,
-      height: 1600,
-    },
-  },
-  {
-    title: "Rodinné, párové a těhotenské focení",
-    description:
-      "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
-    image: {
-      src: "/assets/2.jpg",
-      alt: "Rodinné, párové a těhotenské focení",
-      width: 1200,
-      height: 1600,
-    },
-  },
-  {
-    title: "Newborn focení",
-    description:
-      "Newborn focení je něžnou vzpomínkou na první dny života vašeho miminka – plné lásky, blízkosti a těch nejmenších detailů",
-    image: {
-      src: "/assets/5.jpg",
-      alt: "Newborn focení",
-      width: 1200,
-      height: 1600,
-    },
-  },
-  {
-    title: "Reportážní focení",
-    description:
-      "Skutečné momenty bez aranžování. Příběhy zachycené přesně tak, jak se odehrály.",
-    image: {
-      src: "/assets/3.jpg",
-      alt: "Reportážní focení",
-      width: 1200,
-      height: 1600,
-    },
-  },
-  {
-    title: "Ateliérové focení",
-    description:
-      "Komorní prostředí, nadčasové portréty a prostor pro fotografie s jedinečnou atmosférou.",
-    image: {
-      src: "/photos/atelierove/Atelierove-foceni-Cesky-raj.jpg",
-      alt: "Ateliérové focení",
-      width: 1200,
-      height: 1600,
-    },
-  },
-];
+import { services } from "@/lib/services";
 
 export default function HomeServices() {
   return (
@@ -99,7 +42,12 @@ export default function HomeServices() {
               <div className="overflow-hidden rounded-xl bg-cream/20 border border-brown/10">
                 <div className="aspect-4/5 relative">
                   <OptimizedImage
-                    photo={service.image}
+                    photo={{
+                      src: service.image,
+                      alt: service.title,
+                      width: 1200,
+                      height: 1600,
+                    }}
                     fill
                     className="group-hover:grayscale transition-all duration-300 object-cover"
                   />
@@ -111,7 +59,7 @@ export default function HomeServices() {
                   </h3>
 
                   <p className="text-text-light text-sm leading-relaxed">
-                    {service.description}
+                    {service.shortDescription}
                   </p>
                 </div>
               </div>
