@@ -16,6 +16,7 @@ const ALLOWED_SERVICES = new Set([
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
+const MAX_REQUEST_BODY_BYTES = 16 * 1024;
 const REQUEST_LOG = new Map<string, number[]>();
 
 function escapeHtml(value: string) {
@@ -57,11 +58,6 @@ function isRateLimited(ip: string) {
   return validTimestamps.length > RATE_LIMIT_MAX_REQUESTS;
 }
 
-function isLocalhostRequest(req: NextRequest) {
-  const host = req.headers.get("host") ?? "";
-  return host.includes("localhost") || host.includes("127.0.0.1");
-}
-
 async function verifyRecaptcha(token: string, ip: string) {
   if (!RECAPTCHA_SECRET_KEY) {
     return false;
@@ -72,6 +68,7 @@ async function verifyRecaptcha(token: string, ip: string) {
     {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      signal: AbortSignal.timeout(5_000),
       body: new URLSearchParams({
         secret: RECAPTCHA_SECRET_KEY,
         response: token,
@@ -110,7 +107,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
+    const contentLength = Number(req.headers.get("content-length") ?? 0);
+    if (contentLength > MAX_REQUEST_BODY_BYTES) {
+      return NextResponse.json(
+        { error: "Požadavek je příliš velký." },
+        { status: 413 },
+      );
+    }
+
+    const rawBody = await req.text();
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_REQUEST_BODY_BYTES) {
+      return NextResponse.json(
+        { error: "Požadavek je příliš velký." },
+        { status: 413 },
+      );
+    }
+
+    const body = JSON.parse(rawBody) as Record<string, unknown>;
     const name = sanitizeText(body.name, 100);
     const email = sanitizeText(body.email, 200).toLowerCase();
     const subject = sanitizeText(body.subject, 200);
@@ -136,8 +149,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Neplatná služba." }, { status: 400 });
     }
 
-    const isLocalhost = isLocalhostRequest(req);
-    if (!isLocalhost && !(await verifyRecaptcha(captchaToken, clientIp))) {
+    if (!(await verifyRecaptcha(captchaToken, clientIp))) {
       return NextResponse.json(
         { error: "Ověření bezpečnosti selhalo. Zkuste to prosím znovu." },
         { status: 400 },

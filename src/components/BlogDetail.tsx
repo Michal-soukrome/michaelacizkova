@@ -24,6 +24,17 @@ type LinkMark = {
   blank?: boolean;
 };
 
+function getSafeHref(href?: string) {
+  if (!href) return null;
+
+  try {
+    const url = new URL(href, "https://michaelacizkova.cz");
+    return ["http:", "https:", "mailto:"].includes(url.protocol) ? href : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function BlogDetail({ post }: { post: Post | null }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -128,13 +139,14 @@ export default function BlogDetail({ post }: { post: Post | null }) {
     },
     marks: {
       link: ({ children, value }: PortableTextMarkComponentProps<LinkMark>) => {
-        if (!value?.href) return <>{children}</>;
+        const href = getSafeHref(value?.href);
+        if (!href) return <>{children}</>;
 
         return (
           <a
-            href={value.href}
-            target={value.blank ? "_blank" : undefined}
-            rel={value.blank ? "noreferrer" : undefined}
+            href={href}
+            target={value?.blank ? "_blank" : undefined}
+            rel={value?.blank ? "noopener noreferrer" : undefined}
             className="underline decoration-brown/60 hover:text-brown transition-colors"
           >
             {children}
