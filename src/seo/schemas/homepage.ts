@@ -8,7 +8,7 @@ const homepageSchema = {
       jobTitle: "Fotografka",
       description:
         "Fotografka z Českého ráje se sídlem v Mladějově. Specializuje se na rodinné focení, newborn, těhotenské, párové, svatební a reportážní focení.",
-      image: "https://michaelacizkova.cz/assets/img/portret.jpg",
+      image: "https://michaelacizkova.cz/assets/img/portret.jpeg",
       url: "https://michaelacizkova.cz",
       telephone: "+420604410116",
       email: "foto.michaelacizkova@seznam.cz",
@@ -42,7 +42,7 @@ const homepageSchema = {
       name: "Michaela Čížková – fotografka",
       description:
         "Fotografické služby v oblasti Českého ráje. Rodinná, newborn, svatební a reportážní fotografie se sídlem v Mladějově.",
-      image: "https://michaelacizkova.cz/assets/img/portret.jpg",
+      image: "https://michaelacizkova.cz/assets/img/portret.jpeg",
       url: "https://michaelacizkova.cz",
       telephone: "+420604410116",
       email: "foto.michaelacizkova@seznam.cz",
@@ -235,7 +235,7 @@ const homepageSchema = {
     {
       "@type": "ImageObject",
       "@id": "https://michaelacizkova.cz/#portrait",
-      contentUrl: "https://michaelacizkova.cz/assets/img/portret.jpg",
+      contentUrl: "https://michaelacizkova.cz/assets/img/portret.jpeg",
       creator: {
         "@id": "https://michaelacizkova.cz/#person",
       },

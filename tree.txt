@@ -25,7 +25,7 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  ├── logo
 |  |  |  ├── Logo.jpg
 |  |  |  └── logo.png
-|  |  └── portret.jpg
+|  |  └── portret.jpeg
 |  ├── llms.txt
 |  ├── photos
 |  |  ├── atelierove

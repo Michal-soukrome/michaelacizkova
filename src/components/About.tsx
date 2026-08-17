@@ -41,7 +41,7 @@ export default function About() {
               className="w-full md:w-4/12 order-2 md:order-1 rounded-lg overflow-hidden shadow-xl"
             >
               <img
-                src="/assets/portret.jpg"
+                src="/assets/portret.jpeg"
                 alt="Michaela Čížková - portrét fotografky"
                 className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />

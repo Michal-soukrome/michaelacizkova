@@ -28,7 +28,7 @@ export default function AboutHomepage() {
 
           <div className="w-40 h-40 rounded-full overflow-hidden shadow-lg mx-auto ">
             <Image
-              src="/assets/portret.jpg"
+              src="/assets/portret.jpeg"
               alt="Michaela Čížková — portrét"
               width={400}
               height={400}
