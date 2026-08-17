@@ -123,7 +123,7 @@ export default function CookieConsent() {
         <h2 className="text-[1.05rem] font-semibold text-foreground">
           Mohu sbírat analytické cookies?
         </h2>
-        <p className="mt-1.5 max-w-2xl font-sans text-[0.85rem] leading-[1.5] text-text-light">
+        <p className="mt-1.5 max-w-2xl font-sans text-[0.85rem] leading-normal text-text-light">
           Pomáhají mi pochopit, jak web používáte, a díky tomu ho průběžně
           zlepšovat. Bez vašeho souhlasu nic takového nespustím.
         </p>

@@ -114,7 +114,7 @@ export default function Hero() {
               Čížková
             </span>
           </h1>
-          <h2 className="!hidden mt-8 text-xl md:text-2xl font-semibold text-white/85 max-w-3xl leading-snug">
+          <h2 className="hidden mt-8 text-xl md:text-2xl font-semibold text-white/85 max-w-3xl leading-snug">
             Věřím, že ty nejkrásnější fotografie vznikají ve chvílích, kdy jste
             sami sebou. Jsem tu od toho, abych tyto chvíle zachytila.
           </h2>
