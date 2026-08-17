@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Instagram, Twitter, Mail, Facebook, Camera } from "lucide-react";
 import Container from "./Container";
+import { COOKIE_CONSENT_OPEN_EVENT } from "./CookieConsent";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -127,6 +128,15 @@ export default function Footer() {
                 >
                   Obchodní podmínky
                 </a>
+                <button
+                  type="button"
+                  className="hover:text-brown transition-colors hover:underline uppercase cursor-pointer"
+                  onClick={() =>
+                    window.dispatchEvent(new Event(COOKIE_CONSENT_OPEN_EVENT))
+                  }
+                >
+                  Nastavení cookies
+                </button>
               </div>
             </div>
           </motion.div>

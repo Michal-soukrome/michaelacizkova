@@ -28,10 +28,6 @@
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   /* Color palette */
   --charcoal: #261c0e;
-  --brown: #6e473b;
-  --tan: #a78d78;
-  --sage: #beb5a9;
-  --cream: #e1d4c2;
 }
 
 body {
@@ -236,6 +232,107 @@ video {
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+/* Cookie consent */
+.cookie-consent {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  width: min(100% - 2rem, 54rem);
+  padding: 1.25rem 1.5rem;
+  background: var(--cream-light);
+  border: 1px solid rgba(110, 71, 59, 0.25);
+  box-shadow: 0 1rem 3rem rgba(38, 28, 14, 0.16);
+}
+
+.cookie-consent__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--brown);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cookie-consent__title {
+  margin: 0;
+  color: var(--foreground);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.cookie-consent__text {
+  max-width: 42rem;
+  margin: 0.4rem 0 0;
+  color: var(--text-light);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  align-self: center;
+}
+
+.cookie-consent__button {
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--brown);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.cookie-consent__button--reject {
+  color: var(--brown);
+  background: transparent;
+}
+
+.cookie-consent__button--reject:hover {
+  color: var(--cream-light);
+  background: var(--brown);
+}
+
+.cookie-consent__button--accept {
+  color: var(--cream-light);
+  background: var(--brown);
+}
+
+.cookie-consent__button--accept:hover {
+  background: var(--charcoal);
+}
+
+@media (max-width: 640px) {
+  .cookie-consent {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: calc(100% - 1.5rem);
+    padding: 1.1rem;
+  }
+
+  .cookie-consent__actions {
+    width: 100%;
+  }
+
+  .cookie-consent__button {
+    flex: 1;
+  }
 }
 
 /* Safe area insets for notched devices */

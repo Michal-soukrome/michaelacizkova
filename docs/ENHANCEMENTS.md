@@ -351,7 +351,7 @@
 1. Replace Unsplash URLs with actual portfolio images
 2. Update contact information (email, phone, location)
 3. Add actual testimonials
-4. Configure analytics
+4. ~~Configure analytics~~ ✅ Done (Google Tag Manager is gated by cookie consent and localStorage)
 5. ~~Set up contact form backend~~ ✅ Done (Next.js API route + Nodemailer)
 6. Add more pages if needed
 7. Deploy to Vercel or similar platform
