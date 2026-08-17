@@ -5,7 +5,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star, User } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import OptimizedImage from "./OptimizedImage";
 import { AnimatedCounter } from "./AnimatedCounter";
 import Container from "./Container";
 
@@ -15,7 +14,7 @@ const testimonials = [
     role: "",
     content:
       "Michaela je velmi milá a šikovná fotografka. Nafotila nám krásně rodinnou oslavu, díky ní budeme mít navždy krásnou památku na babičku a všechny ostatní přítomné. Doporučuji!",
-    image: "/assets/4.jpg",
+    image: "",
     rating: 5,
   },
   {
@@ -23,7 +22,7 @@ const testimonials = [
     role: "",
     content:
       "Děkujem za krásné fotky. Perfektní komunikace, samotné focení moc příjemné, i když člověk nemá moc zkušeností před objektivem tak Míša s klidem a úsměvem pomůže. Profesionální přístup",
-    image: "/assets/5.jpg",
+    image: "",
     rating: 5,
   },
   {
@@ -31,7 +30,7 @@ const testimonials = [
     role: "Organizace eventů se speciálními hosty",
     content:
       "Na fotkách od paní Čížkové se nám nejvíce líbí emoce, které dokáže zachytit. Je to absolutní přidaná hodnota snímků. Ať už fotky ze zákulisí, či ze samotných akcí. Je vidět, že si s fotkami hodně “hraje” a to je na fotografovi extrémně důležité. Vždy bezproblémová domluva, takže můžeme jen doporučit a zároveň poděkovat za práci, kterou pro Next Talk odvádí!",
-    image: "/assets/6.jpg",
+    image: "",
     rating: 5,
   },
   {
@@ -39,7 +38,7 @@ const testimonials = [
     role: "",
     content:
       "Když jsme vybírali svatební fotografku, ani jsme netušili, jak moc důležitou součástí našeho dne Míša bude. ❤️ Od rána až do večera nebyla jen fotografkou, ale i oporou a koordinátorkou. Kdykoliv jsem něco potřebovala, byla hned vedle mě, poradila, pomohla, všechno zorganizovala a díky ní jsem si mohla náš den opravdu užít bez zbytečného stresu. Měla přehled o všem a vždy přesně věděla, co je potřeba udělat. A fotky? Ty předčily všechna naše očekávání. Zachytila přesně to, co jsme si přáli – opravdové emoce, radost, smích i všechny ty malé okamžiky, které dělají svatbu jedinečnou. Každá fotografie má své kouzlo a při jejich prohlížení se znovu vracíme do našeho nejkrásnějšího dne. Míšo, z celého srdce děkujeme za všechno, co jsi pro nás udělala. Pokud někdo hledá fotografku, která není jen skvělá za fotoaparátem, ale stane se i člověkem, na kterého se může během svatby stoprocentně spolehnout, pak je Míša ta nejlepší volba.",
-    image: "/assets/6.jpg",
+    image: "",
     rating: 5,
   },
 ];
@@ -170,25 +169,6 @@ export default function Testimonials() {
 
                   {/* Author */}
                   <div className="flex items-center pt-4 border-t border-brown/20">
-                    {/*
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden mr-4 ring-2 ring-brown/40 group-hover:ring-brown/60 transition-all bg-cream flex items-center justify-center">
-                      {failedImages.has(index) ? (
-                        <User className="w-7 h-7 text-brown" />
-                      ) : (
-                        <OptimizedImage
-                          photo={{
-                            src: "/assets/1.jpg",
-                            alt: testimonial.name,
-                            width: 2000,
-                            height: 1200,
-                          }}
-                          fill
-                          className="object-cover"
-                          onError={() => handleImageError(index)}
-                        />
-                      )}
-                    </div>
-                    */}
                     <div>
                       <h3 className="font-semibold text-foreground text-lg">
                         {testimonial.name}
