@@ -1,4 +1,4 @@
-C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
+C:\Users\Jirak\Github\michaelacizkova
 ├── docs
 |  ├── ENHANCEMENTS.md
 |  ├── FEATURE-PROPOSALS.md
@@ -13,6 +13,9 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 ├── package.json
 ├── postcss.config.mjs
 ├── public
+|  ├── android-chrome-192x192.png
+|  ├── android-chrome-512x512.png
+|  ├── apple-touch-icon.png
 |  ├── assets
 |  |  ├── 1.jpg
 |  |  ├── 2.jpg
@@ -22,10 +25,30 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  ├── 6.jpg
 |  |  ├── 7.jpg
 |  |  ├── 8.jpg
+|  |  ├── hero
+|  |  |  ├── cover-1.jpg
+|  |  |  ├── cover-2.jpg
+|  |  |  ├── cover-3.jpg
+|  |  |  └── cover-4.jpg
 |  |  ├── logo
 |  |  |  ├── Logo.jpg
 |  |  |  └── logo.png
-|  |  └── portret.jpeg
+|  |  ├── portret.jpeg
+|  |  ├── portret.jpg
+|  |  └── sluzby
+|  |     ├── atelierove
+|  |     |  └── hero.jpg
+|  |     ├── newborn
+|  |     |  └── hero.jpg
+|  |     ├── reportazni
+|  |     |  └── hero.jpg
+|  |     ├── rodinne
+|  |     |  └── hero.jpg
+|  |     └── svatebni
+|  |        └── hero.jpg
+|  ├── favicon-16x16.png
+|  ├── favicon-32x32.png
+|  ├── favicon.ico
 |  ├── llms.txt
 |  ├── photos
 |  |  ├── atelierove
@@ -129,6 +152,7 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |     ├── Tehotenske foceni.Trosky. Jicin. jpg.jpg
 |  |     ├── Tehotenske foceni.Trosky.1.jpg
 |  |     └── Tehotenske foceni.Trosky.jpg
+|  ├── site.webmanifest
 |  └── sw.js
 ├── src
 |  ├── app
@@ -141,7 +165,6 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  |     └── page.tsx
 |  |  ├── faq
 |  |  |  └── page.tsx
-|  |  ├── favicon.ico
 |  |  ├── globals.css
 |  |  ├── kontakt
 |  |  |  └── page.tsx
@@ -165,6 +188,8 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  ├── BlogList.tsx
 |  |  ├── Contact.tsx
 |  |  ├── ContactForm.tsx
+|  |  ├── Container.tsx
+|  |  ├── CookieConsent.tsx
 |  |  ├── FAQ.tsx
 |  |  ├── Footer.tsx
 |  |  ├── Gallery.tsx
@@ -183,17 +208,19 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |  |  ├── Services.tsx
 |  |  └── Testimonials.tsx
 |  ├── lib
+|  |  ├── pageMetadata.ts
 |  |  ├── performance.ts
 |  |  ├── photos.generated.json
 |  |  ├── photos.ts
 |  |  ├── photoTypes.ts
 |  |  ├── photoUtils.ts
-|  |  └── sanity
-|  |     ├── client.ts
-|  |     ├── image.ts
-|  |     ├── photos.ts
-|  |     ├── posts.ts
-|  |     └── postTypes.ts
+|  |  ├── sanity
+|  |  |  ├── client.ts
+|  |  |  ├── image.ts
+|  |  |  ├── photos.ts
+|  |  |  ├── posts.ts
+|  |  |  └── postTypes.ts
+|  |  └── services.ts
 |  ├── scripts
 |  |  └── generatePhotos.ts
 |  └── seo
@@ -219,8 +246,9 @@ C:\Users\michal.jirak\Documents\GitHub\michaelacizkova
 |     └── tsconfig.json
 ├── tailwind.config.ts
 ├── tree.txt
-└── tsconfig.json
+├── tsconfig.json
+└── tsconfig.tsbuildinfo
 
-directory: 8314 file: 66186
+directory: 5877 file: 49640
 
-ignored: directory (886)
+ignored: directory (533)
