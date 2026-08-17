@@ -28,7 +28,7 @@ export const services = [
     ],
   },
   {
-    title: "Rodinné/párové/těhotenské",
+    title: "Rodinné / párové / těhotenské",
     description:
       "Láska, harmonie, radost a vzájemné pouto. Ať už na focení přijdete s partnerem nebo rovnou s celou rodinkou, tyto krásné emoce budou zářit na každém snímku.",
     shortDescription:

@@ -123,7 +123,7 @@ export default function Footer() {
               <div className="flex gap-4 md:gap-8">
                 <a
                   href="#"
-                  className="hover:text-brown transition-colors hover:underline"
+                  className="hidden hover:text-brown transition-colors hover:underline"
                 >
                   Obchodní podmínky
                 </a>
