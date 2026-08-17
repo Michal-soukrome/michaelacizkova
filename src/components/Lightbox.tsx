@@ -86,6 +86,7 @@ export default function Lightbox({
             <OptimizedImage
               photo={photo}
               fill
+              sizes="100vw"
               objectFit="contain"
               priority
               quality={95}

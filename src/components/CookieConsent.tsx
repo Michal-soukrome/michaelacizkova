@@ -121,11 +121,11 @@ export default function CookieConsent() {
     >
       <div>
         <h2 className="text-[1.05rem] font-semibold text-foreground">
-          Můžeme používat analytické cookies?
+          Mohu sbírat analytické cookies?
         </h2>
         <p className="mt-1.5 max-w-2xl font-sans text-[0.85rem] leading-[1.5] text-text-light">
-          Pomáhají nám pochopit, jak web používáte, a průběžně ho zlepšovat. Bez
-          vašeho souhlasu Google Tag Manager nespustíme.
+          Pomáhají mi pochopit, jak web používáte, a díky tomu ho průběžně
+          zlepšovat. Bez vašeho souhlasu nic takového nespustím.
         </p>
       </div>
       <div className="mt-6 flex w-full items-center gap-2.5 self-center sm:w-auto">

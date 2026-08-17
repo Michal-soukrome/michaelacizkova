@@ -13,7 +13,7 @@ export const services = [
     shortDescription:
       "Autentické zachycení vašeho dne plného emocí, detailů a neopakovatelných okamžiků.",
     image: "/assets/sluzby/svatebni/hero.jpg",
-    images: ["/assets/sluzby/svatebni/1.jpg"],
+    images: [],
     price: "Na míru",
     duration: "Celodenní balíček",
     photos: "200+ výsledných fotografií",
@@ -34,7 +34,7 @@ export const services = [
     shortDescription:
       "Přirozené fotografie plné blízkosti, radosti a vzpomínek, ke kterým se budete rádi vracet.",
     image: "/assets/sluzby/rodinne/hero.jpg",
-    images: ["/assets/sluzby/rodinne/1.jpg", "/assets/sluzby/rodinne/2.jpg"],
+    images: [],
     packages: [
       {
         name: "MINI balíček",
@@ -120,7 +120,7 @@ export const services = [
     shortDescription:
       "Komorní prostředí, nadčasové portréty a prostor pro fotografie s jedinečnou atmosférou.",
     image: "/assets/sluzby/atelierove/hero.jpg",
-    images: ["/assets/sluzby/atelierove/1.jpg"],
+    images: [],
     price: "3 200 Kč",
     duration: "Ateliérové focení",
     photos: "15 upravených fotografií + černobílá verze dle mého výběru",

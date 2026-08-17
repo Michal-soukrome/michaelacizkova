@@ -19,7 +19,7 @@ export default function AboutHomepage() {
           className="flex-1 space-y-4 text-center"
         >
           <p className="text-sm tracking-[0.3em] text-brown uppercase bg-background w-fit mx-auto px-4">
-            Kde fotím
+            Lokality
           </p>
 
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">

@@ -176,6 +176,7 @@ export default function Gallery() {
                   <OptimizedImage
                     photo={photo}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     priority={index < 3}
                     className="transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
                   />

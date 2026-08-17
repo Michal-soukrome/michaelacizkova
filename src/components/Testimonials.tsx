@@ -34,6 +34,14 @@ const testimonials = [
     image: "/assets/6.jpg",
     rating: 5,
   },
+  {
+    name: "Daniela D.",
+    role: "",
+    content:
+      "Když jsme vybírali svatební fotografku, ani jsme netušili, jak moc důležitou součástí našeho dne Míša bude. ❤️ Od rána až do večera nebyla jen fotografkou, ale i oporou a koordinátorkou. Kdykoliv jsem něco potřebovala, byla hned vedle mě, poradila, pomohla, všechno zorganizovala a díky ní jsem si mohla náš den opravdu užít bez zbytečného stresu. Měla přehled o všem a vždy přesně věděla, co je potřeba udělat. A fotky? Ty předčily všechna naše očekávání. Zachytila přesně to, co jsme si přáli – opravdové emoce, radost, smích i všechny ty malé okamžiky, které dělají svatbu jedinečnou. Každá fotografie má své kouzlo a při jejich prohlížení se znovu vracíme do našeho nejkrásnějšího dne. Míšo, z celého srdce děkujeme za všechno, co jsi pro nás udělala. Pokud někdo hledá fotografku, která není jen skvělá za fotoaparátem, ale stane se i člověkem, na kterého se může během svatby stoprocentně spolehnout, pak je Míša ta nejlepší volba.",
+    image: "/assets/6.jpg",
+    rating: 5,
+  },
 ];
 
 export default function Testimonials() {
@@ -259,9 +267,9 @@ export default function Testimonials() {
           className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4"
         >
           {[
-            { value: 70, label: "nafocených rodin" },
-            { value: 150, label: "uskutečněných focení" },
-            { value: 3000, label: "odevzdaných fotografií" },
+            { value: 150, label: "nafocených rodin" },
+            { value: 300, label: "uskutečněných focení" },
+            { value: 10000, label: "odevzdaných fotografií" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">

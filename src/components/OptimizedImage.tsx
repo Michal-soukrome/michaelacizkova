@@ -38,8 +38,8 @@ export default function OptimizedImage({
   }, [photo.src]);
 
   // Default sizes for fill images (fixes Next.js warning)
-  const resolvedSizes =
-    sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
+  const resolvedSizes = sizes || "100vw";
+  // sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
 
   return (
     <div
