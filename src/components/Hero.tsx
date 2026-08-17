@@ -8,14 +8,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 
 const heroImages = [
-  { src: "/assets/hero/cover-1.jpg", alt: "Captivating portrait photography" },
+  { src: "/assets/hero/cover-1.jpg", alt: "" },
   {
     src: "/assets/hero/cover-2.jpg",
-    alt: "Stunning black and white photography",
+    alt: "",
   },
-  { src: "/assets/hero/cover-3.jpg", alt: "Professional portrait session" },
-  { src: "/assets/hero/cover-4.jpg", alt: "Professional portrait session" },
-  { src: "/assets/hero/cover-5.jpg", alt: "Professional portrait session" },
+  { src: "/assets/hero/cover-3.jpg", alt: "" },
+  { src: "/assets/hero/cover-4.jpg", alt: "" },
 ];
 
 export default function Hero() {
