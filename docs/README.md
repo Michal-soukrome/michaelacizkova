@@ -84,8 +84,8 @@ npm run dev
 Create testimonials using the **Reference** document type. Each reference has a
 client name, optional role or description, text, a 1–5 star rating, and a display
 order. The homepage reads published references automatically; if none exist yet,
-it temporarily shows the existing fallback references. Deploy the updated schema
-with `npm run deploy` from the studio directory.
+the testimonials section has no slides to display. Deploy the updated schema with
+`npm run deploy` from the studio directory.
 
 ## 📁 Project Structure
 
