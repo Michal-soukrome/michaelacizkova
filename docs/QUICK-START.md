@@ -89,7 +89,19 @@ Edit `src/app/globals.css`:
 - About: `src/components/About.tsx`
 - Services: `src/components/Services.tsx`
 - Contact: `src/components/Contact.tsx`
-- Testimonials: `src/components/Testimonials.tsx`
+- Testimonials: manage published **Reference** documents in the Sanity Studio
+
+### Manage Testimonials in Sanity
+
+```bash
+cd studio/michaela-cizkova
+npm install
+npm run dev
+```
+
+In the studio, create a **Reference** document with the client name, text,
+rating, and optional role. Use **Pořadí na webu** to control the carousel order.
+After schema changes, run `npm run deploy` from the same directory.
 
 ## 📱 Key Features
 

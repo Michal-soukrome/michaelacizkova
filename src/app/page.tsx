@@ -5,6 +5,7 @@ import HomeAbout from "@/components/HomeAbout";
 import HomeGallery from "@/components/HomeGallery";
 import { getPosts } from "@/lib/sanity/posts";
 import { getHomepagePhotos } from "@/lib/sanity/photos";
+import { getTestimonials } from "@/lib/sanity/testimonials";
 import HomeContact from "@/components/HomeContact";
 import { homepageSchema } from "@/seo";
 import Script from "next/script";
@@ -15,6 +16,7 @@ export const metadata = homePageMetadata;
 export default async function Home() {
   const posts = await getPosts();
   const photos = await getHomepagePhotos();
+  const testimonials = await getTestimonials();
 
   return (
     <div>
@@ -36,7 +38,7 @@ export default async function Home() {
       </section>
       */}
       <section id="testimonials">
-        <Testimonials />
+        <Testimonials testimonials={testimonials} />
       </section>
       <section id="contact">
         <HomeContact />

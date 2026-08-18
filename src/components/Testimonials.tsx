@@ -3,49 +3,18 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Star, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { AnimatedCounter } from "./AnimatedCounter";
 import Container from "./Container";
+import { Testimonial } from "@/lib/sanity/testimonialTypes";
 
-const testimonials = [
-  {
-    name: "Zuzana J.",
-    role: "",
-    content:
-      "Michaela je velmi milá a šikovná fotografka. Nafotila nám krásně rodinnou oslavu, díky ní budeme mít navždy krásnou památku na babičku a všechny ostatní přítomné. Doporučuji!",
-    image: "",
-    rating: 5,
-  },
-  {
-    name: "Natálie F.",
-    role: "",
-    content:
-      "Děkujem za krásné fotky. Perfektní komunikace, samotné focení moc příjemné, i když člověk nemá moc zkušeností před objektivem tak Míša s klidem a úsměvem pomůže. Profesionální přístup",
-    image: "",
-    rating: 5,
-  },
-  {
-    name: "NextTalk",
-    role: "Organizace eventů se speciálními hosty",
-    content:
-      "Na fotkách od paní Čížkové se nám nejvíce líbí emoce, které dokáže zachytit. Je to absolutní přidaná hodnota snímků. Ať už fotky ze zákulisí, či ze samotných akcí. Je vidět, že si s fotkami hodně “hraje” a to je na fotografovi extrémně důležité. Vždy bezproblémová domluva, takže můžeme jen doporučit a zároveň poděkovat za práci, kterou pro Next Talk odvádí!",
-    image: "",
-    rating: 5,
-  },
-  {
-    name: "Daniela D.",
-    role: "",
-    content:
-      "Když jsme vybírali svatební fotografku, ani jsme netušili, jak moc důležitou součástí našeho dne Míša bude. ❤️ Od rána až do večera nebyla jen fotografkou, ale i oporou a koordinátorkou. Kdykoliv jsem něco potřebovala, byla hned vedle mě, poradila, pomohla, všechno zorganizovala a díky ní jsem si mohla náš den opravdu užít bez zbytečného stresu. Měla přehled o všem a vždy přesně věděla, co je potřeba udělat. A fotky? Ty předčily všechna naše očekávání. Zachytila přesně to, co jsme si přáli – opravdové emoce, radost, smích i všechny ty malé okamžiky, které dělají svatbu jedinečnou. Každá fotografie má své kouzlo a při jejich prohlížení se znovu vracíme do našeho nejkrásnějšího dne. Míšo, z celého srdce děkujeme za všechno, co jsi pro nás udělala. Pokud někdo hledá fotografku, která není jen skvělá za fotoaparátem, ale stane se i člověkem, na kterého se může během svatby stoprocentně spolehnout, pak je Míša ta nejlepší volba.",
-    image: "",
-    rating: 5,
-  },
-];
-
-export default function Testimonials() {
+export default function Testimonials({
+  testimonials,
+}: {
+  testimonials: Testimonial[];
+}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -96,10 +65,6 @@ export default function Testimonials() {
     emblaApi.on("select", onSelect);
     onSelect();
   }, [emblaApi, onSelect]);
-
-  const handleImageError = (index: number) => {
-    setFailedImages((prev) => new Set(prev).add(index));
-  };
 
   return (
     <section className="py-12 bg-background overflow-hidden">

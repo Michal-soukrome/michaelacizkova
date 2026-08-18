@@ -70,6 +70,23 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
+## Sanity CMS
+
+Blog posts, gallery photos, and homepage testimonials are managed in the Sanity
+Studio. Start the studio from its directory:
+
+```bash
+cd studio/michaela-cizkova
+npm install
+npm run dev
+```
+
+Create testimonials using the **Reference** document type. Each reference has a
+client name, optional role or description, text, a 1–5 star rating, and a display
+order. The homepage reads published references automatically; if none exist yet,
+it temporarily shows the existing fallback references. Deploy the updated schema
+with `npm run deploy` from the studio directory.
+
 ## 📁 Project Structure
 
 ```
