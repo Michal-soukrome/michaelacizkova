@@ -20,27 +20,27 @@ export default async function Home() {
 
   return (
     <div>
-      <section id="home">
+      <section id="homepage-home">
         <Hero />
       </section>
-      <section id="services">
+      <section id="homepage-services">
         <HomeServices />
       </section>
-      <section id="gallery">
+      <section id="homepage-gallery">
         <HomeGallery photos={photos} />
       </section>
-      <section id="about">
+      <section id="homepage-about">
         <HomeAbout />
       </section>
       {/* 
-      <section id="blog">
+      <section id="homepage-blog">
         <HomeBlog posts={posts} />
       </section>
       */}
-      <section id="testimonials">
+      <section id="homepage-testimonials">
         <Testimonials testimonials={testimonials} />
       </section>
-      <section id="contact">
+      <section id="homepage-contact">
         <HomeContact />
       </section>
       <Script
