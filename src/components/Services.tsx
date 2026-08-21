@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, MessageCircleMore } from "lucide-react";
 import Container from "./Container";
 import SectionHero from "./SectionHero";
+import OptimizedImage from "./OptimizedImage";
 import {
   booking as serviceBooking,
   header as serviceHeader,
@@ -41,14 +42,22 @@ function ImagePanel({
 }) {
   return (
     <div
-      className="w-full md:w-5/12 sm:min-h-90 bg-cream/60 overflow-hidden shrink-0 group "
+      className="w-full md:w-5/12 sm:min-h-90 bg-cream/60 overflow-hidden shrink-0 group"
       onClick={onClick}
     >
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover transition-all duration-700"
-      />
+      <div className="relative w-full h-full min-h-[320px] md:min-h-full">
+        <OptimizedImage
+          photo={{
+            src,
+            alt,
+            width: 1200,
+            height: 1600,
+          }}
+          fill
+          className="group-hover:scale-105 transition-all duration-700"
+          priority={false}
+        />
+      </div>
     </div>
   );
 }

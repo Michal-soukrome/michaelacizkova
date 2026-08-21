@@ -5,6 +5,7 @@ import SectionHero from "./SectionHero";
 import Container from "./Container";
 import ContactForm from "./ContactForm";
 import Contact from "./Contact";
+import OptimizedImage from "./OptimizedImage";
 
 const bioParagraphs = [
   "Fotografii jsem obdivovala už od dětství. Svou první zrcadlovku jsem dostala před několika lety od rodičů, ale skutečný zlom přišel v roce 2022, kdy se mi narodil syn. Tehdy jsem si řekla, že se focení chci opravdu naučit abych zachytila naše krásné rodinné momenty — a úplně mě to pohltilo.",
@@ -40,11 +41,19 @@ export default function About() {
               transition={{ duration: 0.8 }}
               className="w-full md:w-4/12 order-2 md:order-1 rounded-lg overflow-hidden shadow-xl"
             >
-              <img
-                src="/assets/portret.jpeg"
-                alt="Michaela Čížková - portrét fotografky"
-                className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
+              <div className="relative aspect-[4/5] w-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+                <OptimizedImage
+                  photo={{
+                    src: "/assets/portret.jpeg",
+                    alt: "Michaela Čížková - portrét fotografky",
+                    width: 1200,
+                    height: 1500,
+                  }}
+                  fill
+                  objectFit="cover"
+                  className="transition-all duration-500"
+                />
+              </div>
             </motion.div>
 
             {/* Bio Text */}
