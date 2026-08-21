@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import SectionHero from "./SectionHero";
 import Container from "./Container";
-import ContactForm from "./ContactForm";
 import Contact from "./Contact";
 import OptimizedImage from "./OptimizedImage";
 
@@ -15,11 +14,6 @@ const bioParagraphs = [
   "Fotím převážně venku nebo u vás doma, ale ráda se s vámi potkám i v ateliéru. Nejčastěji působím v oblasti Českého ráje, ale ráda za vámi dorazím i dál. Fotím na Canon EOS R6 Mark II, který mi umožňuje zachytit přirozené emoce i ve složitějším světle",
   "Mým cílem není jen hezká fotka, ale vzpomínka, ke které se budete rádi vracet 🤍",
 ];
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
 
 export default function About() {
   return (

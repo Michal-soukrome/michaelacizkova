@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, MessageCircleMore } from "lucide-react";
 import Container from "./Container";
@@ -152,19 +152,19 @@ export default function Services() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const allImages = getAllServiceImages();
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     if (selectedIndex !== null) {
       setSelectedIndex((selectedIndex + 1) % allImages.length);
     }
-  };
+  }, [selectedIndex, allImages.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     if (selectedIndex !== null) {
       setSelectedIndex(
         selectedIndex === 0 ? allImages.length - 1 : selectedIndex - 1,
       );
     }
-  };
+  }, [selectedIndex, allImages.length]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -188,7 +188,7 @@ export default function Services() {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
     };
-  }, [selectedIndex, allImages]);
+  }, [selectedIndex, allImages, nextImage, prevImage]);
   return (
     <section
       className="py-12 bg-background overflow-hidden"
