@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Instagram, Twitter, Mail, Facebook, Camera } from "lucide-react";
+import Link from "next/link";
 import Container from "./Container";
 import { COOKIE_CONSENT_OPEN_EVENT } from "./CookieConsent";
 
@@ -122,12 +123,12 @@ export default function Footer() {
                 {currentYear} © Michaela Čížková. Všechna práva vyhrazena.
               </p>
               <div className="flex gap-4 md:gap-8">
-                <a
-                  href="#"
-                  className="hidden hover:text-brown transition-colors hover:underline"
+                <Link
+                  href="/zasady-ochrany-osobnich-udaju"
+                  className="hover:text-brown transition-colors hover:underline uppercase cursor-pointer"
                 >
-                  Obchodní podmínky
-                </a>
+                  Zásady ochrany osobních údajů
+                </Link>
                 <button
                   type="button"
                   className="hover:text-brown transition-colors hover:underline uppercase cursor-pointer"

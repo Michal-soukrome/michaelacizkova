@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
 
 declare global {
   interface Window {
@@ -126,6 +127,15 @@ export default function CookieConsent() {
         <p className="mt-1.5 max-w-2xl font-sans text-[0.85rem] leading-normal text-text-light">
           Pomáhají mi pochopit, jak web používáte, a díky tomu ho průběžně
           zlepšovat. Bez vašeho souhlasu nic takového nespustím.
+          <br />
+          Více v{" "}
+          <Link
+            href="/zasady-ochrany-osobnich-udaju"
+            className="underline underline-offset-2 hover:text-brown"
+          >
+            Zásadách ochrany osobních údajů
+          </Link>
+          .
         </p>
       </div>
       <div className="mt-6 flex w-full items-center gap-2.5 self-center sm:w-auto">

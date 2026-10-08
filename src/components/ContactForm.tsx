@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import Link from "next/link";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
@@ -21,6 +22,7 @@ export default function ContactForm() {
   const [statusMessage, setStatusMessage] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [recaptchaReady, setRecaptchaReady] = useState(false);
+  const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -43,33 +45,42 @@ export default function ContactForm() {
 
     window.addEventListener("serviceSelected", handleServiceSelected);
 
-    if (!recaptchaSiteKey) {
-      return () => {
-        window.removeEventListener("serviceSelected", handleServiceSelected);
-      };
-    }
+    return () =>
+      window.removeEventListener("serviceSelected", handleServiceSelected);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoadRecaptcha || !recaptchaSiteKey) return;
 
     const script = document.createElement("script");
     script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
     script.async = true;
     script.defer = true;
-    document.body.appendChild(script);
 
     const checkRecaptcha = () => {
       if (window.grecaptcha) {
         window.grecaptcha.ready(() => {
           setRecaptchaReady(true);
         });
+      } else {
+        setStatus("error");
+        setStatusTitle("Ověření formuláře se nepodařilo načíst");
+        setStatusMessage(
+          "Zkuste prosím obnovit stránku a formulář odeslat znovu.",
+        );
       }
     };
 
     script.addEventListener("load", checkRecaptcha);
+    script.addEventListener("error", checkRecaptcha);
+    document.body.appendChild(script);
 
     return () => {
-      window.removeEventListener("serviceSelected", handleServiceSelected);
+      script.removeEventListener("load", checkRecaptcha);
+      script.removeEventListener("error", checkRecaptcha);
       script.remove();
     };
-  }, []);
+  }, [shouldLoadRecaptcha]);
 
   const getCaptchaToken = async () => {
     if (!recaptchaSiteKey) {
@@ -216,6 +227,8 @@ export default function ContactForm() {
             ref={formRef}
             id="contact-form"
             onSubmit={handleSubmit}
+            onFocusCapture={() => setShouldLoadRecaptcha(true)}
+            onChangeCapture={() => setShouldLoadRecaptcha(true)}
             className="relative bg-cream/30 border-2 border-brown/40 p-8 md:p-12 rounded-xl scroll-mt-20"
           >
             <div className="space-y-6">
@@ -403,6 +416,16 @@ export default function ContactForm() {
                   </>
                 )}
               </motion.button>
+              <p className="mt-3 text-xs leading-relaxed text-text-light">
+                Odesláním formuláře berete na vědomí{" "}
+                <Link
+                  href="/zasady-ochrany-osobnich-udaju"
+                  className="underline underline-offset-2 hover:text-brown"
+                >
+                  Zásady ochrany osobních údajů
+                </Link>
+                . Web chrání reCAPTCHA.
+              </p>
               <AnimatePresence mode="wait">
                 {status === "loading" && (
                   <motion.div
