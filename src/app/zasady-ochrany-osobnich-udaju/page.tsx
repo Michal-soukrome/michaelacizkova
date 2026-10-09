@@ -40,6 +40,10 @@ const processingPurposes = [
     basis: "Souhlas, čl. 6 odst. 1 písm. a) GDPR",
   },
   {
+    purpose: "Zapamatování vaší volby v cookie liště",
+    basis: "Oprávněný zájem správce, čl. 6 odst. 1 písm. f) GDPR",
+  },
+  {
     purpose:
       "Použití fotografií pro portfolio nebo marketing, pokud je pro dané použití vyžadován souhlas",
     basis: "Souhlas, čl. 6 odst. 1 písm. a) GDPR",
@@ -71,6 +75,7 @@ const retentionPeriods = [
   "Pokud byly fotografie použity pro portfolio nebo marketing na základě souhlasu, uchovávám je po dobu trvání tohoto souhlasu.",
   "Údaje zpracovávané prostřednictvím analytických cookies jsou uchovávány po dobu stanovenou příslušným nástrojem a nastavením cookies.",
   "Údaje zpracovávané službou Google reCAPTCHA jsou uchovávány po dobu stanovenou poskytovatelem této služby.",
+  "Cookie s vaší volbou v cookie liště je uložena po dobu své platnosti nastavenou webem.",
 ];
 
 const serviceProviders = [
@@ -107,7 +112,7 @@ export default function PrivacyPolicyPage() {
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Zásady ochrany osobních údajů
         </h1>
-        <p className="mt-4">Poslední aktualizace: 6.10.2026</p>
+        <p className="mt-4">Poslední aktualizace: 8.10.2026</p>
         <p className={paragraphClassName}>
           Tyto zásady ochrany osobních údajů vysvětlují, jak jsou na webových
           stránkách michaelacizkova.cz zpracovávány osobní údaje návštěvníků,
@@ -163,6 +168,10 @@ export default function PrivacyPolicyPage() {
           vyhodnocovat údaje o zařízení, prohlížeči a chování návštěvníka na
           stránce s formulářem.
         </p>
+        <p className={paragraphClassName}>
+          Při spuštění ukládá služba reCAPTCHA do prohlížeče nezbytný soubor
+          cookie, který slouží k vyhodnocení rizika zneužití formuláře.
+        </p>
 
         <h3 className={subheadingClassName}>
           2.2 Komunikace e-mailem, telefonem a na sociálních sítích
@@ -212,6 +221,10 @@ export default function PrivacyPolicyPage() {
           uděleného prostřednictvím cookie lišty. Mohou zpracovávat technické
           údaje o zařízení, údaje o návštěvě webu a informace o interakcích s
           webovou stránkou.
+        </p>
+        <p className={paragraphClassName}>
+          Volba, kterou provedete v cookie liště, se ukládá do malého souboru
+          cookie ve vašem prohlížeči. Slouží pouze k zapamatování vaší volby.
         </p>
 
         <h2 className={headingClassName}>
